@@ -1,0 +1,93 @@
+# this is an auto generated file. This will be overwritten
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    weight
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    nextToken
+  }
+}
+query GetAttendence($id: ID!) {
+  getAttendence(id: $id) {
+    id
+    trainingDay
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    status
+  }
+}
+query ListAttendences(
+  $filter: ModelAttendenceFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAttendences(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      trainingDay
+      athlete {
+        id
+        firstName
+        lastName
+        membershipType
+        email
+        dob
+        weight
+        height
+        weightCategory
+        boatPreference
+        side
+        sex
+        status
+      }
+      status
+    }
+    nextToken
+  }
+}

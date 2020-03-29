@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "sportm",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authsportm745bb06d",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

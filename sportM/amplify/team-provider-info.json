@@ -1,0 +1,20 @@
+{
+    "devdamien": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-sportm-devdamien-193154-authRole",
+            "UnauthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-devdamien-193154-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-devdamien-193154-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-sportm-devdamien-193154-deployment",
+            "UnauthRoleName": "amplify-sportm-devdamien-193154-unauthRole",
+            "StackName": "amplify-sportm-devdamien-193154",
+            "StackId": "arn:aws:cloudformation:us-east-1:137850098171:stack/amplify-sportm-devdamien-193154/7a5a7650-7215-11ea-9893-0e3edd8361ed",
+            "AmplifyAppId": "d3q6h9505ozcv"
+        },
+        "categories": {
+            "auth": {
+                "sportm745bb06d": {}
+            }
+        }
+    }
+}

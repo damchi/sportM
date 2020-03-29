@@ -1,0 +1,23 @@
+type User @model {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  membershipType: String!
+  email:String!
+  dob:String
+  weight: String
+  height: String
+  weightCategory: String
+  boatPreference: String
+  side: String
+  sex: String
+  status:Boolean
+}
+
+type Attendence @model {
+  id: ID!
+  trainingDay: String!
+  athlete: User!
+  status: String
+}
+

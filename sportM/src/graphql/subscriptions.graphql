@@ -1,0 +1,118 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateUser {
+  onCreateUser {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    weight
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    weight
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    weight
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+  }
+}
+subscription OnCreateAttendence {
+  onCreateAttendence {
+    id
+    trainingDay
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    status
+  }
+}
+subscription OnUpdateAttendence {
+  onUpdateAttendence {
+    id
+    trainingDay
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    status
+  }
+}
+subscription OnDeleteAttendence {
+  onDeleteAttendence {
+    id
+    trainingDay
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    status
+  }
+}

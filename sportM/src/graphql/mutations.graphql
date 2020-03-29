@@ -1,0 +1,136 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateUser(
+  $input: CreateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  createUser(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    weight
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+  }
+}
+mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    weight
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+  }
+}
+mutation DeleteUser(
+  $input: DeleteUserInput!
+  $condition: ModelUserConditionInput
+) {
+  deleteUser(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    weight
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+  }
+}
+mutation CreateAttendence(
+  $input: CreateAttendenceInput!
+  $condition: ModelAttendenceConditionInput
+) {
+  createAttendence(input: $input, condition: $condition) {
+    id
+    trainingDay
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    status
+  }
+}
+mutation UpdateAttendence(
+  $input: UpdateAttendenceInput!
+  $condition: ModelAttendenceConditionInput
+) {
+  updateAttendence(input: $input, condition: $condition) {
+    id
+    trainingDay
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    status
+  }
+}
+mutation DeleteAttendence(
+  $input: DeleteAttendenceInput!
+  $condition: ModelAttendenceConditionInput
+) {
+  deleteAttendence(input: $input, condition: $condition) {
+    id
+    trainingDay
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      weight
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+    }
+    status
+  }
+}
