@@ -1,0 +1,27 @@
+
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+    <h1>{{title}}</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'/coach/training'" (click)="changeTitle($event)" > Trainings </a>
+      <a mat-list-item [routerLink]="'/coach/exercice'" (click)="changeTitle($event)" >Profile</a>
+<!--      <a mat-list-item [routerLink]="'/athletes/crew'" (click)="changeTitle($event)" > Crew </a>-->
+      <button (click)="useLanguage('en')">En</button>
+      <button (click)="useLanguage('fr')">Fr</button>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
