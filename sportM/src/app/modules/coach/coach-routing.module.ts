@@ -23,7 +23,7 @@ const routes: Routes = [
       //   path: 'typeExercice',
       //   loadChildren: () => import('../coach-type-exercice/coach-type-exercice.module').then(m => m.CoachTypeExerciceModule)
       // },
-      {path: '**', redirectTo: '/coach/planning'},
+      {path: '**', redirectTo: '/coach'},
     ]
 
   }];

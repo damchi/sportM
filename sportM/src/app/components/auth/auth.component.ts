@@ -9,17 +9,14 @@ import {Router} from "@angular/router";
 })
 export class AuthComponent implements OnInit {
 
-  // constructor() {
   constructor(public amplifyService: AmplifyService, public router: Router) {
     this.amplifyService = amplifyService;
-
     this.amplifyService.authStateChange$
       .subscribe(authState => {
         if (authState.state === 'signedIn') {
           this.router.navigate(['/athlete/profile']);
         }
       });
-
   }
 
 

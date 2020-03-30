@@ -4,6 +4,10 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {TranslateService} from '@ngx-translate/core';
 import {ServiceService} from '../../services/service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import {APIService} from "../../API.service";
+import {Auth} from "aws-amplify";
+
 
 
 @Component({
@@ -16,7 +20,8 @@ export class AthleteMenuComponent {
   public title: string;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private translate: TranslateService,
-              private alertService: ServiceService, private snackBar: MatSnackBar) {
+              private alertService: ServiceService, private snackBar: MatSnackBar, private api: APIService,
+              private router: Router) {
     this.title = 'Profile';
 
     // translate.setTranslation('en', defaultLanguage);
@@ -47,5 +52,13 @@ export class AthleteMenuComponent {
 
   useLanguage(language: string) {
     this.translate.use(language);
+  }
+
+  logOut() {
+    Auth.signOut({ global: true })
+      .then(data => {
+        this.router.navigate(['/']);
+      })
+      .catch(err => console.log(err));
   }
 }
