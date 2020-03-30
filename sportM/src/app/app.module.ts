@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
 import { AuthComponent } from './components/auth/auth.component';
+import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { AuthComponent } from './components/auth/auth.component';
 
   ],
   imports: [
+    AmplifyAngularModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
@@ -36,7 +38,7 @@ import { AuthComponent } from './components/auth/auth.component';
       }
     })
   ],
-  providers: [],
+  providers: [AmplifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
