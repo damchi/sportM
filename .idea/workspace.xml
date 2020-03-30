@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c7280ed-6abb-4ac0-9b92-b6c674bf95b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/sportM/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/sportM/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sportM/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/sportM/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sportM/src/app/components/athlete-menu/athlete-menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sportM/src/app/components/athlete-menu/athlete-menu.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/components/coach-menu/coach-menu.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/components/coach-menu/coach-menu.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/components/coach-menu/coach-menu.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/modules/coach/coach-routing.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/modules/coach/coach.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/modules/coach/coach.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/modules/coach/coach.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/modules/coach/coach.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sportM/src/app/modules/coach/coach.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sportM/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/sportM/.gitignore" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,84 +26,10 @@
     </execution>
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sportM/src/app/domain/side.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sportM/src/app/domain/weight-category.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sportM/src/app/domain/athlete.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sportM/src/app/modules/athlete-profile/athlete-profile.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-389">
-              <caret line="29" column="35" lean-forward="true" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sportM/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sportM/angular.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sportM/src/app/components/athlete-menu/athlete-menu.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -110,10 +44,16 @@
       <find>dev</find>
       <find>athletes</find>
       <find>mate</find>
+      <find>HttpLoaderFactory</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -129,7 +69,6 @@
         <option value="$PROJECT_DIR$/sportM/src/app/modules/athlete-profile/athlete-profile.module.ts" />
         <option value="$PROJECT_DIR$/sportM/src/app/modules/athlete/athlete.module.ts" />
         <option value="$PROJECT_DIR$/sportM/src/app/modules/athlete/athlete-routing.module.ts" />
-        <option value="$PROJECT_DIR$/sportM/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/sportM/src/polyfills.ts" />
         <option value="$PROJECT_DIR$/sportM/tsconfig.app.json" />
         <option value="$PROJECT_DIR$/sportM/src/styles.css" />
@@ -147,6 +86,11 @@
         <option value="$PROJECT_DIR$/sportM/package.json" />
         <option value="$PROJECT_DIR$/sportM/angular.json" />
         <option value="$PROJECT_DIR$/sportM/src/app/components/athlete-menu/athlete-menu.component.ts" />
+        <option value="$PROJECT_DIR$/sportM/src/app/modules/coach/coach-routing.module.ts" />
+        <option value="$PROJECT_DIR$/sportM/src/app/modules/coach/coach.module.ts" />
+        <option value="$PROJECT_DIR$/sportM/src/app/components/coach-menu/coach-menu.component.html" />
+        <option value="$PROJECT_DIR$/sportM/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/sportM/src/app/components/coach-menu/coach-menu.component.ts" />
       </list>
     </option>
   </component>
@@ -204,7 +148,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="athlete-menu" type="462c0819:PsiDirectoryNode" />
+              <item name="coach-menu" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sportM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sportM" type="462c0819:PsiDirectoryNode" />
+              <item name="sportM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -226,12 +178,12 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/sportM/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/sportM/src/assets/i18n" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/sportM/src" />
       <recent name="$PROJECT_DIR$/sportM/src/app/modules/athlete" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sportM/src/assets/i18n" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -269,7 +221,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18550000" />
+    <option name="totallyTimeSpent" value="19542000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2" y="23" width="1440" height="821" extended-state="6" />
@@ -343,6 +295,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="install" />
     <option name="LAST_COMMIT_MESSAGE" value="install" />
@@ -391,13 +359,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sportM/src/app/app-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="83" selection-start-line="6" selection-start-column="83" selection-end-line="6" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sportM/src/app/modules/athlete-profile/athlete-profile-routing.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -420,13 +381,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sportM/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sportM/src/app/components/athlete-menu/athlete-menu.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sportM/src/app/modules/athlete/athlete.module.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -488,16 +442,6 @@
         <state>
           <folding>
             <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sportM/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -574,10 +518,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sportM/src/app/modules/athlete-profile/athlete-profile.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-389">
-          <caret line="29" column="35" lean-forward="true" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+        <state relative-caret-position="341">
+          <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
           </folding>
@@ -586,24 +537,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sportM/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="17" column="30" lean-forward="true" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        <state relative-caret-position="255">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sportM/angular.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+        <state relative-caret-position="585">
+          <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8400">
+          <caret line="663" column="10" selection-start-line="663" selection-start-column="10" selection-end-line="663" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/src/app/app-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sportM/src/app/components/athlete-menu/athlete-menu.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        <state relative-caret-position="300">
+          <caret line="23" column="61" selection-start-line="23" selection-start-column="61" selection-end-line="23" selection-end-column="61" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
+            <element signature="e#173#226#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/src/app/modules/coach/coach-routing.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="9" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/src/app/components/athlete-menu/athlete-menu.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/src/app/components/coach-menu/coach-menu.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="16" column="50" lean-forward="true" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="41" column="33" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/src/app/modules/coach/coach.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sportM/src/app/components/coach-menu/coach-menu.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="23" lean-forward="true" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+            <element signature="e#173#226#0" expanded="true" />
           </folding>
         </state>
       </provider>
