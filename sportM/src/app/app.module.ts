@@ -10,14 +10,18 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
+import { AuthComponent } from './components/auth/auth.component';
+import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
 
   ],
   imports: [
+    AmplifyAngularModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
@@ -34,7 +38,7 @@ import {CommonModule} from "@angular/common";
       }
     })
   ],
-  providers: [],
+  providers: [AmplifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -64,3 +64,5 @@ amplifyxc.config
 
 #intelij
 .idea
+workspace.xml
+
