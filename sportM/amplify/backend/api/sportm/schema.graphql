@@ -2,22 +2,27 @@ type User @model {
   id: ID!
   firstName: String!
   lastName: String!
-  membershipType: String!
+  membershipType: Int!
   email:String!
-  dob:String
   weight: String
   height: String
   weightCategory: String
   boatPreference: String
   side: String
-  sex: String
+  sex: Sex @connection
   status:Boolean
 }
 
 type Attendence @model {
   id: ID!
   trainingDay: String!
-  athlete: User!
+  athlete: User @connection
   status: String
 }
+
+type Sex @model {
+  id: ID!
+  name: String!
+}
+
 

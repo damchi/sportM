@@ -6,13 +6,15 @@ subscription OnCreateUser {
     lastName
     membershipType
     email
-    dob
     weight
     height
     weightCategory
     boatPreference
     side
-    sex
+    sex {
+      id
+      name
+    }
     status
   }
 }
@@ -23,13 +25,15 @@ subscription OnUpdateUser {
     lastName
     membershipType
     email
-    dob
     weight
     height
     weightCategory
     boatPreference
     side
-    sex
+    sex {
+      id
+      name
+    }
     status
   }
 }
@@ -40,13 +44,15 @@ subscription OnDeleteUser {
     lastName
     membershipType
     email
-    dob
     weight
     height
     weightCategory
     boatPreference
     side
-    sex
+    sex {
+      id
+      name
+    }
     status
   }
 }
@@ -60,13 +66,15 @@ subscription OnCreateAttendence {
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     status
@@ -82,13 +90,15 @@ subscription OnUpdateAttendence {
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     status
@@ -104,15 +114,35 @@ subscription OnDeleteAttendence {
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     status
+  }
+}
+subscription OnCreateSex {
+  onCreateSex {
+    id
+    name
+  }
+}
+subscription OnUpdateSex {
+  onUpdateSex {
+    id
+    name
+  }
+}
+subscription OnDeleteSex {
+  onDeleteSex {
+    id
+    name
   }
 }

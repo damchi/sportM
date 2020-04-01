@@ -9,13 +9,15 @@ mutation CreateUser(
     lastName
     membershipType
     email
-    dob
     weight
     height
     weightCategory
     boatPreference
     side
-    sex
+    sex {
+      id
+      name
+    }
     status
   }
 }
@@ -29,13 +31,15 @@ mutation UpdateUser(
     lastName
     membershipType
     email
-    dob
     weight
     height
     weightCategory
     boatPreference
     side
-    sex
+    sex {
+      id
+      name
+    }
     status
   }
 }
@@ -49,13 +53,15 @@ mutation DeleteUser(
     lastName
     membershipType
     email
-    dob
     weight
     height
     weightCategory
     boatPreference
     side
-    sex
+    sex {
+      id
+      name
+    }
     status
   }
 }
@@ -72,13 +78,15 @@ mutation CreateAttendence(
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     status
@@ -97,13 +105,15 @@ mutation UpdateAttendence(
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     status
@@ -122,15 +132,44 @@ mutation DeleteAttendence(
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     status
+  }
+}
+mutation CreateSex(
+  $input: CreateSexInput!
+  $condition: ModelSexConditionInput
+) {
+  createSex(input: $input, condition: $condition) {
+    id
+    name
+  }
+}
+mutation UpdateSex(
+  $input: UpdateSexInput!
+  $condition: ModelSexConditionInput
+) {
+  updateSex(input: $input, condition: $condition) {
+    id
+    name
+  }
+}
+mutation DeleteSex(
+  $input: DeleteSexInput!
+  $condition: ModelSexConditionInput
+) {
+  deleteSex(input: $input, condition: $condition) {
+    id
+    name
   }
 }

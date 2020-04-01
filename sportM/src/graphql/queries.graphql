@@ -6,13 +6,15 @@ query GetUser($id: ID!) {
     lastName
     membershipType
     email
-    dob
     weight
     height
     weightCategory
     boatPreference
     side
-    sex
+    sex {
+      id
+      name
+    }
     status
   }
 }
@@ -28,13 +30,15 @@ query ListUsers(
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     nextToken
@@ -50,13 +54,15 @@ query GetAttendence($id: ID!) {
       lastName
       membershipType
       email
-      dob
       weight
       height
       weightCategory
       boatPreference
       side
-      sex
+      sex {
+        id
+        name
+      }
       status
     }
     status
@@ -77,16 +83,29 @@ query ListAttendences(
         lastName
         membershipType
         email
-        dob
         weight
         height
         weightCategory
         boatPreference
         side
-        sex
         status
       }
       status
+    }
+    nextToken
+  }
+}
+query GetSex($id: ID!) {
+  getSex(id: $id) {
+    id
+    name
+  }
+}
+query ListSexs($filter: ModelSexFilterInput, $limit: Int, $nextToken: String) {
+  listSexs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
     }
     nextToken
   }
