@@ -4,6 +4,7 @@ type User @model {
   lastName: String!
   membershipType: Int!
   email:String!
+  dod: AWSDateTime
   weight: String
   height: String
   weightCategory: String
@@ -19,8 +20,19 @@ type Attendence @model {
   athlete: User @connection
   status: String
 }
-
 type Sex @model {
+  id: ID!
+  name: String!
+}
+type TypeBoat @model {
+  id: ID!
+  type: String!
+}
+type Side @model {
+  id: ID!
+  type: String!
+}
+type WeightCategory @model {
   id: ID!
   name: String!
 }

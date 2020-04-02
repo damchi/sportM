@@ -6,6 +6,7 @@ subscription OnCreateUser {
     lastName
     membershipType
     email
+    dod
     weight
     height
     weightCategory
@@ -25,6 +26,7 @@ subscription OnUpdateUser {
     lastName
     membershipType
     email
+    dod
     weight
     height
     weightCategory
@@ -44,6 +46,7 @@ subscription OnDeleteUser {
     lastName
     membershipType
     email
+    dod
     weight
     height
     weightCategory
@@ -66,6 +69,7 @@ subscription OnCreateAttendence {
       lastName
       membershipType
       email
+      dod
       weight
       height
       weightCategory
@@ -90,6 +94,7 @@ subscription OnUpdateAttendence {
       lastName
       membershipType
       email
+      dod
       weight
       height
       weightCategory
@@ -114,6 +119,7 @@ subscription OnDeleteAttendence {
       lastName
       membershipType
       email
+      dod
       weight
       height
       weightCategory
@@ -142,6 +148,60 @@ subscription OnUpdateSex {
 }
 subscription OnDeleteSex {
   onDeleteSex {
+    id
+    name
+  }
+}
+subscription OnCreateTypeBoat {
+  onCreateTypeBoat {
+    id
+    type
+  }
+}
+subscription OnUpdateTypeBoat {
+  onUpdateTypeBoat {
+    id
+    type
+  }
+}
+subscription OnDeleteTypeBoat {
+  onDeleteTypeBoat {
+    id
+    type
+  }
+}
+subscription OnCreateSide {
+  onCreateSide {
+    id
+    type
+  }
+}
+subscription OnUpdateSide {
+  onUpdateSide {
+    id
+    type
+  }
+}
+subscription OnDeleteSide {
+  onDeleteSide {
+    id
+    type
+  }
+}
+subscription OnCreateWeightCategory {
+  onCreateWeightCategory {
+    id
+    name
+  }
+}
+subscription OnUpdateWeightCategory {
+  onUpdateWeightCategory {
+    id
+    name
+  }
+}
+subscription OnDeleteWeightCategory {
+  onDeleteWeightCategory {
     id
     name
   }

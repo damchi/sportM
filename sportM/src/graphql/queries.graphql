@@ -6,6 +6,7 @@ query GetUser($id: ID!) {
     lastName
     membershipType
     email
+    dod
     weight
     height
     weightCategory
@@ -30,6 +31,7 @@ query ListUsers(
       lastName
       membershipType
       email
+      dod
       weight
       height
       weightCategory
@@ -54,6 +56,7 @@ query GetAttendence($id: ID!) {
       lastName
       membershipType
       email
+      dod
       weight
       height
       weightCategory
@@ -83,6 +86,7 @@ query ListAttendences(
         lastName
         membershipType
         email
+        dod
         weight
         height
         weightCategory
@@ -103,6 +107,63 @@ query GetSex($id: ID!) {
 }
 query ListSexs($filter: ModelSexFilterInput, $limit: Int, $nextToken: String) {
   listSexs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+    }
+    nextToken
+  }
+}
+query GetTypeBoat($id: ID!) {
+  getTypeBoat(id: $id) {
+    id
+    type
+  }
+}
+query ListTypeBoats(
+  $filter: ModelTypeBoatFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTypeBoats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      type
+    }
+    nextToken
+  }
+}
+query GetSide($id: ID!) {
+  getSide(id: $id) {
+    id
+    type
+  }
+}
+query ListSides(
+  $filter: ModelSideFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSides(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      type
+    }
+    nextToken
+  }
+}
+query GetWeightCategory($id: ID!) {
+  getWeightCategory(id: $id) {
+    id
+    name
+  }
+}
+query ListWeightCategorys(
+  $filter: ModelWeightCategoryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listWeightCategorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       name

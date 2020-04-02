@@ -7,6 +7,9 @@ import {AthleteProfileService} from "../../services/athlete-profile.service";
 import {__await} from "tslib";
 import {APIService} from "../../API.service";
 import {Sex} from "../../domain/sex";
+import {TypeBoat} from "../../domain/type-boat";
+import {Side} from "../../domain/side";
+import {WeightCategory} from "../../domain/weight-category";
 
 export class ErrorMessages {
   dob: StructureError[];
@@ -31,8 +34,9 @@ export class AthleteProfileComponent implements OnInit {
 
   public profileForm: FormGroup;
   public errorMessages: ErrorMessages;
-  public boats: [{ id: 1, name: 'single' }];
-  public sides: [{ id: 1, name: 'port' }];
+  public typeBoat: TypeBoat[];
+  public side: Side[];
+  public weightCategory: WeightCategory[];
   public athlete = new Athlete();
   public sex: Sex[];
 
@@ -41,10 +45,13 @@ export class AthleteProfileComponent implements OnInit {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     }).then(async user => {
-      this.athlete.id = user.attributes.sub;
+      this.athlete.id = user.attributes.sub ;
       this.athlete.email = user.attributes.email;
-      await this.getAthlete(this.athlete.id);
+      await this.getAthlete(user.attributes.sub);
       await this.getSex();
+      await this.getTypeBoat();
+      await this.getWeightCategory();
+      await this.getPreferedSide();
     })
       .catch(err => console.log(err));
   }
@@ -81,7 +88,7 @@ export class AthleteProfileComponent implements OnInit {
         {type: 'required', message: 'The lastname is required.'}
       ]
     };
-    this.profileForm =  this.fb.group({
+    this.profileForm = this.fb.group({
       // dob: new FormControl('', [Validators.required]),
       // email: new FormControl('', [Validators.required]),
       // weight: new FormControl(''),
@@ -102,7 +109,7 @@ export class AthleteProfileComponent implements OnInit {
       weightCategory: new FormControl(this.athlete.weightCategory),
       boatPreference: new FormControl(this.athlete.boatPreference),
       side: new FormControl(this.athlete.side),
-      sex: new FormControl(this.athlete.sex),
+      sex: new FormControl(this.athlete.userSexId),
       membershipType: new FormControl(this.athlete.membershipType),
       firstName: new FormControl(this.athlete.firstName),
       lastName: new FormControl(this.athlete.lastName),
@@ -111,36 +118,54 @@ export class AthleteProfileComponent implements OnInit {
   }
 
   async getAthlete(athleteId: string) {
-     await this.api.GetUser(athleteId).then( user =>{
-       if (user){
-         // this.profileForm.get('dob').patchValue(user.dob);
-         this.profileForm.get('weight').patchValue(user.weight);
-         this.profileForm.get('height').patchValue(user.height);
-         this.profileForm.get('weightCategory').patchValue(user.weightCategory);
-         this.profileForm.get('boatPreference').patchValue(user.boatPreference);
-         this.profileForm.get('side').patchValue(user.side);
-         this.profileForm.get('sex').patchValue(user.sex);
-         this.profileForm.get('membershipType').patchValue(user.membershipType);
-         this.profileForm.get('firstName').patchValue(user.firstName);
-         this.profileForm.get('lastName').patchValue(user.lastName);
-       }
+    // await this.api.GetUser(athleteId).then(user => {
+    await this.service.getAthlete(athleteId).then(user => {
+      if (user) {
+        // this.profileForm.get('dob').patchValue(user.dob);
+        this.profileForm.get('weight').patchValue(user.weight);
+        this.profileForm.get('height').patchValue(user.height);
+        this.profileForm.get('weightCategory').patchValue(user.weightCategory);
+        this.profileForm.get('boatPreference').patchValue(user.boatPreference);
+        this.profileForm.get('side').patchValue(user.side);
+        this.profileForm.get('sex').patchValue(user.sex.id);
+        this.profileForm.get('membershipType').patchValue(user.membershipType);
+        this.profileForm.get('firstName').patchValue(user.firstName);
+        this.profileForm.get('lastName').patchValue(user.lastName);
+      }
 
-     });
+    });
   };
 
-  async getSex(){
-    let result = await this.api.ListSexs();
-   return this.sex = result.items;
+  async getSex() {
+    await this.service.getListSex().then(sex => {
+      this.sex = sex.items;
+    });
   };
 
+  async getTypeBoat() {
+    await this.service.getListTypeBoat().then(typeBoat => {
+      this.typeBoat = typeBoat.items;
+    });
+  };
 
+  async getWeightCategory() {
+    await this.service.getListWeightCategory().then(weightCategory => {
+      this.weightCategory = weightCategory.items;
+    });
+  };
+
+  async getPreferedSide() {
+    await this.service.getListSide().then(side => {
+      this.side = side.items;
+    });
+  };
 
 
   async create() {
     // if (this.profileForm.valid){
     const profil = this.profileForm.value;
     // const profilAthlete = new Athlete();
-    this.athlete.id = this.athlete.id
+    // this.athlete.id = this.athlete.id;
     this.athlete.firstName = profil.firstName;
     this.athlete.lastName = profil.lastName;
     this.athlete.membershipType = profil.membershipType;
@@ -150,15 +175,14 @@ export class AthleteProfileComponent implements OnInit {
     this.athlete.height = profil.height;
     this.athlete.weightCategory = profil.weightCategory;
     this.athlete.boatPreference = profil.boatPreference;
-    this.athlete.side = profil.side;
-    this.athlete.sex = profil.sex.id;
-    this.athlete.status = profil.status;
+    // this.athlete.side = profil.side;
+    this.athlete.userSexId = profil.sex;
+    // this.athlete.status = profil.status;
     this.athlete.membershipType = 3;
+    this.athlete.status = true;
 
-    // this.service.save(this.athlete)
-
-    await this.api.CreateUser(this.athlete);
-    // }
+    // await this.api.CreateUser(this.athlete);
+    await this.service.save(this.athlete)
 
   }
 }

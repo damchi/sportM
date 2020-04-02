@@ -14,12 +14,12 @@ export class Athlete extends User {
   // boatPreference: Boat[];
   side: string;
   // side: Side[];
-  sex: Sex;
+  userSexId: string;
   status:boolean;
 
 
   constructor(weight?: string, height?: string, weightCategory?: string, boatPreference?: string,
-              side?: string, sex?: Sex, athleteCategory?: string, status?: boolean ) {
+              side?: string, userSexId?: string, athleteCategory?: string, status?: boolean ) {
 
 
   // constructor(dob?: Date, weight?: string, height?: string, weightCategory?: WeightCategory, boatPreference?: Boat[],
@@ -32,7 +32,7 @@ export class Athlete extends User {
     this.weightCategory = weightCategory;
     this.boatPreference = boatPreference;
     this.side = side;
-    this.sex = sex;
+    this.userSexId = userSexId;
     this.status = status;
   }
 }

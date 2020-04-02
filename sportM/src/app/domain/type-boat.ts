@@ -1,9 +1,9 @@
-export class Side {
+export class TypeBoat {
   id: string;
   type: string;
 
   constructor(id?: string, type?: string) {
     this.id = id;
-    this.type = name;
+    this.type = type;
   }
 }
