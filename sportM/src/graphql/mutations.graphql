@@ -10,11 +10,23 @@ mutation CreateUser(
     membershipType
     email
     dod
-    weight
     height
-    weightCategory
-    boatPreference
-    side
+    weightCategory {
+      id
+      name
+    }
+    boatPreference {
+      items {
+        id
+      }
+      nextToken
+    }
+    side {
+      items {
+        id
+      }
+      nextToken
+    }
     sex {
       id
       name
@@ -33,11 +45,23 @@ mutation UpdateUser(
     membershipType
     email
     dod
-    weight
     height
-    weightCategory
-    boatPreference
-    side
+    weightCategory {
+      id
+      name
+    }
+    boatPreference {
+      items {
+        id
+      }
+      nextToken
+    }
+    side {
+      items {
+        id
+      }
+      nextToken
+    }
     sex {
       id
       name
@@ -56,11 +80,23 @@ mutation DeleteUser(
     membershipType
     email
     dod
-    weight
     height
-    weightCategory
-    boatPreference
-    side
+    weightCategory {
+      id
+      name
+    }
+    boatPreference {
+      items {
+        id
+      }
+      nextToken
+    }
+    side {
+      items {
+        id
+      }
+      nextToken
+    }
     sex {
       id
       name
@@ -82,11 +118,17 @@ mutation CreateAttendence(
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -110,11 +152,17 @@ mutation UpdateAttendence(
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -138,11 +186,17 @@ mutation DeleteAttendence(
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -179,6 +233,240 @@ mutation DeleteSex(
     name
   }
 }
+mutation CreateSideUser(
+  $input: CreateSideUserInput!
+  $condition: ModelSideUserConditionInput
+) {
+  createSideUser(input: $input, condition: $condition) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    side {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateSideUser(
+  $input: UpdateSideUserInput!
+  $condition: ModelSideUserConditionInput
+) {
+  updateSideUser(input: $input, condition: $condition) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    side {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteSideUser(
+  $input: DeleteSideUserInput!
+  $condition: ModelSideUserConditionInput
+) {
+  deleteSideUser(input: $input, condition: $condition) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    side {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+mutation CreateTypeBoatUser(
+  $input: CreateTypeBoatUserInput!
+  $condition: ModelTypeBoatUserConditionInput
+) {
+  createTypeBoatUser(input: $input, condition: $condition) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    typeBoat {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+mutation UpdateTypeBoatUser(
+  $input: UpdateTypeBoatUserInput!
+  $condition: ModelTypeBoatUserConditionInput
+) {
+  updateTypeBoatUser(input: $input, condition: $condition) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    typeBoat {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteTypeBoatUser(
+  $input: DeleteTypeBoatUserInput!
+  $condition: ModelTypeBoatUserConditionInput
+) {
+  deleteTypeBoatUser(input: $input, condition: $condition) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    typeBoat {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
 mutation CreateTypeBoat(
   $input: CreateTypeBoatInput!
   $condition: ModelTypeBoatConditionInput
@@ -186,6 +474,12 @@ mutation CreateTypeBoat(
   createTypeBoat(input: $input, condition: $condition) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation UpdateTypeBoat(
@@ -195,6 +489,12 @@ mutation UpdateTypeBoat(
   updateTypeBoat(input: $input, condition: $condition) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation DeleteTypeBoat(
@@ -204,6 +504,12 @@ mutation DeleteTypeBoat(
   deleteTypeBoat(input: $input, condition: $condition) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation CreateSide(
@@ -213,6 +519,12 @@ mutation CreateSide(
   createSide(input: $input, condition: $condition) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation UpdateSide(
@@ -222,6 +534,12 @@ mutation UpdateSide(
   updateSide(input: $input, condition: $condition) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation DeleteSide(
@@ -231,6 +549,12 @@ mutation DeleteSide(
   deleteSide(input: $input, condition: $condition) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 mutation CreateWeightCategory(

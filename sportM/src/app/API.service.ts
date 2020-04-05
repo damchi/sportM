@@ -13,12 +13,9 @@ export type CreateUserInput = {
   membershipType: number;
   email: string;
   dod?: string | null;
-  weight?: string | null;
   height?: string | null;
-  weightCategory?: string | null;
-  boatPreference?: string | null;
-  side?: string | null;
   status?: boolean | null;
+  userWeightCategoryId?: string | null;
   userSexId?: string | null;
 };
 
@@ -28,11 +25,7 @@ export type ModelUserConditionInput = {
   membershipType?: ModelIntInput | null;
   email?: ModelStringInput | null;
   dod?: ModelStringInput | null;
-  weight?: ModelStringInput | null;
   height?: ModelStringInput | null;
-  weightCategory?: ModelStringInput | null;
-  boatPreference?: ModelStringInput | null;
-  side?: ModelStringInput | null;
   status?: ModelBooleanInput | null;
   and?: Array<ModelUserConditionInput | null> | null;
   or?: Array<ModelUserConditionInput | null> | null;
@@ -104,12 +97,9 @@ export type UpdateUserInput = {
   membershipType?: number | null;
   email?: string | null;
   dod?: string | null;
-  weight?: string | null;
   height?: string | null;
-  weightCategory?: string | null;
-  boatPreference?: string | null;
-  side?: string | null;
   status?: boolean | null;
+  userWeightCategoryId?: string | null;
   userSexId?: string | null;
 };
 
@@ -161,6 +151,50 @@ export type UpdateSexInput = {
 };
 
 export type DeleteSexInput = {
+  id?: string | null;
+};
+
+export type CreateSideUserInput = {
+  id?: string | null;
+  sideUserUserId?: string | null;
+  sideUserSideId?: string | null;
+};
+
+export type ModelSideUserConditionInput = {
+  and?: Array<ModelSideUserConditionInput | null> | null;
+  or?: Array<ModelSideUserConditionInput | null> | null;
+  not?: ModelSideUserConditionInput | null;
+};
+
+export type UpdateSideUserInput = {
+  id: string;
+  sideUserUserId?: string | null;
+  sideUserSideId?: string | null;
+};
+
+export type DeleteSideUserInput = {
+  id?: string | null;
+};
+
+export type CreateTypeBoatUserInput = {
+  id?: string | null;
+  typeBoatUserUserId?: string | null;
+  typeBoatUserTypeBoatId?: string | null;
+};
+
+export type ModelTypeBoatUserConditionInput = {
+  and?: Array<ModelTypeBoatUserConditionInput | null> | null;
+  or?: Array<ModelTypeBoatUserConditionInput | null> | null;
+  not?: ModelTypeBoatUserConditionInput | null;
+};
+
+export type UpdateTypeBoatUserInput = {
+  id: string;
+  typeBoatUserUserId?: string | null;
+  typeBoatUserTypeBoatId?: string | null;
+};
+
+export type DeleteTypeBoatUserInput = {
   id?: string | null;
 };
 
@@ -234,11 +268,7 @@ export type ModelUserFilterInput = {
   membershipType?: ModelIntInput | null;
   email?: ModelStringInput | null;
   dod?: ModelStringInput | null;
-  weight?: ModelStringInput | null;
   height?: ModelStringInput | null;
-  weightCategory?: ModelStringInput | null;
-  boatPreference?: ModelStringInput | null;
-  side?: ModelStringInput | null;
   status?: ModelBooleanInput | null;
   and?: Array<ModelUserFilterInput | null> | null;
   or?: Array<ModelUserFilterInput | null> | null;
@@ -310,11 +340,28 @@ export type CreateUserMutation = {
   membershipType: number;
   email: string;
   dod: string | null;
-  weight: string | null;
   height: string | null;
-  weightCategory: string | null;
-  boatPreference: string | null;
-  side: string | null;
+  weightCategory: {
+    __typename: "WeightCategory";
+    id: string;
+    name: string;
+  } | null;
+  boatPreference: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  side: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   sex: {
     __typename: "Sex";
     id: string;
@@ -331,11 +378,28 @@ export type UpdateUserMutation = {
   membershipType: number;
   email: string;
   dod: string | null;
-  weight: string | null;
   height: string | null;
-  weightCategory: string | null;
-  boatPreference: string | null;
-  side: string | null;
+  weightCategory: {
+    __typename: "WeightCategory";
+    id: string;
+    name: string;
+  } | null;
+  boatPreference: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  side: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   sex: {
     __typename: "Sex";
     id: string;
@@ -352,11 +416,28 @@ export type DeleteUserMutation = {
   membershipType: number;
   email: string;
   dod: string | null;
-  weight: string | null;
   height: string | null;
-  weightCategory: string | null;
-  boatPreference: string | null;
-  side: string | null;
+  weightCategory: {
+    __typename: "WeightCategory";
+    id: string;
+    name: string;
+  } | null;
+  boatPreference: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  side: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   sex: {
     __typename: "Sex";
     id: string;
@@ -377,11 +458,20 @@ export type CreateAttendenceMutation = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -404,11 +494,20 @@ export type UpdateAttendenceMutation = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -431,11 +530,20 @@ export type DeleteAttendenceMutation = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -464,40 +572,346 @@ export type DeleteSexMutation = {
   name: string;
 };
 
+export type CreateSideUserMutation = {
+  __typename: "SideUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  side: {
+    __typename: "Side";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type UpdateSideUserMutation = {
+  __typename: "SideUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  side: {
+    __typename: "Side";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type DeleteSideUserMutation = {
+  __typename: "SideUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  side: {
+    __typename: "Side";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type CreateTypeBoatUserMutation = {
+  __typename: "TypeBoatUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  typeBoat: {
+    __typename: "TypeBoat";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type UpdateTypeBoatUserMutation = {
+  __typename: "TypeBoatUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  typeBoat: {
+    __typename: "TypeBoat";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type DeleteTypeBoatUserMutation = {
+  __typename: "TypeBoatUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  typeBoat: {
+    __typename: "TypeBoat";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
 export type CreateTypeBoatMutation = {
   __typename: "TypeBoat";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type UpdateTypeBoatMutation = {
   __typename: "TypeBoat";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type DeleteTypeBoatMutation = {
   __typename: "TypeBoat";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type CreateSideMutation = {
   __typename: "Side";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type UpdateSideMutation = {
   __typename: "Side";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type DeleteSideMutation = {
   __typename: "Side";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type CreateWeightCategoryMutation = {
@@ -526,11 +940,28 @@ export type GetUserQuery = {
   membershipType: number;
   email: string;
   dod: string | null;
-  weight: string | null;
   height: string | null;
-  weightCategory: string | null;
-  boatPreference: string | null;
-  side: string | null;
+  weightCategory: {
+    __typename: "WeightCategory";
+    id: string;
+    name: string;
+  } | null;
+  boatPreference: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  side: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   sex: {
     __typename: "Sex";
     id: string;
@@ -549,11 +980,20 @@ export type ListUsersQuery = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -576,11 +1016,20 @@ export type GetAttendenceQuery = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -605,11 +1054,7 @@ export type ListAttendencesQuery = {
       membershipType: number;
       email: string;
       dod: string | null;
-      weight: string | null;
       height: string | null;
-      weightCategory: string | null;
-      boatPreference: string | null;
-      side: string | null;
       status: boolean | null;
     } | null;
     status: string | null;
@@ -637,6 +1082,14 @@ export type GetTypeBoatQuery = {
   __typename: "TypeBoat";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type ListTypeBoatsQuery = {
@@ -645,6 +1098,10 @@ export type ListTypeBoatsQuery = {
     __typename: "TypeBoat";
     id: string;
     type: string;
+    user: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -653,6 +1110,14 @@ export type GetSideQuery = {
   __typename: "Side";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type ListSidesQuery = {
@@ -661,6 +1126,10 @@ export type ListSidesQuery = {
     __typename: "Side";
     id: string;
     type: string;
+    user: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -689,11 +1158,28 @@ export type OnCreateUserSubscription = {
   membershipType: number;
   email: string;
   dod: string | null;
-  weight: string | null;
   height: string | null;
-  weightCategory: string | null;
-  boatPreference: string | null;
-  side: string | null;
+  weightCategory: {
+    __typename: "WeightCategory";
+    id: string;
+    name: string;
+  } | null;
+  boatPreference: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  side: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   sex: {
     __typename: "Sex";
     id: string;
@@ -710,11 +1196,28 @@ export type OnUpdateUserSubscription = {
   membershipType: number;
   email: string;
   dod: string | null;
-  weight: string | null;
   height: string | null;
-  weightCategory: string | null;
-  boatPreference: string | null;
-  side: string | null;
+  weightCategory: {
+    __typename: "WeightCategory";
+    id: string;
+    name: string;
+  } | null;
+  boatPreference: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  side: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   sex: {
     __typename: "Sex";
     id: string;
@@ -731,11 +1234,28 @@ export type OnDeleteUserSubscription = {
   membershipType: number;
   email: string;
   dod: string | null;
-  weight: string | null;
   height: string | null;
-  weightCategory: string | null;
-  boatPreference: string | null;
-  side: string | null;
+  weightCategory: {
+    __typename: "WeightCategory";
+    id: string;
+    name: string;
+  } | null;
+  boatPreference: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  side: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   sex: {
     __typename: "Sex";
     id: string;
@@ -756,11 +1276,20 @@ export type OnCreateAttendenceSubscription = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -783,11 +1312,20 @@ export type OnUpdateAttendenceSubscription = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -810,11 +1348,20 @@ export type OnDeleteAttendenceSubscription = {
     membershipType: number;
     email: string;
     dod: string | null;
-    weight: string | null;
     height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
     sex: {
       __typename: "Sex";
       id: string;
@@ -843,40 +1390,346 @@ export type OnDeleteSexSubscription = {
   name: string;
 };
 
+export type OnCreateSideUserSubscription = {
+  __typename: "SideUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  side: {
+    __typename: "Side";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnUpdateSideUserSubscription = {
+  __typename: "SideUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  side: {
+    __typename: "Side";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnDeleteSideUserSubscription = {
+  __typename: "SideUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  side: {
+    __typename: "Side";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnCreateTypeBoatUserSubscription = {
+  __typename: "TypeBoatUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  typeBoat: {
+    __typename: "TypeBoat";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnUpdateTypeBoatUserSubscription = {
+  __typename: "TypeBoatUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  typeBoat: {
+    __typename: "TypeBoat";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
+export type OnDeleteTypeBoatUserSubscription = {
+  __typename: "TypeBoatUser";
+  id: string;
+  user: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: number;
+    email: string;
+    dod: string | null;
+    height: string | null;
+    weightCategory: {
+      __typename: "WeightCategory";
+      id: string;
+      name: string;
+    } | null;
+    boatPreference: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+    side: {
+      __typename: "ModelSideUserConnection";
+      nextToken: string | null;
+    } | null;
+    sex: {
+      __typename: "Sex";
+      id: string;
+      name: string;
+    } | null;
+    status: boolean | null;
+  } | null;
+  typeBoat: {
+    __typename: "TypeBoat";
+    id: string;
+    type: string;
+    user: {
+      __typename: "ModelTypeBoatUserConnection";
+      nextToken: string | null;
+    } | null;
+  } | null;
+};
+
 export type OnCreateTypeBoatSubscription = {
   __typename: "TypeBoat";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnUpdateTypeBoatSubscription = {
   __typename: "TypeBoat";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnDeleteTypeBoatSubscription = {
   __typename: "TypeBoat";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelTypeBoatUserConnection";
+    items: Array<{
+      __typename: "TypeBoatUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnCreateSideSubscription = {
   __typename: "Side";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnUpdateSideSubscription = {
   __typename: "Side";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnDeleteSideSubscription = {
   __typename: "Side";
   id: string;
   type: string;
+  user: {
+    __typename: "ModelSideUserConnection";
+    items: Array<{
+      __typename: "SideUser";
+      id: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnCreateWeightCategorySubscription = {
@@ -914,11 +1767,28 @@ export class APIService {
           membershipType
           email
           dod
-          weight
           height
-          weightCategory
-          boatPreference
-          side
+          weightCategory {
+            __typename
+            id
+            name
+          }
+          boatPreference {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+          side {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
           sex {
             __typename
             id
@@ -951,11 +1821,28 @@ export class APIService {
           membershipType
           email
           dod
-          weight
           height
-          weightCategory
-          boatPreference
-          side
+          weightCategory {
+            __typename
+            id
+            name
+          }
+          boatPreference {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+          side {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
           sex {
             __typename
             id
@@ -988,11 +1875,28 @@ export class APIService {
           membershipType
           email
           dod
-          weight
           height
-          weightCategory
-          boatPreference
-          side
+          weightCategory {
+            __typename
+            id
+            name
+          }
+          boatPreference {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+          side {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
           sex {
             __typename
             id
@@ -1029,11 +1933,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1072,11 +1985,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1115,11 +2037,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1207,6 +2138,360 @@ export class APIService {
     )) as any;
     return <DeleteSexMutation>response.data.deleteSex;
   }
+  async CreateSideUser(
+    input: CreateSideUserInput,
+    condition?: ModelSideUserConditionInput
+  ): Promise<CreateSideUserMutation> {
+    const statement = `mutation CreateSideUser($input: CreateSideUserInput!, $condition: ModelSideUserConditionInput) {
+        createSideUser(input: $input, condition: $condition) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          side {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateSideUserMutation>response.data.createSideUser;
+  }
+  async UpdateSideUser(
+    input: UpdateSideUserInput,
+    condition?: ModelSideUserConditionInput
+  ): Promise<UpdateSideUserMutation> {
+    const statement = `mutation UpdateSideUser($input: UpdateSideUserInput!, $condition: ModelSideUserConditionInput) {
+        updateSideUser(input: $input, condition: $condition) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          side {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateSideUserMutation>response.data.updateSideUser;
+  }
+  async DeleteSideUser(
+    input: DeleteSideUserInput,
+    condition?: ModelSideUserConditionInput
+  ): Promise<DeleteSideUserMutation> {
+    const statement = `mutation DeleteSideUser($input: DeleteSideUserInput!, $condition: ModelSideUserConditionInput) {
+        deleteSideUser(input: $input, condition: $condition) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          side {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteSideUserMutation>response.data.deleteSideUser;
+  }
+  async CreateTypeBoatUser(
+    input: CreateTypeBoatUserInput,
+    condition?: ModelTypeBoatUserConditionInput
+  ): Promise<CreateTypeBoatUserMutation> {
+    const statement = `mutation CreateTypeBoatUser($input: CreateTypeBoatUserInput!, $condition: ModelTypeBoatUserConditionInput) {
+        createTypeBoatUser(input: $input, condition: $condition) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          typeBoat {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateTypeBoatUserMutation>response.data.createTypeBoatUser;
+  }
+  async UpdateTypeBoatUser(
+    input: UpdateTypeBoatUserInput,
+    condition?: ModelTypeBoatUserConditionInput
+  ): Promise<UpdateTypeBoatUserMutation> {
+    const statement = `mutation UpdateTypeBoatUser($input: UpdateTypeBoatUserInput!, $condition: ModelTypeBoatUserConditionInput) {
+        updateTypeBoatUser(input: $input, condition: $condition) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          typeBoat {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateTypeBoatUserMutation>response.data.updateTypeBoatUser;
+  }
+  async DeleteTypeBoatUser(
+    input: DeleteTypeBoatUserInput,
+    condition?: ModelTypeBoatUserConditionInput
+  ): Promise<DeleteTypeBoatUserMutation> {
+    const statement = `mutation DeleteTypeBoatUser($input: DeleteTypeBoatUserInput!, $condition: ModelTypeBoatUserConditionInput) {
+        deleteTypeBoatUser(input: $input, condition: $condition) {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          typeBoat {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteTypeBoatUserMutation>response.data.deleteTypeBoatUser;
+  }
   async CreateTypeBoat(
     input: CreateTypeBoatInput,
     condition?: ModelTypeBoatConditionInput
@@ -1216,6 +2501,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1238,6 +2531,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1260,6 +2561,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1282,6 +2591,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1304,6 +2621,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1326,6 +2651,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1415,11 +2748,28 @@ export class APIService {
           membershipType
           email
           dod
-          weight
           height
-          weightCategory
-          boatPreference
-          side
+          weightCategory {
+            __typename
+            id
+            name
+          }
+          boatPreference {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+          side {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
           sex {
             __typename
             id
@@ -1452,11 +2802,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1496,11 +2855,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1539,11 +2907,7 @@ export class APIService {
               membershipType
               email
               dod
-              weight
               height
-              weightCategory
-              boatPreference
-              side
               status
             }
             status
@@ -1619,6 +2983,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1641,6 +3013,10 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              nextToken
+            }
           }
           nextToken
         }
@@ -1666,6 +3042,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1688,6 +3072,10 @@ export class APIService {
             __typename
             id
             type
+            user {
+              __typename
+              nextToken
+            }
           }
           nextToken
         }
@@ -1765,11 +3153,28 @@ export class APIService {
           membershipType
           email
           dod
-          weight
           height
-          weightCategory
-          boatPreference
-          side
+          weightCategory {
+            __typename
+            id
+            name
+          }
+          boatPreference {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+          side {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
           sex {
             __typename
             id
@@ -1792,11 +3197,28 @@ export class APIService {
           membershipType
           email
           dod
-          weight
           height
-          weightCategory
-          boatPreference
-          side
+          weightCategory {
+            __typename
+            id
+            name
+          }
+          boatPreference {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+          side {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
           sex {
             __typename
             id
@@ -1819,11 +3241,28 @@ export class APIService {
           membershipType
           email
           dod
-          weight
           height
-          weightCategory
-          boatPreference
-          side
+          weightCategory {
+            __typename
+            id
+            name
+          }
+          boatPreference {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
+          side {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
           sex {
             __typename
             id
@@ -1852,11 +3291,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1887,11 +3335,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1922,11 +3379,20 @@ export class APIService {
             membershipType
             email
             dod
-            weight
             height
-            weightCategory
-            boatPreference
-            side
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
             sex {
               __typename
               id
@@ -1976,6 +3442,312 @@ export class APIService {
     )
   ) as Observable<OnDeleteSexSubscription>;
 
+  OnCreateSideUserListener: Observable<
+    OnCreateSideUserSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateSideUser {
+        onCreateSideUser {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          side {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnCreateSideUserSubscription>;
+
+  OnUpdateSideUserListener: Observable<
+    OnUpdateSideUserSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateSideUser {
+        onUpdateSideUser {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          side {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateSideUserSubscription>;
+
+  OnDeleteSideUserListener: Observable<
+    OnDeleteSideUserSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteSideUser {
+        onDeleteSideUser {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          side {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteSideUserSubscription>;
+
+  OnCreateTypeBoatUserListener: Observable<
+    OnCreateTypeBoatUserSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateTypeBoatUser {
+        onCreateTypeBoatUser {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          typeBoat {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnCreateTypeBoatUserSubscription>;
+
+  OnUpdateTypeBoatUserListener: Observable<
+    OnUpdateTypeBoatUserSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateTypeBoatUser {
+        onUpdateTypeBoatUser {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          typeBoat {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnUpdateTypeBoatUserSubscription>;
+
+  OnDeleteTypeBoatUserListener: Observable<
+    OnDeleteTypeBoatUserSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteTypeBoatUser {
+        onDeleteTypeBoatUser {
+          __typename
+          id
+          user {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dod
+            height
+            weightCategory {
+              __typename
+              id
+              name
+            }
+            boatPreference {
+              __typename
+              nextToken
+            }
+            side {
+              __typename
+              nextToken
+            }
+            sex {
+              __typename
+              id
+              name
+            }
+            status
+          }
+          typeBoat {
+            __typename
+            id
+            type
+            user {
+              __typename
+              nextToken
+            }
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteTypeBoatUserSubscription>;
+
   OnCreateTypeBoatListener: Observable<
     OnCreateTypeBoatSubscription
   > = API.graphql(
@@ -1985,6 +3757,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -1999,6 +3779,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -2013,6 +3801,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -2025,6 +3821,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -2037,6 +3841,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )
@@ -2049,6 +3861,14 @@ export class APIService {
           __typename
           id
           type
+          user {
+            __typename
+            items {
+              __typename
+              id
+            }
+            nextToken
+          }
         }
       }`
     )

@@ -59,7 +59,7 @@
 
     <mat-form-field>
       <mat-label>Boat preferences</mat-label>
-      <mat-select formControlName="boatPreference">
+      <mat-select formControlName="boatPreference"  multiple>
         <mat-option *ngFor="let boat of typeBoat" [value]="boat.id">{{boat.type}}</mat-option>
       </mat-select>
 <!--      <mat-error *ngFor="let validation of errorMessages.boatPreference">-->
@@ -71,8 +71,8 @@
 
     <mat-form-field>
       <mat-label>Prefered side</mat-label>
-      <mat-select formControlName="side">
-        <mat-option *ngFor="let side of side" [value]="side.id">{{side.type}}</mat-option>
+      <mat-select formControlName="side" multiple >
+        <mat-option *ngFor="let side of side" [value]="side.id" >{{side.type}}</mat-option>
       </mat-select>
 <!--      <mat-error *ngFor="let validation of errorMessages.boatPreference">-->
 <!--        <mat-error class="error-message" *ngIf="profileForm.get('side').hasError(validation.type) &&-->
@@ -93,8 +93,8 @@
 
     <mat-form-field>
       <label>Category</label>
-      <mat-select formControlName="side">
-        <mat-option *ngFor="let side of weightCategory" [value]="side.id">{{side.name}}</mat-option>
+      <mat-select formControlName="weightCategory">
+        <mat-option *ngFor="let weight of weightCategory" [value]="weight.id">{{weight.name}}</mat-option>
       </mat-select><!--      <mat-error *ngFor="let validation of errorMessages.weightCategory">-->
 <!--        <mat-error class="error-message" *ngIf="profileForm.get('weightCategory').hasError(validation.type) &&-->
 <!--            (profileForm.get('weightCategory').dirty || profileForm.get('weightCategory').touched)">{{validation.message}}-->

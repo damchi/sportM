@@ -7,11 +7,23 @@ subscription OnCreateUser {
     membershipType
     email
     dod
-    weight
     height
-    weightCategory
-    boatPreference
-    side
+    weightCategory {
+      id
+      name
+    }
+    boatPreference {
+      items {
+        id
+      }
+      nextToken
+    }
+    side {
+      items {
+        id
+      }
+      nextToken
+    }
     sex {
       id
       name
@@ -27,11 +39,23 @@ subscription OnUpdateUser {
     membershipType
     email
     dod
-    weight
     height
-    weightCategory
-    boatPreference
-    side
+    weightCategory {
+      id
+      name
+    }
+    boatPreference {
+      items {
+        id
+      }
+      nextToken
+    }
+    side {
+      items {
+        id
+      }
+      nextToken
+    }
     sex {
       id
       name
@@ -47,11 +71,23 @@ subscription OnDeleteUser {
     membershipType
     email
     dod
-    weight
     height
-    weightCategory
-    boatPreference
-    side
+    weightCategory {
+      id
+      name
+    }
+    boatPreference {
+      items {
+        id
+      }
+      nextToken
+    }
+    side {
+      items {
+        id
+      }
+      nextToken
+    }
     sex {
       id
       name
@@ -70,11 +106,17 @@ subscription OnCreateAttendence {
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -95,11 +137,17 @@ subscription OnUpdateAttendence {
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -120,11 +168,17 @@ subscription OnDeleteAttendence {
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -152,40 +206,292 @@ subscription OnDeleteSex {
     name
   }
 }
+subscription OnCreateSideUser {
+  onCreateSideUser {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    side {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateSideUser {
+  onUpdateSideUser {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    side {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteSideUser {
+  onDeleteSideUser {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    side {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateTypeBoatUser {
+  onCreateTypeBoatUser {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    typeBoat {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnUpdateTypeBoatUser {
+  onUpdateTypeBoatUser {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    typeBoat {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteTypeBoatUser {
+  onDeleteTypeBoatUser {
+    id
+    user {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dod
+      height
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
+      sex {
+        id
+        name
+      }
+      status
+    }
+    typeBoat {
+      id
+      type
+      user {
+        nextToken
+      }
+    }
+  }
+}
 subscription OnCreateTypeBoat {
   onCreateTypeBoat {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 subscription OnUpdateTypeBoat {
   onUpdateTypeBoat {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 subscription OnDeleteTypeBoat {
   onDeleteTypeBoat {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 subscription OnCreateSide {
   onCreateSide {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 subscription OnUpdateSide {
   onUpdateSide {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 subscription OnDeleteSide {
   onDeleteSide {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 subscription OnCreateWeightCategory {

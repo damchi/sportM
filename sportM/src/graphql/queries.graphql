@@ -7,11 +7,23 @@ query GetUser($id: ID!) {
     membershipType
     email
     dod
-    weight
     height
-    weightCategory
-    boatPreference
-    side
+    weightCategory {
+      id
+      name
+    }
+    boatPreference {
+      items {
+        id
+      }
+      nextToken
+    }
+    side {
+      items {
+        id
+      }
+      nextToken
+    }
     sex {
       id
       name
@@ -32,11 +44,17 @@ query ListUsers(
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -57,11 +75,17 @@ query GetAttendence($id: ID!) {
       membershipType
       email
       dod
-      weight
       height
-      weightCategory
-      boatPreference
-      side
+      weightCategory {
+        id
+        name
+      }
+      boatPreference {
+        nextToken
+      }
+      side {
+        nextToken
+      }
       sex {
         id
         name
@@ -87,11 +111,7 @@ query ListAttendences(
         membershipType
         email
         dod
-        weight
         height
-        weightCategory
-        boatPreference
-        side
         status
       }
       status
@@ -118,6 +138,12 @@ query GetTypeBoat($id: ID!) {
   getTypeBoat(id: $id) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 query ListTypeBoats(
@@ -129,6 +155,9 @@ query ListTypeBoats(
     items {
       id
       type
+      user {
+        nextToken
+      }
     }
     nextToken
   }
@@ -137,6 +166,12 @@ query GetSide($id: ID!) {
   getSide(id: $id) {
     id
     type
+    user {
+      items {
+        id
+      }
+      nextToken
+    }
   }
 }
 query ListSides(
@@ -148,6 +183,9 @@ query ListSides(
     items {
       id
       type
+      user {
+        nextToken
+      }
     }
     nextToken
   }

@@ -5,11 +5,10 @@ type User @model {
   membershipType: Int!
   email:String!
   dod: AWSDateTime
-  weight: String
   height: String
-  weightCategory: String
-  boatPreference: String
-  side: String
+  weightCategory: WeightCategory @connection
+  boatPreference: [TypeBoatUser] @connection(name: "UserTypeBoat")
+  side: [SideUser] @connection(name:"UserSide")
   sex: Sex @connection
   status:Boolean
 }
@@ -20,17 +19,33 @@ type Attendence @model {
   athlete: User @connection
   status: String
 }
+
 type Sex @model {
   id: ID!
   name: String!
 }
+
+type SideUser @model (queries: null){
+  id: ID!
+  user: User @connection(name:"UserSide")
+  side: Side @connection(name:"SideUser")
+}
+
+type TypeBoatUser @model (queries: null){
+  id: ID!
+  user: User @connection(name: "UserTypeBoat")
+  typeBoat: TypeBoat @connection(name:"TypeBoatUser")
+}
+
 type TypeBoat @model {
   id: ID!
   type: String!
+  user: [TypeBoatUser] @connection(name:"TypeBoatUser")
 }
 type Side @model {
   id: ID!
   type: String!
+  user: [SideUser] @connection(name:"SideUser")
 }
 type WeightCategory @model {
   id: ID!
