@@ -21,19 +21,19 @@ export class AthleteProfileService {
   }
 
   async getListSex(){
-       return  await this.api.ListSexs();
+       // return  await this.api.ListSexs();
   }
 
   async getListTypeBoat(){
-       return  await this.api.ListTypeBoats();
+       // return  await this.api.ListTypeBoats();
   }
 
   async getListWeightCategory(){
-       return  await this.api.ListWeightCategorys();
+       // return  await this.api.ListWeightCategorys();
   }
 
   async getListSide(){
-       return  await this.api.ListSides();
+       // return  await this.api.ListSides();
   }
 
   async updateProfil(athlete: Athlete ){

@@ -9,13 +9,13 @@ export class Athlete extends User {
   // dob: Date;
   height: string;
   weightCategory: string;
-  boatPreference: TypeBoat[];
-  side: Side[];
+  boatPreference: string;
+  side: string;
   sex: string;
   status:boolean;
 
-  constructor(dob?: Date, height?: string, weightCategory?: string, boatPreference?: TypeBoat[],
-              side?: Side[], userSexId?: string, athleteCategory?: string, status?: boolean ) {
+  constructor(dob?: Date, height?: string, weightCategory?: string, boatPreference?: string,
+              side?: string, userSexId?: string, athleteCategory?: string, status?: boolean ) {
     super();
 
     // this.dob = dob;

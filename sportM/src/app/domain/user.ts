@@ -2,6 +2,6 @@ export class User {
   id: string;
   firstName: string;
   lastName: string;
-  membershipType: number;
+  membershipType: string;
   email: string;
 }

@@ -11,26 +11,10 @@ mutation CreateUser(
     email
     dod
     height
-    weightCategory {
-      id
-      name
-    }
-    boatPreference {
-      items {
-        id
-      }
-      nextToken
-    }
-    side {
-      items {
-        id
-      }
-      nextToken
-    }
-    sex {
-      id
-      name
-    }
+    weightCategory
+    boatPreference
+    side
+    sex
     status
   }
 }
@@ -46,26 +30,10 @@ mutation UpdateUser(
     email
     dod
     height
-    weightCategory {
-      id
-      name
-    }
-    boatPreference {
-      items {
-        id
-      }
-      nextToken
-    }
-    side {
-      items {
-        id
-      }
-      nextToken
-    }
-    sex {
-      id
-      name
-    }
+    weightCategory
+    boatPreference
+    side
+    sex
     status
   }
 }
@@ -81,26 +49,10 @@ mutation DeleteUser(
     email
     dod
     height
-    weightCategory {
-      id
-      name
-    }
-    boatPreference {
-      items {
-        id
-      }
-      nextToken
-    }
-    side {
-      items {
-        id
-      }
-      nextToken
-    }
-    sex {
-      id
-      name
-    }
+    weightCategory
+    boatPreference
+    side
+    sex
     status
   }
 }
@@ -119,20 +71,10 @@ mutation CreateAttendence(
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     status
@@ -153,20 +95,10 @@ mutation UpdateAttendence(
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     status
@@ -187,400 +119,12 @@ mutation DeleteAttendence(
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     status
-  }
-}
-mutation CreateSex(
-  $input: CreateSexInput!
-  $condition: ModelSexConditionInput
-) {
-  createSex(input: $input, condition: $condition) {
-    id
-    name
-  }
-}
-mutation UpdateSex(
-  $input: UpdateSexInput!
-  $condition: ModelSexConditionInput
-) {
-  updateSex(input: $input, condition: $condition) {
-    id
-    name
-  }
-}
-mutation DeleteSex(
-  $input: DeleteSexInput!
-  $condition: ModelSexConditionInput
-) {
-  deleteSex(input: $input, condition: $condition) {
-    id
-    name
-  }
-}
-mutation CreateSideUser(
-  $input: CreateSideUserInput!
-  $condition: ModelSideUserConditionInput
-) {
-  createSideUser(input: $input, condition: $condition) {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    side {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-mutation UpdateSideUser(
-  $input: UpdateSideUserInput!
-  $condition: ModelSideUserConditionInput
-) {
-  updateSideUser(input: $input, condition: $condition) {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    side {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-mutation DeleteSideUser(
-  $input: DeleteSideUserInput!
-  $condition: ModelSideUserConditionInput
-) {
-  deleteSideUser(input: $input, condition: $condition) {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    side {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-mutation CreateTypeBoatUser(
-  $input: CreateTypeBoatUserInput!
-  $condition: ModelTypeBoatUserConditionInput
-) {
-  createTypeBoatUser(input: $input, condition: $condition) {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    typeBoat {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-mutation UpdateTypeBoatUser(
-  $input: UpdateTypeBoatUserInput!
-  $condition: ModelTypeBoatUserConditionInput
-) {
-  updateTypeBoatUser(input: $input, condition: $condition) {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    typeBoat {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-mutation DeleteTypeBoatUser(
-  $input: DeleteTypeBoatUserInput!
-  $condition: ModelTypeBoatUserConditionInput
-) {
-  deleteTypeBoatUser(input: $input, condition: $condition) {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    typeBoat {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-mutation CreateTypeBoat(
-  $input: CreateTypeBoatInput!
-  $condition: ModelTypeBoatConditionInput
-) {
-  createTypeBoat(input: $input, condition: $condition) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-mutation UpdateTypeBoat(
-  $input: UpdateTypeBoatInput!
-  $condition: ModelTypeBoatConditionInput
-) {
-  updateTypeBoat(input: $input, condition: $condition) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-mutation DeleteTypeBoat(
-  $input: DeleteTypeBoatInput!
-  $condition: ModelTypeBoatConditionInput
-) {
-  deleteTypeBoat(input: $input, condition: $condition) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-mutation CreateSide(
-  $input: CreateSideInput!
-  $condition: ModelSideConditionInput
-) {
-  createSide(input: $input, condition: $condition) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-mutation UpdateSide(
-  $input: UpdateSideInput!
-  $condition: ModelSideConditionInput
-) {
-  updateSide(input: $input, condition: $condition) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-mutation DeleteSide(
-  $input: DeleteSideInput!
-  $condition: ModelSideConditionInput
-) {
-  deleteSide(input: $input, condition: $condition) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-mutation CreateWeightCategory(
-  $input: CreateWeightCategoryInput!
-  $condition: ModelWeightCategoryConditionInput
-) {
-  createWeightCategory(input: $input, condition: $condition) {
-    id
-    name
-  }
-}
-mutation UpdateWeightCategory(
-  $input: UpdateWeightCategoryInput!
-  $condition: ModelWeightCategoryConditionInput
-) {
-  updateWeightCategory(input: $input, condition: $condition) {
-    id
-    name
-  }
-}
-mutation DeleteWeightCategory(
-  $input: DeleteWeightCategoryInput!
-  $condition: ModelWeightCategoryConditionInput
-) {
-  deleteWeightCategory(input: $input, condition: $condition) {
-    id
-    name
   }
 }

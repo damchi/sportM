@@ -2,14 +2,14 @@ type User @model {
   id: ID!
   firstName: String!
   lastName: String!
-  membershipType: Int!
+  membershipType: String!
   email:String!
   dod: AWSDateTime
   height: String
-  weightCategory: WeightCategory @connection
-  boatPreference: [TypeBoatUser] @connection(name: "UserTypeBoat")
-  side: [SideUser] @connection(name:"UserSide")
-  sex: Sex @connection
+  weightCategory: String
+  boatPreference: AWSJSON
+  side: AWSJSON
+  sex: String
   status:Boolean
 }
 
@@ -20,36 +20,5 @@ type Attendence @model {
   status: String
 }
 
-type Sex @model {
-  id: ID!
-  name: String!
-}
-
-type SideUser @model (queries: null){
-  id: ID!
-  user: User @connection(name:"UserSide")
-  side: Side @connection(name:"SideUser")
-}
-
-type TypeBoatUser @model (queries: null){
-  id: ID!
-  user: User @connection(name: "UserTypeBoat")
-  typeBoat: TypeBoat @connection(name:"TypeBoatUser")
-}
-
-type TypeBoat @model {
-  id: ID!
-  type: String!
-  user: [TypeBoatUser] @connection(name:"TypeBoatUser")
-}
-type Side @model {
-  id: ID!
-  type: String!
-  user: [SideUser] @connection(name:"SideUser")
-}
-type WeightCategory @model {
-  id: ID!
-  name: String!
-}
 
 

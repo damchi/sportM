@@ -8,26 +8,10 @@ subscription OnCreateUser {
     email
     dod
     height
-    weightCategory {
-      id
-      name
-    }
-    boatPreference {
-      items {
-        id
-      }
-      nextToken
-    }
-    side {
-      items {
-        id
-      }
-      nextToken
-    }
-    sex {
-      id
-      name
-    }
+    weightCategory
+    boatPreference
+    side
+    sex
     status
   }
 }
@@ -40,26 +24,10 @@ subscription OnUpdateUser {
     email
     dod
     height
-    weightCategory {
-      id
-      name
-    }
-    boatPreference {
-      items {
-        id
-      }
-      nextToken
-    }
-    side {
-      items {
-        id
-      }
-      nextToken
-    }
-    sex {
-      id
-      name
-    }
+    weightCategory
+    boatPreference
+    side
+    sex
     status
   }
 }
@@ -72,26 +40,10 @@ subscription OnDeleteUser {
     email
     dod
     height
-    weightCategory {
-      id
-      name
-    }
-    boatPreference {
-      items {
-        id
-      }
-      nextToken
-    }
-    side {
-      items {
-        id
-      }
-      nextToken
-    }
-    sex {
-      id
-      name
-    }
+    weightCategory
+    boatPreference
+    side
+    sex
     status
   }
 }
@@ -107,20 +59,10 @@ subscription OnCreateAttendence {
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     status
@@ -138,20 +80,10 @@ subscription OnUpdateAttendence {
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     status
@@ -169,346 +101,12 @@ subscription OnDeleteAttendence {
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     status
-  }
-}
-subscription OnCreateSex {
-  onCreateSex {
-    id
-    name
-  }
-}
-subscription OnUpdateSex {
-  onUpdateSex {
-    id
-    name
-  }
-}
-subscription OnDeleteSex {
-  onDeleteSex {
-    id
-    name
-  }
-}
-subscription OnCreateSideUser {
-  onCreateSideUser {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    side {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnUpdateSideUser {
-  onUpdateSideUser {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    side {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnDeleteSideUser {
-  onDeleteSideUser {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    side {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnCreateTypeBoatUser {
-  onCreateTypeBoatUser {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    typeBoat {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnUpdateTypeBoatUser {
-  onUpdateTypeBoatUser {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    typeBoat {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnDeleteTypeBoatUser {
-  onDeleteTypeBoatUser {
-    id
-    user {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dod
-      height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
-      status
-    }
-    typeBoat {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-  }
-}
-subscription OnCreateTypeBoat {
-  onCreateTypeBoat {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-subscription OnUpdateTypeBoat {
-  onUpdateTypeBoat {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-subscription OnDeleteTypeBoat {
-  onDeleteTypeBoat {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-subscription OnCreateSide {
-  onCreateSide {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-subscription OnUpdateSide {
-  onUpdateSide {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-subscription OnDeleteSide {
-  onDeleteSide {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-subscription OnCreateWeightCategory {
-  onCreateWeightCategory {
-    id
-    name
-  }
-}
-subscription OnUpdateWeightCategory {
-  onUpdateWeightCategory {
-    id
-    name
-  }
-}
-subscription OnDeleteWeightCategory {
-  onDeleteWeightCategory {
-    id
-    name
   }
 }

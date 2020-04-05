@@ -8,26 +8,10 @@ query GetUser($id: ID!) {
     email
     dod
     height
-    weightCategory {
-      id
-      name
-    }
-    boatPreference {
-      items {
-        id
-      }
-      nextToken
-    }
-    side {
-      items {
-        id
-      }
-      nextToken
-    }
-    sex {
-      id
-      name
-    }
+    weightCategory
+    boatPreference
+    side
+    sex
     status
   }
 }
@@ -45,20 +29,10 @@ query ListUsers(
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     nextToken
@@ -76,20 +50,10 @@ query GetAttendence($id: ID!) {
       email
       dod
       height
-      weightCategory {
-        id
-        name
-      }
-      boatPreference {
-        nextToken
-      }
-      side {
-        nextToken
-      }
-      sex {
-        id
-        name
-      }
+      weightCategory
+      boatPreference
+      side
+      sex
       status
     }
     status
@@ -112,99 +76,13 @@ query ListAttendences(
         email
         dod
         height
+        weightCategory
+        boatPreference
+        side
+        sex
         status
       }
       status
-    }
-    nextToken
-  }
-}
-query GetSex($id: ID!) {
-  getSex(id: $id) {
-    id
-    name
-  }
-}
-query ListSexs($filter: ModelSexFilterInput, $limit: Int, $nextToken: String) {
-  listSexs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
-    }
-    nextToken
-  }
-}
-query GetTypeBoat($id: ID!) {
-  getTypeBoat(id: $id) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-query ListTypeBoats(
-  $filter: ModelTypeBoatFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTypeBoats(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-    nextToken
-  }
-}
-query GetSide($id: ID!) {
-  getSide(id: $id) {
-    id
-    type
-    user {
-      items {
-        id
-      }
-      nextToken
-    }
-  }
-}
-query ListSides(
-  $filter: ModelSideFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listSides(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      type
-      user {
-        nextToken
-      }
-    }
-    nextToken
-  }
-}
-query GetWeightCategory($id: ID!) {
-  getWeightCategory(id: $id) {
-    id
-    name
-  }
-}
-query ListWeightCategorys(
-  $filter: ModelWeightCategoryFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listWeightCategorys(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
     }
     nextToken
   }

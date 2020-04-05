@@ -1,0 +1,9 @@
+{
+  "side": [
+    { "id": "admin", "type": "Admin" },
+    { "id": "coach", "type": "Coach" },
+    { "id": "competitive", "type": "Competitive" },
+    { "id": "master","type": "Master"},
+    { "id": "recreative","type": "Recreative"}
+  ]
+}

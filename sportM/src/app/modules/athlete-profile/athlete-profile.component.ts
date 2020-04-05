@@ -9,6 +9,10 @@ import {Sex} from "../../domain/sex";
 import {TypeBoat} from "../../domain/type-boat";
 import {Side} from "../../domain/side";
 import {WeightCategory} from "../../domain/weight-category";
+import * as sexJson from "../../config/sex.json";
+import * as typeBoatJson from "../../config/typeBoat.json";
+import * as weightCategoryJson from "../../config/weightCategory.json";
+import * as sideJson from "../../config/side.json";
 
 export class ErrorMessages {
   dob: StructureError[];
@@ -48,15 +52,17 @@ export class AthleteProfileComponent implements OnInit {
       this.athlete.id = user.attributes.sub ;
       this.athlete.email = user.attributes.email;
       await this.getAthlete(user.attributes.sub);
-      await this.getSex();
-      await this.getTypeBoat();
-      await this.getWeightCategory();
-      await this.getPreferedSide();
     })
       .catch(err => console.error(err));
   }
 
   ngOnInit() {
+    console.log(sexJson);
+     this.getSex();
+     this.getTypeBoat();
+     this.getWeightCategory();
+     this.getPreferedSide();
+
 
     this.errorMessages = {
       dob: [
@@ -120,11 +126,11 @@ export class AthleteProfileComponent implements OnInit {
     // await this.api.GetUser(athleteId).then(user => {
     await this.service.getAthlete(athleteId).then(user => {
       if (user) {
-        this.boat = user.boatPreference.items;
+        // this.boat = user.boatPreference.items;
         // this.profileForm.get('dob').patchValue(user.dob);
         this.profileForm.get('height').patchValue(user.height);
-        this.profileForm.get('weightCategory').patchValue(user.weightCategory.id);
-        this.profileForm.get('sex').patchValue(user.sex.id);
+        this.profileForm.get('weightCategory').patchValue(user.weightCategory);
+        this.profileForm.get('sex').patchValue(user.sex);
         this.profileForm.get('membershipType').patchValue(user.membershipType);
         this.profileForm.get('firstName').patchValue(user.firstName);
         this.profileForm.get('lastName').patchValue(user.lastName);
@@ -135,35 +141,21 @@ export class AthleteProfileComponent implements OnInit {
     });
   };
 
-  async getSex() {
-    await this.service.getListSex().then(sex => {
-      this.sex = sex.items;
-
-    });
+  getSex() {
+    this.sex = sexJson.sex;
+    console.log(this.sex)
   };
 
-  async getTypeBoat() {
-    await this.service.getListTypeBoat().then(type => {
-      this.typeBoat = type.items;
-      const idBoat = this.boat.map(e => e.id);
-      this.profileForm.get('boatPreference').patchValue(this.typeBoat.filter(e => idBoat.indexOf(e.id) !== -1));
-      console.log(this.typeBoat.filter(e => idBoat.indexOf(e.id) !== -1));
-
-    });
+  getTypeBoat() {
+    this.typeBoat = typeBoatJson.typeBoat
   };
 
-  async getWeightCategory() {
-    await this.service.getListWeightCategory().then(weightCategory => {
-      this.weightCategory = weightCategory.items;
-    });
+  getWeightCategory() {
+      this.weightCategory = weightCategoryJson.weightCategory;
   };
 
-  async getPreferedSide() {
-    await this.service.getListSide().then(side => {
-      this.side = side.items;
-      const idSide = side.items.map(e => e.id);
-      this.profileForm.get('side').patchValue(this.side.filter(e => idSide.indexOf(e.id) !== -1));
-    });
+   getPreferedSide() {
+      this.side = sideJson.side;
   };
 
 
@@ -175,14 +167,14 @@ export class AthleteProfileComponent implements OnInit {
     this.athlete.membershipType = profil.membershipType;
     this.athlete.email = profil.email;
     // this.athlete.dob = profil.dob;
-    // this.athlete.weight = profil.weight;
     this.athlete.height = profil.height;
     this.athlete.weightCategory = profil.weightCategory;
-    this.athlete.boatPreference = profil.boatPreference;
-    this.athlete.side = profil.side;
+    this.athlete.boatPreference = JSON.stringify({ "boatPreference":   profil.boatPreference });
+    console.log(this.athlete.boatPreference);
+    this.athlete.side =JSON.stringify({ "side":profil.side});
     this.athlete.sex = profil.sex;
     this.athlete.status = profil.status;
-    this.athlete.membershipType = 3;
+    this.athlete.membershipType = 'master';
     this.athlete.status = true;
 
 
