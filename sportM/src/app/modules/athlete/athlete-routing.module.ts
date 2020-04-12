@@ -7,10 +7,10 @@ const routes: Routes = [
   { path: '',
     component: AthleteComponent,
     children: [
-      // {
-      //   path: 'training',
-      //   loadChildren: () => import('../athletes-training/athletes-training.module').then(m => m.AthletesTrainingModule)
-      // },
+      {
+        path: 'training',
+        loadChildren: () => import('../athlete-training/athlete-training.module').then(m => m.AthleteTrainingModule)
+      },
       {
         path: 'profile',
         loadChildren: () => import('../athlete-profile/athlete-profile.module').then(m => m.AthleteProfileModule)
