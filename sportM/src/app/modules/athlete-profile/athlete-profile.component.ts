@@ -13,6 +13,7 @@ import * as sexJson from "../../config/sex.json";
 import * as typeBoatJson from "../../config/typeBoat.json";
 import * as weightCategoryJson from "../../config/weightCategory.json";
 import * as sideJson from "../../config/side.json";
+import {TypeofExpr} from "@angular/compiler";
 
 export class ErrorMessages {
   dob: StructureError[];
@@ -37,7 +38,7 @@ export class AthleteProfileComponent implements OnInit {
 
   public profileForm: FormGroup;
   public errorMessages: ErrorMessages;
-  public typeBoat:TypeBoat[];
+  public typeBoat: TypeBoat[];
   public side: Side[];
   public weightCategory: WeightCategory[];
   public athlete = new Athlete();
@@ -49,7 +50,7 @@ export class AthleteProfileComponent implements OnInit {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     }).then(async user => {
-      this.athlete.id = user.attributes.sub ;
+      this.athlete.id = user.attributes.sub;
       this.athlete.email = user.attributes.email;
       await this.getAthlete(user.attributes.sub);
     })
@@ -58,10 +59,10 @@ export class AthleteProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log(sexJson);
-     this.getSex();
-     this.getTypeBoat();
-     this.getWeightCategory();
-     this.getPreferedSide();
+    this.getSex();
+    this.getTypeBoat();
+    this.getWeightCategory();
+    this.getPreferedSide();
 
 
     this.errorMessages = {
@@ -134,28 +135,37 @@ export class AthleteProfileComponent implements OnInit {
         this.profileForm.get('membershipType').patchValue(user.membershipType);
         this.profileForm.get('firstName').patchValue(user.firstName);
         this.profileForm.get('lastName').patchValue(user.lastName);
-        // this.profileForm.get('boatPreference').patchValue(user.boatPreference.items);
-
+        this.athlete.boatPreference = JSON.parse(user.boatPreference);
+        this.athlete.side = JSON.parse(user.side);
+        this.getTypeBoat();
+        this.getPreferedSide();
       }
-
     });
   };
 
   getSex() {
     this.sex = sexJson.sex;
-    console.log(this.sex)
+
   };
 
   getTypeBoat() {
-    this.typeBoat = typeBoatJson.typeBoat
+    this.typeBoat = typeBoatJson.typeBoat;
+    if (this.athlete.boatPreference) {
+      const idTypeBoat = this.athlete.boatPreference.boatPreference.map(e => e.id);
+      this.profileForm.get('boatPreference').patchValue(this.typeBoat.filter(e => idTypeBoat.indexOf(e.id) !== -1));
+    }
   };
 
   getWeightCategory() {
-      this.weightCategory = weightCategoryJson.weightCategory;
+    this.weightCategory = weightCategoryJson.weightCategory;
   };
 
-   getPreferedSide() {
-      this.side = sideJson.side;
+  getPreferedSide() {
+    this.side = sideJson.side;
+    if (this.athlete.side) {
+      const idSide = this.athlete.side.side.map(e => e.id);
+      this.profileForm.get('side').patchValue(this.side.filter(e => idSide.indexOf(e.id) !== -1));
+    }
   };
 
 
@@ -169,16 +179,16 @@ export class AthleteProfileComponent implements OnInit {
     // this.athlete.dob = profil.dob;
     this.athlete.height = profil.height;
     this.athlete.weightCategory = profil.weightCategory;
-    this.athlete.boatPreference = JSON.stringify({ "boatPreference":   profil.boatPreference });
+    this.athlete.boatPreference = JSON.stringify({"boatPreference": profil.boatPreference});
     console.log(this.athlete.boatPreference);
-    this.athlete.side =JSON.stringify({ "side":profil.side});
+    this.athlete.side = JSON.stringify({"side": profil.side});
     this.athlete.sex = profil.sex;
     this.athlete.status = profil.status;
     this.athlete.membershipType = 'master';
     this.athlete.status = true;
 
 
-    if (this.athlete.firstName != null){
+    if (this.athlete.firstName != null) {
       this.athlete.firstName = profil.firstName;
       await this.service.updateProfil(this.athlete)
     } else {

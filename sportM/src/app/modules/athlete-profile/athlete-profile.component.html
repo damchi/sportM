@@ -60,7 +60,7 @@
     <mat-form-field>
       <mat-label>Boat preferences</mat-label>
       <mat-select formControlName="boatPreference"  multiple>
-        <mat-option *ngFor="let boat of typeBoat" [value]="boat.id">{{boat.type}}</mat-option>
+        <mat-option *ngFor="let boat of typeBoat" [value]="boat">{{boat.type}}</mat-option>
       </mat-select>
 <!--      <mat-error *ngFor="let validation of errorMessages.boatPreference">-->
 <!--        <mat-error class="error-message" *ngIf="profileForm.get('boatPreference').hasError(validation.type) &&-->
@@ -72,7 +72,7 @@
     <mat-form-field>
       <mat-label>Prefered side</mat-label>
       <mat-select formControlName="side" multiple >
-        <mat-option *ngFor="let side of side" [value]="side.id" >{{side.type}}</mat-option>
+        <mat-option *ngFor="let side of side" [value]="side" >{{side.type}}</mat-option>
       </mat-select>
 <!--      <mat-error *ngFor="let validation of errorMessages.boatPreference">-->
 <!--        <mat-error class="error-message" *ngIf="profileForm.get('side').hasError(validation.type) &&-->
