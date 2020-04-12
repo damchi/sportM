@@ -9,8 +9,7 @@ mutation CreateUser(
     lastName
     membershipType
     email
-    dob
-    weight
+    dod
     height
     weightCategory
     boatPreference
@@ -29,8 +28,7 @@ mutation UpdateUser(
     lastName
     membershipType
     email
-    dob
-    weight
+    dod
     height
     weightCategory
     boatPreference
@@ -49,8 +47,7 @@ mutation DeleteUser(
     lastName
     membershipType
     email
-    dob
-    weight
+    dod
     height
     weightCategory
     boatPreference
@@ -72,8 +69,7 @@ mutation CreateAttendence(
       lastName
       membershipType
       email
-      dob
-      weight
+      dod
       height
       weightCategory
       boatPreference
@@ -97,8 +93,7 @@ mutation UpdateAttendence(
       lastName
       membershipType
       email
-      dob
-      weight
+      dod
       height
       weightCategory
       boatPreference
@@ -122,8 +117,7 @@ mutation DeleteAttendence(
       lastName
       membershipType
       email
-      dob
-      weight
+      dod
       height
       weightCategory
       boatPreference

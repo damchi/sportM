@@ -6,8 +6,7 @@ subscription OnCreateUser {
     lastName
     membershipType
     email
-    dob
-    weight
+    dod
     height
     weightCategory
     boatPreference
@@ -23,8 +22,7 @@ subscription OnUpdateUser {
     lastName
     membershipType
     email
-    dob
-    weight
+    dod
     height
     weightCategory
     boatPreference
@@ -40,8 +38,7 @@ subscription OnDeleteUser {
     lastName
     membershipType
     email
-    dob
-    weight
+    dod
     height
     weightCategory
     boatPreference
@@ -60,8 +57,7 @@ subscription OnCreateAttendence {
       lastName
       membershipType
       email
-      dob
-      weight
+      dod
       height
       weightCategory
       boatPreference
@@ -82,8 +78,7 @@ subscription OnUpdateAttendence {
       lastName
       membershipType
       email
-      dob
-      weight
+      dod
       height
       weightCategory
       boatPreference
@@ -104,8 +99,7 @@ subscription OnDeleteAttendence {
       lastName
       membershipType
       email
-      dob
-      weight
+      dod
       height
       weightCategory
       boatPreference

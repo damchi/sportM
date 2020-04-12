@@ -12,8 +12,7 @@ export type CreateUserInput = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob?: string | null;
-  weight?: string | null;
+  dod?: string | null;
   height?: string | null;
   weightCategory?: string | null;
   boatPreference?: string | null;
@@ -27,8 +26,7 @@ export type ModelUserConditionInput = {
   lastName?: ModelStringInput | null;
   membershipType?: ModelStringInput | null;
   email?: ModelStringInput | null;
-  dob?: ModelStringInput | null;
-  weight?: ModelStringInput | null;
+  dod?: ModelStringInput | null;
   height?: ModelStringInput | null;
   weightCategory?: ModelStringInput | null;
   boatPreference?: ModelStringInput | null;
@@ -92,8 +90,7 @@ export type UpdateUserInput = {
   lastName?: string | null;
   membershipType?: string | null;
   email?: string | null;
-  dob?: string | null;
-  weight?: string | null;
+  dod?: string | null;
   height?: string | null;
   weightCategory?: string | null;
   boatPreference?: string | null;
@@ -110,6 +107,7 @@ export type CreateAttendenceInput = {
   id?: string | null;
   trainingDay: string;
   status?: string | null;
+  attendenceAthleteId?: string | null;
 };
 
 export type ModelAttendenceConditionInput = {
@@ -124,6 +122,7 @@ export type UpdateAttendenceInput = {
   id: string;
   trainingDay?: string | null;
   status?: string | null;
+  attendenceAthleteId?: string | null;
 };
 
 export type DeleteAttendenceInput = {
@@ -136,8 +135,7 @@ export type ModelUserFilterInput = {
   lastName?: ModelStringInput | null;
   membershipType?: ModelStringInput | null;
   email?: ModelStringInput | null;
-  dob?: ModelStringInput | null;
-  weight?: ModelStringInput | null;
+  dod?: ModelStringInput | null;
   height?: ModelStringInput | null;
   weightCategory?: ModelStringInput | null;
   boatPreference?: ModelStringInput | null;
@@ -181,8 +179,7 @@ export type CreateUserMutation = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob: string | null;
-  weight: string | null;
+  dod: string | null;
   height: string | null;
   weightCategory: string | null;
   boatPreference: string | null;
@@ -198,8 +195,7 @@ export type UpdateUserMutation = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob: string | null;
-  weight: string | null;
+  dod: string | null;
   height: string | null;
   weightCategory: string | null;
   boatPreference: string | null;
@@ -215,8 +211,7 @@ export type DeleteUserMutation = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob: string | null;
-  weight: string | null;
+  dod: string | null;
   height: string | null;
   weightCategory: string | null;
   boatPreference: string | null;
@@ -236,15 +231,14 @@ export type CreateAttendenceMutation = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
     side: string | null;
     sex: string | null;
     status: boolean | null;
-  };
+  } | null;
   status: string | null;
 };
 
@@ -259,15 +253,14 @@ export type UpdateAttendenceMutation = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
     side: string | null;
     sex: string | null;
     status: boolean | null;
-  };
+  } | null;
   status: string | null;
 };
 
@@ -282,15 +275,14 @@ export type DeleteAttendenceMutation = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
     side: string | null;
     sex: string | null;
     status: boolean | null;
-  };
+  } | null;
   status: string | null;
 };
 
@@ -301,8 +293,7 @@ export type GetUserQuery = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob: string | null;
-  weight: string | null;
+  dod: string | null;
   height: string | null;
   weightCategory: string | null;
   boatPreference: string | null;
@@ -320,8 +311,7 @@ export type ListUsersQuery = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
@@ -343,15 +333,14 @@ export type GetAttendenceQuery = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
     side: string | null;
     sex: string | null;
     status: boolean | null;
-  };
+  } | null;
   status: string | null;
 };
 
@@ -368,15 +357,14 @@ export type ListAttendencesQuery = {
       lastName: string;
       membershipType: string;
       email: string;
-      dob: string | null;
-      weight: string | null;
+      dod: string | null;
       height: string | null;
       weightCategory: string | null;
       boatPreference: string | null;
       side: string | null;
       sex: string | null;
       status: boolean | null;
-    };
+    } | null;
     status: string | null;
   } | null> | null;
   nextToken: string | null;
@@ -389,8 +377,7 @@ export type OnCreateUserSubscription = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob: string | null;
-  weight: string | null;
+  dod: string | null;
   height: string | null;
   weightCategory: string | null;
   boatPreference: string | null;
@@ -406,8 +393,7 @@ export type OnUpdateUserSubscription = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob: string | null;
-  weight: string | null;
+  dod: string | null;
   height: string | null;
   weightCategory: string | null;
   boatPreference: string | null;
@@ -423,8 +409,7 @@ export type OnDeleteUserSubscription = {
   lastName: string;
   membershipType: string;
   email: string;
-  dob: string | null;
-  weight: string | null;
+  dod: string | null;
   height: string | null;
   weightCategory: string | null;
   boatPreference: string | null;
@@ -444,15 +429,14 @@ export type OnCreateAttendenceSubscription = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
     side: string | null;
     sex: string | null;
     status: boolean | null;
-  };
+  } | null;
   status: string | null;
 };
 
@@ -467,15 +451,14 @@ export type OnUpdateAttendenceSubscription = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
     side: string | null;
     sex: string | null;
     status: boolean | null;
-  };
+  } | null;
   status: string | null;
 };
 
@@ -490,15 +473,14 @@ export type OnDeleteAttendenceSubscription = {
     lastName: string;
     membershipType: string;
     email: string;
-    dob: string | null;
-    weight: string | null;
+    dod: string | null;
     height: string | null;
     weightCategory: string | null;
     boatPreference: string | null;
     side: string | null;
     sex: string | null;
     status: boolean | null;
-  };
+  } | null;
   status: string | null;
 };
 
@@ -518,8 +500,7 @@ export class APIService {
           lastName
           membershipType
           email
-          dob
-          weight
+          dod
           height
           weightCategory
           boatPreference
@@ -551,8 +532,7 @@ export class APIService {
           lastName
           membershipType
           email
-          dob
-          weight
+          dod
           height
           weightCategory
           boatPreference
@@ -584,8 +564,7 @@ export class APIService {
           lastName
           membershipType
           email
-          dob
-          weight
+          dod
           height
           weightCategory
           boatPreference
@@ -621,8 +600,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference
@@ -660,8 +638,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference
@@ -699,8 +676,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference
@@ -731,8 +707,7 @@ export class APIService {
           lastName
           membershipType
           email
-          dob
-          weight
+          dod
           height
           weightCategory
           boatPreference
@@ -764,8 +739,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference
@@ -804,8 +778,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference
@@ -843,8 +816,7 @@ export class APIService {
               lastName
               membershipType
               email
-              dob
-              weight
+              dod
               height
               weightCategory
               boatPreference
@@ -882,8 +854,7 @@ export class APIService {
           lastName
           membershipType
           email
-          dob
-          weight
+          dod
           height
           weightCategory
           boatPreference
@@ -905,8 +876,7 @@ export class APIService {
           lastName
           membershipType
           email
-          dob
-          weight
+          dod
           height
           weightCategory
           boatPreference
@@ -928,8 +898,7 @@ export class APIService {
           lastName
           membershipType
           email
-          dob
-          weight
+          dod
           height
           weightCategory
           boatPreference
@@ -957,8 +926,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference
@@ -988,8 +956,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference
@@ -1019,8 +986,7 @@ export class APIService {
             lastName
             membershipType
             email
-            dob
-            weight
+            dod
             height
             weightCategory
             boatPreference

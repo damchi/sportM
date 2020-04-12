@@ -4,12 +4,11 @@ type User @model {
   lastName: String!
   membershipType: String!
   email:String!
-  dob:String
-  weight: String
+  dod: AWSDateTime
   height: String
   weightCategory: String
-  boatPreference: String
-  side: String
+  boatPreference: AWSJSON
+  side: AWSJSON
   sex: String
   status:Boolean
 }
@@ -17,7 +16,9 @@ type User @model {
 type Attendence @model {
   id: ID!
   trainingDay: String!
-  athlete: User!
+  athlete: User @connection
   status: String
 }
+
+
 

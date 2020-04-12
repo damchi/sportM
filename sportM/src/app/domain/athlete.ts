@@ -2,30 +2,28 @@ import {User} from './user';
 import {Boat} from './boat';
 import {Side} from './side';
 import {WeightCategory} from './weight-category';
+import {Sex} from "./sex";
+import {TypeBoat} from "./type-boat";
 
 export class Athlete extends User {
-  dob: Date;
-  weight: string;
+  // dob: Date;
   height: string;
-  weightCategory: WeightCategory;
-  athleteCategory: string;
-  boatPreference: Boat[];
-  side: Side[];
+  weightCategory: string;
+  boatPreference: any;
+  side: any;
   sex: string;
-  rcaNumber: string;
+  status:boolean;
 
-  constructor(dob?: Date, weight?: string, height?: string, weightCategory?: WeightCategory, boatPreference?: Boat[],
-              side?: Side[], sex?: string, rcaNumber?: string, athleteCategory?: string) {
+  constructor(dob?: Date, height?: string, weightCategory?: any, boatPreference?: any,
+              side?: any, userSexId?: string, athleteCategory?: string, status?: boolean ) {
     super();
 
-    this.dob = dob;
-    this.weight = weight;
+    // this.dob = dob;
     this.height = height;
     this.weightCategory = weightCategory;
     this.boatPreference = boatPreference;
     this.side = side;
-    this.sex = sex;
-    this.rcaNumber = rcaNumber;
-    this.athleteCategory = athleteCategory;
+    this.sex = userSexId;
+    this.status = status;
   }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Auth} from "aws-amplify";
+import {Athlete} from "../../domain/athlete";
 
 @Component({
   selector: 'app-athlete',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AthleteComponent implements OnInit {
 
+  public athlete = new Athlete();
   constructor() { }
 
   ngOnInit() {

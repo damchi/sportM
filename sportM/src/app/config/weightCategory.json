@@ -1,0 +1,6 @@
+{
+  "weightCategory": [
+    { "id": "ligthWeight", "name": "Ligth Weigth" },
+    { "id": "heavyWeigth", "name": "Heavy Weight" }
+  ]
+}

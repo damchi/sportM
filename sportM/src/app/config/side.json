@@ -1,0 +1,8 @@
+{
+  "side": [
+    { "id": "stroke", "type": "Stroke" },
+    { "id": "cox", "type": "Cox" },
+    { "id": "stratboard", "type": "Startboard" },
+    { "id": "portSide","type": "Port side"}
+  ]
+}

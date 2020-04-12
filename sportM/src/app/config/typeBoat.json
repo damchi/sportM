@@ -1,0 +1,11 @@
+{
+  "typeBoat": [
+    { "id": "single", "type": "Single" },
+    { "id": "double", "type": "Double" },
+    { "id": "pair", "type": "Pair" },
+    { "id": "quad","type": "Quad"},
+    { "id": "fourPlus", "type": "Four +"},
+    { "id": "fourMinus", "type": "Four -"},
+    { "id": "eight","type": "Eight"}
+  ]
+}
