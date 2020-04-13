@@ -4,31 +4,31 @@
     <mat-form-field>
       <label>Email</label>
       <input matInput type="email" formControlName="email" required>
-<!--      <mat-error *ngFor="let validation of errorMessages.email">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('email').hasError(validation.type) &&-->
-<!--            (profileForm.get('email').dirty || profileForm.get('email').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.email">
+        <mat-error class="error-message" *ngIf="profileForm.get('email').hasError(validation.type) &&
+            (profileForm.get('email').dirty || profileForm.get('email').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <label>First Name</label>
       <input matInput  formControlName="firstName" required>
-<!--      <mat-error *ngFor="let validation of errorMessages.email">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('email').hasError(validation.type) &&-->
-<!--            (profileForm.get('email').dirty || profileForm.get('email').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.firstName">
+        <mat-error class="error-message" *ngIf="profileForm.get('firstName').hasError(validation.type) &&
+            (profileForm.get('firstName').dirty || profileForm.get('firstName').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <label>Last Name</label>
       <input matInput formControlName="lastName" required>
-<!--      <mat-error *ngFor="let validation of errorMessages.email">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('email').hasError(validation.type) &&-->
-<!--            (profileForm.get('email').dirty || profileForm.get('email').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.lastName">
+        <mat-error class="error-message" *ngIf="profileForm.get('lastName').hasError(validation.type) &&
+            (profileForm.get('lastName').dirty || profileForm.get('lastName').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -36,11 +36,11 @@
       <input matInput [matDatepicker]="picker" formControlName="dob" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-<!--      <mat-error *ngFor="let validation of errorMessages.dob">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('dob').hasError(validation.type) &&-->
-<!--                (profileForm.get('dob').dirty || profileForm.get('dob').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.dob">
+        <mat-error class="error-message" *ngIf="profileForm.get('dob').hasError(validation.type) &&
+                (profileForm.get('dob').dirty || profileForm.get('dob').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -49,11 +49,11 @@
         <mat-option *ngFor="let sex of sex" [value]="sex.id">{{sex.name}}</mat-option>
       </mat-select>
 
-<!--      <mat-error *ngFor="let validation of errorMessages.boatPreference">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('sex').hasError(validation.type) &&-->
-<!--          (profileForm.get('sex').dirty || profileForm.get('sex').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.boatPreference">
+        <mat-error class="error-message" *ngIf="profileForm.get('sex').hasError(validation.type) &&
+          (profileForm.get('sex').dirty || profileForm.get('sex').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
 
@@ -62,11 +62,11 @@
       <mat-select formControlName="boatPreference"  multiple>
         <mat-option *ngFor="let boat of typeBoat" [value]="boat">{{boat.type}}</mat-option>
       </mat-select>
-<!--      <mat-error *ngFor="let validation of errorMessages.boatPreference">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('boatPreference').hasError(validation.type) &&-->
-<!--          (profileForm.get('boatPreference').dirty || profileForm.get('boatPreference').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.boatPreference">
+        <mat-error class="error-message" *ngIf="profileForm.get('boatPreference').hasError(validation.type) &&
+          (profileForm.get('boatPreference').dirty || profileForm.get('boatPreference').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -74,37 +74,37 @@
       <mat-select formControlName="side" multiple >
         <mat-option *ngFor="let side of side" [value]="side" >{{side.type}}</mat-option>
       </mat-select>
-<!--      <mat-error *ngFor="let validation of errorMessages.boatPreference">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('side').hasError(validation.type) &&-->
-<!--          (profileForm.get('side').dirty || profileForm.get('side').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.boatPreference">
+        <mat-error class="error-message" *ngIf="profileForm.get('side').hasError(validation.type) &&
+          (profileForm.get('side').dirty || profileForm.get('side').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <label>Size</label>
       <input matInput type="text" formControlName="height" required>
-<!--      <mat-error *ngFor="let validation of errorMessages.height">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('height').hasError(validation.type) &&-->
-<!--            (profileForm.get('height').dirty || profileForm.get('height').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      <mat-error *ngFor="let validation of errorMessages.height">
+        <mat-error class="error-message" *ngIf="profileForm.get('height').hasError(validation.type) &&
+            (profileForm.get('height').dirty || profileForm.get('height').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <label>Category</label>
       <mat-select formControlName="weightCategory">
         <mat-option *ngFor="let weight of weightCategory" [value]="weight.id">{{weight.name}}</mat-option>
-      </mat-select><!--      <mat-error *ngFor="let validation of errorMessages.weightCategory">-->
-<!--        <mat-error class="error-message" *ngIf="profileForm.get('weightCategory').hasError(validation.type) &&-->
-<!--            (profileForm.get('weightCategory').dirty || profileForm.get('weightCategory').touched)">{{validation.message}}-->
-<!--        </mat-error>-->
-<!--      </mat-error>-->
+      </mat-select>
+            <mat-error *ngFor="let validation of errorMessages.weightCategory">
+        <mat-error class="error-message" *ngIf="profileForm.get('weightCategory').hasError(validation.type) &&
+            (profileForm.get('weightCategory').dirty || profileForm.get('weightCategory').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
     </mat-form-field>
 
     <button mat-button mat-raised-button
-            (click)="create()">{{athlete.firstName ?'Update' : 'Save'}}
-      <!--          (click)="create()">{{data.training.id ? 'Modifier tous' : 'Créer'}}-->
+            (click)="create()">{{athlete.id ?'Update' : 'Save'}}
     </button>
   </div>
 

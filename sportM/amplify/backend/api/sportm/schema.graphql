@@ -4,7 +4,7 @@ type User @model {
   lastName: String!
   membershipType: String!
   email:String!
-  dod: AWSDateTime
+  dob: AWSDate
   height: String
   weightCategory: String
   boatPreference: AWSJSON

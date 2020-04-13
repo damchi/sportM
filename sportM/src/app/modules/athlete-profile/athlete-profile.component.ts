@@ -13,7 +13,9 @@ import * as sexJson from "../../config/sex.json";
 import * as typeBoatJson from "../../config/typeBoat.json";
 import * as weightCategoryJson from "../../config/weightCategory.json";
 import * as sideJson from "../../config/side.json";
-import {TypeofExpr} from "@angular/compiler";
+import {MarkAsTouch} from "../../../utils/mark-as-touch";
+import  moment from 'moment';
+
 
 export class ErrorMessages {
   dob: StructureError[];
@@ -34,7 +36,7 @@ export class ErrorMessages {
   styleUrls: ['./athlete-profile.component.css']
 })
 
-export class AthleteProfileComponent implements OnInit {
+export class AthleteProfileComponent  extends MarkAsTouch implements OnInit  {
 
   public profileForm: FormGroup;
   public errorMessages: ErrorMessages;
@@ -47,6 +49,7 @@ export class AthleteProfileComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private service: AthleteProfileService, private api: APIService) {
+    super();
     Auth.currentAuthenticatedUser({
       bypassCache: false
     }).then(async user => {
@@ -58,12 +61,22 @@ export class AthleteProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(sexJson);
     this.getSex();
     this.getTypeBoat();
     this.getWeightCategory();
     this.getPreferedSide();
 
+    this.profileForm = this.fb.group({
+      dob: new FormControl('', [Validators.required]),
+      email: new FormControl(this.athlete.email, [Validators.required]),
+      height: new FormControl(this.athlete.height, [Validators.required]),
+      weightCategory: new FormControl(this.athlete.weightCategory, [Validators.required]),
+      boatPreference: new FormControl(this.athlete.boatPreference, [Validators.required]),
+      side: new FormControl(this.athlete.side, [Validators.required]),
+      sex: new FormControl(this.athlete.sex, [Validators.required]),
+      firstName: new FormControl(this.athlete.firstName, [Validators.required]),
+      lastName: new FormControl(this.athlete.lastName, [Validators.required]),
+    });
 
     this.errorMessages = {
       dob: [
@@ -94,49 +107,32 @@ export class AthleteProfileComponent implements OnInit {
         {type: 'required', message: 'The lastname is required.'}
       ]
     };
-    this.profileForm = this.fb.group({
-      // dob: new FormControl('', [Validators.required]),
-      // email: new FormControl('', [Validators.required]),
-      // weight: new FormControl(''),
-      // height: new FormControl('', [Validators.required]),
-      // weightCategory: new FormControl('', [Validators.required]),
-      // boatPreference: new FormControl('', [Validators.required]),
-      // side: new FormControl('', [Validators.required]),
-      // sex: new FormControl('', [Validators.required]),
-      // rcaNumber: new FormControl('', [Validators.required]),
-      // membershipType: new FormControl('', [Validators.required]),
-      // firstName: new FormControl('', [Validators.required]),
-      // lastName: new FormControl('', [Validators.required]),
 
-      dob: new FormControl(''),
-      email: new FormControl(this.athlete.email),
-      // weight: new FormControl(this.athlete.weight),
-      height: new FormControl(this.athlete.height),
-      weightCategory: new FormControl(this.athlete.weightCategory),
-      boatPreference: new FormControl(this.athlete.boatPreference),
-      side: new FormControl(this.athlete.side),
-      sex: new FormControl(this.athlete.sex),
-      membershipType: new FormControl(this.athlete.membershipType),
-      firstName: new FormControl(this.athlete.firstName),
-      lastName: new FormControl(this.athlete.lastName),
-    });
 
   }
 
   async getAthlete(athleteId: string) {
-    // await this.api.GetUser(athleteId).then(user => {
     await this.service.getAthlete(athleteId).then(user => {
       if (user) {
-        // this.boat = user.boatPreference.items;
-        // this.profileForm.get('dob').patchValue(user.dob);
+        this.athlete.dob = user.dob;
+        this.athlete.firstName = user.firstName;
+        this.athlete.lastName = user.lastName;
+        this.athlete.height = user.height;
+        this.athlete.sex = user.sex;
+        this.athlete.weightCategory = user.weightCategory;
+        this.athlete.membershipType = user.membershipType;
+        this.athlete.status = user.status;
+
         this.profileForm.get('height').patchValue(user.height);
         this.profileForm.get('weightCategory').patchValue(user.weightCategory);
         this.profileForm.get('sex').patchValue(user.sex);
-        this.profileForm.get('membershipType').patchValue(user.membershipType);
         this.profileForm.get('firstName').patchValue(user.firstName);
         this.profileForm.get('lastName').patchValue(user.lastName);
+
+        this.profileForm.get('dob').patchValue(moment(user.dob).toISOString());
         this.athlete.boatPreference = JSON.parse(user.boatPreference);
         this.athlete.side = JSON.parse(user.side);
+
         this.getTypeBoat();
         this.getPreferedSide();
       }
@@ -145,7 +141,6 @@ export class AthleteProfileComponent implements OnInit {
 
   getSex() {
     this.sex = sexJson.sex;
-
   };
 
   getTypeBoat() {
@@ -170,35 +165,33 @@ export class AthleteProfileComponent implements OnInit {
 
 
   async create() {
-    // if (this.profileForm.valid){
-    const profil = this.profileForm.value;
+    if (this.profileForm.valid){
+      const profil = this.profileForm.value;
 
-    this.athlete.lastName = profil.lastName;
-    this.athlete.membershipType = profil.membershipType;
-    this.athlete.email = profil.email;
-    // this.athlete.dob = profil.dob;
-    this.athlete.height = profil.height;
-    this.athlete.weightCategory = profil.weightCategory;
-    this.athlete.boatPreference = JSON.stringify({"boatPreference": profil.boatPreference});
-    console.log(this.athlete.boatPreference);
-    this.athlete.side = JSON.stringify({"side": profil.side});
-    this.athlete.sex = profil.sex;
-    this.athlete.status = profil.status;
-    this.athlete.membershipType = 'master';
-    this.athlete.status = true;
+      this.athlete.lastName = profil.lastName;
+      this.athlete.email = profil.email;
+      this.athlete.dob = moment(profil.dob, 'MM/DD/YYYY').format('YYYY-MM-DD');
+      this.athlete.height = profil.height;
+      this.athlete.weightCategory = profil.weightCategory;
+      this.athlete.boatPreference = JSON.stringify({"boatPreference": profil.boatPreference});
+      console.log(this.athlete.dob);
+      this.athlete.side = JSON.stringify({"side": profil.side});
+      this.athlete.sex = profil.sex;
+      this.athlete.status = profil.status;
+      this.athlete.membershipType = 'master';
+      this.athlete.status = true;
 
 
-    if (this.athlete.firstName != null) {
-      this.athlete.firstName = profil.firstName;
-      await this.service.updateProfil(this.athlete)
-    } else {
-      this.athlete.firstName = profil.firstName;
-      await this.service.save(this.athlete)
+      if (this.athlete.firstName != null) {
+        this.athlete.firstName = profil.firstName;
+        await this.service.updateProfil(this.athlete)
+      } else {
+        this.athlete.firstName = profil.firstName;
+        await this.service.save(this.athlete)
+      }
+    } else{
+      this.markAsTouched(this.profileForm);
     }
-
-
-    // await this.api.CreateUser(this.athlete);
-
   }
 }
 
