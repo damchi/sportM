@@ -12,15 +12,12 @@ import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
 import { AuthComponent } from './components/auth/auth.component';
 import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
-import { CoachListAthleteComponent } from './modules/coach-list-athelete/coach-list-athlete.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    CoachListAthleteComponent,
-
   ],
   imports: [
     AmplifyAngularModule,

@@ -6,7 +6,7 @@ query GetUser($id: ID!) {
     lastName
     membershipType
     email
-    dod
+    dob
     height
     weightCategory
     boatPreference
@@ -27,7 +27,7 @@ query ListUsers(
       lastName
       membershipType
       email
-      dod
+      dob
       height
       weightCategory
       boatPreference
@@ -48,7 +48,7 @@ query GetAttendence($id: ID!) {
       lastName
       membershipType
       email
-      dod
+      dob
       height
       weightCategory
       boatPreference
@@ -74,7 +74,7 @@ query ListAttendences(
         lastName
         membershipType
         email
-        dod
+        dob
         height
         weightCategory
         boatPreference
