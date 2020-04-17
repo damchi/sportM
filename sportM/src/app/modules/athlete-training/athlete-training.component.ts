@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import  moment from 'moment';
+import {Auth} from "aws-amplify";
+import {Athlete} from "../../domain/athlete";
+import {AthleteService} from "../../services/athlete.service";
 
 
 @Component({
@@ -13,22 +16,35 @@ export class AthleteTrainingComponent implements OnInit {
   public currentMonth: string;
   public weekDays: string[] = [];
   public categoryMock = 'master';
+  public athlete = new Athlete();
 
-  constructor(private fb: FormBuilder) { }
+
+  constructor(private fb: FormBuilder, private serviceAthlete: AthleteService,) {
+    Auth.currentAuthenticatedUser({
+      bypassCache: false
+    }).then(async user => {
+      this.athlete.id = user.attributes.sub;
+      this.athlete.email = user.attributes.email;
+      await this.getAthlete(user.attributes.sub);
+      this.displayWeek();
+    })
+      .catch(err => console.error(err));
+  }
 
   ngOnInit() {
-    this.trainingAttendenceForm = this.fb.group({});
-    this.displayWeek();
     this.displayMonth();
+    this.trainingAttendenceForm = this.fb.group({});
   }
 
-  create() {
-    console.log('ee');
-    if (this.trainingAttendenceForm.valid) {
-      const t = this.trainingAttendenceForm.value;
-      return t;
-    }
-  }
+  async getAthlete(athleteId: string) {
+    await this.serviceAthlete.getAthlete(athleteId).then(user => {
+      if (user) {
+        this.athlete= user;
+        this.athlete.boatPreference = JSON.parse(user.boatPreference);
+        this.athlete.side = JSON.parse(user.side);
+      }
+    });
+  };
 
   displayMonth() {
     this.currentMonth = moment().format('MMMM');
@@ -38,7 +54,7 @@ export class AthleteTrainingComponent implements OnInit {
   displayWeek() {
     for (let i = 0; i < 7; i++) {
       const day = moment().startOf('isoWeek').add(i, 'days').format('dddd MMMM Do');
-      if ((i === 0 || i === 2 || i === 4) && this.categoryMock === 'master') {
+      if ((i === 0 || i === 2 || i === 4) && this.athlete.membershipType === 'master') {
         this.weekDays.push(day);
       }
     }
@@ -47,5 +63,13 @@ export class AthleteTrainingComponent implements OnInit {
     }
 
     return this.weekDays;
+  }
+
+  create() {
+    console.log('ee');
+    if (this.trainingAttendenceForm.valid) {
+      const t = this.trainingAttendenceForm.value;
+      return t;
+    }
   }
 }

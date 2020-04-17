@@ -2,11 +2,14 @@
   <div>
     <h4> Trainings for {{currentMonth}}</h4>
     <div *ngFor="let day of weekDays; index as i" class="presence">
-      <mat-label>{{day}}</mat-label>
-      <mat-radio-group formControlName="presence{{i}}">
-        <mat-radio-button value="true">yes </mat-radio-button>
-        <mat-radio-button value="false">non</mat-radio-button>
-      </mat-radio-group>
+      <mat-form-field>
+        <mat-label>{{day}}</mat-label>
+        <mat-select formControlName="presence{{i}}">
+          <mat-option selected value="true">Yes</mat-option>
+          <mat-option value="false">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+
     </div>
     <button mat-button mat-raised-button
             (click)="create()">{{'Save'}}
@@ -14,3 +17,4 @@
     </button>
   </div>
 </form>
+

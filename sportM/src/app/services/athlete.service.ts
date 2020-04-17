@@ -7,7 +7,7 @@ import {User} from "../domain/user";
 @Injectable({
   providedIn: 'root'
 })
-export class AthleteProfileService {
+export class AthleteService {
 
   constructor(private api: APIService) {
   }

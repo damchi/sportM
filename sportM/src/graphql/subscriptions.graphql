@@ -13,6 +13,14 @@ subscription OnCreateUser {
     side
     sex
     status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
   }
 }
 subscription OnUpdateUser {
@@ -29,6 +37,14 @@ subscription OnUpdateUser {
     side
     sex
     status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
   }
 }
 subscription OnDeleteUser {
@@ -45,12 +61,74 @@ subscription OnDeleteUser {
     side
     sex
     status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
   }
 }
-subscription OnCreateAttendence {
-  onCreateAttendence {
+subscription OnCreateTraining {
+  onCreateTraining {
     id
     trainingDay
+    athlete {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+subscription OnUpdateTraining {
+  onUpdateTraining {
+    id
+    trainingDay
+    athlete {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+subscription OnDeleteTraining {
+  onDeleteTraining {
+    id
+    trainingDay
+    athlete {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+subscription OnCreateAttendenceAthlete {
+  onCreateAttendenceAthlete {
+    id
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
     athlete {
       id
       firstName
@@ -64,14 +142,25 @@ subscription OnCreateAttendence {
       side
       sex
       status
+      training {
+        nextToken
+      }
     }
-    status
   }
 }
-subscription OnUpdateAttendence {
-  onUpdateAttendence {
+subscription OnUpdateAttendenceAthlete {
+  onUpdateAttendenceAthlete {
     id
-    trainingDay
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
     athlete {
       id
       firstName
@@ -85,14 +174,25 @@ subscription OnUpdateAttendence {
       side
       sex
       status
+      training {
+        nextToken
+      }
     }
-    status
   }
 }
-subscription OnDeleteAttendence {
-  onDeleteAttendence {
+subscription OnDeleteAttendenceAthlete {
+  onDeleteAttendenceAthlete {
     id
-    trainingDay
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
     athlete {
       id
       firstName
@@ -106,7 +206,9 @@ subscription OnDeleteAttendence {
       side
       sex
       status
+      training {
+        nextToken
+      }
     }
-    status
   }
 }

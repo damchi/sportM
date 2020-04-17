@@ -16,6 +16,14 @@ mutation CreateUser(
     side
     sex
     status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
   }
 }
 mutation UpdateUser(
@@ -35,6 +43,14 @@ mutation UpdateUser(
     side
     sex
     status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
   }
 }
 mutation DeleteUser(
@@ -54,15 +70,86 @@ mutation DeleteUser(
     side
     sex
     status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
   }
 }
-mutation CreateAttendence(
-  $input: CreateAttendenceInput!
-  $condition: ModelAttendenceConditionInput
+mutation CreateTraining(
+  $input: CreateTrainingInput!
+  $condition: ModelTrainingConditionInput
 ) {
-  createAttendence(input: $input, condition: $condition) {
+  createTraining(input: $input, condition: $condition) {
     id
     trainingDay
+    athlete {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+mutation UpdateTraining(
+  $input: UpdateTrainingInput!
+  $condition: ModelTrainingConditionInput
+) {
+  updateTraining(input: $input, condition: $condition) {
+    id
+    trainingDay
+    athlete {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+mutation DeleteTraining(
+  $input: DeleteTrainingInput!
+  $condition: ModelTrainingConditionInput
+) {
+  deleteTraining(input: $input, condition: $condition) {
+    id
+    trainingDay
+    athlete {
+      items {
+        id
+        trainingID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+mutation CreateAttendenceAthlete(
+  $input: CreateAttendenceAthleteInput!
+  $condition: ModelAttendenceAthleteConditionInput
+) {
+  createAttendenceAthlete(input: $input, condition: $condition) {
+    id
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
     athlete {
       id
       firstName
@@ -76,17 +163,28 @@ mutation CreateAttendence(
       side
       sex
       status
+      training {
+        nextToken
+      }
     }
-    status
   }
 }
-mutation UpdateAttendence(
-  $input: UpdateAttendenceInput!
-  $condition: ModelAttendenceConditionInput
+mutation UpdateAttendenceAthlete(
+  $input: UpdateAttendenceAthleteInput!
+  $condition: ModelAttendenceAthleteConditionInput
 ) {
-  updateAttendence(input: $input, condition: $condition) {
+  updateAttendenceAthlete(input: $input, condition: $condition) {
     id
-    trainingDay
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
     athlete {
       id
       firstName
@@ -100,17 +198,28 @@ mutation UpdateAttendence(
       side
       sex
       status
+      training {
+        nextToken
+      }
     }
-    status
   }
 }
-mutation DeleteAttendence(
-  $input: DeleteAttendenceInput!
-  $condition: ModelAttendenceConditionInput
+mutation DeleteAttendenceAthlete(
+  $input: DeleteAttendenceAthleteInput!
+  $condition: ModelAttendenceAthleteConditionInput
 ) {
-  deleteAttendence(input: $input, condition: $condition) {
+  deleteAttendenceAthlete(input: $input, condition: $condition) {
     id
-    trainingDay
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
     athlete {
       id
       firstName
@@ -124,7 +233,9 @@ mutation DeleteAttendence(
       side
       sex
       status
+      training {
+        nextToken
+      }
     }
-    status
   }
 }
