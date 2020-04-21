@@ -16,7 +16,7 @@ subscription OnCreateUser {
     training {
       items {
         id
-        trainingID
+        attendenceID
         athleteID
       }
       nextToken
@@ -40,7 +40,7 @@ subscription OnUpdateUser {
     training {
       items {
         id
-        trainingID
+        attendenceID
         athleteID
       }
       nextToken
@@ -64,96 +64,64 @@ subscription OnDeleteUser {
     training {
       items {
         id
-        trainingID
+        attendenceID
         athleteID
       }
       nextToken
     }
-  }
-}
-subscription OnCreateTraining {
-  onCreateTraining {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        trainingID
-        athleteID
-      }
-      nextToken
-    }
-    status
-  }
-}
-subscription OnUpdateTraining {
-  onUpdateTraining {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        trainingID
-        athleteID
-      }
-      nextToken
-    }
-    status
-  }
-}
-subscription OnDeleteTraining {
-  onDeleteTraining {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        trainingID
-        athleteID
-      }
-      nextToken
-    }
-    status
   }
 }
 subscription OnCreateAttendenceAthlete {
   onCreateAttendenceAthlete {
     id
-    trainingID
-    athleteID
-    training {
-      id
-      trainingDay
-      athlete {
-        nextToken
-      }
-      status
-    }
+    trainingDay
     athlete {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
-      training {
-        nextToken
+      items {
+        id
+        attendenceID
+        athleteID
       }
+      nextToken
     }
+    status
   }
 }
 subscription OnUpdateAttendenceAthlete {
   onUpdateAttendenceAthlete {
     id
-    trainingID
+    trainingDay
+    athlete {
+      items {
+        id
+        attendenceID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+subscription OnDeleteAttendenceAthlete {
+  onDeleteAttendenceAthlete {
+    id
+    trainingDay
+    athlete {
+      items {
+        id
+        attendenceID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+subscription OnCreateTraining {
+  onCreateTraining {
+    id
+    attendenceID
     athleteID
-    training {
+    attendence {
       id
       trainingDay
       athlete {
@@ -180,12 +148,44 @@ subscription OnUpdateAttendenceAthlete {
     }
   }
 }
-subscription OnDeleteAttendenceAthlete {
-  onDeleteAttendenceAthlete {
+subscription OnUpdateTraining {
+  onUpdateTraining {
     id
-    trainingID
+    attendenceID
     athleteID
-    training {
+    attendence {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteTraining {
+  onDeleteTraining {
+    id
+    attendenceID
+    athleteID
+    attendence {
       id
       trainingDay
       athlete {

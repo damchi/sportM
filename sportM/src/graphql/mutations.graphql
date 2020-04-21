@@ -19,7 +19,7 @@ mutation CreateUser(
     training {
       items {
         id
-        trainingID
+        attendenceID
         athleteID
       }
       nextToken
@@ -46,7 +46,7 @@ mutation UpdateUser(
     training {
       items {
         id
-        trainingID
+        attendenceID
         athleteID
       }
       nextToken
@@ -73,65 +73,11 @@ mutation DeleteUser(
     training {
       items {
         id
-        trainingID
+        attendenceID
         athleteID
       }
       nextToken
     }
-  }
-}
-mutation CreateTraining(
-  $input: CreateTrainingInput!
-  $condition: ModelTrainingConditionInput
-) {
-  createTraining(input: $input, condition: $condition) {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        trainingID
-        athleteID
-      }
-      nextToken
-    }
-    status
-  }
-}
-mutation UpdateTraining(
-  $input: UpdateTrainingInput!
-  $condition: ModelTrainingConditionInput
-) {
-  updateTraining(input: $input, condition: $condition) {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        trainingID
-        athleteID
-      }
-      nextToken
-    }
-    status
-  }
-}
-mutation DeleteTraining(
-  $input: DeleteTrainingInput!
-  $condition: ModelTrainingConditionInput
-) {
-  deleteTraining(input: $input, condition: $condition) {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        trainingID
-        athleteID
-      }
-      nextToken
-    }
-    status
   }
 }
 mutation CreateAttendenceAthlete(
@@ -140,33 +86,16 @@ mutation CreateAttendenceAthlete(
 ) {
   createAttendenceAthlete(input: $input, condition: $condition) {
     id
-    trainingID
-    athleteID
-    training {
-      id
-      trainingDay
-      athlete {
-        nextToken
-      }
-      status
-    }
+    trainingDay
     athlete {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
-      training {
-        nextToken
+      items {
+        id
+        attendenceID
+        athleteID
       }
+      nextToken
     }
+    status
   }
 }
 mutation UpdateAttendenceAthlete(
@@ -175,9 +104,45 @@ mutation UpdateAttendenceAthlete(
 ) {
   updateAttendenceAthlete(input: $input, condition: $condition) {
     id
-    trainingID
+    trainingDay
+    athlete {
+      items {
+        id
+        attendenceID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+mutation DeleteAttendenceAthlete(
+  $input: DeleteAttendenceAthleteInput!
+  $condition: ModelAttendenceAthleteConditionInput
+) {
+  deleteAttendenceAthlete(input: $input, condition: $condition) {
+    id
+    trainingDay
+    athlete {
+      items {
+        id
+        attendenceID
+        athleteID
+      }
+      nextToken
+    }
+    status
+  }
+}
+mutation CreateTraining(
+  $input: CreateTrainingInput!
+  $condition: ModelTrainingConditionInput
+) {
+  createTraining(input: $input, condition: $condition) {
+    id
+    attendenceID
     athleteID
-    training {
+    attendence {
       id
       trainingDay
       athlete {
@@ -204,15 +169,50 @@ mutation UpdateAttendenceAthlete(
     }
   }
 }
-mutation DeleteAttendenceAthlete(
-  $input: DeleteAttendenceAthleteInput!
-  $condition: ModelAttendenceAthleteConditionInput
+mutation UpdateTraining(
+  $input: UpdateTrainingInput!
+  $condition: ModelTrainingConditionInput
 ) {
-  deleteAttendenceAthlete(input: $input, condition: $condition) {
+  updateTraining(input: $input, condition: $condition) {
     id
-    trainingID
+    attendenceID
     athleteID
-    training {
+    attendence {
+      id
+      trainingDay
+      athlete {
+        nextToken
+      }
+      status
+    }
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        nextToken
+      }
+    }
+  }
+}
+mutation DeleteTraining(
+  $input: DeleteTrainingInput!
+  $condition: ModelTrainingConditionInput
+) {
+  deleteTraining(input: $input, condition: $condition) {
+    id
+    attendenceID
+    athleteID
+    attendence {
       id
       trainingDay
       athlete {

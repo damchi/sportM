@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {APIService} from "../API.service";
 import {Athlete} from "../domain/athlete";
-import {Observable} from "rxjs";
-import {User} from "../domain/user";
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,10 @@ export class AthleteService {
 
   async save(athlete: Athlete) {
     await this.api.CreateUser(athlete);
+  }
+
+  async saveTraining(training) {
+    await this.api.BatchAddTraining(training);
   }
 
   async getAthlete(athleteId: string) {

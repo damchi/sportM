@@ -11,24 +11,25 @@ type User @model {
   side: AWSJSON
   sex: String
   status:Boolean
-  training: [AttendenceAthlete] @connection(keyName: "byAthlete", fields: ["id"])
+  training: [Training] @connection(keyName: "byAthlete", fields: ["id"])
 
 }
 
-type Training @model {
+type  AttendenceAthlete @model {
   id: ID!
   trainingDay: AWSDate!
-  athlete: [AttendenceAthlete] @connection(keyName: "byTraining", fields: ["id"])
-  status: String
+  athlete: [Training] @connection(keyName: "byAttendence", fields: ["id"])
+  status: Boolean
 }
 
-type AttendenceAthlete
+type Training
 @model(queries: null)
-@key(name: "byTraining", fields: ["trainingID", "athleteID"])
-@key(name: "byAthlete", fields: ["athleteID", "trainingID"]) {
+@key(name: "byAttendence", fields: ["attendenceID", "athleteID"])
+@key(name: "byAthlete", fields: ["athleteID", "attendenceID"]) {
   id: ID!
-  trainingID: ID!
+  attendenceID: ID!
   athleteID: ID!
-  training: Training! @connection(fields: ["trainingID"])
+  attendence: AttendenceAthlete! @connection(fields: ["attendenceID"])
   athlete: User! @connection(fields: ["athleteID"])
 }
+
