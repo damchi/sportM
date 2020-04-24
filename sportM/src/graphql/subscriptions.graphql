@@ -16,8 +16,9 @@ subscription OnCreateUser {
     training {
       items {
         id
-        attendenceID
+        trainingID
         athleteID
+        attending
       }
       nextToken
     }
@@ -40,8 +41,9 @@ subscription OnUpdateUser {
     training {
       items {
         id
-        attendenceID
+        trainingID
         athleteID
+        attending
       }
       nextToken
     }
@@ -64,134 +66,70 @@ subscription OnDeleteUser {
     training {
       items {
         id
-        attendenceID
+        trainingID
         athleteID
+        attending
       }
       nextToken
     }
-  }
-}
-subscription OnCreateAttendenceAthlete {
-  onCreateAttendenceAthlete {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        attendenceID
-        athleteID
-      }
-      nextToken
-    }
-    status
-  }
-}
-subscription OnUpdateAttendenceAthlete {
-  onUpdateAttendenceAthlete {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        attendenceID
-        athleteID
-      }
-      nextToken
-    }
-    status
-  }
-}
-subscription OnDeleteAttendenceAthlete {
-  onDeleteAttendenceAthlete {
-    id
-    trainingDay
-    athlete {
-      items {
-        id
-        attendenceID
-        athleteID
-      }
-      nextToken
-    }
-    status
   }
 }
 subscription OnCreateTraining {
   onCreateTraining {
     id
-    attendenceID
-    athleteID
-    attendence {
-      id
-      trainingDay
-      athlete {
-        nextToken
+    trainingDay
+    athleteAttending {
+      items {
+        id
+        trainingID
+        athleteID
+        attending
       }
-      status
-    }
-    athlete {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
-      training {
-        nextToken
-      }
+      nextToken
     }
   }
 }
 subscription OnUpdateTraining {
   onUpdateTraining {
     id
-    attendenceID
-    athleteID
-    attendence {
-      id
-      trainingDay
-      athlete {
-        nextToken
+    trainingDay
+    athleteAttending {
+      items {
+        id
+        trainingID
+        athleteID
+        attending
       }
-      status
-    }
-    athlete {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
-      training {
-        nextToken
-      }
+      nextToken
     }
   }
 }
 subscription OnDeleteTraining {
   onDeleteTraining {
     id
-    attendenceID
+    trainingDay
+    athleteAttending {
+      items {
+        id
+        trainingID
+        athleteID
+        attending
+      }
+      nextToken
+    }
+  }
+}
+subscription OnCreateAthleteAttendence {
+  onCreateAthleteAttendence {
+    id
+    trainingID
     athleteID
-    attendence {
+    training {
       id
       trainingDay
-      athlete {
+      athleteAttending {
         nextToken
       }
-      status
     }
     athlete {
       id
@@ -210,5 +148,70 @@ subscription OnDeleteTraining {
         nextToken
       }
     }
+    attending
+  }
+}
+subscription OnUpdateAthleteAttendence {
+  onUpdateAthleteAttendence {
+    id
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athleteAttending {
+        nextToken
+      }
+    }
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        nextToken
+      }
+    }
+    attending
+  }
+}
+subscription OnDeleteAthleteAttendence {
+  onDeleteAthleteAttendence {
+    id
+    trainingID
+    athleteID
+    training {
+      id
+      trainingDay
+      athleteAttending {
+        nextToken
+      }
+    }
+    athlete {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        nextToken
+      }
+    }
+    attending
   }
 }

@@ -6,6 +6,5 @@ export class Training {
   constructor(id?: string, trainingDay?: string, status?: boolean) {
     this.id = id;
     this.trainingDay = trainingDay;
-    this.status = status
   }
 }

@@ -1,0 +1,61 @@
+<h1 mat-dialog-title> {{data.id ? 'Update training' : 'New training'}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="trainForm">
+
+    <mat-form-field>
+      <mat-label>Start:</mat-label>
+      <input matInput [matDatepicker]="pickerStart" formControlName="start" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+      <mat-datepicker #pickerStart></mat-datepicker>
+      <mat-error *ngFor="let validation of errorMessages.start">
+        <mat-error class="error-message" *ngIf="trainForm.get('start').hasError(validation.type) &&
+          (trainForm.get('start').dirty || trainForm.get('start').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>End:</mat-label>
+      <input matInput [matDatepicker]="pickerEnd" formControlName="end" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd></mat-datepicker>
+      <mat-error *ngFor="let validation of errorMessages.end">
+        <mat-error class="error-message" *ngIf="trainForm.get('end').hasError(validation.type) &&
+          (trainForm.get('end').dirty || trainForm.get('end').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Membership type</mat-label>
+      <mat-select formControlName="memberCategory">
+        <mat-option *ngFor="let membershipType of membershipType" [value]="membershipType.id">{{membershipType.type}}</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.memberCategory">
+        <mat-error class="error-message" *ngIf="trainForm.get('memberCategory').hasError(validation.type) &&
+          (trainForm.get('memberCategory').dirty || trainForm.get('memberCategory').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Training days</mat-label>
+      <mat-select formControlName="daysOfTheWeek" multiple>
+        <mat-option *ngFor="let day of days" [value]="day.id">{{day.day}}</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.daysOfTheWeek">
+        <mat-error class="error-message" *ngIf="trainForm.get('daysOfTheWeek').hasError(validation.type) &&
+          (trainForm.get('daysOfTheWeek').dirty || trainForm.get('daysOfTheWeek').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="close()">Annuler</button>
+      <button mat-button color="primary" mat-raised-button
+              (click)="create()">{{data.id ? 'Update' : 'Create'}}
+      </button>
+    </div>
+
+  </form>
+</div>

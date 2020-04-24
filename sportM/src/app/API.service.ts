@@ -103,42 +103,41 @@ export type DeleteUserInput = {
   id?: string | null;
 };
 
-export type CreateAttendenceAthleteInput = {
-  id?: string | null;
-  trainingDay: string;
-  status?: boolean | null;
-};
-
-export type ModelAttendenceAthleteConditionInput = {
-  trainingDay?: ModelStringInput | null;
-  status?: ModelBooleanInput | null;
-  and?: Array<ModelAttendenceAthleteConditionInput | null> | null;
-  or?: Array<ModelAttendenceAthleteConditionInput | null> | null;
-  not?: ModelAttendenceAthleteConditionInput | null;
-};
-
-export type UpdateAttendenceAthleteInput = {
-  id: string;
-  trainingDay?: string | null;
-  status?: boolean | null;
-};
-
-export type DeleteAttendenceAthleteInput = {
-  id?: string | null;
-};
-
 export type CreateTrainingInput = {
   id?: string | null;
-  attendenceID: string;
-  athleteID: string;
+  trainingDay: string;
 };
 
 export type ModelTrainingConditionInput = {
-  attendenceID?: ModelIDInput | null;
-  athleteID?: ModelIDInput | null;
+  trainingDay?: ModelStringInput | null;
   and?: Array<ModelTrainingConditionInput | null> | null;
   or?: Array<ModelTrainingConditionInput | null> | null;
   not?: ModelTrainingConditionInput | null;
+};
+
+export type UpdateTrainingInput = {
+  id: string;
+  trainingDay?: string | null;
+};
+
+export type DeleteTrainingInput = {
+  id?: string | null;
+};
+
+export type CreateAthleteAttendenceInput = {
+  id?: string | null;
+  trainingID: string;
+  athleteID: string;
+  attending?: boolean | null;
+};
+
+export type ModelAthleteAttendenceConditionInput = {
+  trainingID?: ModelIDInput | null;
+  athleteID?: ModelIDInput | null;
+  attending?: ModelBooleanInput | null;
+  and?: Array<ModelAthleteAttendenceConditionInput | null> | null;
+  or?: Array<ModelAthleteAttendenceConditionInput | null> | null;
+  not?: ModelAthleteAttendenceConditionInput | null;
 };
 
 export type ModelIDInput = {
@@ -157,13 +156,14 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type UpdateTrainingInput = {
+export type UpdateAthleteAttendenceInput = {
   id: string;
-  attendenceID?: string | null;
+  trainingID?: string | null;
   athleteID?: string | null;
+  attending?: boolean | null;
 };
 
-export type DeleteTrainingInput = {
+export type DeleteAthleteAttendenceInput = {
   id?: string | null;
 };
 
@@ -185,13 +185,12 @@ export type ModelUserFilterInput = {
   not?: ModelUserFilterInput | null;
 };
 
-export type ModelAttendenceAthleteFilterInput = {
+export type ModelTrainingFilterInput = {
   id?: ModelIDInput | null;
   trainingDay?: ModelStringInput | null;
-  status?: ModelBooleanInput | null;
-  and?: Array<ModelAttendenceAthleteFilterInput | null> | null;
-  or?: Array<ModelAttendenceAthleteFilterInput | null> | null;
-  not?: ModelAttendenceAthleteFilterInput | null;
+  and?: Array<ModelTrainingFilterInput | null> | null;
+  or?: Array<ModelTrainingFilterInput | null> | null;
+  not?: ModelTrainingFilterInput | null;
 };
 
 export type CreateUserMutation = {
@@ -209,12 +208,13 @@ export type CreateUserMutation = {
   sex: string | null;
   status: boolean | null;
   training: {
-    __typename: "ModelTrainingConnection";
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -235,12 +235,13 @@ export type UpdateUserMutation = {
   sex: string | null;
   status: boolean | null;
   training: {
-    __typename: "ModelTrainingConnection";
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -261,154 +262,82 @@ export type DeleteUserMutation = {
   sex: string | null;
   status: boolean | null;
   training: {
-    __typename: "ModelTrainingConnection";
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
-};
-
-export type CreateAttendenceAthleteMutation = {
-  __typename: "AttendenceAthlete";
-  id: string;
-  trainingDay: string;
-  athlete: {
-    __typename: "ModelTrainingConnection";
-    items: Array<{
-      __typename: "Training";
-      id: string;
-      attendenceID: string;
-      athleteID: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  status: boolean | null;
-};
-
-export type UpdateAttendenceAthleteMutation = {
-  __typename: "AttendenceAthlete";
-  id: string;
-  trainingDay: string;
-  athlete: {
-    __typename: "ModelTrainingConnection";
-    items: Array<{
-      __typename: "Training";
-      id: string;
-      attendenceID: string;
-      athleteID: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  status: boolean | null;
-};
-
-export type DeleteAttendenceAthleteMutation = {
-  __typename: "AttendenceAthlete";
-  id: string;
-  trainingDay: string;
-  athlete: {
-    __typename: "ModelTrainingConnection";
-    items: Array<{
-      __typename: "Training";
-      id: string;
-      attendenceID: string;
-      athleteID: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  status: boolean | null;
 };
 
 export type CreateTrainingMutation = {
   __typename: "Training";
   id: string;
-  attendenceID: string;
-  athleteID: string;
-  attendence: {
-    __typename: "AttendenceAthlete";
-    id: string;
-    trainingDay: string;
-    athlete: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-    status: boolean | null;
-  };
-  athlete: {
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-  };
+  trainingDay: string;
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      attending: boolean | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type UpdateTrainingMutation = {
   __typename: "Training";
   id: string;
-  attendenceID: string;
-  athleteID: string;
-  attendence: {
-    __typename: "AttendenceAthlete";
-    id: string;
-    trainingDay: string;
-    athlete: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-    status: boolean | null;
-  };
-  athlete: {
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-  };
+  trainingDay: string;
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      attending: boolean | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type DeleteTrainingMutation = {
   __typename: "Training";
   id: string;
-  attendenceID: string;
+  trainingDay: string;
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      attending: boolean | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type CreateAthleteAttendenceMutation = {
+  __typename: "AthleteAttendence";
+  id: string;
+  trainingID: string;
   athleteID: string;
-  attendence: {
-    __typename: "AttendenceAthlete";
+  training: {
+    __typename: "Training";
     id: string;
     trainingDay: string;
-    athlete: {
-      __typename: "ModelTrainingConnection";
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
-    status: boolean | null;
   };
   athlete: {
     __typename: "User";
@@ -425,10 +354,83 @@ export type DeleteTrainingMutation = {
     sex: string | null;
     status: boolean | null;
     training: {
-      __typename: "ModelTrainingConnection";
+      __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
   };
+  attending: boolean | null;
+};
+
+export type UpdateAthleteAttendenceMutation = {
+  __typename: "AthleteAttendence";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDay: string;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  attending: boolean | null;
+};
+
+export type DeleteAthleteAttendenceMutation = {
+  __typename: "AthleteAttendence";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDay: string;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  attending: boolean | null;
 };
 
 export type GetUserQuery = {
@@ -446,12 +448,13 @@ export type GetUserQuery = {
   sex: string | null;
   status: boolean | null;
   training: {
-    __typename: "ModelTrainingConnection";
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -474,41 +477,40 @@ export type ListUsersQuery = {
     sex: string | null;
     status: boolean | null;
     training: {
-      __typename: "ModelTrainingConnection";
+      __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
   } | null> | null;
   nextToken: string | null;
 };
 
-export type GetAttendenceAthleteQuery = {
-  __typename: "AttendenceAthlete";
+export type GetTrainingQuery = {
+  __typename: "Training";
   id: string;
   trainingDay: string;
-  athlete: {
-    __typename: "ModelTrainingConnection";
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
-  status: boolean | null;
 };
 
-export type ListAttendenceAthletesQuery = {
-  __typename: "ModelAttendenceAthleteConnection";
+export type ListTrainingsQuery = {
+  __typename: "ModelTrainingConnection";
   items: Array<{
-    __typename: "AttendenceAthlete";
+    __typename: "Training";
     id: string;
     trainingDay: string;
-    athlete: {
-      __typename: "ModelTrainingConnection";
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
-    status: boolean | null;
   } | null> | null;
   nextToken: string | null;
 };
@@ -528,12 +530,13 @@ export type OnCreateUserSubscription = {
   sex: string | null;
   status: boolean | null;
   training: {
-    __typename: "ModelTrainingConnection";
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -554,12 +557,13 @@ export type OnUpdateUserSubscription = {
   sex: string | null;
   status: boolean | null;
   training: {
-    __typename: "ModelTrainingConnection";
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
@@ -580,154 +584,82 @@ export type OnDeleteUserSubscription = {
   sex: string | null;
   status: boolean | null;
   training: {
-    __typename: "ModelTrainingConnection";
+    __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
-      __typename: "Training";
+      __typename: "AthleteAttendence";
       id: string;
-      attendenceID: string;
+      trainingID: string;
       athleteID: string;
+      attending: boolean | null;
     } | null> | null;
     nextToken: string | null;
   } | null;
-};
-
-export type OnCreateAttendenceAthleteSubscription = {
-  __typename: "AttendenceAthlete";
-  id: string;
-  trainingDay: string;
-  athlete: {
-    __typename: "ModelTrainingConnection";
-    items: Array<{
-      __typename: "Training";
-      id: string;
-      attendenceID: string;
-      athleteID: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  status: boolean | null;
-};
-
-export type OnUpdateAttendenceAthleteSubscription = {
-  __typename: "AttendenceAthlete";
-  id: string;
-  trainingDay: string;
-  athlete: {
-    __typename: "ModelTrainingConnection";
-    items: Array<{
-      __typename: "Training";
-      id: string;
-      attendenceID: string;
-      athleteID: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  status: boolean | null;
-};
-
-export type OnDeleteAttendenceAthleteSubscription = {
-  __typename: "AttendenceAthlete";
-  id: string;
-  trainingDay: string;
-  athlete: {
-    __typename: "ModelTrainingConnection";
-    items: Array<{
-      __typename: "Training";
-      id: string;
-      attendenceID: string;
-      athleteID: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  status: boolean | null;
 };
 
 export type OnCreateTrainingSubscription = {
   __typename: "Training";
   id: string;
-  attendenceID: string;
-  athleteID: string;
-  attendence: {
-    __typename: "AttendenceAthlete";
-    id: string;
-    trainingDay: string;
-    athlete: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-    status: boolean | null;
-  };
-  athlete: {
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-  };
+  trainingDay: string;
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      attending: boolean | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnUpdateTrainingSubscription = {
   __typename: "Training";
   id: string;
-  attendenceID: string;
-  athleteID: string;
-  attendence: {
-    __typename: "AttendenceAthlete";
-    id: string;
-    trainingDay: string;
-    athlete: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-    status: boolean | null;
-  };
-  athlete: {
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelTrainingConnection";
-      nextToken: string | null;
-    } | null;
-  };
+  trainingDay: string;
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      attending: boolean | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
 };
 
 export type OnDeleteTrainingSubscription = {
   __typename: "Training";
   id: string;
-  attendenceID: string;
+  trainingDay: string;
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      attending: boolean | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
+export type OnCreateAthleteAttendenceSubscription = {
+  __typename: "AthleteAttendence";
+  id: string;
+  trainingID: string;
   athleteID: string;
-  attendence: {
-    __typename: "AttendenceAthlete";
+  training: {
+    __typename: "Training";
     id: string;
     trainingDay: string;
-    athlete: {
-      __typename: "ModelTrainingConnection";
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
-    status: boolean | null;
   };
   athlete: {
     __typename: "User";
@@ -744,10 +676,83 @@ export type OnDeleteTrainingSubscription = {
     sex: string | null;
     status: boolean | null;
     training: {
-      __typename: "ModelTrainingConnection";
+      __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
   };
+  attending: boolean | null;
+};
+
+export type OnUpdateAthleteAttendenceSubscription = {
+  __typename: "AthleteAttendence";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDay: string;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  attending: boolean | null;
+};
+
+export type OnDeleteAthleteAttendenceSubscription = {
+  __typename: "AthleteAttendence";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDay: string;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      nextToken: string | null;
+    } | null;
+  };
+  attending: boolean | null;
 };
 
 @Injectable({
@@ -778,8 +783,9 @@ export class APIService {
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
@@ -820,8 +826,9 @@ export class APIService {
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
@@ -862,8 +869,9 @@ export class APIService {
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
@@ -880,111 +888,6 @@ export class APIService {
     )) as any;
     return <DeleteUserMutation>response.data.deleteUser;
   }
-  async CreateAttendenceAthlete(
-    input: CreateAttendenceAthleteInput,
-    condition?: ModelAttendenceAthleteConditionInput
-  ): Promise<CreateAttendenceAthleteMutation> {
-    const statement = `mutation CreateAttendenceAthlete($input: CreateAttendenceAthleteInput!, $condition: ModelAttendenceAthleteConditionInput) {
-        createAttendenceAthlete(input: $input, condition: $condition) {
-          __typename
-          id
-          trainingDay
-          athlete {
-            __typename
-            items {
-              __typename
-              id
-              attendenceID
-              athleteID
-            }
-            nextToken
-          }
-          status
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateAttendenceAthleteMutation>(
-      response.data.createAttendenceAthlete
-    );
-  }
-  async UpdateAttendenceAthlete(
-    input: UpdateAttendenceAthleteInput,
-    condition?: ModelAttendenceAthleteConditionInput
-  ): Promise<UpdateAttendenceAthleteMutation> {
-    const statement = `mutation UpdateAttendenceAthlete($input: UpdateAttendenceAthleteInput!, $condition: ModelAttendenceAthleteConditionInput) {
-        updateAttendenceAthlete(input: $input, condition: $condition) {
-          __typename
-          id
-          trainingDay
-          athlete {
-            __typename
-            items {
-              __typename
-              id
-              attendenceID
-              athleteID
-            }
-            nextToken
-          }
-          status
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateAttendenceAthleteMutation>(
-      response.data.updateAttendenceAthlete
-    );
-  }
-  async DeleteAttendenceAthlete(
-    input: DeleteAttendenceAthleteInput,
-    condition?: ModelAttendenceAthleteConditionInput
-  ): Promise<DeleteAttendenceAthleteMutation> {
-    const statement = `mutation DeleteAttendenceAthlete($input: DeleteAttendenceAthleteInput!, $condition: ModelAttendenceAthleteConditionInput) {
-        deleteAttendenceAthlete(input: $input, condition: $condition) {
-          __typename
-          id
-          trainingDay
-          athlete {
-            __typename
-            items {
-              __typename
-              id
-              attendenceID
-              athleteID
-            }
-            nextToken
-          }
-          status
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteAttendenceAthleteMutation>(
-      response.data.deleteAttendenceAthlete
-    );
-  }
   async CreateTraining(
     input: CreateTrainingInput,
     condition?: ModelTrainingConditionInput
@@ -993,36 +896,17 @@ export class APIService {
         createTraining(input: $input, condition: $condition) {
           __typename
           id
-          attendenceID
-          athleteID
-          attendence {
+          trainingDay
+          athleteAttending {
             __typename
-            id
-            trainingDay
-            athlete {
+            items {
               __typename
-              nextToken
+              id
+              trainingID
+              athleteID
+              attending
             }
-            status
-          }
-          athlete {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`;
@@ -1045,36 +929,17 @@ export class APIService {
         updateTraining(input: $input, condition: $condition) {
           __typename
           id
-          attendenceID
-          athleteID
-          attendence {
+          trainingDay
+          athleteAttending {
             __typename
-            id
-            trainingDay
-            athlete {
+            items {
               __typename
-              nextToken
+              id
+              trainingID
+              athleteID
+              attending
             }
-            status
-          }
-          athlete {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`;
@@ -1097,17 +962,49 @@ export class APIService {
         deleteTraining(input: $input, condition: $condition) {
           __typename
           id
-          attendenceID
+          trainingDay
+          athleteAttending {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              attending
+            }
+            nextToken
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteTrainingMutation>response.data.deleteTraining;
+  }
+  async CreateAthleteAttendence(
+    input: CreateAthleteAttendenceInput,
+    condition?: ModelAthleteAttendenceConditionInput
+  ): Promise<CreateAthleteAttendenceMutation> {
+    const statement = `mutation CreateAthleteAttendence($input: CreateAthleteAttendenceInput!, $condition: ModelAthleteAttendenceConditionInput) {
+        createAthleteAttendence(input: $input, condition: $condition) {
+          __typename
+          id
+          trainingID
           athleteID
-          attendence {
+          training {
             __typename
             id
             trainingDay
-            athlete {
+            athleteAttending {
               __typename
               nextToken
             }
-            status
           }
           athlete {
             __typename
@@ -1128,6 +1025,7 @@ export class APIService {
               nextToken
             }
           }
+          attending
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1139,7 +1037,117 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteTrainingMutation>response.data.deleteTraining;
+    return <CreateAthleteAttendenceMutation>(
+      response.data.createAthleteAttendence
+    );
+  }
+  async UpdateAthleteAttendence(
+    input: UpdateAthleteAttendenceInput,
+    condition?: ModelAthleteAttendenceConditionInput
+  ): Promise<UpdateAthleteAttendenceMutation> {
+    const statement = `mutation UpdateAthleteAttendence($input: UpdateAthleteAttendenceInput!, $condition: ModelAthleteAttendenceConditionInput) {
+        updateAthleteAttendence(input: $input, condition: $condition) {
+          __typename
+          id
+          trainingID
+          athleteID
+          training {
+            __typename
+            id
+            trainingDay
+            athleteAttending {
+              __typename
+              nextToken
+            }
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              nextToken
+            }
+          }
+          attending
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateAthleteAttendenceMutation>(
+      response.data.updateAthleteAttendence
+    );
+  }
+  async DeleteAthleteAttendence(
+    input: DeleteAthleteAttendenceInput,
+    condition?: ModelAthleteAttendenceConditionInput
+  ): Promise<DeleteAthleteAttendenceMutation> {
+    const statement = `mutation DeleteAthleteAttendence($input: DeleteAthleteAttendenceInput!, $condition: ModelAthleteAttendenceConditionInput) {
+        deleteAthleteAttendence(input: $input, condition: $condition) {
+          __typename
+          id
+          trainingID
+          athleteID
+          training {
+            __typename
+            id
+            trainingDay
+            athleteAttending {
+              __typename
+              nextToken
+            }
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              nextToken
+            }
+          }
+          attending
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteAthleteAttendenceMutation>(
+      response.data.deleteAthleteAttendence
+    );
   }
   async GetUser(id: string): Promise<GetUserQuery> {
     const statement = `query GetUser($id: ID!) {
@@ -1162,8 +1170,9 @@ export class APIService {
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
@@ -1222,23 +1231,23 @@ export class APIService {
     )) as any;
     return <ListUsersQuery>response.data.listUsers;
   }
-  async GetAttendenceAthlete(id: string): Promise<GetAttendenceAthleteQuery> {
-    const statement = `query GetAttendenceAthlete($id: ID!) {
-        getAttendenceAthlete(id: $id) {
+  async GetTraining(id: string): Promise<GetTrainingQuery> {
+    const statement = `query GetTraining($id: ID!) {
+        getTraining(id: $id) {
           __typename
           id
           trainingDay
-          athlete {
+          athleteAttending {
             __typename
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
-          status
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1247,25 +1256,24 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetAttendenceAthleteQuery>response.data.getAttendenceAthlete;
+    return <GetTrainingQuery>response.data.getTraining;
   }
-  async ListAttendenceAthletes(
-    filter?: ModelAttendenceAthleteFilterInput,
+  async ListTrainings(
+    filter?: ModelTrainingFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListAttendenceAthletesQuery> {
-    const statement = `query ListAttendenceAthletes($filter: ModelAttendenceAthleteFilterInput, $limit: Int, $nextToken: String) {
-        listAttendenceAthletes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListTrainingsQuery> {
+    const statement = `query ListTrainings($filter: ModelTrainingFilterInput, $limit: Int, $nextToken: String) {
+        listTrainings(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
             id
             trainingDay
-            athlete {
+            athleteAttending {
               __typename
               nextToken
             }
-            status
           }
           nextToken
         }
@@ -1283,7 +1291,7 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListAttendenceAthletesQuery>response.data.listAttendenceAthletes;
+    return <ListTrainingsQuery>response.data.listTrainings;
   }
   OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
     graphqlOperation(
@@ -1307,8 +1315,9 @@ export class APIService {
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
@@ -1339,8 +1348,9 @@ export class APIService {
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
@@ -1371,8 +1381,9 @@ export class APIService {
             items {
               __typename
               id
-              attendenceID
+              trainingID
               athleteID
+              attending
             }
             nextToken
           }
@@ -1380,81 +1391,6 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteUserSubscription>;
-
-  OnCreateAttendenceAthleteListener: Observable<
-    OnCreateAttendenceAthleteSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateAttendenceAthlete {
-        onCreateAttendenceAthlete {
-          __typename
-          id
-          trainingDay
-          athlete {
-            __typename
-            items {
-              __typename
-              id
-              attendenceID
-              athleteID
-            }
-            nextToken
-          }
-          status
-        }
-      }`
-    )
-  ) as Observable<OnCreateAttendenceAthleteSubscription>;
-
-  OnUpdateAttendenceAthleteListener: Observable<
-    OnUpdateAttendenceAthleteSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateAttendenceAthlete {
-        onUpdateAttendenceAthlete {
-          __typename
-          id
-          trainingDay
-          athlete {
-            __typename
-            items {
-              __typename
-              id
-              attendenceID
-              athleteID
-            }
-            nextToken
-          }
-          status
-        }
-      }`
-    )
-  ) as Observable<OnUpdateAttendenceAthleteSubscription>;
-
-  OnDeleteAttendenceAthleteListener: Observable<
-    OnDeleteAttendenceAthleteSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteAttendenceAthlete {
-        onDeleteAttendenceAthlete {
-          __typename
-          id
-          trainingDay
-          athlete {
-            __typename
-            items {
-              __typename
-              id
-              attendenceID
-              athleteID
-            }
-            nextToken
-          }
-          status
-        }
-      }`
-    )
-  ) as Observable<OnDeleteAttendenceAthleteSubscription>;
 
   OnCreateTrainingListener: Observable<
     OnCreateTrainingSubscription
@@ -1464,36 +1400,17 @@ export class APIService {
         onCreateTraining {
           __typename
           id
-          attendenceID
-          athleteID
-          attendence {
+          trainingDay
+          athleteAttending {
             __typename
-            id
-            trainingDay
-            athlete {
+            items {
               __typename
-              nextToken
+              id
+              trainingID
+              athleteID
+              attending
             }
-            status
-          }
-          athlete {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`
@@ -1508,36 +1425,17 @@ export class APIService {
         onUpdateTraining {
           __typename
           id
-          attendenceID
-          athleteID
-          attendence {
+          trainingDay
+          athleteAttending {
             __typename
-            id
-            trainingDay
-            athlete {
+            items {
               __typename
-              nextToken
+              id
+              trainingID
+              athleteID
+              attending
             }
-            status
-          }
-          athlete {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              nextToken
-            }
+            nextToken
           }
         }
       }`
@@ -1552,17 +1450,41 @@ export class APIService {
         onDeleteTraining {
           __typename
           id
-          attendenceID
+          trainingDay
+          athleteAttending {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              attending
+            }
+            nextToken
+          }
+        }
+      }`
+    )
+  ) as Observable<OnDeleteTrainingSubscription>;
+
+  OnCreateAthleteAttendenceListener: Observable<
+    OnCreateAthleteAttendenceSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateAthleteAttendence {
+        onCreateAthleteAttendence {
+          __typename
+          id
+          trainingID
           athleteID
-          attendence {
+          training {
             __typename
             id
             trainingDay
-            athlete {
+            athleteAttending {
               __typename
               nextToken
             }
-            status
           }
           athlete {
             __typename
@@ -1583,8 +1505,97 @@ export class APIService {
               nextToken
             }
           }
+          attending
         }
       }`
     )
-  ) as Observable<OnDeleteTrainingSubscription>;
+  ) as Observable<OnCreateAthleteAttendenceSubscription>;
+
+  OnUpdateAthleteAttendenceListener: Observable<
+    OnUpdateAthleteAttendenceSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateAthleteAttendence {
+        onUpdateAthleteAttendence {
+          __typename
+          id
+          trainingID
+          athleteID
+          training {
+            __typename
+            id
+            trainingDay
+            athleteAttending {
+              __typename
+              nextToken
+            }
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              nextToken
+            }
+          }
+          attending
+        }
+      }`
+    )
+  ) as Observable<OnUpdateAthleteAttendenceSubscription>;
+
+  OnDeleteAthleteAttendenceListener: Observable<
+    OnDeleteAthleteAttendenceSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteAthleteAttendence {
+        onDeleteAthleteAttendence {
+          __typename
+          id
+          trainingID
+          athleteID
+          training {
+            __typename
+            id
+            trainingDay
+            athleteAttending {
+              __typename
+              nextToken
+            }
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              nextToken
+            }
+          }
+          attending
+        }
+      }`
+    )
+  ) as Observable<OnDeleteAthleteAttendenceSubscription>;
 }

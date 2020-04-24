@@ -1,6 +1,6 @@
 {
     "identityPoolName": "sportm745bb06d_identitypool_745bb06d",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "sportm745bb06d",
     "userPoolName": "sportm745bb06d_userpool_745bb06d",
     "autoVerifiedAttributes": [

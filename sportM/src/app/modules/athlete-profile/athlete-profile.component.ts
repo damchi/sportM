@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {StructureError} from '../../../utils/structure-error';
 import {Athlete} from "../../domain/athlete";
-import {Auth, Hub} from "aws-amplify";
+import {Auth} from "aws-amplify";
 import {AthleteService} from "../../services/athlete.service";
 import {APIService} from "../../API.service";
 import {Sex} from "../../domain/sex";
@@ -15,10 +15,6 @@ import * as weightCategoryJson from "../../config/weightCategory.json";
 import * as sideJson from "../../config/side.json";
 import {MarkAsTouch} from "../../../utils/mark-as-touch";
 import moment from 'moment';
-import {UsernameAttributes} from "aws-amplify-angular/dist/src/components/authenticator/types";
-import {UserService} from "../../services/user.service";
-import {User} from "../../domain/user";
-import {AuthComponent} from "../../components/auth/auth.component";
 
 
 export class ErrorMessages {

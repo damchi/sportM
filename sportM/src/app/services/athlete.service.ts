@@ -16,7 +16,7 @@ export class AthleteService {
   }
 
   async saveTraining(training) {
-    await this.api.BatchAddTraining(training);
+    // await this.api.BatchAddTraining(training);
   }
 
   async getAthlete(athleteId: string) {

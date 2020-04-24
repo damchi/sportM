@@ -11,25 +11,38 @@ type User @model {
   side: AWSJSON
   sex: String
   status:Boolean
-  training: [Training] @connection(keyName: "byAthlete", fields: ["id"])
+  training: [AthleteAttendence] @connection(keyName: "byAthlete", fields: ["id"])
 
 }
 
-type  AttendenceAthlete @model {
+type Training @model {
   id: ID!
   trainingDay: AWSDate!
-  athlete: [Training] @connection(keyName: "byAttendence", fields: ["id"])
-  status: Boolean
+  statut: Boolean
+  athleteCategory:String
+  athleteAttending: [AthleteAttendence] @connection(keyName: "byTraining", fields: ["id"])
 }
 
-type Training
+type AthleteAttendence
 @model(queries: null)
-@key(name: "byAttendence", fields: ["attendenceID", "athleteID"])
-@key(name: "byAthlete", fields: ["athleteID", "attendenceID"]) {
+@key(name: "byTraining", fields: ["trainingID", "athleteID"])
+@key(name: "byAthlete", fields: ["athleteID", "trainingID"]) {
   id: ID!
-  attendenceID: ID!
+  trainingID: ID!
   athleteID: ID!
-  attendence: AttendenceAthlete! @connection(fields: ["attendenceID"])
+  training: Training! @connection(fields: ["trainingID"])
   athlete: User! @connection(fields: ["athleteID"])
+  attending: Boolean
 }
+
+input CreateTrainingInput {
+  id: ID
+  trainingDay: AWSDate!
+  statut: Boolean
+  athleteCategory:String
+}
+type Mutation {
+  batchAddTraining(training: [CreateTrainingInput]): [Training]
+}
+
 

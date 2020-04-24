@@ -11,10 +11,10 @@ const routes: Routes = [
         path: 'athlete',
         loadChildren: () => import('../coach-list-athelete/coach-list-athelete.module').then(m => m.CoachListAtheleteModule)
       },
-      // {
-      //   path: 'exercice',
-      //   loadChildren: () => import('../coach-exercice/coach-exercice.module').then(m => m.CoachExerciceModule)
-      // },
+      {
+        path: 'training',
+        loadChildren: () => import('../coach-training/coach-training.module').then(m => m.CoachTrainingModule)
+      },
       // {
       //   path: 'planning',
       //   loadChildren: () => import('../coach-planning/coach-planning.module').then(m => m.CoachPlanningModule)
@@ -23,7 +23,7 @@ const routes: Routes = [
       //   path: 'typeExercice',
       //   loadChildren: () => import('../coach-type-exercice/coach-type-exercice.module').then(m => m.CoachTypeExerciceModule)
       // },
-      {path: '**', redirectTo: '/coach'},
+      {path: '**', redirectTo: '/coach/training'},
     ]
 
   }];
