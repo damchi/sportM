@@ -9,18 +9,18 @@ export class S3Service {
 
   constructor() { }
 
-  uploadFile(folderName,file) {
+  uploadFile(file, training) {
     const contentType = file.type;
     const bucket = new S3(
       {
         accessKeyId: 'AKIASAGEBSH54YUFSJYB',
         secretAccessKey: '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',
-        region: 'US East (N. Virginia) us-east-1'
+        region: 'us-east-1'
       }
     );
     const params = {
       Bucket: 'sportmbbecbd1e48374d90b40851bea188c0db191148-devsdamien',
-      Key: folderName + file.name,
+      Key:  'new/'+training.name.split(" ").join('_') + '.json',
       Body: file,
       ACL: 'public-read',
       ContentType: contentType
@@ -30,7 +30,7 @@ export class S3Service {
         console.log('There was an error uploading your file: ', err);
         return false;
       }
-      console.log('Successfully uploaded file.', data);
+      // console.log('Successfully uploaded file.', data);
       return true;
     });
 //for upload progress

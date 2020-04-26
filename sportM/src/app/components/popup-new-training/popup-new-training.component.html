@@ -3,6 +3,16 @@
   <form [formGroup]="trainForm">
 
     <mat-form-field>
+      <mat-label>Name:</mat-label>
+      <input matInput  formControlName="name" required>
+      <mat-error *ngFor="let validation of errorMessages.name">
+        <mat-error class="error-message" *ngIf="trainForm.get('name').hasError(validation.type) &&
+          (trainForm.get('name').dirty || trainForm.get('name').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>Start:</mat-label>
       <input matInput [matDatepicker]="pickerStart" formControlName="start" required>
       <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
@@ -29,7 +39,8 @@
     <mat-form-field>
       <mat-label>Membership type</mat-label>
       <mat-select formControlName="memberCategory">
-        <mat-option *ngFor="let membershipType of membershipType" [value]="membershipType.id">{{membershipType.type}}</mat-option>
+        <mat-option *ngFor="let membershipType of membershipType"
+                    [value]="membershipType.id">{{membershipType.type}}</mat-option>
       </mat-select>
       <mat-error *ngFor="let validation of errorMessages.memberCategory">
         <mat-error class="error-message" *ngIf="trainForm.get('memberCategory').hasError(validation.type) &&

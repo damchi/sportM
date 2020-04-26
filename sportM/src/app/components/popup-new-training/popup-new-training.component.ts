@@ -9,16 +9,19 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {Days} from "../../domain/days";
 import {TrainingS3} from "../../domain/training-s3";
 import {MarkAsTouch} from 'src/utils/mark-as-touch';
+import {saveAs} from 'file-saver';
 
 export class PopupEntrainement {
   id: string;
   start: Date;
   end: Date;
+  name: Date;
   memberCategory: string;
   daysOfTheWeek: any[]
 }
 
 export class ErrorMessages {
+  name: StructureError[];
   start: StructureError[];
   end: StructureError[];
   memberCategory: StructureError[];
@@ -49,6 +52,7 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
 
   ngOnInit() {
     this.trainForm = this.fb.group({
+      name: new FormControl(this.data.name, [Validators.required]),
       start: new FormControl(this.data.start, [Validators.required]),
       end: new FormControl(this.data.end),
       memberCategory: new FormControl(this.data.memberCategory, [Validators.required]),
@@ -59,6 +63,9 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
     this.getDays();
 
     this.errorMessages = {
+      name: [
+        {type: 'required', message: 'the training name is required'}
+      ],
       start: [
         {type: 'required', message: 'the starting date is required'}
       ],
@@ -93,13 +100,19 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
 
   create() {
     if (this.trainForm.valid) {
+
       const t = this.trainForm.value;
       const e = new TrainingS3();
       e.id = this.data.id
+      e.name = t.name;
       e.daysOfTheWeek = t.daysOfTheWeek;
       e.start = t.start;
       e.end = t.end;
-      this.dialogPop.close({training: e});
+
+      const blob = new Blob([JSON.stringify(e)], {type: 'application/json'});
+      // let trainingJson = saveAs(blob, e.name.replace(" ", "-") + '.json');
+
+      this.dialogPop.close({trainingJson: blob, training: e});
 
     } else {
       this.markAsTouched(this.trainForm);
