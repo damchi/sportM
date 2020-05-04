@@ -108,10 +108,9 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
       e.daysOfTheWeek = t.daysOfTheWeek;
       e.start = t.start;
       e.end = t.end;
+      e.memberCategory = t.memberCategory;
 
       const blob = new Blob([JSON.stringify(e)], {type: 'application/json'});
-      // let trainingJson = saveAs(blob, e.name.replace(" ", "-") + '.json');
-
       this.dialogPop.close({trainingJson: blob, training: e});
 
     } else {

@@ -3,10 +3,11 @@
   <button mat-raised-button (click)="newTraining()">New training</button>
 </div>
 
-<div class="desktop">
-  <table mat-table [dataSource]="trainings">
+<div class="desktop" *ngIf="isLoaded">
+
+  <table  mat-table [dataSource]="trainings">
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Start</th>
+      <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element">
         <div>{{element.name}}</div>
       </td>
@@ -15,21 +16,21 @@
     <ng-container matColumnDef="start">
       <th mat-header-cell *matHeaderCellDef>Start</th>
       <td mat-cell *matCellDef="let element">
-        <div>{{element.start}}</div>
+        <div>{{getDateToString(element.start)}}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="end">
       <th mat-header-cell *matHeaderCellDef>End</th>
       <td mat-cell *matCellDef="let element">
-        <div>{{element.end}}</div>
+        <div>{{getDateToString(element.end)}}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="daysOfTheWeek">
       <th mat-header-cell *matHeaderCellDef>Type</th>
       <td mat-cell *matCellDef="let element">
-        <div> {{element.daysOfTheWeek}}</div>
+        <div>{{getDaysToString(element.daysOfTheWeek)}}</div>
       </td>
     </ng-container>
 

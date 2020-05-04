@@ -1,48 +1,57 @@
-import { Injectable } from '@angular/core';
-import * as AWS from 'aws-sdk/global';
-import S3 from 'aws-sdk/clients/s3';
+import {Injectable} from '@angular/core';
+import {Storage} from 'aws-amplify';
+import {Observable} from "rxjs";
+import {HttpClient} from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class S3Service {
+  constructor() {
+  }
 
-  constructor() { }
+  Utf8ArrayToStr(array) {
+    let out, i, len, c;
+    let char2, char3;
 
-  uploadFile(file, training) {
-    const contentType = file.type;
-    const bucket = new S3(
-      {
-        accessKeyId: 'AKIASAGEBSH54YUFSJYB',
-        secretAccessKey: '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',
-        region: 'us-east-1'
+    out = "";
+    len = array.length;
+    i = 0;
+    while (i < len) {
+      c = array[i++];
+      switch (c >> 4) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+          // 0xxxxxxx
+          out += String.fromCharCode(c);
+          break;
+        case 12:
+        case 13:
+          // 110x xxxx   10xx xxxx
+          char2 = array[i++];
+          out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+          break;
+        case 14:
+          // 1110 xxxx  10xx xxxx  10xx xxxx
+          char2 = array[i++];
+          char3 = array[i++];
+          out += String.fromCharCode(((c & 0x0F) << 12) |
+            ((char2 & 0x3F) << 6) |
+            ((char3 & 0x3F) << 0));
+          break;
       }
-    );
-    const params = {
-      Bucket: 'sportmbbecbd1e48374d90b40851bea188c0db191148-devsdamien',
-      Key:  'new/'+training.name.split(" ").join('_') + '.json',
-      Body: file,
-      ACL: 'public-read',
-      ContentType: contentType
-    };
-    bucket.upload(params, function (err, data) {
-      if (err) {
-        console.log('There was an error uploading your file: ', err);
-        return false;
-      }
-      // console.log('Successfully uploaded file.', data);
-      return true;
-    });
-//for upload progress
-    /*bucket.upload(params).on('httpUploadProgress', function (evt) {
-              console.log(evt.loaded + ' of ' + evt.total + ' Bytes');
-          }).send(function (err, data) {
-              if (err) {
-                  console.log('There was an error uploading your file: ', err);
-                  return false;
-              }
-              console.log('Successfully uploaded file.', data);
-              return true;
-          });*/
+    }
+
+    return out;
   }
 }
