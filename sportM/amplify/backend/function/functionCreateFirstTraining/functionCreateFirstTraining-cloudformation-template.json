@@ -76,7 +76,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-sportm-devsdamien-191148-deployment",
-					"S3Key": "amplify-builds/functionCreateFirstTraining-58317675634a56484930-build.zip"
+					"S3Key": "amplify-builds/functionCreateFirstTraining-675267366a4c6766744f-build.zip"
 				}
 			}
 		},

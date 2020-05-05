@@ -12,12 +12,14 @@ import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
 import { AuthComponent } from './components/auth/auth.component';
 import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     AmplifyAngularModule,
@@ -38,7 +40,8 @@ import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
     })
   ],
   providers: [AmplifyService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ConfirmDialogComponent]
 })
 export class AppModule { }
 
