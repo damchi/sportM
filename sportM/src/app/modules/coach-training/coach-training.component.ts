@@ -27,8 +27,8 @@ export class CoachTrainingComponent implements OnInit {
   constructor(public dialog: MatDialog, private serviceS3: S3Service) {
   }
 
-   ngOnInit() {
-     this.getS3TrainingNew();
+  ngOnInit() {
+    this.getS3TrainingNew();
   }
 
   newTraining(training?: TrainingS3) {
@@ -51,7 +51,18 @@ export class CoachTrainingComponent implements OnInit {
 
 
   saveToS3(training, trainingJson) {
-    Storage.put('new/' + training.name.split(" ").join('_') + '.json', trainingJson, {level: 'public'})
+    Storage.put('new/' + training.name.split(" ").join('_') + '.json',
+      trainingJson,
+      {
+        level: 'public', metadata: {
+          trainingName: training.name.split(" ").join('_'),
+          trainingDate: training.daysOfTheWeek.toString(),
+          trainingStart: training.start.toString(),
+          trainingEnd: training.end.toString(),
+          trainingMemberCategory: training.memberCategory
+
+        }
+      })
       .then(() => {
         this.refresh();
       })
@@ -75,17 +86,17 @@ export class CoachTrainingComponent implements OnInit {
     return Storage.list('new/');
   }
 
-  getJsonFromS3(key){
+  getJsonFromS3(key) {
     Storage.get(key, {level: 'public', download: true})
-      .then( result => {
+      .then(result => {
         this.trainings.push(JSON.parse(this.serviceS3.Utf8ArrayToStr(result['Body'])));
       })
 
       .then(() => {
-          if (this.trainings.length == this.list.length) {
-            this.isLoaded = true;
-          }
-        })
+        if (this.trainings.length == this.list.length) {
+          this.isLoaded = true;
+        }
+      })
       .catch(err => console.log(err));
   }
 
@@ -95,8 +106,8 @@ export class CoachTrainingComponent implements OnInit {
 
   getDaysToString(days) {
     this.days = [];
-    days.forEach(r =>{
-      this.days.push( moment().startOf('isoWeek').isoWeekday(r).format('dddd'));
+    days.forEach(r => {
+      this.days.push(moment().startOf('isoWeek').isoWeekday(r).format('dddd'));
     })
     return this.days;
   }
@@ -118,7 +129,7 @@ export class CoachTrainingComponent implements OnInit {
     });
   }
 
-  refresh(){
+  refresh() {
     this.isLoaded = false;
     this.trainings = [];
     this.list = [];
@@ -126,9 +137,9 @@ export class CoachTrainingComponent implements OnInit {
   }
 
   doDelete() {
-    Storage.remove('new/' + this.training.name.split(" ").join('_') + '.json', { level: 'public' })
+    Storage.remove('new/' + this.training.name.split(" ").join('_') + '.json', {level: 'public'})
       .then(() => {
-      this.refresh();
+        this.refresh();
       })
       .catch(err => console.log(err));
   }
