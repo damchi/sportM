@@ -23,7 +23,7 @@ exports.handler =  async function (event, context) {
     console.log('Key', Key);
 
     const objectHead = await s3.headObject({ Bucket, Key }).promise();
-    console.log( objectHead);
+    console.log(objectHead);
 
     // callback();
   } catch(err) {
