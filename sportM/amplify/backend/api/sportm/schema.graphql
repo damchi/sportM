@@ -17,9 +17,10 @@ type User @model {
 
 type Training @model {
   id: ID!
-  trainingDay: AWSDate!
+  trainingDate: AWSDate!
   statut: Boolean
   athleteCategory:String
+  trainingTime:String
   athleteAttending: [AthleteAttendence] @connection(keyName: "byTraining", fields: ["id"])
 }
 

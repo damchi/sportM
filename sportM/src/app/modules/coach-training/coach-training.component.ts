@@ -56,9 +56,10 @@ export class CoachTrainingComponent implements OnInit {
       {
         level: 'public', metadata: {
           trainingName: training.name.split(" ").join('_'),
-          trainingDate: training.daysOfTheWeek.toString(),
+          trainingDays: training.daysOfTheWeek.toString(),
           trainingStart: training.start.toString(),
           trainingEnd: training.end.toString(),
+          trainingTime: training.time.toString(),
           trainingMemberCategory: training.memberCategory
 
         }
