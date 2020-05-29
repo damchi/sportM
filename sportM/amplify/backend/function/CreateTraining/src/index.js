@@ -1,18 +1,17 @@
 /* Amplify Params - DO NOT EDIT
-You can access the following resource attributes as environment variables from your Lambda function
-var environment = process.env.ENV
-var region = process.env.REGION
-var functionFunctionCreateFirstTrainingName = process.env.FUNCTION_FUNCTIONCREATEFIRSTTRAINING_NAME
-var storageTrainingDescriptionBucketName = process.env.STORAGE_TRAININGDESCRIPTION_BUCKETNAME
-var storageTrainingDescriptionBucketName = process.env.STORAGE_TRAININGDESCRIPTION_BUCKETNAME
-var apiSportmTrainingTableName = process.env.API_SPORTM_TRAININGTABLE_NAME
-var apiSportmTrainingTableArn = process.env.API_SPORTM_TRAININGTABLE_ARN
-var apiSportmGraphQLAPIIdOutput = process.env.API_SPORTM_GRAPHQLAPIIDOUTPUT
-
+	API_SPORTM_GRAPHQLAPIENDPOINTOUTPUT
+	API_SPORTM_GRAPHQLAPIIDOUTPUT
+	API_SPORTM_TRAININGTABLE_ARN
+	API_SPORTM_TRAININGTABLE_NAME
+	AUTH_SPORTM745BB06D_USERPOOLID
+	ENV
+	FUNCTION_CREATETRAINING_NAME
+	REGION
 Amplify Params - DO NOT EDIT */
 
 let AWS = require('aws-sdk');
 let s3 = new AWS.S3();
+//TODO: update to layers when available for amplify
 let moment = require('moment');
 let uuid = require('node-uuid');
 
@@ -21,21 +20,26 @@ let apiSportmTrainingTableName = process.env.API_SPORTM_TRAININGTABLE_NAME
 let dynamodb = new AWS.DynamoDB.DocumentClient();
 
 
-exports.handler = async function (event, context) {
-  //eslint-disable-line
+function insertTraining(event) {
+  const Bucket = event.Records[0].s3.bucket.name;
+  // console.log("Reading options from event:\n", util.inspect(event, {depth: 5}));
+  const Key = event.Records[0].s3.object.key;
+  const objectHead = s3.headObject({Bucket, Key}).promise();
+
+  console.log('bucket: ' + Bucket);
+  console.log('Key: ' + Key);
+  let start = moment(new Date(objectHead.Metadata.trainingstart), "YYYY-MM-DD");
+  let end = moment(new Date(objectHead.Metadata.trainingend), "YYYY-MM-DD");
+  let days = JSON.parse("[" + objectHead.Metadata.trainingdays + "]");
+
   try {
-    const Bucket = await event.Records[0].s3.bucket.name;
-    const Key = event.Records[0].s3.object.key;
-    const objectHead = await s3.headObject({Bucket, Key}).promise();
-    let start = moment(new Date(objectHead.Metadata.trainingstart), "YYYY-MM-DD")
-
-
-    let end = moment(new Date(objectHead.Metadata.trainingend), "YYYY-MM-DD");
-    let days = JSON.parse("[" + objectHead.Metadata.trainingdays + "]");
-
     for (let m = moment(start); m.diff(end, 'days') <= 0; m.add(1, 'days')) {
-      days.forEach(e => {
+      for (const e of days) {
+        console.log('e:' + e);
+        console.log('m:' + m);
         if (moment(m).day() === e) {
+          console.log('in')
+          console.log(Bucket)
           let params = {
             TableName: apiSportmTrainingTableName,
             Item: {
@@ -46,40 +50,18 @@ exports.handler = async function (event, context) {
               "trainingTime": objectHead.Metadata.trainingtime
             }
           };
-          dynamodb.put(params, function (err, data) {
-            console.log('in')
-            if (err) {
-              console.log(err, err.stack); // an error occurred
-            } else {
-              console.log(data);
-            }
-          });
+          dynamodb.put(params).promise();
         }
-
-      });
+      }
     }
-
-    // callback();
+    return true;
   } catch (err) {
     console.error('Error', err);
-    // callback(err);
   }
-  // await event.Records.forEach(  record => {
-  //   let params = {
-  //     Bucket: record.s3.bucket.name,
-  //     Key: record.s3.object.key
-  //   };
-  //   console.log(params);
-  //   const objectHead =   s3.headObject(params).promise();
-  //   console.log('Alas! I will never discover that the objectHead is:', objectHead);
-  //
-  //
-  //   //   console.log('logs lambda');
-  // //   console.log('records:' + JSON.stringify(record));
-  // //   console.log('keys dot :' + JSON.stringify(record.s3.object.key));
-  // //
-  //   console.log('record event Name :' + record.eventName);
-  //   console.log('DynamoDB Record: %j', record.dynamodb);
-  // });
-  context.done(null, 'Successfully processed DynamoDB record'); // SUCCESS with message
+}
+
+exports.handler = async (event, context) => {
+  //eslint-disable-line
+  await insertTraining(event);
+
 };
