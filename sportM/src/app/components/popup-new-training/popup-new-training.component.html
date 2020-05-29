@@ -37,6 +37,21 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Time:</mat-label>
+      <div class="12hr-example">
+        <input matInput formControlName="time" aria-label="12hr format" [ngxTimepicker]="default" readonly>
+      </div>
+      <ngx-material-timepicker #default></ngx-material-timepicker>
+
+      <mat-error *ngFor="let validation of errorMessages.time">
+        <mat-error class="error-message" *ngIf="trainForm.get('time').hasError(validation.type) &&
+          (trainForm.get('time').dirty || trainForm.get('time').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
       <mat-label>Membership type</mat-label>
       <mat-select formControlName="memberCategory">
         <mat-option *ngFor="let membershipType of membershipType"

@@ -14,7 +14,7 @@ import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-di
   styleUrls: ['./coach-training.component.css']
 })
 export class CoachTrainingComponent implements OnInit {
-  public displayedColumns: string[] = ['name', 'start', 'end', 'daysOfTheWeek', 'option'];
+  public displayedColumns: string[] = ['member','name', 'start', 'end', 'daysOfTheWeek', 'option'];
   public trainings: TrainingS3[] = [];
   public trainingJson: TrainingS3[] = [];
   public training: TrainingS3;
@@ -56,9 +56,10 @@ export class CoachTrainingComponent implements OnInit {
       {
         level: 'public', metadata: {
           trainingName: training.name.split(" ").join('_'),
-          trainingDate: training.daysOfTheWeek.toString(),
+          trainingDays: training.daysOfTheWeek.toString(),
           trainingStart: training.start.toString(),
           trainingEnd: training.end.toString(),
+          trainingTime: training.time.toString(),
           trainingMemberCategory: training.memberCategory
 
         }
@@ -90,6 +91,7 @@ export class CoachTrainingComponent implements OnInit {
     Storage.get(key, {level: 'public', download: true})
       .then(result => {
         this.trainings.push(JSON.parse(this.serviceS3.Utf8ArrayToStr(result['Body'])));
+        console.log(this.trainings);
       })
 
       .then(() => {

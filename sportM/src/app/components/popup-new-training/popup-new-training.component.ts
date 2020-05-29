@@ -9,7 +9,6 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {Days} from "../../domain/days";
 import {TrainingS3} from "../../domain/training-s3";
 import {MarkAsTouch} from 'src/utils/mark-as-touch';
-import {saveAs} from 'file-saver';
 
 export class PopupEntrainement {
   id: string;
@@ -18,6 +17,7 @@ export class PopupEntrainement {
   name: Date;
   memberCategory: string;
   daysOfTheWeek: any[]
+  time: any[]
 }
 
 export class ErrorMessages {
@@ -26,6 +26,7 @@ export class ErrorMessages {
   end: StructureError[];
   memberCategory: StructureError[];
   daysOfTheWeek: StructureError[];
+  time: StructureError[];
 }
 
 @Component({
@@ -55,6 +56,7 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
       name: new FormControl(this.data.name, [Validators.required]),
       start: new FormControl(this.data.start, [Validators.required]),
       end: new FormControl(this.data.end),
+      time: new FormControl(this.data.time),
       memberCategory: new FormControl(this.data.memberCategory, [Validators.required]),
       daysOfTheWeek: new FormControl(this.data.daysOfTheWeek, [Validators.required]),
     });
@@ -77,6 +79,9 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
       ],
       daysOfTheWeek: [
         {type: 'required', message: 'Training\'s days are required'}
+      ],
+      time: [
+        {type: 'required', message: 'Training\'s time is required'}
       ]
     };
 
@@ -108,6 +113,7 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
       e.daysOfTheWeek = t.daysOfTheWeek;
       e.start = t.start;
       e.end = t.end;
+      e.time = t.time;
       e.memberCategory = t.memberCategory;
 
       const blob = new Blob([JSON.stringify(e)], {type: 'application/json'});

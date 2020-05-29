@@ -6,6 +6,13 @@
 <div class="desktop" *ngIf="isLoaded">
 
   <table  mat-table [dataSource]="trainings">
+    <ng-container matColumnDef="member">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let element">
+        <div>{{element.memberCategory}}</div>
+      </td>
+    </ng-container>
+
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element">
