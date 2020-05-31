@@ -8,6 +8,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -25,7 +26,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -36,7 +38,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ]
 })
 export class ShareModule { }

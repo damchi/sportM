@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'coach',
-    loadChildren: () => import('./modules/coach/coach.module').then(m => m.CoachModule), canActivate: [AuthGuard]
+    loadChildren: () => import('./modules/coach/coach.module').then(m => m.CoachModule)
   },
   { path: '', component: AuthComponent },
   { path: '**', redirectTo: 'AuthComponent' },

@@ -1,16 +1,37 @@
 <form [formGroup]="trainingAttendenceForm">
   <div>
     <h4> Trainings for {{currentMonth}}</h4>
-    <div *ngFor="let day of weekDays; index as i" class="presence">
-      <mat-label>{{day}}</mat-label>
-      <mat-radio-group formControlName="presence{{i}}">
-        <mat-radio-button value="true">yes </mat-radio-button>
-        <mat-radio-button value="false">non</mat-radio-button>
-      </mat-radio-group>
+    <div>
+      <h3>Training dates for the week {{week}}</h3>
+      <div *ngFor="let day of weekDays; index as i" class="presence">
+        <mat-form-field>
+          <mat-label>{{day}}</mat-label>
+          <mat-select formControlName="presence{{i}}">
+            <mat-option value="{{day}},true">Yes</mat-option>
+            <mat-option value="{{day}},false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
+
+    <div *ngIf="nextWeekDays.length > 0">
+      {{nextWeekDays}}
+      <h3>Training dates for the week {{nextWeek}}</h3>
+      <div *ngFor="let day of nextWeekDays; index as i" class="presence">
+        <mat-form-field>
+          <mat-label>{{day}}</mat-label>
+          <mat-select formControlName="presenceNextWeek{{i}}">
+            <mat-option value="{{day}},true">Yes</mat-option>
+            <mat-option value="{{day}},false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
     <button mat-button mat-raised-button
             (click)="create()">{{'Save'}}
       <!--          (click)="create()">{{data.training.id ? 'Modifier tous' : 'Créer'}}-->
     </button>
   </div>
 </form>
+

@@ -1,5 +1,5 @@
 {
-  "side": [
+  "membershipType": [
     { "id": "admin", "type": "Admin" },
     { "id": "coach", "type": "Coach" },
     { "id": "competitive", "type": "Competitive" },

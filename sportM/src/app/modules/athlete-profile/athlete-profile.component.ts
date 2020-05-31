@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {StructureError} from '../../../utils/structure-error';
 import {Athlete} from "../../domain/athlete";
 import {Auth} from "aws-amplify";
-import {AthleteProfileService} from "../../services/athlete-profile.service";
+import {AthleteService} from "../../services/athlete.service";
 import {APIService} from "../../API.service";
 import {Sex} from "../../domain/sex";
 import {TypeBoat} from "../../domain/type-boat";
@@ -14,7 +14,7 @@ import * as typeBoatJson from "../../config/typeBoat.json";
 import * as weightCategoryJson from "../../config/weightCategory.json";
 import * as sideJson from "../../config/side.json";
 import {MarkAsTouch} from "../../../utils/mark-as-touch";
-import  moment from 'moment';
+import moment from 'moment';
 
 
 export class ErrorMessages {
@@ -36,7 +36,7 @@ export class ErrorMessages {
   styleUrls: ['./athlete-profile.component.css']
 })
 
-export class AthleteProfileComponent  extends MarkAsTouch implements OnInit  {
+export class AthleteProfileComponent extends MarkAsTouch implements OnInit {
 
   public profileForm: FormGroup;
   public errorMessages: ErrorMessages;
@@ -48,7 +48,7 @@ export class AthleteProfileComponent  extends MarkAsTouch implements OnInit  {
   public boat: any[];
 
 
-  constructor(private fb: FormBuilder, private service: AthleteProfileService, private api: APIService) {
+  constructor(private fb: FormBuilder, private service: AthleteService, private api: APIService) {
     super();
     Auth.currentAuthenticatedUser({
       bypassCache: false
@@ -61,6 +61,8 @@ export class AthleteProfileComponent  extends MarkAsTouch implements OnInit  {
   }
 
   ngOnInit() {
+
+
     this.getSex();
     this.getTypeBoat();
     this.getWeightCategory();
@@ -107,22 +109,12 @@ export class AthleteProfileComponent  extends MarkAsTouch implements OnInit  {
         {type: 'required', message: 'The lastname is required.'}
       ]
     };
-
-
   }
 
   async getAthlete(athleteId: string) {
     await this.service.getAthlete(athleteId).then(user => {
       if (user) {
-        this.athlete.dob = user.dob;
-        this.athlete.firstName = user.firstName;
-        this.athlete.lastName = user.lastName;
-        this.athlete.height = user.height;
-        this.athlete.sex = user.sex;
-        this.athlete.weightCategory = user.weightCategory;
-        this.athlete.membershipType = user.membershipType;
-        this.athlete.status = user.status;
-
+        this.athlete = user;
         this.profileForm.get('height').patchValue(user.height);
         this.profileForm.get('weightCategory').patchValue(user.weightCategory);
         this.profileForm.get('sex').patchValue(user.sex);
@@ -165,7 +157,7 @@ export class AthleteProfileComponent  extends MarkAsTouch implements OnInit  {
 
 
   async create() {
-    if (this.profileForm.valid){
+    if (this.profileForm.valid) {
       const profil = this.profileForm.value;
 
       this.athlete.lastName = profil.lastName;
@@ -189,7 +181,7 @@ export class AthleteProfileComponent  extends MarkAsTouch implements OnInit  {
         this.athlete.firstName = profil.firstName;
         await this.service.save(this.athlete)
       }
-    } else{
+    } else {
       this.markAsTouched(this.profileForm);
     }
   }

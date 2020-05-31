@@ -12,12 +12,15 @@ import {ToastrModule} from "ngx-toastr";
 import {CommonModule} from "@angular/common";
 import { AuthComponent } from './components/auth/auth.component';
 import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     AmplifyAngularModule,
@@ -28,6 +31,7 @@ import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
     HttpClientModule,
     MatDialogModule,
     MatSnackBarModule,
+    NgxMaterialTimepickerModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
@@ -35,10 +39,11 @@ import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
   ],
   providers: [AmplifyService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ConfirmDialogComponent]
 })
 export class AppModule { }
 

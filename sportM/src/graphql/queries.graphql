@@ -13,6 +13,15 @@ query GetUser($id: ID!) {
     side
     sex
     status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+        attending
+      }
+      nextToken
+    }
   }
 }
 query ListUsers(
@@ -34,55 +43,40 @@ query ListUsers(
       side
       sex
       status
+      training {
+        nextToken
+      }
     }
     nextToken
   }
 }
-query GetAttendence($id: ID!) {
-  getAttendence(id: $id) {
+query GetTraining($id: ID!) {
+  getTraining(id: $id) {
     id
     trainingDay
-    athlete {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
+    athleteAttending {
+      items {
+        id
+        trainingID
+        athleteID
+        attending
+      }
+      nextToken
     }
-    status
   }
 }
-query ListAttendences(
-  $filter: ModelAttendenceFilterInput
+query ListTrainings(
+  $filter: ModelTrainingFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listAttendences(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listTrainings(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       trainingDay
-      athlete {
-        id
-        firstName
-        lastName
-        membershipType
-        email
-        dob
-        height
-        weightCategory
-        boatPreference
-        side
-        sex
-        status
+      athleteAttending {
+        nextToken
       }
-      status
     }
     nextToken
   }
