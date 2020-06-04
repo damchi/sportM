@@ -12,9 +12,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     CommonModule,
     CoachTrainingRoutingModule,
     ShareModule,
-    NgxMaterialTimepickerModule,
+    NgxMaterialTimepickerModule
   ],
-
   entryComponents: [PopupNewTrainingComponent]
 })
 export class CoachTrainingModule {

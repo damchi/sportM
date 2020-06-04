@@ -13,8 +13,7 @@ import {CommonModule} from "@angular/common";
 import { AuthComponent } from './components/auth/auth.component';
 import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-// import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
-
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 @NgModule({
   declarations: [
@@ -31,7 +30,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     HttpClientModule,
     MatDialogModule,
     MatSnackBarModule,
-    // NgxMaterialTimepickerModule,
+    NgxMaterialTimepickerModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
