@@ -1,0 +1,137 @@
+Index: sportM/amplify/backend/function/CreateTraining/src/index.js
+===================================================================
+--- sportM/amplify/backend/function/CreateTraining/src/index.js	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/amplify/backend/function/CreateTraining/src/index.js	(revision 40d546379b5783595485f40210bd0e350940f921)
+@@ -1,63 +0,0 @@
+-/* Amplify Params - DO NOT EDIT
+-	API_SPORTM_GRAPHQLAPIENDPOINTOUTPUT
+-	API_SPORTM_GRAPHQLAPIIDOUTPUT
+-	API_SPORTM_TRAININGTABLE_ARN
+-	API_SPORTM_TRAININGTABLE_NAME
+-	AUTH_SPORTM745BB06D_USERPOOLID
+-	ENV
+-	FUNCTION_CREATETRAINING_NAME
+-	REGION
+-Amplify Params - DO NOT EDIT */
+-
+-let AWS = require('aws-sdk');
+-let s3 = new AWS.S3();
+-//TODO: update to layers when available for amplify
+-let moment = require('moment');
+-let uuid = require('node-uuid');
+-
+-
+-let apiSportmTrainingTableName = process.env.API_SPORTM_TRAININGTABLE_NAME
+-let dynamodb = new AWS.DynamoDB.DocumentClient();
+-
+-
+-function insertTraining(event) {
+-  const Bucket = event.Records[0].s3.bucket.name;
+-  const Key = event.Records[0].s3.object.key;
+-  const objectHead = s3.headObject({Bucket, Key}).promise();
+-  let start = moment(new Date(objectHead.Metadata.trainingstart), "YYYY-MM-DD");
+-  let end = moment(new Date(objectHead.Metadata.trainingend), "YYYY-MM-DD");
+-  let days = JSON.parse("[" + objectHead.Metadata.trainingdays + "]");
+-
+-  try {
+-    for (let m = moment(start); m.diff(end, 'days') <= 0; m.add(1, 'days')) {
+-      for (const e of days) {
+-        console.log('e:' + e);
+-        console.log('m:' + m);
+-        if (moment(m).day() === e) {
+-          console.log('in')
+-          console.log(Bucket)
+-          let params = {
+-            TableName: apiSportmTrainingTableName,
+-            Item: {
+-              "id": uuid.v1(),
+-              "trainingDate": moment(m).format('YYYY-MM-DD'),
+-              "statut": true,
+-              "athleteCategory": objectHead.Metadata.trainingmembercategory,
+-              "trainingTime": objectHead.Metadata.trainingtime
+-            }
+-          };
+-          dynamodb.put(params).promise();
+-        }
+-      }
+-    }
+-    return true;
+-  } catch (err) {
+-    console.error('Error', err);
+-  }
+-}
+-
+-exports.handler = async (event, context) => {
+-  //eslint-disable-line
+-  await insertTraining(event);
+-
+-};
+Index: sportM/amplify/backend/storage/trainingDescription/storage-params.json
+===================================================================
+--- sportM/amplify/backend/storage/trainingDescription/storage-params.json	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/amplify/backend/storage/trainingDescription/storage-params.json	(revision 40d546379b5783595485f40210bd0e350940f921)
+@@ -1,1 +0,0 @@
+-{}
+\ No newline at end of file
+Index: sportM/amplify/backend/function/functionCreateFirstTraining/src/package-lock.json
+===================================================================
+--- sportM/amplify/backend/function/functionCreateFirstTraining/src/package-lock.json	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/amplify/backend/function/functionCreateFirstTraining/src/package-lock.json	(revision 40d546379b5783595485f40210bd0e350940f921)
+@@ -1,5 +0,0 @@
+-{
+-  "name": "createFristTraining",
+-  "version": "2.0.0",
+-  "lockfileVersion": 1
+-}
+Index: sportM/amplify/backend/function/functionCreateFirstTraining/parameters.json
+===================================================================
+--- sportM/amplify/backend/function/functionCreateFirstTraining/parameters.json	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/amplify/backend/function/functionCreateFirstTraining/parameters.json	(revision 40d546379b5783595485f40210bd0e350940f921)
+@@ -1,1 +0,0 @@
+-{}
+\ No newline at end of file
+Index: sportM/amplify/backend/function/functionCreateFirstTraining/src/event.json
+===================================================================
+--- sportM/amplify/backend/function/functionCreateFirstTraining/src/event.json	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/amplify/backend/function/functionCreateFirstTraining/src/event.json	(revision 40d546379b5783595485f40210bd0e350940f921)
+@@ -1,5 +0,0 @@
+-{
+-  "key1": "value1",
+-  "key2": "value2",
+-  "key3": "value3"
+-}
+Index: sportM/amplify/backend/function/functionCreateFirstTraining/function-parameters.json
+===================================================================
+--- sportM/amplify/backend/function/functionCreateFirstTraining/function-parameters.json	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/amplify/backend/function/functionCreateFirstTraining/function-parameters.json	(revision 40d546379b5783595485f40210bd0e350940f921)
+@@ -1,1 +0,0 @@
+-{}
+\ No newline at end of file
+Index: sportM/src/app/app.component.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sportM/src/app/app.component.css	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/src/app/app.component.css	(date 1590780155824)
+@@ -1,0 +1,1 @@
++
+Index: sportM/amplify/backend/function/functionCreateFirstTraining/src/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"name\": \"createFristTraining\",\n  \"version\": \"2.0.0\",\n  \"description\": \"Lambda function generated by Amplify\",\n  \"main\": \"index.js\",\n  \"license\": \"Apache-2.0\",\n  \"dependencies\": {\n    \"moment\": \"^2.26.0\"\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sportM/amplify/backend/function/functionCreateFirstTraining/src/package.json	(revision 40d546379b5783595485f40210bd0e350940f921)
++++ sportM/amplify/backend/function/functionCreateFirstTraining/src/package.json	(date 1590780619669)
+@@ -3,8 +3,5 @@
+   "version": "2.0.0",
+   "description": "Lambda function generated by Amplify",
+   "main": "index.js",
+-  "license": "Apache-2.0",
+-  "dependencies": {
+-    "moment": "^2.26.0"
+-  }
++  "license": "Apache-2.0"
+ }

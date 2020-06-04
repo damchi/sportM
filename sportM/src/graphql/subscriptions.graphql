@@ -19,9 +19,13 @@ subscription OnCreateUser {
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateUser {
@@ -44,9 +48,13 @@ subscription OnUpdateUser {
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteUser {
@@ -69,54 +77,79 @@ subscription OnDeleteUser {
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnCreateTraining {
   onCreateTraining {
     id
-    trainingDay
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
     athleteAttending {
       items {
         id
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateTraining {
   onUpdateTraining {
     id
-    trainingDay
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
     athleteAttending {
       items {
         id
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteTraining {
   onDeleteTraining {
     id
-    trainingDay
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
     athleteAttending {
       items {
         id
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 subscription OnCreateAthleteAttendence {
@@ -126,10 +159,15 @@ subscription OnCreateAthleteAttendence {
     athleteID
     training {
       id
-      trainingDay
+      trainingDate
+      statut
+      athleteCategory
+      trainingTime
       athleteAttending {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     athlete {
       id
@@ -147,8 +185,12 @@ subscription OnCreateAthleteAttendence {
       training {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     attending
+    createdAt
+    updatedAt
   }
 }
 subscription OnUpdateAthleteAttendence {
@@ -158,10 +200,15 @@ subscription OnUpdateAthleteAttendence {
     athleteID
     training {
       id
-      trainingDay
+      trainingDate
+      statut
+      athleteCategory
+      trainingTime
       athleteAttending {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     athlete {
       id
@@ -179,8 +226,12 @@ subscription OnUpdateAthleteAttendence {
       training {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     attending
+    createdAt
+    updatedAt
   }
 }
 subscription OnDeleteAthleteAttendence {
@@ -190,10 +241,15 @@ subscription OnDeleteAthleteAttendence {
     athleteID
     training {
       id
-      trainingDay
+      trainingDate
+      statut
+      athleteCategory
+      trainingTime
       athleteAttending {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     athlete {
       id
@@ -211,7 +267,11 @@ subscription OnDeleteAthleteAttendence {
       training {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     attending
+    createdAt
+    updatedAt
   }
 }

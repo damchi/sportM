@@ -8,12 +8,12 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {MatDialogModule, MatSnackBarModule} from "@angular/material";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ToastrModule} from "ngx-toastr";
+import {ToastrModule} from 'ngx-toastr';
 import {CommonModule} from "@angular/common";
 import { AuthComponent } from './components/auth/auth.component';
 import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
+// import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 
 @NgModule({
@@ -31,7 +31,7 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
     HttpClientModule,
     MatDialogModule,
     MatSnackBarModule,
-    NgxMaterialTimepickerModule,
+    // NgxMaterialTimepickerModule,
     ToastrModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
