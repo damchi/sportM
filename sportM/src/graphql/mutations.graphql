@@ -1,4 +1,26 @@
 # this is an auto generated file. This will be overwritten
+mutation BatchAddTraining($training: [CreateTrainingInput]) {
+  batchAddTraining(training: $training) {
+    id
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
+    athleteAttending {
+      items {
+        id
+        trainingID
+        athleteID
+        attending
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateUser(
   $input: CreateUserInput!
   $condition: ModelUserConditionInput
@@ -22,9 +44,13 @@ mutation CreateUser(
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateUser(
@@ -50,9 +76,13 @@ mutation UpdateUser(
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteUser(
@@ -78,9 +108,13 @@ mutation DeleteUser(
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation CreateTraining(
@@ -89,16 +123,23 @@ mutation CreateTraining(
 ) {
   createTraining(input: $input, condition: $condition) {
     id
-    trainingDay
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
     athleteAttending {
       items {
         id
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateTraining(
@@ -107,16 +148,23 @@ mutation UpdateTraining(
 ) {
   updateTraining(input: $input, condition: $condition) {
     id
-    trainingDay
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
     athleteAttending {
       items {
         id
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteTraining(
@@ -125,16 +173,23 @@ mutation DeleteTraining(
 ) {
   deleteTraining(input: $input, condition: $condition) {
     id
-    trainingDay
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
     athleteAttending {
       items {
         id
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 mutation CreateAthleteAttendence(
@@ -147,10 +202,15 @@ mutation CreateAthleteAttendence(
     athleteID
     training {
       id
-      trainingDay
+      trainingDate
+      statut
+      athleteCategory
+      trainingTime
       athleteAttending {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     athlete {
       id
@@ -168,8 +228,12 @@ mutation CreateAthleteAttendence(
       training {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     attending
+    createdAt
+    updatedAt
   }
 }
 mutation UpdateAthleteAttendence(
@@ -182,10 +246,15 @@ mutation UpdateAthleteAttendence(
     athleteID
     training {
       id
-      trainingDay
+      trainingDate
+      statut
+      athleteCategory
+      trainingTime
       athleteAttending {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     athlete {
       id
@@ -203,8 +272,12 @@ mutation UpdateAthleteAttendence(
       training {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     attending
+    createdAt
+    updatedAt
   }
 }
 mutation DeleteAthleteAttendence(
@@ -217,10 +290,15 @@ mutation DeleteAthleteAttendence(
     athleteID
     training {
       id
-      trainingDay
+      trainingDate
+      statut
+      athleteCategory
+      trainingTime
       athleteAttending {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     athlete {
       id
@@ -238,7 +316,11 @@ mutation DeleteAthleteAttendence(
       training {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     attending
+    createdAt
+    updatedAt
   }
 }

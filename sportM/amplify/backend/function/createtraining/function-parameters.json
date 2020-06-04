@@ -1,7 +1,15 @@
 {
     "permissions": {
         "auth": {
-            "sportm745bb06d": [
+            "sportm229570a4": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "api": {
+            "sportm": [
                 "create",
                 "read",
                 "update",

@@ -6,6 +6,13 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import * as Observable from "zen-observable";
 
+export type CreateTrainingInput = {
+  id?: string | null;
+  trainingDay: string;
+  statut?: boolean | null;
+  athleteCategory?: string | null;
+};
+
 export type CreateUserInput = {
   id?: string | null;
   firstName: string;
@@ -103,13 +110,11 @@ export type DeleteUserInput = {
   id?: string | null;
 };
 
-export type CreateTrainingInput = {
-  id?: string | null;
-  trainingDay: string;
-};
-
 export type ModelTrainingConditionInput = {
-  trainingDay?: ModelStringInput | null;
+  trainingDate?: ModelStringInput | null;
+  statut?: ModelBooleanInput | null;
+  athleteCategory?: ModelStringInput | null;
+  trainingTime?: ModelStringInput | null;
   and?: Array<ModelTrainingConditionInput | null> | null;
   or?: Array<ModelTrainingConditionInput | null> | null;
   not?: ModelTrainingConditionInput | null;
@@ -117,7 +122,10 @@ export type ModelTrainingConditionInput = {
 
 export type UpdateTrainingInput = {
   id: string;
-  trainingDay?: string | null;
+  trainingDate?: string | null;
+  statut?: boolean | null;
+  athleteCategory?: string | null;
+  trainingTime?: string | null;
 };
 
 export type DeleteTrainingInput = {
@@ -187,10 +195,37 @@ export type ModelUserFilterInput = {
 
 export type ModelTrainingFilterInput = {
   id?: ModelIDInput | null;
-  trainingDay?: ModelStringInput | null;
+  trainingDate?: ModelStringInput | null;
+  statut?: ModelBooleanInput | null;
+  athleteCategory?: ModelStringInput | null;
+  trainingTime?: ModelStringInput | null;
   and?: Array<ModelTrainingFilterInput | null> | null;
   or?: Array<ModelTrainingFilterInput | null> | null;
   not?: ModelTrainingFilterInput | null;
+};
+
+export type BatchAddTrainingMutation = {
+  __typename: "Training";
+  id: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
+  athleteAttending: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type CreateUserMutation = {
@@ -215,9 +250,13 @@ export type CreateUserMutation = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type UpdateUserMutation = {
@@ -242,9 +281,13 @@ export type UpdateUserMutation = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type DeleteUserMutation = {
@@ -269,15 +312,22 @@ export type DeleteUserMutation = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type CreateTrainingMutation = {
   __typename: "Training";
   id: string;
-  trainingDay: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
@@ -286,15 +336,22 @@ export type CreateTrainingMutation = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type UpdateTrainingMutation = {
   __typename: "Training";
   id: string;
-  trainingDay: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
@@ -303,15 +360,22 @@ export type UpdateTrainingMutation = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type DeleteTrainingMutation = {
   __typename: "Training";
   id: string;
-  trainingDay: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
@@ -320,9 +384,13 @@ export type DeleteTrainingMutation = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type CreateAthleteAttendenceMutation = {
@@ -333,11 +401,16 @@ export type CreateAthleteAttendenceMutation = {
   training: {
     __typename: "Training";
     id: string;
-    trainingDay: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
     athleteAttending: {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   athlete: {
     __typename: "User";
@@ -357,8 +430,12 @@ export type CreateAthleteAttendenceMutation = {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   attending: boolean | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type UpdateAthleteAttendenceMutation = {
@@ -369,11 +446,16 @@ export type UpdateAthleteAttendenceMutation = {
   training: {
     __typename: "Training";
     id: string;
-    trainingDay: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
     athleteAttending: {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   athlete: {
     __typename: "User";
@@ -393,8 +475,12 @@ export type UpdateAthleteAttendenceMutation = {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   attending: boolean | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type DeleteAthleteAttendenceMutation = {
@@ -405,11 +491,16 @@ export type DeleteAthleteAttendenceMutation = {
   training: {
     __typename: "Training";
     id: string;
-    trainingDay: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
     athleteAttending: {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   athlete: {
     __typename: "User";
@@ -429,8 +520,12 @@ export type DeleteAthleteAttendenceMutation = {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   attending: boolean | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type GetUserQuery = {
@@ -455,9 +550,13 @@ export type GetUserQuery = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ListUsersQuery = {
@@ -480,6 +579,8 @@ export type ListUsersQuery = {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   } | null> | null;
   nextToken: string | null;
 };
@@ -487,7 +588,10 @@ export type ListUsersQuery = {
 export type GetTrainingQuery = {
   __typename: "Training";
   id: string;
-  trainingDay: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
@@ -496,9 +600,13 @@ export type GetTrainingQuery = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ListTrainingsQuery = {
@@ -506,11 +614,16 @@ export type ListTrainingsQuery = {
   items: Array<{
     __typename: "Training";
     id: string;
-    trainingDay: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
     athleteAttending: {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   } | null> | null;
   nextToken: string | null;
 };
@@ -537,9 +650,13 @@ export type OnCreateUserSubscription = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnUpdateUserSubscription = {
@@ -564,9 +681,13 @@ export type OnUpdateUserSubscription = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnDeleteUserSubscription = {
@@ -591,15 +712,22 @@ export type OnDeleteUserSubscription = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnCreateTrainingSubscription = {
   __typename: "Training";
   id: string;
-  trainingDay: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
@@ -608,15 +736,22 @@ export type OnCreateTrainingSubscription = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnUpdateTrainingSubscription = {
   __typename: "Training";
   id: string;
-  trainingDay: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
@@ -625,15 +760,22 @@ export type OnUpdateTrainingSubscription = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnDeleteTrainingSubscription = {
   __typename: "Training";
   id: string;
-  trainingDay: string;
+  trainingDate: string;
+  statut: boolean | null;
+  athleteCategory: string | null;
+  trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
     items: Array<{
@@ -642,9 +784,13 @@ export type OnDeleteTrainingSubscription = {
       trainingID: string;
       athleteID: string;
       attending: boolean | null;
+      createdAt: string;
+      updatedAt: string;
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnCreateAthleteAttendenceSubscription = {
@@ -655,11 +801,16 @@ export type OnCreateAthleteAttendenceSubscription = {
   training: {
     __typename: "Training";
     id: string;
-    trainingDay: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
     athleteAttending: {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   athlete: {
     __typename: "User";
@@ -679,8 +830,12 @@ export type OnCreateAthleteAttendenceSubscription = {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   attending: boolean | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnUpdateAthleteAttendenceSubscription = {
@@ -691,11 +846,16 @@ export type OnUpdateAthleteAttendenceSubscription = {
   training: {
     __typename: "Training";
     id: string;
-    trainingDay: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
     athleteAttending: {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   athlete: {
     __typename: "User";
@@ -715,8 +875,12 @@ export type OnUpdateAthleteAttendenceSubscription = {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   attending: boolean | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type OnDeleteAthleteAttendenceSubscription = {
@@ -727,11 +891,16 @@ export type OnDeleteAthleteAttendenceSubscription = {
   training: {
     __typename: "Training";
     id: string;
-    trainingDay: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
     athleteAttending: {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   athlete: {
     __typename: "User";
@@ -751,14 +920,55 @@ export type OnDeleteAthleteAttendenceSubscription = {
       __typename: "ModelAthleteAttendenceConnection";
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
   };
   attending: boolean | null;
+  createdAt: string;
+  updatedAt: string;
 };
 
 @Injectable({
   providedIn: "root"
 })
 export class APIService {
+  async BatchAddTraining(
+    training?: Array<CreateTrainingInput | null>
+  ): Promise<Array<BatchAddTrainingMutation>> {
+    const statement = `mutation BatchAddTraining($training: [CreateTrainingInput]) {
+        batchAddTraining(training: $training) {
+          __typename
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          athleteAttending {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (training) {
+      gqlAPIServiceArguments.training = training;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <Array<BatchAddTrainingMutation>>response.data.batchAddTraining;
+  }
   async CreateUser(
     input: CreateUserInput,
     condition?: ModelUserConditionInput
@@ -786,9 +996,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -829,9 +1043,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -872,9 +1090,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -896,7 +1118,10 @@ export class APIService {
         createTraining(input: $input, condition: $condition) {
           __typename
           id
-          trainingDay
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
           athleteAttending {
             __typename
             items {
@@ -905,9 +1130,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -929,7 +1158,10 @@ export class APIService {
         updateTraining(input: $input, condition: $condition) {
           __typename
           id
-          trainingDay
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
           athleteAttending {
             __typename
             items {
@@ -938,9 +1170,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -962,7 +1198,10 @@ export class APIService {
         deleteTraining(input: $input, condition: $condition) {
           __typename
           id
-          trainingDay
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
           athleteAttending {
             __typename
             items {
@@ -971,9 +1210,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1000,11 +1243,16 @@ export class APIService {
           training {
             __typename
             id
-            trainingDay
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
             athleteAttending {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           athlete {
             __typename
@@ -1024,8 +1272,12 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           attending
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1054,11 +1306,16 @@ export class APIService {
           training {
             __typename
             id
-            trainingDay
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
             athleteAttending {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           athlete {
             __typename
@@ -1078,8 +1335,12 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           attending
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1108,11 +1369,16 @@ export class APIService {
           training {
             __typename
             id
-            trainingDay
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
             athleteAttending {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           athlete {
             __typename
@@ -1132,8 +1398,12 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           attending
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1173,9 +1443,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1212,6 +1486,8 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           nextToken
         }
@@ -1236,7 +1512,10 @@ export class APIService {
         getTraining(id: $id) {
           __typename
           id
-          trainingDay
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
           athleteAttending {
             __typename
             items {
@@ -1245,9 +1524,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1269,11 +1552,16 @@ export class APIService {
           items {
             __typename
             id
-            trainingDay
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
             athleteAttending {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           nextToken
         }
@@ -1318,9 +1606,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1351,9 +1643,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1384,9 +1680,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1400,7 +1700,10 @@ export class APIService {
         onCreateTraining {
           __typename
           id
-          trainingDay
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
           athleteAttending {
             __typename
             items {
@@ -1409,9 +1712,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1425,7 +1732,10 @@ export class APIService {
         onUpdateTraining {
           __typename
           id
-          trainingDay
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
           athleteAttending {
             __typename
             items {
@@ -1434,9 +1744,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1450,7 +1764,10 @@ export class APIService {
         onDeleteTraining {
           __typename
           id
-          trainingDay
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
           athleteAttending {
             __typename
             items {
@@ -1459,9 +1776,13 @@ export class APIService {
               trainingID
               athleteID
               attending
+              createdAt
+              updatedAt
             }
             nextToken
           }
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1480,11 +1801,16 @@ export class APIService {
           training {
             __typename
             id
-            trainingDay
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
             athleteAttending {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           athlete {
             __typename
@@ -1504,8 +1830,12 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           attending
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1524,11 +1854,16 @@ export class APIService {
           training {
             __typename
             id
-            trainingDay
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
             athleteAttending {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           athlete {
             __typename
@@ -1548,8 +1883,12 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           attending
+          createdAt
+          updatedAt
         }
       }`
     )
@@ -1568,11 +1907,16 @@ export class APIService {
           training {
             __typename
             id
-            trainingDay
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
             athleteAttending {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           athlete {
             __typename
@@ -1592,8 +1936,12 @@ export class APIService {
               __typename
               nextToken
             }
+            createdAt
+            updatedAt
           }
           attending
+          createdAt
+          updatedAt
         }
       }`
     )

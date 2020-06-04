@@ -83,17 +83,17 @@
         "triggerFunction": {
             "Type": "String"
         },
-        "functioncreateTrainingArn": {
+        "functioncreatetrainingArn": {
             "Type": "String",
-            "Default": "functioncreateTrainingArn"
+            "Default": "functioncreatetrainingArn"
         },
-        "functioncreateTrainingName": {
+        "functioncreatetrainingName": {
             "Type": "String",
-            "Default": "functioncreateTrainingName"
+            "Default": "functioncreatetrainingName"
         },
-        "functioncreateTrainingLambdaExecutionRole": {
+        "functioncreatetrainingLambdaExecutionRole": {
             "Type": "String",
-            "Default": "functioncreateTrainingLambdaExecutionRole"
+            "Default": "functioncreatetrainingLambdaExecutionRole"
         }
     },
     "Conditions": {
@@ -274,13 +274,13 @@
                         {
                             "Event": "s3:ObjectCreated:*",
                             "Function": {
-                                "Ref": "functioncreateTrainingArn"
+                                "Ref": "functioncreatetrainingArn"
                             }
                         },
                         {
                             "Event": "s3:ObjectRemoved:*",
                             "Function": {
-                                "Ref": "functioncreateTrainingArn"
+                                "Ref": "functioncreatetrainingArn"
                             }
                         }
                     ]
@@ -725,7 +725,7 @@
                 "PolicyName": "s3-trigger-lambda-execution-policy",
                 "Roles": [
                     {
-                        "Ref": "functioncreateTrainingLambdaExecutionRole"
+                        "Ref": "functioncreatetrainingLambdaExecutionRole"
                     }
                 ],
                 "PolicyDocument": {
@@ -763,7 +763,7 @@
             "Properties": {
                 "Action": "lambda:InvokeFunction",
                 "FunctionName": {
-                    "Ref": "functioncreateTrainingName"
+                    "Ref": "functioncreatetrainingName"
                 },
                 "Principal": "s3.amazonaws.com",
                 "SourceAccount": {

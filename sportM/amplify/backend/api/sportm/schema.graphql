@@ -45,5 +45,3 @@ input CreateTrainingInput {
 type Mutation {
   batchAddTraining(training: [CreateTrainingInput]): [Training]
 }
-
-

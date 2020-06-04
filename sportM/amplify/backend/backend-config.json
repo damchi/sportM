@@ -1,6 +1,6 @@
 {
     "auth": {
-        "sportm745bb06d": {
+        "sportm229570a4": {
             "service": "Cognito",
             "providerPlugin": "awscloudformation",
             "dependsOn": []
@@ -16,35 +16,11 @@
                     "defaultAuthentication": {
                         "authenticationType": "AMAZON_COGNITO_USER_POOLS",
                         "userPoolConfig": {
-                            "userPoolId": "authsportm745bb06d"
+                            "userPoolId": "authsportm229570a4"
                         }
                     }
                 }
             }
-        }
-    },
-    "function": {
-        "createTraining": {
-            "build": true,
-            "providerPlugin": "awscloudformation",
-            "service": "Lambda",
-            "dependsOn": [
-                {
-                    "category": "api",
-                    "resourceName": "sportm",
-                    "attributes": [
-                        "GraphQLAPIIdOutput",
-                        "GraphQLAPIEndpointOutput"
-                    ]
-                },
-                {
-                    "category": "auth",
-                    "resourceName": "sportm745bb06d",
-                    "attributes": [
-                        "UserPoolId"
-                    ]
-                }
-            ]
         }
     },
     "storage": {
@@ -54,11 +30,35 @@
             "dependsOn": [
                 {
                     "category": "function",
-                    "resourceName": "createTraining",
+                    "resourceName": "createtraining",
                     "attributes": [
                         "Name",
                         "Arn",
                         "LambdaExecutionRole"
+                    ]
+                }
+            ]
+        }
+    },
+    "function": {
+        "createtraining": {
+            "build": true,
+            "providerPlugin": "awscloudformation",
+            "service": "Lambda",
+            "dependsOn": [
+                {
+                    "category": "auth",
+                    "resourceName": "sportm229570a4",
+                    "attributes": [
+                        "UserPoolId"
+                    ]
+                },
+                {
+                    "category": "api",
+                    "resourceName": "sportm",
+                    "attributes": [
+                        "GraphQLAPIIdOutput",
+                        "GraphQLAPIEndpointOutput"
                     ]
                 }
             ]

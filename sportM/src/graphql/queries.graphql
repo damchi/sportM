@@ -19,9 +19,13 @@ query GetUser($id: ID!) {
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 query ListUsers(
@@ -46,6 +50,8 @@ query ListUsers(
       training {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     nextToken
   }
@@ -53,16 +59,23 @@ query ListUsers(
 query GetTraining($id: ID!) {
   getTraining(id: $id) {
     id
-    trainingDay
+    trainingDate
+    statut
+    athleteCategory
+    trainingTime
     athleteAttending {
       items {
         id
         trainingID
         athleteID
         attending
+        createdAt
+        updatedAt
       }
       nextToken
     }
+    createdAt
+    updatedAt
   }
 }
 query ListTrainings(
@@ -73,10 +86,15 @@ query ListTrainings(
   listTrainings(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      trainingDay
+      trainingDate
+      statut
+      athleteCategory
+      trainingTime
       athleteAttending {
         nextToken
       }
+      createdAt
+      updatedAt
     }
     nextToken
   }

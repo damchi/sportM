@@ -1,12 +1,3 @@
-/* Amplify Params - DO NOT EDIT
-   API_SPORTM_GRAPHQLAPIIDOUTPUT
-   API_SPORTM_TRAININGTABLE_ARN
-   API_SPORTM_TRAININGTABLE_NAME
-   AUTH_SPORTM745BB06D_USERPOOLID
-   ENV
-   REGION
-Amplify Params - DO NOT EDIT */
-
 let AWS = require('aws-sdk');
 let s3 = new AWS.S3();
 //TODO: update to layers when available for amplify
@@ -53,4 +44,3 @@ exports.handler = async (event) => {
     return false;
   }
 };
-

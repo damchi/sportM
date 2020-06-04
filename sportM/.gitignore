@@ -45,6 +45,11 @@ testem.log
 .DS_Store
 Thumbs.db
 
+
+#intelij
+.idea
+workspace.xml
+
 #amplify
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -59,10 +64,4 @@ awsconfiguration.json
 amplifyconfiguration.json
 amplify-build-config.json
 amplify-gradle-config.json
-amplifyxc.config
-
-
-#intelij
-.idea
-workspace.xml
-
+amplifytools.xcconfig
