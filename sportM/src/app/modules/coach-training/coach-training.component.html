@@ -57,46 +57,45 @@
   </table>
 </div>
 
-<div class="head">
-  <div>Trainings </div>
-  <button mat-raised-button>New training</button>
-</div>
-
-<div class="desktop">
+<div class="desktop" *ngIf="isLoadedTraining">
+  <div class="head">
+    <div>Trainings </div>
+    <button mat-raised-button>New training</button>
+  </div>
 
   <table  mat-table [dataSource]="trainings">
     <ng-container matColumnDef="member">
       <th mat-header-cell *matHeaderCellDef>Category</th>
       <td mat-cell *matCellDef="let element">
-        <div>{{element.memberCategory}}</div>
+        <div>{{element.athleteCategory}}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="day">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef>Day</th>
       <td mat-cell *matCellDef="let element">
-        <div>{{element.name}}</div>
+        <div>{{getDateToString(element.trainingDate)}}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="time">
       <th mat-header-cell *matHeaderCellDef>Start</th>
       <td mat-cell *matCellDef="let element">
-        <div>{{getDateToString(element.start)}}</div>
+        <div>{{element.trainingTime}}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="attendee">
-      <th mat-header-cell *matHeaderCellDef>End</th>
+      <th mat-header-cell *matHeaderCellDef>Attendee</th>
       <td mat-cell *matCellDef="let element">
-        <div>{{getDateToString(element.end)}}</div>
+        <div>{{element.athleteAttending}}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="statut">
       <th mat-header-cell *matHeaderCellDef>Type</th>
       <td mat-cell *matCellDef="let element">
-        <div>{{getDaysToString(element.daysOfTheWeek)}}</div>
+        <div>{{element.statut}}</div>
       </td>
     </ng-container>
 

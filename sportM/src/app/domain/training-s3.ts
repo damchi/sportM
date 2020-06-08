@@ -3,9 +3,9 @@ export class TrainingS3 {
   name: string;
   start: string;
   end: string;
-  memberCategory: string
-  time: any
-  daysOfTheWeek: any []
+  memberCategory: string;
+  time: any;
+  daysOfTheWeek: any [];
 
   constructor(id?: string, name?: string, start?: string, end?: string, memberCategory?: string, daysOfTheWeek?: any[], time?: any) {
     this.id = id;

@@ -8,6 +8,8 @@ import moment from "moment";
 import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
 import {Training} from "../../domain/training";
 import {CoachTrainingService} from "../../services/coach-training.service";
+import {APIService} from "../../API.service";
+import {filter} from "rxjs/operators";
 
 
 @Component({
@@ -23,21 +25,25 @@ export class CoachTrainingComponent implements OnInit {
   public trainingS3: TrainingS3;
   public trainings: Training[];
   public training: Training;
+  public test = new Training();
   public days = [];
   public list = [];
   public isLoadedS3: boolean = false;
+  public isLoadedTraining: boolean = false;
 
 
-  constructor(public dialog: MatDialog, private serviceS3: S3Service, private service: CoachTrainingService) {
+  constructor(public dialog: MatDialog, private serviceS3: S3Service, private service: CoachTrainingService, private api: APIService) {
+
   }
 
   ngOnInit() {
     Auth.currentAuthenticatedUser({
       bypassCache: false
-    }).then(() => {
-      this.getTrainingDB().then((t)=> console.log(t));
+    }).then(async () => {
+      await this.getTrainingDB();
     })
       .catch(err => console.error(err));
+
     this.getTrainingS3();
   }
 
@@ -94,15 +100,33 @@ export class CoachTrainingComponent implements OnInit {
   }
 
   async getTrainingDB() {
-    let now ="2020-06-01";
-    let end = "2020-06-07"
+    console.log(this.trainings);
+    this.trainings = [];
+    let now = moment().format("YYYY-MM-DD");
+    let end = "2020-06-15"
     let range = {
-      trainingDate:{
-        gt:now,
-        lt: end
+      trainingDate: {
+        ge: now,
+        le: end
       }
     }
-    await this.service.getTrainings(range).then(t => console.log(t));
+    await this.service.getTrainings(range).then((training) => {
+      console.log(training.items);
+
+      for (let i = 0; i < training.items.length; i++) {
+        console.log(training.items[i].id);
+        this.trainings[i] = {
+          id: training.items[i].id,
+          trainingDate: training.items[i].trainingDate,
+          trainingTime: training.items[i].trainingTime,
+          athleteCategory: training.items[i].athleteCategory,
+          statut: training.items[i].statut,
+          athleteAttending: training.items[i].athleteAttending
+        };
+      }
+      console.log(this.trainings);
+      this.isLoadedTraining = true
+    });
   }
 
   getKeyListFromS3() {
