@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {PopupNewTrainingComponent} from "../../components/popup-new-training/popup-new-training.component";
+import {PopupNewTrainingS3Component} from "../../components/popup-new-training-s3/popup-new-training-s3.component";
 import {TrainingS3} from "../../domain/training-s3";
 import {S3Service} from "../../services/s3.service";
 import {Auth, Storage} from "aws-amplify";
@@ -8,8 +8,7 @@ import moment from "moment";
 import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
 import {Training} from "../../domain/training";
 import {CoachTrainingService} from "../../services/coach-training.service";
-import {APIService} from "../../API.service";
-import {filter} from "rxjs/operators";
+import {PopupNewTrainingDBComponent} from "../../components/popup-new-training-db/popup-new-training-db.component";
 
 
 @Component({
@@ -32,7 +31,7 @@ export class CoachTrainingComponent implements OnInit {
   public isLoadedTraining: boolean = false;
 
 
-  constructor(public dialog: MatDialog, private serviceS3: S3Service, private service: CoachTrainingService, private api: APIService) {
+  constructor(public dialog: MatDialog, private serviceS3: S3Service, private service: CoachTrainingService) {
 
   }
 
@@ -48,7 +47,7 @@ export class CoachTrainingComponent implements OnInit {
   }
 
   newTrainingS3(training?: TrainingS3) {
-    const dialogPop = this.dialog.open(PopupNewTrainingComponent, {
+    const dialogPop = this.dialog.open(PopupNewTrainingS3Component, {
       width: '750px',
       data: {
         training: training || new TrainingS3(),
@@ -65,8 +64,41 @@ export class CoachTrainingComponent implements OnInit {
 
   }
 
+  newTrainingDB(training?: Training) {
+    const dialogPop = this.dialog.open(PopupNewTrainingDBComponent, {
+      width: '750px',
+      data: {
+        training: training || new Training(),
+      }
+    });
 
-  saveToS3(training, trainingJson) {
+    dialogPop.afterClosed().subscribe(result => {
+      if (result) {
+        // saveAs(result.trainingJson, ;
+        this.saveToDB(result);
+      }
+    });
+
+  }
+
+
+  saveToDB(training: Training) {
+    if (training.id != null) {
+      this.service.updateTrainingDb(training).then(() => {
+          this.isLoadedTraining = false
+          return this.getTrainingDB();
+        }
+      )
+    } else {
+      this.service.saveTrainingDb(training).then(() => {
+          this.isLoadedTraining = false;
+          return this.getTrainingDB();
+        }
+      )
+    }
+  }
+
+  saveToS3(training: TrainingS3, trainingJson: Blob) {
     Storage.put('new/' + training.name.split(" ").join('_') + '.json',
       trainingJson,
       {
@@ -100,10 +132,12 @@ export class CoachTrainingComponent implements OnInit {
   }
 
   async getTrainingDB() {
-    console.log(this.trainings);
     this.trainings = [];
     let now = moment().format("YYYY-MM-DD");
-    let end = "2020-06-15"
+    let end = moment(now,"YYYY-MM-DD").add(7,'days');
+    console.log(now);
+    console.log(end);
+
     let range = {
       trainingDate: {
         ge: now,
@@ -111,20 +145,16 @@ export class CoachTrainingComponent implements OnInit {
       }
     }
     await this.service.getTrainings(range).then((training) => {
-      console.log(training.items);
-
       for (let i = 0; i < training.items.length; i++) {
-        console.log(training.items[i].id);
         this.trainings[i] = {
           id: training.items[i].id,
           trainingDate: training.items[i].trainingDate,
           trainingTime: training.items[i].trainingTime,
           athleteCategory: training.items[i].athleteCategory,
           statut: training.items[i].statut,
-          athleteAttending: training.items[i].athleteAttending
+          athleteAttending: null
         };
       }
-      console.log(this.trainings);
       this.isLoadedTraining = true
     });
   }
@@ -133,7 +163,7 @@ export class CoachTrainingComponent implements OnInit {
     return Storage.list('new/');
   }
 
-  getJsonFromS3(key) {
+  getJsonFromS3(key: string) {
     Storage.get(key, {level: 'public', download: true})
       .then(result => {
         this.trainingsS3.push(JSON.parse(this.serviceS3.Utf8ArrayToStr(result['Body'])));
@@ -151,7 +181,7 @@ export class CoachTrainingComponent implements OnInit {
     return moment(date).format("dddd, MMMM Do YYYY");
   }
 
-  getDaysToString(days) {
+  getDaysToString(days: string[]) {
     this.days = [];
     days.forEach(r => {
       this.days.push(moment().startOf('isoWeek').isoWeekday(r).format('dddd'));
@@ -176,6 +206,23 @@ export class CoachTrainingComponent implements OnInit {
     });
   }
 
+  deleteTrainingDB(training: Training) {
+    this.training = training;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: {
+        title: 'Delete',
+        message: 'Are you sure to delete this training ?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.doDeleteTrainingDB();
+      }
+    });
+  }
+
   refresh() {
     this.isLoadedS3 = false;
     this.trainingsS3 = [];
@@ -189,5 +236,15 @@ export class CoachTrainingComponent implements OnInit {
         this.refresh();
       })
       .catch(err => console.log(err));
+  }
+
+  doDeleteTrainingDB() {
+    let input = {
+      id: this.training.id
+    }
+    this.service.deleteTrainingDB(input).then(() => {
+      this.isLoadedTraining = false;
+      return this.getTrainingDB();
+    })
   }
 }

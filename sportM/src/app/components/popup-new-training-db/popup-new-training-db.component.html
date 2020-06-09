@@ -1,0 +1,69 @@
+<h1 mat-dialog-title> {{data.training.id ? 'Update training' : 'New training'}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="trainFormDb">
+
+
+    <mat-form-field>
+      <mat-label>Training Date:</mat-label>
+      <input matInput [matDatepicker]="pickerStart" formControlName="trainingDate" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+      <mat-datepicker #pickerStart></mat-datepicker>
+      <mat-error *ngFor="let validation of errorMessages.trainingTime">
+        <mat-error class="error-message" *ngIf="trainFormDb.get('trainingDate').hasError(validation.type) &&
+          (trainFormDb.get('trainingDate').dirty || trainFormDb.get('trainingDate').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Time:</mat-label>
+      <div class="12hr-example">
+        <input matInput formControlName="trainingTime" aria-label="12hr format" [ngxTimepicker]="default" readonly>
+      </div>
+      <ngx-material-timepicker #default></ngx-material-timepicker>
+
+      <mat-error *ngFor="let validation of errorMessages.trainingTime">
+        <mat-error class="error-message" *ngIf="trainFormDb.get('trainingTime').hasError(validation.type) &&
+          (trainFormDb.get('trainingTime').dirty || trainFormDb.get('trainingTime').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Membership type</mat-label>
+      <mat-select formControlName="athleteCategory">
+        <mat-option *ngFor="let membershipType of membershipType"
+                    [value]="membershipType.id">{{membershipType.type}}</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.athleteCategory">
+        <mat-error class="error-message" *ngIf="trainFormDb.get('athleteCategory').hasError(validation.type) &&
+          (trainFormDb.get('athleteCategory').dirty || trainFormDb.get('athleteCategory').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Statut</mat-label>
+      <mat-select formControlName="statut">
+<!--        <mat-option *ngFor="let statut of statut" [value]="statut.id">{{statut.type}}</mat-option>-->
+        <mat-option [value]="true">Active</mat-option>
+        <mat-option [value]="false">Inactive</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.statut">
+        <mat-error class="error-message" *ngIf="trainFormDb.get('statut').hasError(validation.type) &&
+          (trainFormDb.get('statut').dirty || trainFormDb.get('statut').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="close()">Annuler</button>
+      <button mat-button color="primary" mat-raised-button
+              (click)="create()">{{data.training.id ? 'Update' : 'Create'}}
+      </button>
+    </div>
+
+  </form>
+</div>

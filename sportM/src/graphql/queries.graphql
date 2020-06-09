@@ -14,14 +14,6 @@ query GetUser($id: ID!) {
     sex
     status
     training {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -47,9 +39,6 @@ query ListUsers(
       side
       sex
       status
-      training {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -64,14 +53,6 @@ query GetTraining($id: ID!) {
     athleteCategory
     trainingTime
     athleteAttending {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -90,9 +71,6 @@ query ListTrainings(
       statut
       athleteCategory
       trainingTime
-      athleteAttending {
-        nextToken
-      }
       createdAt
       updatedAt
     }

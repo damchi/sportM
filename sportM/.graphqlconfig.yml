@@ -1,6 +1,6 @@
 projects:
-  sportm:
-    schemaPath: src/graphql/schema.json
+  sportm-dev:
+    schemaPath: amplify/src/graphql/schema.json
     includes:
       - src/graphql/**/*.graphql
     excludes:
@@ -10,6 +10,9 @@ projects:
         codeGenTarget: angular
         generatedFileName: src/app/API.service.ts
         docsFilePath: src/graphql
+        region: us-east-1
+        apiId: 7mljvmanhjhkpfkqigakb2x3fu
+        maxDepth: 2
 extensions:
   amplify:
     version: 3
