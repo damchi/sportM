@@ -31,12 +31,12 @@ export class ErrorMessages {
 
 @Component({
   selector: 'app-popup-new-training',
-  templateUrl: './popup-new-training.component.html',
-  styleUrls: ['./popup-new-training.component.css']
+  templateUrl: './popup-new-training-s3.component.html',
+  styleUrls: ['./popup-new-training-s3.component.css']
 })
 
 
-export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
+export class PopupNewTrainingS3Component extends MarkAsTouch implements OnInit {
   public trainForm: FormGroup;
   public errorMessages: ErrorMessages;
   public membershipType: Membership[];
@@ -46,7 +46,7 @@ export class PopupNewTrainingComponent extends MarkAsTouch implements OnInit {
   constructor(private fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA)
               public data: PopupEntrainement,
-              public dialogPop: MatDialogRef<PopupNewTrainingComponent>,
+              public dialogPop: MatDialogRef<PopupNewTrainingS3Component>,
   ) {
     super();
   }

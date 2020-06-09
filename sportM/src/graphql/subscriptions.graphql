@@ -14,14 +14,6 @@ subscription OnCreateUser {
     sex
     status
     training {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -43,14 +35,6 @@ subscription OnUpdateUser {
     sex
     status
     training {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -72,14 +56,6 @@ subscription OnDeleteUser {
     sex
     status
     training {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -94,14 +70,6 @@ subscription OnCreateTraining {
     athleteCategory
     trainingTime
     athleteAttending {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -116,14 +84,6 @@ subscription OnUpdateTraining {
     athleteCategory
     trainingTime
     athleteAttending {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -138,14 +98,6 @@ subscription OnDeleteTraining {
     athleteCategory
     trainingTime
     athleteAttending {
-      items {
-        id
-        trainingID
-        athleteID
-        attending
-        createdAt
-        updatedAt
-      }
       nextToken
     }
     createdAt
@@ -163,9 +115,6 @@ subscription OnCreateAthleteAttendence {
       statut
       athleteCategory
       trainingTime
-      athleteAttending {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -182,9 +131,6 @@ subscription OnCreateAthleteAttendence {
       side
       sex
       status
-      training {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -204,9 +150,6 @@ subscription OnUpdateAthleteAttendence {
       statut
       athleteCategory
       trainingTime
-      athleteAttending {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -223,9 +166,6 @@ subscription OnUpdateAthleteAttendence {
       side
       sex
       status
-      training {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -245,9 +185,6 @@ subscription OnDeleteAthleteAttendence {
       statut
       athleteCategory
       trainingTime
-      athleteAttending {
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -264,9 +201,6 @@ subscription OnDeleteAthleteAttendence {
       side
       sex
       status
-      training {
-        nextToken
-      }
       createdAt
       updatedAt
     }

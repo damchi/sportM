@@ -31,7 +31,9 @@ exports.handler = async (event) => {
               "trainingDate": moment(m).format('YYYY-MM-DD'),
               "statut": true,
               "athleteCategory": objectHead.Metadata.trainingmembercategory,
-              "trainingTime": objectHead.Metadata.trainingtime
+              "trainingTime": objectHead.Metadata.trainingtime,
+              "createdAt":moment().format(),
+              "updatedAt":moment().format()
             }
           };
           await dynamodb.put(params).promise();

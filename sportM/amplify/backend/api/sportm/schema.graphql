@@ -36,12 +36,12 @@ type AthleteAttendence
   attending: Boolean
 }
 
-input CreateTrainingInput {
-  id: ID
-  trainingDay: AWSDate!
-  statut: Boolean
-  athleteCategory:String
-}
-type Mutation {
-  batchAddTraining(training: [CreateTrainingInput]): [Training]
-}
+#input CreateTrainingInput {
+#  id: ID
+#  trainingDate: AWSDate!
+#  statut: Boolean
+#  athleteCategory:String
+#}
+#type Mutation {
+#  batchAddTraining(training: [CreateTrainingInput]): [Training]
+#}

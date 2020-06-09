@@ -4,7 +4,6 @@ import moment from 'moment';
 import {Auth} from "aws-amplify";
 import {Athlete} from "../../domain/athlete";
 import {AthleteService} from "../../services/athlete.service";
-import {MatSelectChange} from "@angular/material/select";
 import {Training} from "../../domain/training";
 
 
@@ -84,8 +83,8 @@ export class AthleteTrainingComponent implements OnInit {
       for (let i = 0; i < keys.length; i++) {
         let key = keys[i];
         const split = t[key].split(',');
-        training.trainingDay = moment(split[0], 'dddd MMMM Do').format('YYYY-MM-DD');
-        training.status = split[1];
+        // training.trainingDay = moment(split[0], 'dddd MMMM Do').format('YYYY-MM-DD');
+        // training.statut = split[1];
         this.trainingAnswer.push(training)
       }
       console.log(this.trainingAnswer);

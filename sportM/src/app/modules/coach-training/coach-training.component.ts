@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {PopupNewTrainingComponent} from "../../components/popup-new-training/popup-new-training.component";
+import {PopupNewTrainingS3Component} from "../../components/popup-new-training-s3/popup-new-training-s3.component";
 import {TrainingS3} from "../../domain/training-s3";
 import {S3Service} from "../../services/s3.service";
-import {Storage} from "aws-amplify";
+import {Auth, Storage} from "aws-amplify";
 import moment from "moment";
 import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
+import {Training} from "../../domain/training";
+import {CoachTrainingService} from "../../services/coach-training.service";
+import {PopupNewTrainingDBComponent} from "../../components/popup-new-training-db/popup-new-training-db.component";
 
 
 @Component({
@@ -14,25 +17,37 @@ import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-di
   styleUrls: ['./coach-training.component.css']
 })
 export class CoachTrainingComponent implements OnInit {
-  public displayedColumns: string[] = ['member','name', 'start', 'end', 'daysOfTheWeek', 'option'];
-  public trainings: TrainingS3[] = [];
+  public displayedColumnsS3: string[] = ['member', 'name', 'start', 'end', 'daysOfTheWeek', 'option'];
+  public displayedColumns: string[] = ['member', 'day', 'time', 'attendee', 'statut', 'option'];
+  public trainingsS3: TrainingS3[] = [];
   public trainingJson: TrainingS3[] = [];
-  public training: TrainingS3;
-  public keys = [];
+  public trainingS3: TrainingS3;
+  public trainings: Training[];
+  public training: Training;
+  public test = new Training();
   public days = [];
   public list = [];
-  public isLoaded: boolean = false;
+  public isLoadedS3: boolean = false;
+  public isLoadedTraining: boolean = false;
 
 
-  constructor(public dialog: MatDialog, private serviceS3: S3Service) {
+  constructor(public dialog: MatDialog, private serviceS3: S3Service, private service: CoachTrainingService) {
+
   }
 
   ngOnInit() {
-    this.getS3TrainingNew();
+    Auth.currentAuthenticatedUser({
+      bypassCache: false
+    }).then(async () => {
+      await this.getTrainingDB();
+    })
+      .catch(err => console.error(err));
+
+    this.getTrainingS3();
   }
 
-  newTraining(training?: TrainingS3) {
-    const dialogPop = this.dialog.open(PopupNewTrainingComponent, {
+  newTrainingS3(training?: TrainingS3) {
+    const dialogPop = this.dialog.open(PopupNewTrainingS3Component, {
       width: '750px',
       data: {
         training: training || new TrainingS3(),
@@ -49,8 +64,41 @@ export class CoachTrainingComponent implements OnInit {
 
   }
 
+  newTrainingDB(training?: Training) {
+    const dialogPop = this.dialog.open(PopupNewTrainingDBComponent, {
+      width: '750px',
+      data: {
+        training: training || new Training(),
+      }
+    });
 
-  saveToS3(training, trainingJson) {
+    dialogPop.afterClosed().subscribe(result => {
+      if (result) {
+        // saveAs(result.trainingJson, ;
+        this.saveToDB(result);
+      }
+    });
+
+  }
+
+
+  saveToDB(training: Training) {
+    if (training.id != null) {
+      this.service.updateTrainingDb(training).then(() => {
+          this.isLoadedTraining = false
+          return this.getTrainingDB();
+        }
+      )
+    } else {
+      this.service.saveTrainingDb(training).then(() => {
+          this.isLoadedTraining = false;
+          return this.getTrainingDB();
+        }
+      )
+    }
+  }
+
+  saveToS3(training: TrainingS3, trainingJson: Blob) {
     Storage.put('new/' + training.name.split(" ").join('_') + '.json',
       trainingJson,
       {
@@ -70,7 +118,7 @@ export class CoachTrainingComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
-  getS3TrainingNew() {
+  getTrainingS3() {
     this.getKeyListFromS3()
       .then(
         resultList => {
@@ -83,20 +131,47 @@ export class CoachTrainingComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
+  async getTrainingDB() {
+    this.trainings = [];
+    let now = moment().format("YYYY-MM-DD");
+    let end = moment(now,"YYYY-MM-DD").add(7,'days');
+    console.log(now);
+    console.log(end);
+
+    let range = {
+      trainingDate: {
+        ge: now,
+        le: end
+      }
+    }
+    await this.service.getTrainings(range).then((training) => {
+      for (let i = 0; i < training.items.length; i++) {
+        this.trainings[i] = {
+          id: training.items[i].id,
+          trainingDate: training.items[i].trainingDate,
+          trainingTime: training.items[i].trainingTime,
+          athleteCategory: training.items[i].athleteCategory,
+          statut: training.items[i].statut,
+          athleteAttending: null
+        };
+      }
+      this.isLoadedTraining = true
+    });
+  }
+
   getKeyListFromS3() {
     return Storage.list('new/');
   }
 
-  getJsonFromS3(key) {
+  getJsonFromS3(key: string) {
     Storage.get(key, {level: 'public', download: true})
       .then(result => {
-        this.trainings.push(JSON.parse(this.serviceS3.Utf8ArrayToStr(result['Body'])));
-        console.log(this.trainings);
+        this.trainingsS3.push(JSON.parse(this.serviceS3.Utf8ArrayToStr(result['Body'])));
       })
 
       .then(() => {
-        if (this.trainings.length == this.list.length) {
-          this.isLoaded = true;
+        if (this.trainingsS3.length == this.list.length) {
+          this.isLoadedS3 = true;
         }
       })
       .catch(err => console.log(err));
@@ -106,7 +181,7 @@ export class CoachTrainingComponent implements OnInit {
     return moment(date).format("dddd, MMMM Do YYYY");
   }
 
-  getDaysToString(days) {
+  getDaysToString(days: string[]) {
     this.days = [];
     days.forEach(r => {
       this.days.push(moment().startOf('isoWeek').isoWeekday(r).format('dddd'));
@@ -114,8 +189,8 @@ export class CoachTrainingComponent implements OnInit {
     return this.days;
   }
 
-  deleteTraining(training: TrainingS3) {
-    this.training = training;
+  deleteTrainingS3(training: TrainingS3) {
+    this.trainingS3 = training;
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: {
@@ -126,23 +201,50 @@ export class CoachTrainingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.doDelete();
+        this.doDeleteTrainingS3();
+      }
+    });
+  }
+
+  deleteTrainingDB(training: Training) {
+    this.training = training;
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: {
+        title: 'Delete',
+        message: 'Are you sure to delete this training ?'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.doDeleteTrainingDB();
       }
     });
   }
 
   refresh() {
-    this.isLoaded = false;
-    this.trainings = [];
+    this.isLoadedS3 = false;
+    this.trainingsS3 = [];
     this.list = [];
-    this.getS3TrainingNew();
+    this.getTrainingS3();
   }
 
-  doDelete() {
-    Storage.remove('new/' + this.training.name.split(" ").join('_') + '.json', {level: 'public'})
+  doDeleteTrainingS3() {
+    Storage.remove('new/' + this.trainingS3.name.split(" ").join('_') + '.json', {level: 'public'})
       .then(() => {
         this.refresh();
       })
       .catch(err => console.log(err));
+  }
+
+  doDeleteTrainingDB() {
+    let input = {
+      id: this.training.id
+    }
+    this.service.deleteTrainingDB(input).then(() => {
+      this.isLoadedTraining = false;
+      return this.getTrainingDB();
+    })
   }
 }

@@ -6,13 +6,6 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import * as Observable from "zen-observable";
 
-export type CreateTrainingInput = {
-  id?: string | null;
-  trainingDay: string;
-  statut?: boolean | null;
-  athleteCategory?: string | null;
-};
-
 export type CreateUserInput = {
   id?: string | null;
   firstName: string;
@@ -110,6 +103,14 @@ export type DeleteUserInput = {
   id?: string | null;
 };
 
+export type CreateTrainingInput = {
+  id?: string | null;
+  trainingDate: string;
+  statut?: boolean | null;
+  athleteCategory?: string | null;
+  trainingTime?: string | null;
+};
+
 export type ModelTrainingConditionInput = {
   trainingDate?: ModelStringInput | null;
   statut?: ModelBooleanInput | null;
@@ -204,30 +205,6 @@ export type ModelTrainingFilterInput = {
   not?: ModelTrainingFilterInput | null;
 };
 
-export type BatchAddTrainingMutation = {
-  __typename: "Training";
-  id: string;
-  trainingDate: string;
-  statut: boolean | null;
-  athleteCategory: string | null;
-  trainingTime: string | null;
-  athleteAttending: {
-    __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
 export type CreateUserMutation = {
   __typename: "User";
   id: string;
@@ -244,15 +221,6 @@ export type CreateUserMutation = {
   status: boolean | null;
   training: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -275,15 +243,6 @@ export type UpdateUserMutation = {
   status: boolean | null;
   training: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -306,15 +265,6 @@ export type DeleteUserMutation = {
   status: boolean | null;
   training: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -330,15 +280,6 @@ export type CreateTrainingMutation = {
   trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -354,15 +295,6 @@ export type UpdateTrainingMutation = {
   trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -378,15 +310,6 @@ export type DeleteTrainingMutation = {
   trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -405,10 +328,6 @@ export type CreateAthleteAttendenceMutation = {
     statut: boolean | null;
     athleteCategory: string | null;
     trainingTime: string | null;
-    athleteAttending: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -426,10 +345,6 @@ export type CreateAthleteAttendenceMutation = {
     side: string | null;
     sex: string | null;
     status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -450,10 +365,6 @@ export type UpdateAthleteAttendenceMutation = {
     statut: boolean | null;
     athleteCategory: string | null;
     trainingTime: string | null;
-    athleteAttending: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -471,10 +382,6 @@ export type UpdateAthleteAttendenceMutation = {
     side: string | null;
     sex: string | null;
     status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -495,10 +402,6 @@ export type DeleteAthleteAttendenceMutation = {
     statut: boolean | null;
     athleteCategory: string | null;
     trainingTime: string | null;
-    athleteAttending: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -516,10 +419,6 @@ export type DeleteAthleteAttendenceMutation = {
     side: string | null;
     sex: string | null;
     status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -544,15 +443,6 @@ export type GetUserQuery = {
   status: boolean | null;
   training: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -575,10 +465,6 @@ export type ListUsersQuery = {
     side: string | null;
     sex: string | null;
     status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -594,15 +480,6 @@ export type GetTrainingQuery = {
   trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -618,10 +495,6 @@ export type ListTrainingsQuery = {
     statut: boolean | null;
     athleteCategory: string | null;
     trainingTime: string | null;
-    athleteAttending: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -644,15 +517,6 @@ export type OnCreateUserSubscription = {
   status: boolean | null;
   training: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -675,15 +539,6 @@ export type OnUpdateUserSubscription = {
   status: boolean | null;
   training: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -706,15 +561,6 @@ export type OnDeleteUserSubscription = {
   status: boolean | null;
   training: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -730,15 +576,6 @@ export type OnCreateTrainingSubscription = {
   trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -754,15 +591,6 @@ export type OnUpdateTrainingSubscription = {
   trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -778,15 +606,6 @@ export type OnDeleteTrainingSubscription = {
   trainingTime: string | null;
   athleteAttending: {
     __typename: "ModelAthleteAttendenceConnection";
-    items: Array<{
-      __typename: "AthleteAttendence";
-      id: string;
-      trainingID: string;
-      athleteID: string;
-      attending: boolean | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
     nextToken: string | null;
   } | null;
   createdAt: string;
@@ -805,10 +624,6 @@ export type OnCreateAthleteAttendenceSubscription = {
     statut: boolean | null;
     athleteCategory: string | null;
     trainingTime: string | null;
-    athleteAttending: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -826,10 +641,6 @@ export type OnCreateAthleteAttendenceSubscription = {
     side: string | null;
     sex: string | null;
     status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -850,10 +661,6 @@ export type OnUpdateAthleteAttendenceSubscription = {
     statut: boolean | null;
     athleteCategory: string | null;
     trainingTime: string | null;
-    athleteAttending: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -871,10 +678,6 @@ export type OnUpdateAthleteAttendenceSubscription = {
     side: string | null;
     sex: string | null;
     status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -895,10 +698,6 @@ export type OnDeleteAthleteAttendenceSubscription = {
     statut: boolean | null;
     athleteCategory: string | null;
     trainingTime: string | null;
-    athleteAttending: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -916,10 +715,6 @@ export type OnDeleteAthleteAttendenceSubscription = {
     side: string | null;
     sex: string | null;
     status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   };
@@ -932,43 +727,6 @@ export type OnDeleteAthleteAttendenceSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async BatchAddTraining(
-    training?: Array<CreateTrainingInput | null>
-  ): Promise<Array<BatchAddTrainingMutation>> {
-    const statement = `mutation BatchAddTraining($training: [CreateTrainingInput]) {
-        batchAddTraining(training: $training) {
-          __typename
-          id
-          trainingDate
-          statut
-          athleteCategory
-          trainingTime
-          athleteAttending {
-            __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (training) {
-      gqlAPIServiceArguments.training = training;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <Array<BatchAddTrainingMutation>>response.data.batchAddTraining;
-  }
   async CreateUser(
     input: CreateUserInput,
     condition?: ModelUserConditionInput
@@ -990,15 +748,6 @@ export class APIService {
           status
           training {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1037,15 +786,6 @@ export class APIService {
           status
           training {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1084,15 +824,6 @@ export class APIService {
           status
           training {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1124,15 +855,6 @@ export class APIService {
           trainingTime
           athleteAttending {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1164,15 +886,6 @@ export class APIService {
           trainingTime
           athleteAttending {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1204,15 +917,6 @@ export class APIService {
           trainingTime
           athleteAttending {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1247,10 +951,6 @@ export class APIService {
             statut
             athleteCategory
             trainingTime
-            athleteAttending {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1268,10 +968,6 @@ export class APIService {
             side
             sex
             status
-            training {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1310,10 +1006,6 @@ export class APIService {
             statut
             athleteCategory
             trainingTime
-            athleteAttending {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1331,10 +1023,6 @@ export class APIService {
             side
             sex
             status
-            training {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1373,10 +1061,6 @@ export class APIService {
             statut
             athleteCategory
             trainingTime
-            athleteAttending {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1394,10 +1078,6 @@ export class APIService {
             side
             sex
             status
-            training {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1437,15 +1117,6 @@ export class APIService {
           status
           training {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1482,10 +1153,6 @@ export class APIService {
             side
             sex
             status
-            training {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1518,15 +1185,6 @@ export class APIService {
           trainingTime
           athleteAttending {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1556,10 +1214,6 @@ export class APIService {
             statut
             athleteCategory
             trainingTime
-            athleteAttending {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1600,15 +1254,6 @@ export class APIService {
           status
           training {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1637,15 +1282,6 @@ export class APIService {
           status
           training {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1674,15 +1310,6 @@ export class APIService {
           status
           training {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1706,15 +1333,6 @@ export class APIService {
           trainingTime
           athleteAttending {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1738,15 +1356,6 @@ export class APIService {
           trainingTime
           athleteAttending {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1770,15 +1379,6 @@ export class APIService {
           trainingTime
           athleteAttending {
             __typename
-            items {
-              __typename
-              id
-              trainingID
-              athleteID
-              attending
-              createdAt
-              updatedAt
-            }
             nextToken
           }
           createdAt
@@ -1805,10 +1405,6 @@ export class APIService {
             statut
             athleteCategory
             trainingTime
-            athleteAttending {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1826,10 +1422,6 @@ export class APIService {
             side
             sex
             status
-            training {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1858,10 +1450,6 @@ export class APIService {
             statut
             athleteCategory
             trainingTime
-            athleteAttending {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1879,10 +1467,6 @@ export class APIService {
             side
             sex
             status
-            training {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1911,10 +1495,6 @@ export class APIService {
             statut
             athleteCategory
             trainingTime
-            athleteAttending {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
@@ -1932,10 +1512,6 @@ export class APIService {
             side
             sex
             status
-            training {
-              __typename
-              nextToken
-            }
             createdAt
             updatedAt
           }
