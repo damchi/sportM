@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {PopupNewTrainingS3Component} from "../../components/popup-new-training-s3/popup-new-training-s3.component";
 import {TrainingS3} from "../../domain/training-s3";
@@ -133,10 +133,8 @@ export class CoachTrainingComponent implements OnInit {
 
   async getTrainingDB() {
     this.trainings = [];
-    let now = moment().format("YYYY-MM-DD");
-    let end = moment(now,"YYYY-MM-DD").add(7,'days');
-    console.log(now);
-    console.log(end);
+    let now = moment().startOf('week');
+    let end = moment().endOf('week');
 
     let range = {
       trainingDate: {
@@ -144,7 +142,8 @@ export class CoachTrainingComponent implements OnInit {
         le: end
       }
     }
-    await this.service.getTrainings(range).then((training) => {
+    let limit= 10000;
+    await this.service.getTrainings(range,limit).then((training) => {
       for (let i = 0; i < training.items.length; i++) {
         this.trainings[i] = {
           id: training.items[i].id,
@@ -225,9 +224,12 @@ export class CoachTrainingComponent implements OnInit {
 
   refresh() {
     this.isLoadedS3 = false;
+    this.isLoadedTraining = false;
     this.trainingsS3 = [];
+    this.trainings = [];
     this.list = [];
     this.getTrainingS3();
+    this.getTrainingDB();
   }
 
   doDeleteTrainingS3() {

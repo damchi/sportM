@@ -6,7 +6,7 @@ import {ShareModule} from "../share/share.module";
 import {PopupNewTrainingS3Component} from 'src/app/components/popup-new-training-s3/popup-new-training-s3.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {PopupNewTrainingDBComponent} from "../../components/popup-new-training-db/popup-new-training-db.component";
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [CoachTrainingComponent, PopupNewTrainingS3Component,PopupNewTrainingDBComponent],
@@ -15,7 +15,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     CoachTrainingRoutingModule,
     ShareModule,
     NgxMaterialTimepickerModule,
-    MatSlideToggleModule
+    MatSortModule
   ],
   entryComponents: [PopupNewTrainingS3Component,PopupNewTrainingDBComponent]
 })

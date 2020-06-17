@@ -15,7 +15,8 @@ type User @model {
 
 }
 
-type Training @model {
+type Training @model
+{
   id: ID!
   trainingDate: AWSDate!
   statut: Boolean
@@ -33,15 +34,16 @@ type AthleteAttendence
   athleteID: ID!
   training: Training! @connection(fields: ["trainingID"])
   athlete: User! @connection(fields: ["athleteID"])
-  attending: Boolean
+  attending: String
 }
 
-#input CreateTrainingInput {
-#  id: ID
-#  trainingDate: AWSDate!
-#  statut: Boolean
-#  athleteCategory:String
-#}
-#type Mutation {
-#  batchAddTraining(training: [CreateTrainingInput]): [Training]
-#}
+input CreateAthleteAttendenceInput {
+  id: ID
+  trainingID: ID!
+  athleteID: ID!
+  attending: String
+}
+
+type Mutation {
+  batchAddAthleteAttendence(athleteAttendence: [CreateAthleteAttendenceInput]): [AthleteAttendence]
+}

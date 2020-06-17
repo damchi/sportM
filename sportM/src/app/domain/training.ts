@@ -4,10 +4,10 @@ export class Training {
   trainingTime: string;
   athleteCategory: string;
   statut: boolean;
-  athleteAttending: any
+  athleteAttending: any[]
 
   constructor(id?: string, status?: boolean,trainingDate?: string, trainingTime?: string,
-              athleteCategory?: string, athleteAttending?: any ) {
+              athleteCategory?: string, athleteAttending?: any[] ) {
     this.id = id;
     this.statut = status;
     this.trainingDate = trainingDate;

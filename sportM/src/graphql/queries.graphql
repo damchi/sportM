@@ -14,6 +14,39 @@ query GetUser($id: ID!) {
     sex
     status
     training {
+      items {
+        id
+        trainingID
+        athleteID
+        training {
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          createdAt
+          updatedAt
+        }
+        athlete {
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          createdAt
+          updatedAt
+        }
+        attending
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -39,6 +72,17 @@ query ListUsers(
       side
       sex
       status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -53,6 +97,39 @@ query GetTraining($id: ID!) {
     athleteCategory
     trainingTime
     athleteAttending {
+      items {
+        id
+        trainingID
+        athleteID
+        training {
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          createdAt
+          updatedAt
+        }
+        athlete {
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          createdAt
+          updatedAt
+        }
+        attending
+        createdAt
+        updatedAt
+      }
       nextToken
     }
     createdAt
@@ -71,6 +148,17 @@ query ListTrainings(
       statut
       athleteCategory
       trainingTime
+      athleteAttending {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
