@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {APIService} from "../API.service";
+import {APIService, CreateAthleteAttendenceInput, UpdateAthleteAttendenceInput} from "../API.service";
+import {AthleteAttendence} from "../domain/athlete-attendence";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,10 @@ export class AthleteTrainingService {
     return await this.api.ListTrainings(filter,limit);
   }
 
-  async saveTrainingsAttendences(athleteAttende){
+  async saveTrainingsAttendences(athleteAttende: CreateAthleteAttendenceInput[]){
     return await this.api.BatchAddAthleteAttendence(athleteAttende);
+  }
+  async updateTrainingsAttendences(athleteAttende: UpdateAthleteAttendenceInput){
+    return await this.api.UpdateAthleteAttendence(athleteAttende);
   }
 }

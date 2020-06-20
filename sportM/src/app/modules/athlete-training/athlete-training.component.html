@@ -4,17 +4,18 @@
     <div>
       <h3>Training dates for the week {{week}}</h3>
       <p>{{ this.athlete.membershipType !== 'competitive' ? 'Maximun of two "1st choice" and three "2nd choice"' : 'Maximun of four "1st choice"' }}</p>
-      <div *ngFor="let training of trainings; index as i" class="presence"  >
+      <div *ngFor="let training of trainings; index as i" class="presence">
         <mat-form-field>
           <mat-label>{{getDateToString(training.trainingDate)}} | {{training.trainingTime}}</mat-label>
-          <mat-select formControlName="presence{{i}}" >
-            <mat-option *ngFor="let choice of choice" [value]="choice.attending" [attr.data-trainingId]="training.id" (onSelectionChange)="onChange($event)">{{choice.type}}</mat-option>
+          <mat-select formControlName="presence{{i}}">
+            <mat-option *ngFor="let choice of choice" [value]="choice.attending" [attr.data-trainingId]="training.id"
+                        (onSelectionChange)="onChange($event)">{{choice.type}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </div>
 
-    <button mat-button mat-raised-button
+    <button mat-button mat-raised-button [disabled]="isWeekEnd()"
             (click)="create()">{{'Save'}}
     </button>
   </div>

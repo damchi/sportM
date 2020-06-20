@@ -108,7 +108,6 @@ export class AthleteTrainingComponent implements OnInit {
   }
 
 
-
   getAthlete(athleteId: string) {
     this.serviceAthleteTraining.getAthlete(athleteId).then(user => {
       if (user) {
@@ -125,6 +124,14 @@ export class AthleteTrainingComponent implements OnInit {
   displayMonth() {
     this.currentMonth = moment().format('MMMM');
     return this.currentMonth;
+  }
+
+  isWeekEnd() {
+    if (moment().days() == 6 || moment().days() == 0) {
+      return true
+    } else {
+      return false
+    }
   }
 
   checkNumberOfFirstChoice() {
@@ -155,14 +162,19 @@ export class AthleteTrainingComponent implements OnInit {
   }
 
   onChange(event) {
-    this.choiceSelected.push(event.source._element.nativeElement.dataset.trainingid)
+    const index = this.choiceSelected.indexOf(event.source._element.nativeElement.dataset.trainingid);
+    if ( index == -1){
+      this.choiceSelected.push(event.source._element.nativeElement.dataset.trainingid);
+    } else{
+      this.choiceSelected[index] =event.source._element.nativeElement.dataset.trainingid;
+    }
   }
 
   async create() {
     if (this.trainingAttendenceForm.valid && this.checkNumberOfFirstChoice()) {
       const formValue = this.trainingAttendenceForm.value;
-      if(this.athleteHasChoice == false){
-        let keys = Object.keys(formValue);
+      let keys = Object.keys(formValue);
+      if (this.athleteHasChoice == false) {
         for (let i = 0; i < keys.length; i++) {
           const attendence = new AthleteAttendence()
           attendence.trainingID = this.choiceSelected[i];
@@ -171,10 +183,24 @@ export class AthleteTrainingComponent implements OnInit {
           this.trainingAnswer.push(attendence);
         }
         await this.serviceAthleteTraining.saveTrainingsAttendences(this.trainingAnswer);
-      } else{
-        
+      } else {
+        for (let i = 0; i < this.trainings.length; i++) {
+          for (let y = 0; y < this.trainings[i].athleteAttending.length; y ++){
+            if (this.trainings[i].athleteAttending[y].athleteID == this.athlete.id &&
+              this.trainings[i].athleteAttending[y].trainingID.indexOf(this.choiceSelected) != -1){
+              console.log('in');
+              this.trainings[i].athleteAttending[y].choice = this.choiceSelected[i];
+              await this.serviceAthleteTraining.updateTrainingsAttendences(this.trainings[i].athleteAttending[y])
+              console.log(this.trainings[i]);
+              this.choiceSelected.shift();
+            }
+
+          }
+        }
       }
 
+
+      // this.athleteHasChoice = true;
     }
   }
 }
