@@ -1,0 +1,7 @@
+{
+  "choice": [
+    { "attending": "1stChoice", "type": "1st Choice" },
+    { "attending": "2ndChoice", "type": "2nd Choice" },
+    { "attending": "no", "type": "No" }
+  ]
+}

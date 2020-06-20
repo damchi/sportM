@@ -10,11 +10,6 @@
             "StackName": "amplify-sportm-dev-165842",
             "StackId": "arn:aws:cloudformation:us-east-1:137850098171:stack/amplify-sportm-dev-165842/034a7c30-a5dd-11ea-8224-0e403b617781",
             "AmplifyAppId": "dn4sdllhgch6d"
-        },
-        "categories": {
-            "auth": {
-                "sportm229570a4": {}
-            }
         }
     }
 }

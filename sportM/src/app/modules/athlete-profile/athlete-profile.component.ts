@@ -155,7 +155,6 @@ export class AthleteProfileComponent extends MarkAsTouch implements OnInit {
     }
   };
 
-
   async create() {
     if (this.profileForm.valid) {
       const profil = this.profileForm.value;
