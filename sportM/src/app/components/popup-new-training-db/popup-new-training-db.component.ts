@@ -36,7 +36,6 @@ export class PopupNewTrainingDBComponent extends MarkAsTouch implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.trainFormDb = this.fb.group({
       trainingDate: new FormControl(this.data.training.trainingDate, [Validators.required]),
       trainingTime: new FormControl(this.data.training.trainingTime, [Validators.required]),

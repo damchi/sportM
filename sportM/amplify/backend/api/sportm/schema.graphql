@@ -15,6 +15,19 @@ type User @model {
 
 }
 
+type Boat @model {
+  id: ID!
+  name: String!
+  ownership: String!
+  membershipType: String!
+  weightCategory: String!
+  sortOfBoat: String!
+  note: String
+  active: Boolean!
+  athleteAttending: [AthleteAttendence] @connection(keyName: "byBoat", fields: ["id"])
+
+}
+
 type Training @model
 {
   id: ID!
@@ -27,13 +40,16 @@ type Training @model
 
 type AthleteAttendence
 @model(queries: null)
+@key(name: "byBoat", fields: ["boatID", "trainingID","athleteID"])
 @key(name: "byTraining", fields: ["trainingID", "athleteID"])
 @key(name: "byAthlete", fields: ["athleteID", "trainingID"]) {
   id: ID!
   trainingID: ID!
   athleteID: ID!
+  boatID: ID!
   training: Training! @connection(fields: ["trainingID"])
   athlete: User! @connection(fields: ["athleteID"])
+  boat: Boat @connection(fields: ["boatID"])
   attending: String
 }
 
@@ -46,4 +62,7 @@ input CreateAthleteAttendenceInput {
 
 type Mutation {
   batchAddAthleteAttendence(athleteAttendence: [CreateAthleteAttendenceInput]): [AthleteAttendence]
+}
+type Query {
+  batchGetAthleteAttendence(userId:[ID]): [User]
 }

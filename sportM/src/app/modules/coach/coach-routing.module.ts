@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'training',
         loadChildren: () => import('../coach-training/coach-training.module').then(m => m.CoachTrainingModule)
       },
+      {
+        path: 'boatList',
+        loadChildren: () => import('../coach-boat-list/coach-boat-list.module').then(m => m.CoachBoatListModule)
+      },
       // {
       //   path: 'planning',
       //   loadChildren: () => import('../coach-planning/coach-planning.module').then(m => m.CoachPlanningModule)
