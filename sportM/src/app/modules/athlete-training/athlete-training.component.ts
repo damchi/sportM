@@ -5,7 +5,7 @@ import {Auth} from "aws-amplify";
 import {Athlete} from "../../domain/athlete";
 import {Training} from "../../domain/training";
 import {AthleteTrainingService} from "../../services/athlete-training.service";
-import {CreateAthleteAttendenceInput} from "../../API.service";
+import {CreateAthleteAttendenceInput, UpdateAthleteAttendenceInput} from "../../API.service";
 import {AthleteAttendence} from "../../domain/athlete-attendence";
 import * as choiceJson from "../../config/choice.json";
 import {Choice} from "../../domain/choice";
@@ -74,6 +74,7 @@ export class AthleteTrainingComponent implements OnInit {
     let limit = 10000;
     this.serviceAthleteTraining.getTrainings(this.filter, limit).then((training) => {
       for (let i = 0; i < training.items.length; i++) {
+        console.log(training);
         this.trainings[i] = {
           id: training.items[i].id,
           trainingDate: training.items[i].trainingDate,
@@ -163,10 +164,10 @@ export class AthleteTrainingComponent implements OnInit {
 
   onChange(event) {
     const index = this.choiceSelected.indexOf(event.source._element.nativeElement.dataset.trainingid);
-    if ( index == -1){
+    if (index == -1) {
       this.choiceSelected.push(event.source._element.nativeElement.dataset.trainingid);
-    } else{
-      this.choiceSelected[index] =event.source._element.nativeElement.dataset.trainingid;
+    } else {
+      this.choiceSelected[index] = event.source._element.nativeElement.dataset.trainingid;
     }
   }
 
@@ -174,6 +175,7 @@ export class AthleteTrainingComponent implements OnInit {
     if (this.trainingAttendenceForm.valid && this.checkNumberOfFirstChoice()) {
       const formValue = this.trainingAttendenceForm.value;
       let keys = Object.keys(formValue);
+
       if (this.athleteHasChoice == false) {
         for (let i = 0; i < keys.length; i++) {
           const attendence = new AthleteAttendence()
@@ -183,24 +185,22 @@ export class AthleteTrainingComponent implements OnInit {
           this.trainingAnswer.push(attendence);
         }
         await this.serviceAthleteTraining.saveTrainingsAttendences(this.trainingAnswer);
+        this.athleteHasChoice = true;
+        this.trainingAnswer = [];
       } else {
-        for (let i = 0; i < this.trainings.length; i++) {
-          for (let y = 0; y < this.trainings[i].athleteAttending.length; y ++){
-            if (this.trainings[i].athleteAttending[y].athleteID == this.athlete.id &&
-              this.trainings[i].athleteAttending[y].trainingID.indexOf(this.choiceSelected) != -1){
-              console.log('in');
-              this.trainings[i].athleteAttending[y].choice = this.choiceSelected[i];
-              await this.serviceAthleteTraining.updateTrainingsAttendences(this.trainings[i].athleteAttending[y])
-              console.log(this.trainings[i]);
-              this.choiceSelected.shift();
-            }
-
+        for (let i = 0; i < keys.length; i++) {
+          const attendence = new AthleteAttendence()
+          for (let y = 0; y < this.trainings[i].athleteAttending.length; y++){
+            attendence.id = this.trainings[i].athleteAttending[y].id;
+            attendence.trainingID = this.choiceSelected[i];
+            attendence.athleteID = this.athlete.id;
+            attendence.attending = formValue[keys[i]];
+            await this.serviceAthleteTraining.updateTrainingsAttendences(attendence)
           }
+
         }
+        this.choiceSelected.shift();
       }
-
-
-      // this.athleteHasChoice = true;
     }
   }
 }
