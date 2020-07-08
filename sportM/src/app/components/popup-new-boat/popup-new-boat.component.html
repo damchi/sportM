@@ -1,0 +1,89 @@
+<h1 mat-dialog-title> {{data.boat.id ? 'Update training' : 'New training'}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="boatForm">
+
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" required>
+      <mat-error *ngFor="let validation of errorMessages.name">
+        <mat-error class="error-message" *ngIf="boatForm.get('name').hasError(validation.type) &&
+          (boatForm.get('name').dirty || boatForm.get('name').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Membership type</mat-label>
+      <mat-select formControlName="membershipType" multiple>
+        <mat-option *ngFor="let membershipType of membershipType"
+                    [value]="membershipType">{{membershipType.type}}</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.membershipType">
+        <mat-error class="error-message" *ngIf="boatForm.get('membershipType').hasError(validation.type) &&
+          (boatForm.get('membershipType').dirty || boatForm.get('membershipType').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Weight Category</mat-label>
+      <mat-select formControlName="weightCategory">
+        <mat-option *ngFor="let weightCategory of weightCategory"
+                    [value]="weightCategory.id">{{weightCategory.name}}</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.weightCategory">
+        <mat-error class="error-message" *ngIf="boatForm.get('weightCategory').hasError(validation.type) &&
+          (boatForm.get('weightCategory').dirty || boatForm.get('weightCategory').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>type Of Boat </mat-label>
+      <mat-select formControlName="sortOfBoat">
+        <mat-option *ngFor="let sortOfBoat of typeBoat"
+                    [value]="sortOfBoat.id">{{sortOfBoat.type}}</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.sortOfBoat">
+        <mat-error class="error-message" *ngIf="boatForm.get('sortOfBoat').hasError(validation.type) &&
+          (boatForm.get('sortOfBoat').dirty || boatForm.get('sortOfBoat').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ownership  </mat-label>
+      <mat-select formControlName="ownership">
+        <mat-option *ngFor="let ownership of ownership"
+                    [value]="ownership.id">{{ownership.name}}</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.ownership">
+        <mat-error class="error-message" *ngIf="boatForm.get('ownership').hasError(validation.type) &&
+          (boatForm.get('ownership').dirty || boatForm.get('ownership').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Statut</mat-label>
+      <mat-select formControlName="active">
+        <mat-option [value]="true">Active</mat-option>
+        <mat-option [value]="false">Inactive</mat-option>
+      </mat-select>
+      <mat-error *ngFor="let validation of errorMessages.active">
+        <mat-error class="error-message" *ngIf="boatForm.get('active').hasError(validation.type) &&
+          (boatForm.get('active').dirty || boatForm.get('active').touched)">{{validation.message}}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="close()">Annuler</button>
+      <button mat-button color="primary" mat-raised-button
+              (click)="create()">{{data.boat.id ? 'Update' : 'Create'}}
+      </button>
+    </div>
+
+  </form>
+</div>
