@@ -1,4 +1,106 @@
 # this is an auto generated file. This will be overwritten
+query BatchGetAthleteAttendence($userId: [ID]) {
+  batchGetAthleteAttendence(userId: $userId) {
+    id
+    firstName
+    lastName
+    membershipType
+    email
+    dob
+    height
+    weightCategory
+    boatPreference
+    side
+    sex
+    status
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+        training {
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          createdAt
+          updatedAt
+        }
+        athlete {
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          createdAt
+          updatedAt
+        }
+        attending
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    boat {
+      items {
+        id
+        trainingID
+        athleteID
+        boatID
+        training {
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          createdAt
+          updatedAt
+        }
+        boat {
+          id
+          name
+          ownership
+          membershipType
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        athlete {
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
 query GetUser($id: ID!) {
   getUser(id: $id) {
     id
@@ -49,6 +151,54 @@ query GetUser($id: ID!) {
       }
       nextToken
     }
+    boat {
+      items {
+        id
+        trainingID
+        athleteID
+        boatID
+        training {
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          createdAt
+          updatedAt
+        }
+        boat {
+          id
+          name
+          ownership
+          membershipType
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        athlete {
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -78,6 +228,111 @@ query ListUsers(
           trainingID
           athleteID
           attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      boat {
+        items {
+          id
+          trainingID
+          athleteID
+          boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetBoat($id: ID!) {
+  getBoat(id: $id) {
+    id
+    name
+    ownership
+    membershipType
+    weightCategory
+    sortOfBoat
+    note
+    active
+    training {
+      items {
+        id
+        trainingID
+        athleteID
+        boatID
+        training {
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          createdAt
+          updatedAt
+        }
+        boat {
+          id
+          name
+          ownership
+          membershipType
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        athlete {
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListBoats(
+  $filter: ModelBoatFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listBoats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      ownership
+      membershipType
+      weightCategory
+      sortOfBoat
+      note
+      active
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          boatID
           createdAt
           updatedAt
         }
@@ -132,6 +387,54 @@ query GetTraining($id: ID!) {
       }
       nextToken
     }
+    boatTraining {
+      items {
+        id
+        trainingID
+        athleteID
+        boatID
+        training {
+          id
+          trainingDate
+          statut
+          athleteCategory
+          trainingTime
+          createdAt
+          updatedAt
+        }
+        boat {
+          id
+          name
+          ownership
+          membershipType
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        athlete {
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -154,6 +457,17 @@ query ListTrainings(
           trainingID
           athleteID
           attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      boatTraining {
+        items {
+          id
+          trainingID
+          athleteID
+          boatID
           createdAt
           updatedAt
         }

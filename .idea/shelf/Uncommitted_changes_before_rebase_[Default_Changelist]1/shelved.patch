@@ -1,0 +1,72 @@
+Index: sportM/src/app/modules/coach-list-athelete/coach-list-athlete-routing.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\nimport {CoachListAtheleteModule} from \"./coach-list-athelete.module\";\nimport {CoachListAthleteComponent} from \"./coach-list-athlete.component\";\n\nconst routes: Routes = [{ path: '', component: CoachListAthleteComponent }];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule]\n})\nexport class CoachListAthleteRoutingModule { }\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sportM/src/app/modules/coach-list-athelete/coach-list-athlete-routing.ts	(revision 17a643a0a42ebd3a999d0f19811e2713603b20f4)
++++ sportM/src/app/modules/coach-list-athelete/coach-list-athlete-routing.ts	(date 1592688532290)
+@@ -1,6 +1,5 @@
+ import { NgModule } from '@angular/core';
+ import { Routes, RouterModule } from '@angular/router';
+-import {CoachListAtheleteModule} from "./coach-list-athelete.module";
+ import {CoachListAthleteComponent} from "./coach-list-athlete.component";
+ 
+ const routes: Routes = [{ path: '', component: CoachListAthleteComponent }];
+Index: sportM/src/app/modules/coach/coach-routing.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\n\nimport { CoachComponent } from './coach.component';\n\nconst routes: Routes = [\n  { path: '',\n    component: CoachComponent,\n    children: [\n      {\n        path: 'athlete',\n        loadChildren: () => import('../coach-list-athelete/coach-list-athelete.module').then(m => m.CoachListAtheleteModule)\n      },\n      {\n        path: 'training',\n        loadChildren: () => import('../coach-training/coach-training.module').then(m => m.CoachTrainingModule)\n      },\n      // {\n      //   path: 'planning',\n      //   loadChildren: () => import('../coach-planning/coach-planning.module').then(m => m.CoachPlanningModule)\n      // },\n      // {\n      //   path: 'typeExercice',\n      //   loadChildren: () => import('../coach-type-exercice/coach-type-exercice.module').then(m => m.CoachTypeExerciceModule)\n      // },\n      {path: '**', redirectTo: '/coach/training'},\n    ]\n\n  }];\n\n@NgModule({\n  imports: [RouterModule.forChild(routes)],\n  exports: [RouterModule]\n})\nexport class CoachRoutingModule { }\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sportM/src/app/modules/coach/coach-routing.module.ts	(revision 17a643a0a42ebd3a999d0f19811e2713603b20f4)
++++ sportM/src/app/modules/coach/coach-routing.module.ts	(date 1592688532277)
+@@ -15,6 +15,10 @@
+         path: 'training',
+         loadChildren: () => import('../coach-training/coach-training.module').then(m => m.CoachTrainingModule)
+       },
++      {
++        path: 'boatList',
++        loadChildren: () => import('../coach-boat-list/coach-boat-list.module').then(m => m.CoachBoatListModule)
++      },
+       // {
+       //   path: 'planning',
+       //   loadChildren: () => import('../coach-planning/coach-planning.module').then(m => m.CoachPlanningModule)
+Index: sportM/src/app/modules/coach-boat-list/coach-boat-list-routing.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sportM/src/app/modules/coach-boat-list/coach-boat-list-routing.ts	(date 1592688532281)
++++ sportM/src/app/modules/coach-boat-list/coach-boat-list-routing.ts	(date 1592688532281)
+@@ -0,0 +1,11 @@
++import { NgModule } from '@angular/core';
++import { Routes, RouterModule } from '@angular/router';
++import {CoachBoatListComponent} from "./coach-boat-list.component";
++
++const routes: Routes = [{ path: '', component: CoachBoatListComponent }];
++
++@NgModule({
++  imports: [RouterModule.forChild(routes)],
++  exports: [RouterModule]
++})
++export class CoachBoatListRoutingModule { }
+Index: sportM/src/app/components/coach-menu/coach-menu.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n<mat-toolbar>\n  <mat-toolbar-row>\n    <button mat-icon-button>\n      <mat-icon (click)=\"sidenav.toggle()\">menu</mat-icon>\n    </button>\n    <h1>{{title}}</h1>\n  </mat-toolbar-row>\n</mat-toolbar>\n\n<mat-sidenav-container>\n  <mat-sidenav #sidenav>\n    <mat-nav-list>\n      <a mat-list-item [routerLink]=\"'/coach/training'\" (click)=\"changeTitle($event)\" >Trainings </a>\n      <a mat-list-item [routerLink]=\"'/coach/athlete'\" (click)=\"changeTitle($event)\" >Athlete</a>\n<!--      <a mat-list-item [routerLink]=\"'/athletes/crew'\" (click)=\"changeTitle($event)\" > Crew </a>-->\n      <button (click)=\"useLanguage('en')\">En</button>\n      <button (click)=\"useLanguage('fr')\">Fr</button>\n    </mat-nav-list>\n  </mat-sidenav>\n  <mat-sidenav-content>\n    <div style=\"height: 88vh;\">\n\n      <router-outlet></router-outlet>\n    </div>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sportM/src/app/components/coach-menu/coach-menu.component.html	(revision 17a643a0a42ebd3a999d0f19811e2713603b20f4)
++++ sportM/src/app/components/coach-menu/coach-menu.component.html	(date 1592688532242)
+@@ -13,6 +13,7 @@
+     <mat-nav-list>
+       <a mat-list-item [routerLink]="'/coach/training'" (click)="changeTitle($event)" >Trainings </a>
+       <a mat-list-item [routerLink]="'/coach/athlete'" (click)="changeTitle($event)" >Athlete</a>
++      <a mat-list-item [routerLink]="'/coach/boatList'" (click)="changeTitle($event)" >Boat list</a>
+ <!--      <a mat-list-item [routerLink]="'/athletes/crew'" (click)="changeTitle($event)" > Crew </a>-->
+       <button (click)="useLanguage('en')">En</button>
+       <button (click)="useLanguage('fr')">Fr</button>

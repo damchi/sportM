@@ -27,4 +27,8 @@ export class AthleteService {
     return await this.api.UpdateUser(athlete);
   }
 
+  async getByIds(id: string[]){
+    return await this.api.BatchGetAthleteAttendence(id);
+  }
+
 }

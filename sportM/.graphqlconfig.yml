@@ -1,6 +1,6 @@
 projects:
   sportm-dev:
-    schemaPath: amplify/src/graphql/schema.json
+    schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.graphql
     excludes:

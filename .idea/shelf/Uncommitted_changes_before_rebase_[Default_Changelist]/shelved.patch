@@ -1,0 +1,48 @@
+Index: sportM/amplify/backend/api/sportm/schema.graphql
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>type User @model {\n  id: ID!\n  firstName: String!\n  lastName: String!\n  membershipType: String!\n  email:String!\n  dob: AWSDate\n  height: String\n  weightCategory: String\n  boatPreference: AWSJSON\n  side: AWSJSON\n  sex: String\n  status:Boolean\n  training: [AthleteAttendence] @connection(keyName: \"byAthlete\", fields: [\"id\"])\n\n}\n\ntype Training @model {\n  id: ID!\n  trainingDate: AWSDate!\n  statut: Boolean\n  athleteCategory:String\n  trainingTime:String\n  athleteAttending: [AthleteAttendence] @connection(keyName: \"byTraining\", fields: [\"id\"])\n}\n\ntype AthleteAttendence\n@model(queries: null)\n@key(name: \"byTraining\", fields: [\"trainingID\", \"athleteID\"])\n@key(name: \"byAthlete\", fields: [\"athleteID\", \"trainingID\"]) {\n  id: ID!\n  trainingID: ID!\n  athleteID: ID!\n  training: Training! @connection(fields: [\"trainingID\"])\n  athlete: User! @connection(fields: [\"athleteID\"])\n  attending: Boolean\n}\n\n#input CreateTrainingInput {\n#  id: ID\n#  trainingDate: AWSDate!\n#  statut: Boolean\n#  athleteCategory:String\n#}\n#type Mutation {\n#  batchAddTraining(training: [CreateTrainingInput]): [Training]\n#}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sportM/amplify/backend/api/sportm/schema.graphql	(revision 17a643a0a42ebd3a999d0f19811e2713603b20f4)
++++ sportM/amplify/backend/api/sportm/schema.graphql	(date 1592690758352)
+@@ -15,7 +15,20 @@
+ 
+ }
+ 
+-type Training @model {
++type Boat @model {
++  id: ID!
++  name: String!
++  sortOfBoat: String!
++  membershipType: String!
++  ownership: String!
++  weightCategory: String!
++  actif:Boolean!
++  notes: String
++#  athleteAttending: [AthleteAttendence]  @connection(keyName: "byBoat", fields: ["id"])
++}
++
++type Training @model
++@key(name: "byDate", fields: ["athleteCategory", "trainingDate"]) {
+   id: ID!
+   trainingDate: AWSDate!
+   statut: Boolean
+@@ -26,13 +39,16 @@
+ 
+ type AthleteAttendence
+ @model(queries: null)
++#@key(name: "byBoat", fields: ["boatID", "trainingID"])
+ @key(name: "byTraining", fields: ["trainingID", "athleteID"])
+ @key(name: "byAthlete", fields: ["athleteID", "trainingID"]) {
+   id: ID!
+   trainingID: ID!
+   athleteID: ID!
++#  boatID: ID!
+   training: Training! @connection(fields: ["trainingID"])
+   athlete: User! @connection(fields: ["athleteID"])
++#  boat: Boat! @connection(fields: ["boatID"])
+   attending: Boolean
+ }
+ 

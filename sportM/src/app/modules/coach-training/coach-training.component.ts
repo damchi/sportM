@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {PopupNewTrainingS3Component} from "../../components/popup-new-training-s3/popup-new-training-s3.component";
 import {TrainingS3} from "../../domain/training-s3";

@@ -10,8 +10,8 @@ export class CoachTrainingService {
   constructor(private api: APIService) {
   }
 
-  async getTrainings(filter,limit) {
-    return await this.api.ListTrainings(filter,limit);
+  async getTrainings(filter, limit) {
+    return await this.api.ListTrainings(filter, limit);
   }
 
   async saveTrainingDb(training: Training) {
@@ -24,6 +24,5 @@ export class CoachTrainingService {
 
   async deleteTrainingDB(trainingId) {
     await this.api.DeleteTraining(trainingId);
-
   }
 }

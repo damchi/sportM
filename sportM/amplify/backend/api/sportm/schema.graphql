@@ -12,6 +12,7 @@ type User @model {
   sex: String
   status:Boolean
   training: [AthleteAttendence] @connection(keyName: "byAthlete", fields: ["id"])
+  boat: [BoatList] @connection(keyName: "byAthlete", fields: ["id"])
 
 }
 
@@ -24,8 +25,7 @@ type Boat @model {
   sortOfBoat: String!
   note: String
   active: Boolean!
-  athleteAttending: [AthleteAttendence] @connection(keyName: "byBoat", fields: ["id"])
-
+  training: [BoatList] @connection(keyName: "byBoat", fields: ["id"])
 }
 
 type Training @model
@@ -36,21 +36,34 @@ type Training @model
   athleteCategory:String
   trainingTime:String
   athleteAttending: [AthleteAttendence] @connection(keyName: "byTraining", fields: ["id"])
+  boatTraining: [BoatList] @connection(keyName: "byTraining", fields: ["id"])
 }
 
 type AthleteAttendence
 @model(queries: null)
-@key(name: "byBoat", fields: ["boatID", "trainingID","athleteID"])
 @key(name: "byTraining", fields: ["trainingID", "athleteID"])
 @key(name: "byAthlete", fields: ["athleteID", "trainingID"]) {
   id: ID!
   trainingID: ID!
   athleteID: ID!
-  boatID: ID!
   training: Training! @connection(fields: ["trainingID"])
   athlete: User! @connection(fields: ["athleteID"])
-  boat: Boat @connection(fields: ["boatID"])
   attending: String
+}
+
+type BoatList
+@model(queries: null)
+@key(name: "byTraining", fields: ["trainingID", "athleteID"])
+@key(name: "byAthlete", fields: ["athleteID", "trainingID"])
+@key(name: "byBoat", fields: ["boatID", "trainingID"])
+{
+  id: ID!
+  trainingID: ID!
+  athleteID: ID!
+  boatID: ID!
+  training: Training! @connection(fields: ["trainingID"])
+  boat: Boat! @connection(fields: ["boatID"])
+  athlete: User! @connection(fields: ["athleteID"])
 }
 
 input CreateAthleteAttendenceInput {

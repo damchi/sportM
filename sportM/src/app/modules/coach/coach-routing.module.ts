@@ -19,10 +19,10 @@ const routes: Routes = [
         path: 'boatList',
         loadChildren: () => import('../coach-boat-list/coach-boat-list.module').then(m => m.CoachBoatListModule)
       },
-      // {
-      //   path: 'planning',
-      //   loadChildren: () => import('../coach-planning/coach-planning.module').then(m => m.CoachPlanningModule)
-      // },
+      {
+        path: 'boats',
+        loadChildren: () => import('../coach-boats/coach-boats.module').then(m => m.CoachBoatsModule)
+      },
       // {
       //   path: 'typeExercice',
       //   loadChildren: () => import('../coach-type-exercice/coach-type-exercice.module').then(m => m.CoachTypeExerciceModule)

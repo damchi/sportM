@@ -69,7 +69,6 @@ export class CoachBoatListComponent implements OnInit {
 
     let limit = 10000;
     this.serviceAthleteTraining.getTrainings(this.filter, limit).then((training) => {
-      this.idsAthelte = [];
       for (let i = 0; i < training.items.length; i++) {
         this.trainings[i] = {
           id: training.items[i].id,
@@ -82,8 +81,10 @@ export class CoachBoatListComponent implements OnInit {
         // this.trainingAttendenceForm.addControl('presence' + i, new FormControl('', [Validators.required]));
       }
 
-      this.dataSource = new MatTableDataSource<Training>(this.trainings);
-      this.isLoadedTraining = true;
+      if (this.trainings.length > 0){
+        this.dataSource = new MatTableDataSource<Training>(this.trainings);
+        this.isLoadedTraining = true;
+      }
     });
   }
 
@@ -118,7 +119,7 @@ export class CoachBoatListComponent implements OnInit {
     const dialogPop = this.dialog.open(PopupAssignBoatComponent, {
       width: '750px',
       data: {
-        training: training ,
+        training: training,
       }
     });
 
