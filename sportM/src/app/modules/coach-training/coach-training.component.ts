@@ -57,11 +57,9 @@ export class CoachTrainingComponent implements OnInit {
 
     dialogPop.afterClosed().subscribe(result => {
       if (result) {
-        // saveAs(result.trainingJson, ;
         this.saveToS3(result.training, result.trainingJson);
       }
     });
-
   }
 
   newTrainingDB(training?: Training) {
@@ -74,7 +72,6 @@ export class CoachTrainingComponent implements OnInit {
 
     dialogPop.afterClosed().subscribe(result => {
       if (result) {
-        // saveAs(result.trainingJson, ;
         this.saveToDB(result);
       }
     });

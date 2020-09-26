@@ -9,8 +9,10 @@ import {AthleteTrainingService} from "../../services/athlete-training.service";
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from "@angular/material/table";
 import {PopupNewTrainingDBComponent} from "../../components/popup-new-training-db/popup-new-training-db.component";
-import {PopupAssignBoatComponent} from "../../components/popup-assign-boat/popup-assign-boat.component";
+import {PopupAssignAthleteComponent} from "../../components/popup-assign-athlete/popup-assign-athlete.component";
 import {MatDialog} from "@angular/material/dialog";
+import {Boat} from "../../domain/boat";
+import {BoatService} from "../../services/boat.service";
 
 @Component({
   selector: 'app-coach-boat-list',
@@ -21,6 +23,7 @@ export class CoachBoatListComponent implements OnInit {
   public boatListForm: FormGroup;
   public membershipType: Membership[] = [];
   public trainings: Training[];
+  public boats: Boat[];
   public dateStartTraining: any;
   public dateEndTraining: any;
   public week: number;
@@ -31,11 +34,13 @@ export class CoachBoatListComponent implements OnInit {
   public isLoadedTraining: boolean = false;
 
 
-  constructor(public dialog: MatDialog, private fb: FormBuilder, private serviceAthleteTraining: AthleteTrainingService) {
+  constructor(public dialog: MatDialog, private fb: FormBuilder, private serviceAthleteTraining: AthleteTrainingService,
+              private serviceBoat: BoatService) {
   }
 
   ngOnInit() {
     this.getRole();
+    this.getBoats();
     this.boatListForm = this.fb.group({
       memberCategory: new FormControl('', [Validators.required]),
     });
@@ -88,6 +93,16 @@ export class CoachBoatListComponent implements OnInit {
     });
   }
 
+  getBoats(){
+    this.boats = [];
+    this.serviceBoat.getBoats().then((boat) =>{
+      boat.items.forEach(b=>{
+        this.boats.push(b);
+      });
+    })
+  }
+
+
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -115,11 +130,15 @@ export class CoachBoatListComponent implements OnInit {
     return moment(date).format("dddd, MMMM Do YYYY");
   }
 
-  assignBoat(training) {
-    const dialogPop = this.dialog.open(PopupAssignBoatComponent, {
-      width: '750px',
+  assignAthlete(training: Training) {
+    const dialogPop = this.dialog.open(PopupAssignAthleteComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
       data: {
         training: training,
+        boats: this.boats
       }
     });
 

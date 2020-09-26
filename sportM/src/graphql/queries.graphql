@@ -1,6 +1,6 @@
 # this is an auto generated file. This will be overwritten
-query BatchGetAthleteAttendence($userId: [ID]) {
-  batchGetAthleteAttendence(userId: $userId) {
+query BatchGetAthleteAttendence($ids: [ID]) {
+  batchGetAthleteAttendence(ids: $ids) {
     id
     firstName
     lastName

@@ -1,0 +1,158 @@
+<h1 mat-dialog-title> {{'New boat list'}}</h1>
+<!--<h1 mat-dialog-title> {{data.boat.id ? 'Update boat list' : 'New boat list'}}</h1>-->
+<div mat-dialog-content>
+  <!--  <form [formGroup]="boatAssignForm">-->
+
+  <table mat-table [dataSource]="data.boats" class="mat-elevation-z8">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+<!--        <mat-checkbox (change)="$event ? masterToggleBoat() : null"-->
+<!--                      [checked]="selectionBoat.hasValue() && isAllSelectedBoat()"-->
+<!--                      [indeterminate]="selectionBoat.hasValue() && !isAllSelectedBoat()"-->
+<!--                      [aria-label]="checkboxLabelBoat()">-->
+<!--        </mat-checkbox>-->
+      </th>
+      <td mat-cell *matCellDef="let row">
+<!--        <mat-checkbox (click)="$event.stopPropagation()"-->
+<!--                      (change)="$event ? selectionBoat.toggle(row) : null"-->
+<!--                      [checked]="selectionBoat.isSelected(row)"-->
+<!--                      [aria-label]="checkboxLabelBoat(row)">-->
+<!--        </mat-checkbox>-->
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      [checked]="selectionBoat.isSelected(row)"
+                      [aria-label]="checkboxLabelBoat(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.name}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weightCategory">
+      <th mat-header-cell *matHeaderCellDef> Weight category</th>
+      <td mat-cell *matCellDef="let element">{{element.weightCategory}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type</th>
+      <td mat-cell *matCellDef="let element">{{element.sortOfBoat}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsBoat"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsBoat;"
+        (click)="selectionBoat.toggle(row)">
+    </tr>
+  </table>
+
+
+  <div class="example-container" *ngIf="isLoadedAthlete">
+
+    <h2>To do</h2>
+
+    <div
+      cdkDropList
+      #athleteList="cdkDropList"
+      [cdkDropListData]="athletes"
+      [cdkDropListConnectedTo]="[boatList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let athlete of athletes" cdkDrag>
+        <div *ngFor="let trainingChoice of athlete.training.items">
+          <div *ngIf="trainingChoice.trainingID == data.training.id"
+               [ngClass]="(trainingChoice.attending=='1stChoice')?'firstChoice':'secondChoice'">
+            {{athlete.lastName}} {{athlete.lastName}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  </div>-->
+
+    <div *ngIf="this.selectionBoat.selected.length>0" class="example-container">
+      <h2>Done</h2>
+
+      <div
+        cdkDropList
+        #boatList="cdkDropList"
+        [cdkDropListData]="listChoice"
+        [cdkDropListConnectedTo]="[athleteList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let athlete of listChoice" cdkDrag>
+          <div *ngFor="let trainingChoice of athlete.training.items">
+            <div *ngIf="trainingChoice.trainingID == data.training.id"
+                 [ngClass]="(trainingChoice.attending=='1stChoice')?'firstChoice':'secondChoice'">
+              {{athlete.lastName}} {{athlete.lastName}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--    <table mat-table [dataSource]="athletes" class="mat-elevation-z8">-->
+
+    <!--      &lt;!&ndash; Checkbox Column &ndash;&gt;-->
+    <!--      <ng-container matColumnDef="select">-->
+    <!--        <th mat-header-cell *matHeaderCellDef>-->
+    <!--          <mat-checkbox (change)="$event ? masterToggleAthlete() : null"-->
+    <!--                        [checked]="selectionAthlete.hasValue() && isAllSelectedAthlete()"-->
+    <!--                        [indeterminate]="selectionAthlete.hasValue() && !isAllSelectedAthlete()"-->
+    <!--                        [aria-label]="checkboxLabelAthlete()">-->
+    <!--          </mat-checkbox>-->
+    <!--        </th>-->
+    <!--        <td mat-cell *matCellDef="let row">-->
+    <!--          <mat-checkbox (click)="$event.stopPropagation()"-->
+    <!--                        (change)="$event ? selectionAthlete.toggle(row) : null"-->
+    <!--                        [checked]="selectionAthlete.isSelected(row)"-->
+    <!--                        [aria-label]="checkboxLabelAthlete(row)">-->
+    <!--          </mat-checkbox>-->
+    <!--        </td>-->
+    <!--      </ng-container>-->
+
+    <!--      <ng-container matColumnDef="name">-->
+    <!--        <th mat-header-cell *matHeaderCellDef> Name</th>-->
+    <!--        <td mat-cell *matCellDef="let element">-->
+    <!--          <span>{{element.firstName}} {{element.lastName}}</span>-->
+    <!--          <span>{{element.weightCategory}}</span>-->
+    <!--        </td>-->
+    <!--      </ng-container>-->
+
+    <!--      <ng-container matColumnDef="boat">-->
+    <!--        <th mat-header-cell *matHeaderCellDef> Boat</th>-->
+    <!--        <td mat-cell *matCellDef="let element"></td>-->
+    <!--      </ng-container>-->
+
+    <!--      <ng-container matColumnDef="option">-->
+    <!--        <th mat-header-cell *matHeaderCellDef>Options</th>-->
+    <!--        <td mat-cell *matCellDef="let element">-->
+    <!--          <div class="actions">-->
+    <!--            <button mat-raised-button (click)="assignBoat(element)"><i class="material-icons">-->
+    <!--              create-->
+    <!--            </i></button>-->
+    <!--          </div>-->
+    <!--        </td>-->
+    <!--      </ng-container>-->
+
+    <!--      <tr mat-header-row *matHeaderRowDef="displayedColumnsAthlete"></tr>-->
+    <!--      <tr mat-row *matRowDef="let row; columns: displayedColumnsAthlete;"-->
+    <!--          (click)="selectionAthlete.toggle(row)">-->
+    <!--      </tr>-->
+    <!--    </table>-->
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button type="button" (click)="close()">Annuler</button>
+    <button mat-button color="primary" mat-raised-button
+            (click)="create()">{{ 'Create'}}
+      <!--              (click)="create()">{{data.boat.id ? 'Update' : 'Create'}}-->
+    </button>
+  </div>
+
+  <!--  </form>-->
+</div>

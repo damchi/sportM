@@ -19,8 +19,7 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
   declarations: [
     AppComponent,
     AuthComponent,
-    ConfirmDialogComponent,
-
+    ConfirmDialogComponent
   ],
   imports: [
     AmplifyAngularModule,

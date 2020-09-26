@@ -127,11 +127,11 @@ export class AthleteTrainingComponent implements OnInit {
   }
 
   isWeekEnd() {
-    if (moment().days() == 6 || moment().days() == 0) {
-      return true
-    } else {
-      return false
-    }
+    // if (moment().days() == 6 || moment().days() == 0) {
+    //   return true
+    // } else {
+    //   return false
+    // }
   }
 
   checkNumberOfFirstChoice() {

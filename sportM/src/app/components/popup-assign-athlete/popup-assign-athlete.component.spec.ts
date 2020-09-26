@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PopupAssignBoatComponent } from './popup-assign-boat.component';
+import { PopupAssignAthleteComponent } from './popup-assign-athlete.component';
 
 describe('PopupAssignBoatComponent', () => {
-  let component: PopupAssignBoatComponent;
-  let fixture: ComponentFixture<PopupAssignBoatComponent>;
+  let component: PopupAssignAthleteComponent;
+  let fixture: ComponentFixture<PopupAssignAthleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PopupAssignBoatComponent ]
+      declarations: [ PopupAssignAthleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PopupAssignBoatComponent);
+    fixture = TestBed.createComponent(PopupAssignAthleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

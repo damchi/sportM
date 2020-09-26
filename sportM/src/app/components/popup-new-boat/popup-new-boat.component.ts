@@ -41,7 +41,8 @@ export class PopupNewBoatComponent extends MarkAsTouch implements OnInit {
   public typeBoat: TypeBoat[];
   public errorMessages: ErrorMessages;
 
-  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: PopupBoat, public dialogPop: MatDialogRef<PopupNewBoatComponent>) {
+  constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: PopupBoat,
+              public dialogPop: MatDialogRef<PopupNewBoatComponent>) {
     super();
   }
 
@@ -51,9 +52,9 @@ export class PopupNewBoatComponent extends MarkAsTouch implements OnInit {
       ownership: new FormControl(this.data.boat.ownership, [Validators.required]),
       weightCategory: new FormControl(this.data.boat.weightCategory, [Validators.required]),
       membershipType: new FormControl(this.data.boat.membershipType, [Validators.required]),
-      sortOfBoat: new FormControl(this.data.boat.sortOfBoat,[Validators.required]),
+      sortOfBoat: new FormControl(this.data.boat.sortOfBoat, [Validators.required]),
       note: new FormControl(this.data.boat.note),
-      active: new FormControl(this.data.boat.active,[Validators.required]),
+      active: new FormControl(this.data.boat.active, [Validators.required]),
     });
 
     this.errorMessages = {
