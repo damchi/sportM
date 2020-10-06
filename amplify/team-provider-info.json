@@ -1,15 +1,33 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-sportm-dev-165842-authRole",
-            "UnauthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-dev-165842-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-dev-165842-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-sportm-dev-165842-deployment",
-            "UnauthRoleName": "amplify-sportm-dev-165842-unauthRole",
-            "StackName": "amplify-sportm-dev-165842",
-            "StackId": "arn:aws:cloudformation:us-east-1:137850098171:stack/amplify-sportm-dev-165842/034a7c30-a5dd-11ea-8224-0e403b617781",
-            "AmplifyAppId": "dn4sdllhgch6d"
-        }
+  "devm": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sportm-devm-222642-authRole",
+      "UnauthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-devm-222642-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-devm-222642-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-sportm-devm-222642-deployment",
+      "UnauthRoleName": "amplify-sportm-devm-222642-unauthRole",
+      "StackName": "amplify-sportm-devm-222642",
+      "StackId": "arn:aws:cloudformation:us-east-1:137850098171:stack/amplify-sportm-devm-222642/0d097bd0-0132-11eb-a6fa-12b6a099270b",
+      "AmplifyAppId": "dn4sdllhgch6d"
+    },
+    "categories": {
+      "auth": {
+        "sportm229570a4": {}
+      }
     }
+  },
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-sportm-dev-165842-authRole",
+      "UnauthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-dev-165842-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::137850098171:role/amplify-sportm-dev-165842-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-sportm-dev-165842-deployment",
+      "UnauthRoleName": "amplify-sportm-dev-165842-unauthRole",
+      "StackName": "amplify-sportm-dev-165842",
+      "StackId": "arn:aws:cloudformation:us-east-1:137850098171:stack/amplify-sportm-dev-165842/034a7c30-a5dd-11ea-8224-0e403b617781",
+      "AmplifyAppId": "dn4sdllhgch6d"
+    }
+  }
 }

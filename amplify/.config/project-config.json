@@ -1,17 +1,17 @@
 {
-    "providers": [
-        "awscloudformation"
-    ],
-    "projectName": "sportM",
-    "version": "3.0",
-    "frontend": "javascript",
-    "javascript": {
-        "framework": "angular",
-        "config": {
-            "SourceDir": "src",
-            "DistributionDir": "dist",
-            "BuildCommand": "npm run-script build",
-            "StartCommand": "ng serve"
-        }
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "sportM",
+  "version": "3.0",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "angular",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "dist/sportM",
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "ng serve"
     }
+  }
 }
