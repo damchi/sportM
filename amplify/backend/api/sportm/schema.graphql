@@ -25,6 +25,30 @@ type Training @model
   athleteAttending: [AthleteAttendence] @connection(keyName: "byTraining", fields: ["id"])
 }
 
+type Club @model
+{
+  id: ID!
+  name: String!
+  address: String!
+  postCode:String
+  city:String!
+  country:String!
+  phone:String!
+  email:String!
+}
+
+type Boat @model {
+  id: ID!
+  name: String!
+  ownership: String!
+  membershipType: String!
+  weightCategory: String!
+  sortOfBoat: String!
+  note: String
+  active: Boolean!
+  training: [BoatList] @connection(keyName: "byBoat", fields: ["id"])
+}
+
 type AthleteAttendence
 @model(queries: null)
 @key(name: "byTraining", fields: ["trainingID", "athleteID"])
@@ -37,6 +61,21 @@ type AthleteAttendence
   attending: String
 }
 
+type BoatList
+@model(queries: null)
+@key(name: "byTraining", fields: ["trainingID", "athleteID"])
+@key(name: "byAthlete", fields: ["athleteID", "trainingID"])
+@key(name: "byBoat", fields: ["boatID", "trainingID"])
+{
+  id: ID!
+  trainingID: ID!
+  athleteID: ID!
+  boatID: ID!
+  training: Training! @connection(fields: ["trainingID"])
+  boat: Boat! @connection(fields: ["boatID"])
+  athlete: User! @connection(fields: ["athleteID"])
+}
+
 input CreateAthleteAttendenceInput {
   id: ID
   trainingID: ID!
@@ -46,4 +85,7 @@ input CreateAthleteAttendenceInput {
 
 type Mutation {
   batchAddAthleteAttendence(athleteAttendence: [CreateAthleteAttendenceInput]): [AthleteAttendence]
+}
+type Query {
+  batchGetAthleteAttendence(ids:[ID]): [User]
 }
