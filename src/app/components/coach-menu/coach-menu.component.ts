@@ -3,7 +3,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 // import defaultLanguage from '../../../assets/i18n/en.json';
 import {TranslateService} from '@ngx-translate/core';
 import {ServiceService} from '../../services/service.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-coach-menu',
