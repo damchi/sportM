@@ -15,7 +15,11 @@ const routes: Routes = [
         path: 'training',
         loadChildren: () => import('../coach-training/coach-training.module').then(m => m.CoachTrainingModule)
       },
-      // {
+      {
+        path: 'boatCategory', loadChildren: () => import('../coach-boat-category-type/coach-boat-category-type.module').then(m => m.CoachBoatCategoryTypeModule)
+      },
+
+  // {
       //   path: 'planning',
       //   loadChildren: () => import('../coach-planning/coach-planning.module').then(m => m.CoachPlanningModule)
       // },

@@ -12,7 +12,13 @@ type User @model {
   sex: String
   status:Boolean
   training: [AthleteAttendence] @connection(keyName: "byAthlete", fields: ["id"])
+}
 
+type BoatCategoryType @model
+{
+  id: ID!
+  type: String!
+  boat: [Boat]
 }
 
 type Training @model
