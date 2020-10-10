@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MAT_DIALOG_DATA} from "@angular/material";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import {StructureError} from "../../../utils/structure-error";
 import * as roleJson from "../../config/role.json";
 import * as daysJson from "../../config/days.json"

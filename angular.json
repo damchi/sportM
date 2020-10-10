@@ -14,6 +14,9 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "outputPath": "dist/sportM",
             "index": "src/index.html",
             "main": "src/main.ts",
