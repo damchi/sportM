@@ -204,6 +204,75 @@ query ListBoatCategoryTypes(
     nextToken
   }
 }
+query GetUserType($id: ID!) {
+  getUserType(id: $id) {
+    id
+    type
+    boat {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListUserTypes(
+  $filter: ModelUserTypeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUserTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      type
+      boat {
+        id
+        firstName
+        lastName
+        membershipType
+        email
+        dob
+        height
+        weightCategory
+        boatPreference
+        side
+        sex
+        status
+        training {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetTraining($id: ID!) {
   getTraining(id: $id) {
     id

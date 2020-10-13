@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'athlete',
-        loadChildren: () => import('../coach-list-athelete/coach-list-athelete.module').then(m => m.CoachListAtheleteModule)
+        loadChildren: () => import('../coach-list-athlete/coach-list-athlete.module').then(m => m.CoachListAthleteModule)
       },
       {
         path: 'training',
@@ -18,6 +18,12 @@ const routes: Routes = [
       {
         path: 'boatCategory', loadChildren: () => import('../coach-boat-category-type/coach-boat-category-type.module').then(m => m.CoachBoatCategoryTypeModule)
       },
+      {
+        path: 'userType',
+        loadChildren: () => import('../coach-user-type/coach-user-type.module').then(m => m.CoachUserTypeModule)
+      },
+
+
 
   // {
       //   path: 'planning',

@@ -331,6 +331,120 @@ mutation DeleteBoatCategoryType(
     updatedAt
   }
 }
+mutation CreateUserType(
+  $input: CreateUserTypeInput!
+  $condition: ModelUserTypeConditionInput
+) {
+  createUserType(input: $input, condition: $condition) {
+    id
+    type
+    boat {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateUserType(
+  $input: UpdateUserTypeInput!
+  $condition: ModelUserTypeConditionInput
+) {
+  updateUserType(input: $input, condition: $condition) {
+    id
+    type
+    boat {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteUserType(
+  $input: DeleteUserTypeInput!
+  $condition: ModelUserTypeConditionInput
+) {
+  deleteUserType(input: $input, condition: $condition) {
+    id
+    type
+    boat {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateTraining(
   $input: CreateTrainingInput!
   $condition: ModelTrainingConditionInput

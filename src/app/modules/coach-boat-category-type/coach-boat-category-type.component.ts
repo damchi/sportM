@@ -59,15 +59,15 @@ export class CoachBoatCategoryTypeComponent implements OnInit {
     });
   }
 
-  save(ownerType: BoatCategoryType) {
-    if (ownerType.id != null) {
-      this.serviceBoatCategoryType.updateBoatCategoryType(ownerType).then(() => {
+  save(boatCategory: BoatCategoryType) {
+    if (boatCategory.id != null) {
+      this.serviceBoatCategoryType.updateBoatCategoryType(boatCategory).then(() => {
         this.isLoadedBoat = false;
         this.getBoatCategoryType();
         }
       )
     } else {
-      this.serviceBoatCategoryType.saveBoatCategoryType(ownerType).then(() => {
+      this.serviceBoatCategoryType.saveBoatCategoryType(boatCategory).then(() => {
         this.isLoadedBoat = false;
         this.getBoatCategoryType();
         }
@@ -75,8 +75,8 @@ export class CoachBoatCategoryTypeComponent implements OnInit {
     }
   }
 
-  deleteBoat(ownerType: BoatCategoryType) {
-    this.boatCategoryType = ownerType;
+  deleteBoat(boatCategory: BoatCategoryType) {
+    this.boatCategoryType = boatCategory;
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '350px',
       data: {

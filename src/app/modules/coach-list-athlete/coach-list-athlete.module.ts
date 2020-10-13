@@ -12,4 +12,4 @@ import {CoachListAthleteRoutingModule} from "./coach-list-athlete-routing";
     CoachListAthleteRoutingModule
   ]
 })
-export class CoachListAtheleteModule { }
+export class CoachListAthleteModule { }

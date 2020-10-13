@@ -254,6 +254,111 @@ subscription OnDeleteBoatCategoryType {
     updatedAt
   }
 }
+subscription OnCreateUserType {
+  onCreateUserType {
+    id
+    type
+    boat {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUserType {
+  onUpdateUserType {
+    id
+    type
+    boat {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUserType {
+  onDeleteUserType {
+    id
+    type
+    boat {
+      id
+      firstName
+      lastName
+      membershipType
+      email
+      dob
+      height
+      weightCategory
+      boatPreference
+      side
+      sex
+      status
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          attending
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateTraining {
   onCreateTraining {
     id

@@ -21,6 +21,13 @@ type BoatCategoryType @model
   boat: [Boat]
 }
 
+type UserType @model
+{
+  id: ID!
+  type: String!
+  boat: [User]
+}
+
 type Training @model
 {
   id: ID!
