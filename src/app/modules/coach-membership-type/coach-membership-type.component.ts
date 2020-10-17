@@ -3,21 +3,21 @@ import {MatDialog} from "@angular/material/dialog";
 import {Auth} from "aws-amplify";
 import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
 import {UserType} from "../../domain/user-type";
-import {UserTypeService} from "../../services/user-type.service";
 import {PopupNewUserTypeComponent} from "../../components/popup-new-user-type/popup-new-user-type.component";
+import {MembershipTypeService} from "../../services/membership-type.service";
 
 @Component({
-  selector: 'app-coach-user-type',
-  templateUrl: './coach-user-type.component.html',
-  styleUrls: ['./coach-user-type.component.css']
+  selector: 'app-coach-membership-type',
+  templateUrl: './coach-membership-type.component.html',
+  styleUrls: ['./coach-membership-type.component.css']
 })
-export class CoachUserTypeComponent implements OnInit {
+export class CoachMembershipTypeComponent implements OnInit {
   public displayedColumns: string[] = ['name','option'];
   public isLoadedUserType: boolean = false;
   public userTypes: UserType[];
   public userType: UserType
 
-  constructor(public dialog: MatDialog, private serviceUserType: UserTypeService) {
+  constructor(public dialog: MatDialog, private serviceUserType: MembershipTypeService) {
   }
 
   ngOnInit(): void {

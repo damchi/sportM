@@ -12,6 +12,12 @@ export type CreateAthleteAttendenceInput = {
   attending?: string | null;
 };
 
+export type CreateBoatMemberTypeInput = {
+  id?: string | null;
+  boatId: string;
+  memberId: string;
+};
+
 export type CreateUserInput = {
   id?: string | null;
   firstName: string;
@@ -130,27 +136,6 @@ export type DeleteBoatCategoryTypeInput = {
   id?: string | null;
 };
 
-export type CreateUserTypeInput = {
-  id?: string | null;
-  type: string;
-};
-
-export type ModelUserTypeConditionInput = {
-  type?: ModelStringInput | null;
-  and?: Array<ModelUserTypeConditionInput | null> | null;
-  or?: Array<ModelUserTypeConditionInput | null> | null;
-  not?: ModelUserTypeConditionInput | null;
-};
-
-export type UpdateUserTypeInput = {
-  id: string;
-  type?: string | null;
-};
-
-export type DeleteUserTypeInput = {
-  id?: string | null;
-};
-
 export type CreateTrainingInput = {
   id?: string | null;
   trainingDate: string;
@@ -220,11 +205,31 @@ export type DeleteClubInput = {
   id?: string | null;
 };
 
+export type CreateMembershipTypeInput = {
+  id?: string | null;
+  type: string;
+};
+
+export type ModelMembershipTypeConditionInput = {
+  type?: ModelStringInput | null;
+  and?: Array<ModelMembershipTypeConditionInput | null> | null;
+  or?: Array<ModelMembershipTypeConditionInput | null> | null;
+  not?: ModelMembershipTypeConditionInput | null;
+};
+
+export type UpdateMembershipTypeInput = {
+  id: string;
+  type?: string | null;
+};
+
+export type DeleteMembershipTypeInput = {
+  id?: string | null;
+};
+
 export type CreateBoatInput = {
   id?: string | null;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note?: string | null;
@@ -234,7 +239,6 @@ export type CreateBoatInput = {
 export type ModelBoatConditionInput = {
   name?: ModelStringInput | null;
   ownership?: ModelStringInput | null;
-  membershipType?: ModelStringInput | null;
   weightCategory?: ModelStringInput | null;
   sortOfBoat?: ModelStringInput | null;
   note?: ModelStringInput | null;
@@ -248,7 +252,6 @@ export type UpdateBoatInput = {
   id: string;
   name?: string | null;
   ownership?: string | null;
-  membershipType?: string | null;
   weightCategory?: string | null;
   sortOfBoat?: string | null;
   note?: string | null;
@@ -259,13 +262,12 @@ export type DeleteBoatInput = {
   id?: string | null;
 };
 
-export type ModelAthleteAttendenceConditionInput = {
-  trainingID?: ModelIDInput | null;
-  athleteID?: ModelIDInput | null;
-  attending?: ModelStringInput | null;
-  and?: Array<ModelAthleteAttendenceConditionInput | null> | null;
-  or?: Array<ModelAthleteAttendenceConditionInput | null> | null;
-  not?: ModelAthleteAttendenceConditionInput | null;
+export type ModelBoatMemberTypeConditionInput = {
+  boatId?: ModelIDInput | null;
+  memberId?: ModelIDInput | null;
+  and?: Array<ModelBoatMemberTypeConditionInput | null> | null;
+  or?: Array<ModelBoatMemberTypeConditionInput | null> | null;
+  not?: ModelBoatMemberTypeConditionInput | null;
 };
 
 export type ModelIDInput = {
@@ -282,6 +284,25 @@ export type ModelIDInput = {
   attributeExists?: boolean | null;
   attributeType?: ModelAttributeTypes | null;
   size?: ModelSizeInput | null;
+};
+
+export type UpdateBoatMemberTypeInput = {
+  id: string;
+  boatId?: string | null;
+  memberId?: string | null;
+};
+
+export type DeleteBoatMemberTypeInput = {
+  id?: string | null;
+};
+
+export type ModelAthleteAttendenceConditionInput = {
+  trainingID?: ModelIDInput | null;
+  athleteID?: ModelIDInput | null;
+  attending?: ModelStringInput | null;
+  and?: Array<ModelAthleteAttendenceConditionInput | null> | null;
+  or?: Array<ModelAthleteAttendenceConditionInput | null> | null;
+  not?: ModelAthleteAttendenceConditionInput | null;
 };
 
 export type UpdateAthleteAttendenceInput = {
@@ -348,14 +369,6 @@ export type ModelBoatCategoryTypeFilterInput = {
   not?: ModelBoatCategoryTypeFilterInput | null;
 };
 
-export type ModelUserTypeFilterInput = {
-  id?: ModelIDInput | null;
-  type?: ModelStringInput | null;
-  and?: Array<ModelUserTypeFilterInput | null> | null;
-  or?: Array<ModelUserTypeFilterInput | null> | null;
-  not?: ModelUserTypeFilterInput | null;
-};
-
 export type ModelTrainingFilterInput = {
   id?: ModelIDInput | null;
   trainingDate?: ModelStringInput | null;
@@ -381,11 +394,18 @@ export type ModelClubFilterInput = {
   not?: ModelClubFilterInput | null;
 };
 
+export type ModelMembershipTypeFilterInput = {
+  id?: ModelIDInput | null;
+  type?: ModelStringInput | null;
+  and?: Array<ModelMembershipTypeFilterInput | null> | null;
+  or?: Array<ModelMembershipTypeFilterInput | null> | null;
+  not?: ModelMembershipTypeFilterInput | null;
+};
+
 export type ModelBoatFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
   ownership?: ModelStringInput | null;
-  membershipType?: ModelStringInput | null;
   weightCategory?: ModelStringInput | null;
   sortOfBoat?: ModelStringInput | null;
   note?: ModelStringInput | null;
@@ -454,6 +474,71 @@ export type BatchAddAthleteAttendenceMutation = {
     updatedAt: string;
   };
   attending: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BatchAddBoatMemberTypeMutation = {
+  __typename: "BoatMemberType";
+  id: string;
+  boatId: string;
+  memberId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -641,7 +726,6 @@ export type CreateBoatCategoryTypeMutation = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -654,6 +738,18 @@ export type CreateBoatCategoryTypeMutation = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -675,7 +771,6 @@ export type UpdateBoatCategoryTypeMutation = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -688,6 +783,18 @@ export type UpdateBoatCategoryTypeMutation = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -709,7 +816,6 @@ export type DeleteBoatCategoryTypeMutation = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -727,115 +833,13 @@ export type DeleteBoatCategoryTypeMutation = {
       } | null> | null;
       nextToken: string | null;
     } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type CreateUserTypeMutation = {
-  __typename: "UserType";
-  id: string;
-  type: string;
-  boat: Array<{
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
       items: Array<{
-        __typename: "AthleteAttendence";
+        __typename: "BoatMemberType";
         id: string;
-        trainingID: string;
-        athleteID: string;
-        attending: string | null;
-        createdAt: string;
-        updatedAt: string;
-      } | null> | null;
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateUserTypeMutation = {
-  __typename: "UserType";
-  id: string;
-  type: string;
-  boat: Array<{
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      items: Array<{
-        __typename: "AthleteAttendence";
-        id: string;
-        trainingID: string;
-        athleteID: string;
-        attending: string | null;
-        createdAt: string;
-        updatedAt: string;
-      } | null> | null;
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type DeleteUserTypeMutation = {
-  __typename: "UserType";
-  id: string;
-  type: string;
-  boat: Array<{
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      items: Array<{
-        __typename: "AthleteAttendence";
-        id: string;
-        trainingID: string;
-        athleteID: string;
-        attending: string | null;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -1043,12 +1047,128 @@ export type DeleteClubMutation = {
   updatedAt: string;
 };
 
+export type CreateMembershipTypeMutation = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateMembershipTypeMutation = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteMembershipTypeMutation = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CreateBoatMutation = {
   __typename: "Boat";
   id: string;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note: string | null;
@@ -1076,7 +1196,6 @@ export type CreateBoatMutation = {
         id: string;
         name: string;
         ownership: string;
-        membershipType: string;
         weightCategory: string;
         sortOfBoat: string;
         note: string | null;
@@ -1098,6 +1217,37 @@ export type CreateBoatMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -1115,7 +1265,6 @@ export type UpdateBoatMutation = {
   id: string;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note: string | null;
@@ -1143,7 +1292,6 @@ export type UpdateBoatMutation = {
         id: string;
         name: string;
         ownership: string;
-        membershipType: string;
         weightCategory: string;
         sortOfBoat: string;
         note: string | null;
@@ -1165,6 +1313,37 @@ export type UpdateBoatMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -1182,7 +1361,6 @@ export type DeleteBoatMutation = {
   id: string;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note: string | null;
@@ -1210,7 +1388,6 @@ export type DeleteBoatMutation = {
         id: string;
         name: string;
         ownership: string;
-        membershipType: string;
         weightCategory: string;
         sortOfBoat: string;
         note: string | null;
@@ -1240,6 +1417,232 @@ export type DeleteBoatMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  membershipType: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateBoatMemberTypeMutation = {
+  __typename: "BoatMemberType";
+  id: string;
+  boatId: string;
+  memberId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateBoatMemberTypeMutation = {
+  __typename: "BoatMemberType";
+  id: string;
+  boatId: string;
+  memberId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteBoatMemberTypeMutation = {
+  __typename: "BoatMemberType";
+  id: string;
+  boatId: string;
+  memberId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1467,7 +1870,6 @@ export type CreateBoatListMutation = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -1480,6 +1882,18 @@ export type CreateBoatListMutation = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -1556,7 +1970,6 @@ export type UpdateBoatListMutation = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -1569,6 +1982,18 @@ export type UpdateBoatListMutation = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -1645,7 +2070,6 @@ export type DeleteBoatListMutation = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -1658,6 +2082,18 @@ export type DeleteBoatListMutation = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -1860,7 +2296,6 @@ export type GetBoatCategoryTypeQuery = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -1873,6 +2308,18 @@ export type GetBoatCategoryTypeQuery = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -1896,7 +2343,6 @@ export type ListBoatCategoryTypesQuery = {
       id: string;
       name: string;
       ownership: string;
-      membershipType: string;
       weightCategory: string;
       sortOfBoat: string;
       note: string | null;
@@ -1905,75 +2351,8 @@ export type ListBoatCategoryTypesQuery = {
         __typename: "ModelBoatListConnection";
         nextToken: string | null;
       } | null;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type GetUserTypeQuery = {
-  __typename: "UserType";
-  id: string;
-  type: string;
-  boat: Array<{
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      items: Array<{
-        __typename: "AthleteAttendence";
-        id: string;
-        trainingID: string;
-        athleteID: string;
-        attending: string | null;
-        createdAt: string;
-        updatedAt: string;
-      } | null> | null;
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ListUserTypesQuery = {
-  __typename: "ModelUserTypeConnection";
-  items: Array<{
-    __typename: "UserType";
-    id: string;
-    type: string;
-    boat: Array<{
-      __typename: "User";
-      id: string;
-      firstName: string;
-      lastName: string;
-      membershipType: string;
-      email: string;
-      dob: string | null;
-      height: string | null;
-      weightCategory: string | null;
-      boatPreference: string | null;
-      side: string | null;
-      sex: string | null;
-      status: boolean | null;
-      training: {
-        __typename: "ModelAthleteAttendenceConnection";
+      membershipType: {
+        __typename: "ModelBoatMemberTypeConnection";
         nextToken: string | null;
       } | null;
       createdAt: string;
@@ -2096,12 +2475,74 @@ export type ListClubsQuery = {
   nextToken: string | null;
 };
 
+export type GetMembershipTypeQuery = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListMembershipTypesQuery = {
+  __typename: "ModelMembershipTypeConnection";
+  items: Array<{
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type GetBoatQuery = {
   __typename: "Boat";
   id: string;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note: string | null;
@@ -2129,7 +2570,6 @@ export type GetBoatQuery = {
         id: string;
         name: string;
         ownership: string;
-        membershipType: string;
         weightCategory: string;
         sortOfBoat: string;
         note: string | null;
@@ -2159,6 +2599,37 @@ export type GetBoatQuery = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  membershipType: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -2170,7 +2641,6 @@ export type ListBoatsQuery = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -2183,6 +2653,18 @@ export type ListBoatsQuery = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -2377,7 +2859,6 @@ export type OnCreateBoatCategoryTypeSubscription = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -2390,6 +2871,18 @@ export type OnCreateBoatCategoryTypeSubscription = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -2411,7 +2904,6 @@ export type OnUpdateBoatCategoryTypeSubscription = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -2424,6 +2916,18 @@ export type OnUpdateBoatCategoryTypeSubscription = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -2445,7 +2949,6 @@ export type OnDeleteBoatCategoryTypeSubscription = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -2463,115 +2966,13 @@ export type OnDeleteBoatCategoryTypeSubscription = {
       } | null> | null;
       nextToken: string | null;
     } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnCreateUserTypeSubscription = {
-  __typename: "UserType";
-  id: string;
-  type: string;
-  boat: Array<{
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
       items: Array<{
-        __typename: "AthleteAttendence";
+        __typename: "BoatMemberType";
         id: string;
-        trainingID: string;
-        athleteID: string;
-        attending: string | null;
-        createdAt: string;
-        updatedAt: string;
-      } | null> | null;
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnUpdateUserTypeSubscription = {
-  __typename: "UserType";
-  id: string;
-  type: string;
-  boat: Array<{
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      items: Array<{
-        __typename: "AthleteAttendence";
-        id: string;
-        trainingID: string;
-        athleteID: string;
-        attending: string | null;
-        createdAt: string;
-        updatedAt: string;
-      } | null> | null;
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteUserTypeSubscription = {
-  __typename: "UserType";
-  id: string;
-  type: string;
-  boat: Array<{
-    __typename: "User";
-    id: string;
-    firstName: string;
-    lastName: string;
-    membershipType: string;
-    email: string;
-    dob: string | null;
-    height: string | null;
-    weightCategory: string | null;
-    boatPreference: string | null;
-    side: string | null;
-    sex: string | null;
-    status: boolean | null;
-    training: {
-      __typename: "ModelAthleteAttendenceConnection";
-      items: Array<{
-        __typename: "AthleteAttendence";
-        id: string;
-        trainingID: string;
-        athleteID: string;
-        attending: string | null;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -2779,12 +3180,128 @@ export type OnDeleteClubSubscription = {
   updatedAt: string;
 };
 
+export type OnCreateMembershipTypeSubscription = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateMembershipTypeSubscription = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteMembershipTypeSubscription = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type OnCreateBoatSubscription = {
   __typename: "Boat";
   id: string;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note: string | null;
@@ -2812,7 +3329,6 @@ export type OnCreateBoatSubscription = {
         id: string;
         name: string;
         ownership: string;
-        membershipType: string;
         weightCategory: string;
         sortOfBoat: string;
         note: string | null;
@@ -2834,6 +3350,37 @@ export type OnCreateBoatSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -2851,7 +3398,6 @@ export type OnUpdateBoatSubscription = {
   id: string;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note: string | null;
@@ -2879,7 +3425,6 @@ export type OnUpdateBoatSubscription = {
         id: string;
         name: string;
         ownership: string;
-        membershipType: string;
         weightCategory: string;
         sortOfBoat: string;
         note: string | null;
@@ -2901,6 +3446,37 @@ export type OnUpdateBoatSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
         createdAt: string;
         updatedAt: string;
       };
@@ -2918,7 +3494,6 @@ export type OnDeleteBoatSubscription = {
   id: string;
   name: string;
   ownership: string;
-  membershipType: string;
   weightCategory: string;
   sortOfBoat: string;
   note: string | null;
@@ -2946,7 +3521,6 @@ export type OnDeleteBoatSubscription = {
         id: string;
         name: string;
         ownership: string;
-        membershipType: string;
         weightCategory: string;
         sortOfBoat: string;
         note: string | null;
@@ -2976,6 +3550,232 @@ export type OnDeleteBoatSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  membershipType: {
+    __typename: "ModelBoatMemberTypeConnection";
+    items: Array<{
+      __typename: "BoatMemberType";
+      id: string;
+      boatId: string;
+      memberId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateBoatMemberTypeSubscription = {
+  __typename: "BoatMemberType";
+  id: string;
+  boatId: string;
+  memberId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateBoatMemberTypeSubscription = {
+  __typename: "BoatMemberType";
+  id: string;
+  boatId: string;
+  memberId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteBoatMemberTypeSubscription = {
+  __typename: "BoatMemberType";
+  id: string;
+  boatId: string;
+  memberId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -3203,7 +4003,6 @@ export type OnCreateBoatListSubscription = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -3216,6 +4015,18 @@ export type OnCreateBoatListSubscription = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -3292,7 +4103,6 @@ export type OnUpdateBoatListSubscription = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -3305,6 +4115,18 @@ export type OnUpdateBoatListSubscription = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -3381,7 +4203,6 @@ export type OnDeleteBoatListSubscription = {
     id: string;
     name: string;
     ownership: string;
-    membershipType: string;
     weightCategory: string;
     sortOfBoat: string;
     note: string | null;
@@ -3394,6 +4215,18 @@ export type OnDeleteBoatListSubscription = {
         trainingID: string;
         athleteID: string;
         boatID: string;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMemberTypeConnection";
+      items: Array<{
+        __typename: "BoatMemberType";
+        id: string;
+        boatId: string;
+        memberId: string;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -3516,6 +4349,86 @@ export class APIService {
     )) as any;
     return <Array<BatchAddAthleteAttendenceMutation>>(
       response.data.batchAddAthleteAttendence
+    );
+  }
+  async BatchAddBoatMemberType(
+    boatMemberType?: Array<CreateBoatMemberTypeInput | null>
+  ): Promise<Array<BatchAddBoatMemberTypeMutation>> {
+    const statement = `mutation BatchAddBoatMemberType($boatMemberType: [CreateBoatMemberTypeInput]) {
+        batchAddBoatMemberType(boatMemberType: $boatMemberType) {
+          __typename
+          id
+          boatId
+          memberId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (boatMemberType) {
+      gqlAPIServiceArguments.boatMemberType = boatMemberType;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <Array<BatchAddBoatMemberTypeMutation>>(
+      response.data.batchAddBoatMemberType
     );
   }
   async CreateUser(
@@ -3754,7 +4667,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -3767,6 +4679,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -3804,7 +4728,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -3817,6 +4740,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -3854,7 +4789,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -3867,6 +4801,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -3889,168 +4835,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteBoatCategoryTypeMutation>response.data.deleteBoatCategoryType;
-  }
-  async CreateUserType(
-    input: CreateUserTypeInput,
-    condition?: ModelUserTypeConditionInput
-  ): Promise<CreateUserTypeMutation> {
-    const statement = `mutation CreateUserType($input: CreateUserTypeInput!, $condition: ModelUserTypeConditionInput) {
-        createUserType(input: $input, condition: $condition) {
-          __typename
-          id
-          type
-          boat {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              items {
-                __typename
-                id
-                trainingID
-                athleteID
-                attending
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateUserTypeMutation>response.data.createUserType;
-  }
-  async UpdateUserType(
-    input: UpdateUserTypeInput,
-    condition?: ModelUserTypeConditionInput
-  ): Promise<UpdateUserTypeMutation> {
-    const statement = `mutation UpdateUserType($input: UpdateUserTypeInput!, $condition: ModelUserTypeConditionInput) {
-        updateUserType(input: $input, condition: $condition) {
-          __typename
-          id
-          type
-          boat {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              items {
-                __typename
-                id
-                trainingID
-                athleteID
-                attending
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateUserTypeMutation>response.data.updateUserType;
-  }
-  async DeleteUserType(
-    input: DeleteUserTypeInput,
-    condition?: ModelUserTypeConditionInput
-  ): Promise<DeleteUserTypeMutation> {
-    const statement = `mutation DeleteUserType($input: DeleteUserTypeInput!, $condition: ModelUserTypeConditionInput) {
-        deleteUserType(input: $input, condition: $condition) {
-          __typename
-          id
-          type
-          boat {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              items {
-                __typename
-                id
-                trainingID
-                athleteID
-                attending
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteUserTypeMutation>response.data.deleteUserType;
   }
   async CreateTraining(
     input: CreateTrainingInput,
@@ -4343,6 +5127,171 @@ export class APIService {
     )) as any;
     return <DeleteClubMutation>response.data.deleteClub;
   }
+  async CreateMembershipType(
+    input: CreateMembershipTypeInput,
+    condition?: ModelMembershipTypeConditionInput
+  ): Promise<CreateMembershipTypeMutation> {
+    const statement = `mutation CreateMembershipType($input: CreateMembershipTypeInput!, $condition: ModelMembershipTypeConditionInput) {
+        createMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateMembershipTypeMutation>response.data.createMembershipType;
+  }
+  async UpdateMembershipType(
+    input: UpdateMembershipTypeInput,
+    condition?: ModelMembershipTypeConditionInput
+  ): Promise<UpdateMembershipTypeMutation> {
+    const statement = `mutation UpdateMembershipType($input: UpdateMembershipTypeInput!, $condition: ModelMembershipTypeConditionInput) {
+        updateMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateMembershipTypeMutation>response.data.updateMembershipType;
+  }
+  async DeleteMembershipType(
+    input: DeleteMembershipTypeInput,
+    condition?: ModelMembershipTypeConditionInput
+  ): Promise<DeleteMembershipTypeMutation> {
+    const statement = `mutation DeleteMembershipType($input: DeleteMembershipTypeInput!, $condition: ModelMembershipTypeConditionInput) {
+        deleteMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteMembershipTypeMutation>response.data.deleteMembershipType;
+  }
   async CreateBoat(
     input: CreateBoatInput,
     condition?: ModelBoatConditionInput
@@ -4353,7 +5302,6 @@ export class APIService {
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -4381,7 +5329,6 @@ export class APIService {
                 id
                 name
                 ownership
-                membershipType
                 weightCategory
                 sortOfBoat
                 note
@@ -4403,6 +5350,37 @@ export class APIService {
                 side
                 sex
                 status
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
                 createdAt
                 updatedAt
               }
@@ -4436,7 +5414,6 @@ export class APIService {
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -4464,7 +5441,6 @@ export class APIService {
                 id
                 name
                 ownership
-                membershipType
                 weightCategory
                 sortOfBoat
                 note
@@ -4486,6 +5462,37 @@ export class APIService {
                 side
                 sex
                 status
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
                 createdAt
                 updatedAt
               }
@@ -4519,7 +5526,6 @@ export class APIService {
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -4547,7 +5553,6 @@ export class APIService {
                 id
                 name
                 ownership
-                membershipType
                 weightCategory
                 sortOfBoat
                 note
@@ -4577,6 +5582,37 @@ export class APIService {
             }
             nextToken
           }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -4591,6 +5627,249 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteBoatMutation>response.data.deleteBoat;
+  }
+  async CreateBoatMemberType(
+    input: CreateBoatMemberTypeInput,
+    condition?: ModelBoatMemberTypeConditionInput
+  ): Promise<CreateBoatMemberTypeMutation> {
+    const statement = `mutation CreateBoatMemberType($input: CreateBoatMemberTypeInput!, $condition: ModelBoatMemberTypeConditionInput) {
+        createBoatMemberType(input: $input, condition: $condition) {
+          __typename
+          id
+          boatId
+          memberId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateBoatMemberTypeMutation>response.data.createBoatMemberType;
+  }
+  async UpdateBoatMemberType(
+    input: UpdateBoatMemberTypeInput,
+    condition?: ModelBoatMemberTypeConditionInput
+  ): Promise<UpdateBoatMemberTypeMutation> {
+    const statement = `mutation UpdateBoatMemberType($input: UpdateBoatMemberTypeInput!, $condition: ModelBoatMemberTypeConditionInput) {
+        updateBoatMemberType(input: $input, condition: $condition) {
+          __typename
+          id
+          boatId
+          memberId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateBoatMemberTypeMutation>response.data.updateBoatMemberType;
+  }
+  async DeleteBoatMemberType(
+    input: DeleteBoatMemberTypeInput,
+    condition?: ModelBoatMemberTypeConditionInput
+  ): Promise<DeleteBoatMemberTypeMutation> {
+    const statement = `mutation DeleteBoatMemberType($input: DeleteBoatMemberTypeInput!, $condition: ModelBoatMemberTypeConditionInput) {
+        deleteBoatMemberType(input: $input, condition: $condition) {
+          __typename
+          id
+          boatId
+          memberId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteBoatMemberTypeMutation>response.data.deleteBoatMemberType;
   }
   async CreateAthleteAttendence(
     input: CreateAthleteAttendenceInput,
@@ -4874,7 +6153,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -4887,6 +6165,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -4979,7 +6269,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -4992,6 +6281,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -5084,7 +6385,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -5097,6 +6397,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -5358,7 +6670,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -5371,6 +6682,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -5408,12 +6731,15 @@ export class APIService {
               id
               name
               ownership
-              membershipType
               weightCategory
               sortOfBoat
               note
               active
               training {
+                __typename
+                nextToken
+              }
+              membershipType {
                 __typename
                 nextToken
               }
@@ -5440,108 +6766,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListBoatCategoryTypesQuery>response.data.listBoatCategoryTypes;
-  }
-  async GetUserType(id: string): Promise<GetUserTypeQuery> {
-    const statement = `query GetUserType($id: ID!) {
-        getUserType(id: $id) {
-          __typename
-          id
-          type
-          boat {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              items {
-                __typename
-                id
-                trainingID
-                athleteID
-                attending
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetUserTypeQuery>response.data.getUserType;
-  }
-  async ListUserTypes(
-    filter?: ModelUserTypeFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListUserTypesQuery> {
-    const statement = `query ListUserTypes($filter: ModelUserTypeFilterInput, $limit: Int, $nextToken: String) {
-        listUserTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            type
-            boat {
-              __typename
-              id
-              firstName
-              lastName
-              membershipType
-              email
-              dob
-              height
-              weightCategory
-              boatPreference
-              side
-              sex
-              status
-              training {
-                __typename
-                nextToken
-              }
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListUserTypesQuery>response.data.listUserTypes;
   }
   async GetTraining(id: string): Promise<GetTrainingQuery> {
     const statement = `query GetTraining($id: ID!) {
@@ -5716,6 +6940,100 @@ export class APIService {
     )) as any;
     return <ListClubsQuery>response.data.listClubs;
   }
+  async GetMembershipType(id: string): Promise<GetMembershipTypeQuery> {
+    const statement = `query GetMembershipType($id: ID!) {
+        getMembershipType(id: $id) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetMembershipTypeQuery>response.data.getMembershipType;
+  }
+  async ListMembershipTypes(
+    filter?: ModelMembershipTypeFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListMembershipTypesQuery> {
+    const statement = `query ListMembershipTypes($filter: ModelMembershipTypeFilterInput, $limit: Int, $nextToken: String) {
+        listMembershipTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListMembershipTypesQuery>response.data.listMembershipTypes;
+  }
   async GetBoat(id: string): Promise<GetBoatQuery> {
     const statement = `query GetBoat($id: ID!) {
         getBoat(id: $id) {
@@ -5723,7 +7041,6 @@ export class APIService {
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -5751,7 +7068,6 @@ export class APIService {
                 id
                 name
                 ownership
-                membershipType
                 weightCategory
                 sortOfBoat
                 note
@@ -5773,6 +7089,37 @@ export class APIService {
                 side
                 sex
                 status
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
                 createdAt
                 updatedAt
               }
@@ -5806,7 +7153,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -5819,6 +7165,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -6051,7 +7409,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -6064,6 +7421,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -6093,7 +7462,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -6106,6 +7474,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -6135,7 +7515,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -6153,6 +7532,18 @@ export class APIService {
               }
               nextToken
             }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
             createdAt
             updatedAt
           }
@@ -6162,144 +7553,6 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteBoatCategoryTypeSubscription>;
-
-  OnCreateUserTypeListener: Observable<
-    OnCreateUserTypeSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateUserType {
-        onCreateUserType {
-          __typename
-          id
-          type
-          boat {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              items {
-                __typename
-                id
-                trainingID
-                athleteID
-                attending
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnCreateUserTypeSubscription>;
-
-  OnUpdateUserTypeListener: Observable<
-    OnUpdateUserTypeSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateUserType {
-        onUpdateUserType {
-          __typename
-          id
-          type
-          boat {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              items {
-                __typename
-                id
-                trainingID
-                athleteID
-                attending
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateUserTypeSubscription>;
-
-  OnDeleteUserTypeListener: Observable<
-    OnDeleteUserTypeSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteUserType {
-        onDeleteUserType {
-          __typename
-          id
-          type
-          boat {
-            __typename
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              __typename
-              items {
-                __typename
-                id
-                trainingID
-                athleteID
-                attending
-                createdAt
-                updatedAt
-              }
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteUserTypeSubscription>;
 
   OnCreateTrainingListener: Observable<
     OnCreateTrainingSubscription
@@ -6538,6 +7791,147 @@ export class APIService {
     )
   ) as Observable<OnDeleteClubSubscription>;
 
+  OnCreateMembershipTypeListener: Observable<
+    OnCreateMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateMembershipType {
+        onCreateMembershipType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateMembershipTypeSubscription>;
+
+  OnUpdateMembershipTypeListener: Observable<
+    OnUpdateMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateMembershipType {
+        onUpdateMembershipType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateMembershipTypeSubscription>;
+
+  OnDeleteMembershipTypeListener: Observable<
+    OnDeleteMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteMembershipType {
+        onDeleteMembershipType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteMembershipTypeSubscription>;
+
   OnCreateBoatListener: Observable<OnCreateBoatSubscription> = API.graphql(
     graphqlOperation(
       `subscription OnCreateBoat {
@@ -6546,7 +7940,6 @@ export class APIService {
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -6574,7 +7967,6 @@ export class APIService {
                 id
                 name
                 ownership
-                membershipType
                 weightCategory
                 sortOfBoat
                 note
@@ -6596,6 +7988,37 @@ export class APIService {
                 side
                 sex
                 status
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
                 createdAt
                 updatedAt
               }
@@ -6619,7 +8042,6 @@ export class APIService {
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -6647,7 +8069,6 @@ export class APIService {
                 id
                 name
                 ownership
-                membershipType
                 weightCategory
                 sortOfBoat
                 note
@@ -6669,6 +8090,37 @@ export class APIService {
                 side
                 sex
                 status
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
                 createdAt
                 updatedAt
               }
@@ -6692,7 +8144,6 @@ export class APIService {
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -6720,7 +8171,6 @@ export class APIService {
                 id
                 name
                 ownership
-                membershipType
                 weightCategory
                 sortOfBoat
                 note
@@ -6750,12 +8200,262 @@ export class APIService {
             }
             nextToken
           }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              memberId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
       }`
     )
   ) as Observable<OnDeleteBoatSubscription>;
+
+  OnCreateBoatMemberTypeListener: Observable<
+    OnCreateBoatMemberTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBoatMemberType {
+        onCreateBoatMemberType {
+          __typename
+          id
+          boatId
+          memberId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateBoatMemberTypeSubscription>;
+
+  OnUpdateBoatMemberTypeListener: Observable<
+    OnUpdateBoatMemberTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateBoatMemberType {
+        onUpdateBoatMemberType {
+          __typename
+          id
+          boatId
+          memberId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateBoatMemberTypeSubscription>;
+
+  OnDeleteBoatMemberTypeListener: Observable<
+    OnDeleteBoatMemberTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteBoatMemberType {
+        onDeleteBoatMemberType {
+          __typename
+          id
+          boatId
+          memberId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteBoatMemberTypeSubscription>;
 
   OnCreateAthleteAttendenceListener: Observable<
     OnCreateAthleteAttendenceSubscription
@@ -7009,7 +8709,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -7022,6 +8721,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -7106,7 +8817,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -7119,6 +8829,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }
@@ -7203,7 +8925,6 @@ export class APIService {
             id
             name
             ownership
-            membershipType
             weightCategory
             sortOfBoat
             note
@@ -7216,6 +8937,18 @@ export class APIService {
                 trainingID
                 athleteID
                 boatID
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                memberId
                 createdAt
                 updatedAt
               }

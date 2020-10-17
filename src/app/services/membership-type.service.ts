@@ -5,21 +5,21 @@ import {UserType} from "../domain/user-type";
 @Injectable({
   providedIn: 'root'
 })
-export class UserTypeService {
+export class MembershipTypeService {
 
   constructor(private api: APIService) {}
 
   async saveUserType(type: UserType) {
-    await this.api.CreateUserType(type);
+    await this.api.CreateMembershipType(type);
   }
 
   async getUserType() {
-    return await this.api.ListUserTypes();
+    return await this.api.ListMembershipTypes();
   }
 
   async updateUserType(type: UserType) {
-    await this.api.UpdateUserType(type);
+    await this.api.UpdateMembershipType(type);
   }
   async deleteUserType(UserTypeId) {
-    await this.api.DeleteUserType(UserTypeId);
+    await this.api.DeleteMembershipType(UserTypeId);
   }}

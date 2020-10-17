@@ -58,6 +58,63 @@ mutation BatchAddAthleteAttendence(
     updatedAt
   }
 }
+mutation BatchAddBoatMemberType($boatMemberType: [CreateBoatMemberTypeInput]) {
+  batchAddBoatMemberType(boatMemberType: $boatMemberType) {
+    id
+    boatId
+    memberId
+    boat {
+      id
+      name
+      ownership
+      weightCategory
+      sortOfBoat
+      note
+      active
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    membership {
+      id
+      type
+      boat {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateUser(
   $input: CreateUserInput!
   $condition: ModelUserConditionInput
@@ -240,7 +297,6 @@ mutation CreateBoatCategoryType(
       id
       name
       ownership
-      membershipType
       weightCategory
       sortOfBoat
       note
@@ -251,6 +307,16 @@ mutation CreateBoatCategoryType(
           trainingID
           athleteID
           boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
           createdAt
           updatedAt
         }
@@ -274,7 +340,6 @@ mutation UpdateBoatCategoryType(
       id
       name
       ownership
-      membershipType
       weightCategory
       sortOfBoat
       note
@@ -285,6 +350,16 @@ mutation UpdateBoatCategoryType(
           trainingID
           athleteID
           boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
           createdAt
           updatedAt
         }
@@ -308,7 +383,6 @@ mutation DeleteBoatCategoryType(
       id
       name
       ownership
-      membershipType
       weightCategory
       sortOfBoat
       note
@@ -324,115 +398,11 @@ mutation DeleteBoatCategoryType(
         }
         nextToken
       }
-      createdAt
-      updatedAt
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation CreateUserType(
-  $input: CreateUserTypeInput!
-  $condition: ModelUserTypeConditionInput
-) {
-  createUserType(input: $input, condition: $condition) {
-    id
-    type
-    boat {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
-      training {
+      membershipType {
         items {
           id
-          trainingID
-          athleteID
-          attending
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateUserType(
-  $input: UpdateUserTypeInput!
-  $condition: ModelUserTypeConditionInput
-) {
-  updateUserType(input: $input, condition: $condition) {
-    id
-    type
-    boat {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
-      training {
-        items {
-          id
-          trainingID
-          athleteID
-          attending
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteUserType(
-  $input: DeleteUserTypeInput!
-  $condition: ModelUserTypeConditionInput
-) {
-  deleteUserType(input: $input, condition: $condition) {
-    id
-    type
-    boat {
-      id
-      firstName
-      lastName
-      membershipType
-      email
-      dob
-      height
-      weightCategory
-      boatPreference
-      side
-      sex
-      status
-      training {
-        items {
-          id
-          trainingID
-          athleteID
-          attending
+          boatId
+          memberId
           createdAt
           updatedAt
         }
@@ -646,6 +616,120 @@ mutation DeleteClub(
     updatedAt
   }
 }
+mutation CreateMembershipType(
+  $input: CreateMembershipTypeInput!
+  $condition: ModelMembershipTypeConditionInput
+) {
+  createMembershipType(input: $input, condition: $condition) {
+    id
+    type
+    boat {
+      items {
+        id
+        boatId
+        memberId
+        boat {
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        membership {
+          id
+          type
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateMembershipType(
+  $input: UpdateMembershipTypeInput!
+  $condition: ModelMembershipTypeConditionInput
+) {
+  updateMembershipType(input: $input, condition: $condition) {
+    id
+    type
+    boat {
+      items {
+        id
+        boatId
+        memberId
+        boat {
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        membership {
+          id
+          type
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteMembershipType(
+  $input: DeleteMembershipTypeInput!
+  $condition: ModelMembershipTypeConditionInput
+) {
+  deleteMembershipType(input: $input, condition: $condition) {
+    id
+    type
+    boat {
+      items {
+        id
+        boatId
+        memberId
+        boat {
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        membership {
+          id
+          type
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateBoat(
   $input: CreateBoatInput!
   $condition: ModelBoatConditionInput
@@ -654,7 +738,6 @@ mutation CreateBoat(
     id
     name
     ownership
-    membershipType
     weightCategory
     sortOfBoat
     note
@@ -678,7 +761,6 @@ mutation CreateBoat(
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -699,6 +781,33 @@ mutation CreateBoat(
           side
           sex
           status
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    membershipType {
+      items {
+        id
+        boatId
+        memberId
+        boat {
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        membership {
+          id
+          type
           createdAt
           updatedAt
         }
@@ -719,7 +828,6 @@ mutation UpdateBoat(
     id
     name
     ownership
-    membershipType
     weightCategory
     sortOfBoat
     note
@@ -743,7 +851,6 @@ mutation UpdateBoat(
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -772,6 +879,33 @@ mutation UpdateBoat(
       }
       nextToken
     }
+    membershipType {
+      items {
+        id
+        boatId
+        memberId
+        boat {
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        membership {
+          id
+          type
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     createdAt
     updatedAt
   }
@@ -784,7 +918,6 @@ mutation DeleteBoat(
     id
     name
     ownership
-    membershipType
     weightCategory
     sortOfBoat
     note
@@ -808,7 +941,6 @@ mutation DeleteBoat(
           id
           name
           ownership
-          membershipType
           weightCategory
           sortOfBoat
           note
@@ -836,6 +968,213 @@ mutation DeleteBoat(
         updatedAt
       }
       nextToken
+    }
+    membershipType {
+      items {
+        id
+        boatId
+        memberId
+        boat {
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          createdAt
+          updatedAt
+        }
+        membership {
+          id
+          type
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateBoatMemberType(
+  $input: CreateBoatMemberTypeInput!
+  $condition: ModelBoatMemberTypeConditionInput
+) {
+  createBoatMemberType(input: $input, condition: $condition) {
+    id
+    boatId
+    memberId
+    boat {
+      id
+      name
+      ownership
+      weightCategory
+      sortOfBoat
+      note
+      active
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    membership {
+      id
+      type
+      boat {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateBoatMemberType(
+  $input: UpdateBoatMemberTypeInput!
+  $condition: ModelBoatMemberTypeConditionInput
+) {
+  updateBoatMemberType(input: $input, condition: $condition) {
+    id
+    boatId
+    memberId
+    boat {
+      id
+      name
+      ownership
+      weightCategory
+      sortOfBoat
+      note
+      active
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    membership {
+      id
+      type
+      boat {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteBoatMemberType(
+  $input: DeleteBoatMemberTypeInput!
+  $condition: ModelBoatMemberTypeConditionInput
+) {
+  deleteBoatMemberType(input: $input, condition: $condition) {
+    id
+    boatId
+    memberId
+    boat {
+      id
+      name
+      ownership
+      weightCategory
+      sortOfBoat
+      note
+      active
+      training {
+        items {
+          id
+          trainingID
+          athleteID
+          boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    membership {
+      id
+      type
+      boat {
+        items {
+          id
+          boatId
+          memberId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -1054,7 +1393,6 @@ mutation CreateBoatList(
       id
       name
       ownership
-      membershipType
       weightCategory
       sortOfBoat
       note
@@ -1065,6 +1403,16 @@ mutation CreateBoatList(
           trainingID
           athleteID
           boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
           createdAt
           updatedAt
         }
@@ -1137,7 +1485,6 @@ mutation UpdateBoatList(
       id
       name
       ownership
-      membershipType
       weightCategory
       sortOfBoat
       note
@@ -1148,6 +1495,16 @@ mutation UpdateBoatList(
           trainingID
           athleteID
           boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
           createdAt
           updatedAt
         }
@@ -1220,7 +1577,6 @@ mutation DeleteBoatList(
       id
       name
       ownership
-      membershipType
       weightCategory
       sortOfBoat
       note
@@ -1231,6 +1587,16 @@ mutation DeleteBoatList(
           trainingID
           athleteID
           boatID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      membershipType {
+        items {
+          id
+          boatId
+          memberId
           createdAt
           updatedAt
         }
