@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  APIService, BatchAddBoatMemberTypeMutation,
-  CreateBoatMemberTypeInput,
-  CreateBoatMemberTypeMutation,
+  APIService, BatchAddBoatMembershipTypeMutation, CreateBoatMemberShipTypeInput,
   CreateBoatMutation,
   ListBoatsQuery
 } from "../API.service";
@@ -20,21 +18,21 @@ export class BoatService {
    return this.api.CreateBoat(boat);
   }
 
-  saveBoatMemberType(boatMemberTypeInput: CreateBoatMemberTypeInput[]):Promise<Array<BatchAddBoatMemberTypeMutation>>{
-    return this.api.BatchAddBoatMemberType(boatMemberTypeInput);
+  saveBoatMemberType(boatMembershipTypeInput: CreateBoatMemberShipTypeInput[]):Promise<Array<BatchAddBoatMembershipTypeMutation>>{
+    console.log(boatMembershipTypeInput)
+    return this.api.BatchAddBoatMembershipType(boatMembershipTypeInput);
   }
 
   getBoats(filter) {
     return this.api.ListBoats(filter).then((boat: ListBoatsQuery) =>{
       return boat;
     })
-      // this.api.ListBoats();
   }
 
-  async updateBoat(boat: Boat) {
-    await this.api.UpdateBoat(boat);
+   updateBoat(boat: Boat) {
+    return  this.api.UpdateBoat(boat);
   }
    delete(boat){
-     return this.api.UpdateBoat(boat);;
+     return this.api.UpdateBoat(boat);
   }
 }

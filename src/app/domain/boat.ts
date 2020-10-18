@@ -5,17 +5,15 @@ export class Boat {
   name: string;
   ownership: string;
   weightCategory: string;
-  membershipType: string;
+  membershipType: any;
   sortOfBoat: string;
   note: string;
   active: boolean;
   deleted_at: string;
 
   constructor(id?: string, name?: string,ownership?: string, weightCategory?: string,
-              membershipType?: string, sortOfBoat?: string, note?: string,deleted_at?: string,active?: boolean ) {
+              membershipType?: any, sortOfBoat?: string, note?: string,deleted_at?: string,active?: boolean ) {
 
-    // constructor(id?: string, name?: string,ownership?: string, weightCategory?: string,
-    //            sortOfBoat?: string, note?: string,active?: boolean ) {
     this.id = id;
     this.name = name;
     this.ownership = ownership;

@@ -1,4 +1,4 @@
-#foreach($item in ${ctx.args.boatMemberType})
+#foreach($item in ${ctx.args.BoatMembershipType})
     ## [Start] Owner Authorization Checks **
     #set( $isOwnerAuthorized = false )
     ## Authorization rule: { allow: "owner", ownerField: "owner", identityField: "cognito:username" } **
@@ -32,10 +32,10 @@
 #end
 
 #set($postsdata = [])
-#foreach($item in ${ctx.args.boatMemberType})
+#foreach($item in ${ctx.args.BoatMembershipType})
     $util.qr($item.put("createdAt", $util.time.nowISO8601()))
     $util.qr($item.put("updatedAt", $util.time.nowISO8601()))
-    $util.qr($item.put("__typename", "BoatMemberType"))
+    $util.qr($item.put("__typename", "BoatMembershipType"))
     $util.qr($item.put("id", $util.defaultIfNullOrBlank($item.id, $util.autoId())))
     $util.qr($postsdata.add($util.dynamodb.toMapValues($item)))
 #end
@@ -45,6 +45,6 @@
     "version" : "2018-05-29",
     "operation" : "BatchPutItem",
     "tables" : {
-        "BoatMemberType-sfudnwjzujdurd2fjmso3hpz6u-devm": $utils.toJson($postsdata)
+        "BoatMembershipType-sfudnwjzujdurd2fjmso3hpz6u-devm": $utils.toJson($postsdata)
     }
 }

@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Boat} from "../../domain/boat";
 import {StructureError} from 'src/utils/structure-error';
-import {BoatCategoryType} from "../../domain/boat-category-type";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MarkAsTouch} from "../../../utils/mark-as-touch";
@@ -46,11 +45,12 @@ export class PopupNewBoatComponent extends MarkAsTouch implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.data.boat)
     this.boatForm = this.fb.group({
       name: new FormControl(this.data.boat.name, [Validators.required]),
       ownership: new FormControl(this.data.boat.ownership, [Validators.required]),
       weightCategory: new FormControl(this.data.boat.weightCategory, [Validators.required]),
-      membershipType: new FormControl(this.data.boat.membershipType, [Validators.required]),
+      membershipType: new FormControl(this.data.boat.membershipType.items, [Validators.required]),
       sortOfBoat: new FormControl(this.data.boat.sortOfBoat, [Validators.required]),
       note: new FormControl(this.data.boat.note),
       active: new FormControl(this.data.boat.active, [Validators.required]),

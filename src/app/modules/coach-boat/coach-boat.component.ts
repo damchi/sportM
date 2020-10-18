@@ -6,7 +6,7 @@ import {Auth} from 'aws-amplify';
 import {PopupNewBoatComponent} from "../../components/popup-new-boat/popup-new-boat.component";
 import {BoatService} from "../../services/boat.service";
 import {BoatMemberType} from "../../domain/boat-member-type";
-import {APIService, CreateBoatMemberTypeInput, CreateBoatMutation, ListBoatsQuery} from "../../API.service";
+import {APIService, CreateBoatMemberShipTypeInput, CreateBoatMutation, ListBoatsQuery} from "../../API.service";
 import moment from "moment";
 
 @Component({
@@ -19,7 +19,7 @@ export class CoachBoatComponent implements OnInit {
   public displayedColumns: string[] = ['name', 'ownership', 'weightCategory', 'athleteCategory', 'sortOfBoat', 'note', 'active', 'option'];
   public boats: any [];
   public boat: Boat;
-  public createBoatMemberTypeInputs: CreateBoatMemberTypeInput[] = [];
+  public createBoatMemberTypeInputs: CreateBoatMemberShipTypeInput[] = [];
 
   constructor(public dialog: MatDialog, private serviceBoat: BoatService, private api: APIService) {
   }
@@ -57,8 +57,12 @@ export class CoachBoatComponent implements OnInit {
         eq: null,
       }
     }
-    this.serviceBoat.getBoats(filter).then((boats: ListBoatsQuery) =>
-      this.boats = boats.items)
+    this.serviceBoat.getBoats(filter).then((boats: ListBoatsQuery) =>{
+        this.boats = boats.items
+      console.log(this.boats);
+
+    }
+      )
   }
 
   save(boat: Boat) {
@@ -75,10 +79,12 @@ export class CoachBoatComponent implements OnInit {
           for (let i = 0; i < memberId.length; i++) {
             const boatMembershipType = new BoatMemberType();
             boatMembershipType.boatId = result.id;
-            boatMembershipType.memberId = memberId[i];
+            boatMembershipType.membershipId = memberId[i];
             this.createBoatMemberTypeInputs.push(boatMembershipType)
           }
-          this.serviceBoat.saveBoatMemberType(this.createBoatMemberTypeInputs).then(()=> {
+          this.serviceBoat.saveBoatMemberType(this.createBoatMemberTypeInputs).then((r)=> {
+            console.log(r);
+            console.log('ee');
             this.getBoat();
           })
         }

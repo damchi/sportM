@@ -12,11 +12,45 @@ mutation BatchAddAthleteAttendence(
       statut
       athleteCategory
       trainingTime
+      deleted_at
       athleteAttending {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -39,11 +73,45 @@ mutation BatchAddAthleteAttendence(
       side
       sex
       status
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -58,11 +126,13 @@ mutation BatchAddAthleteAttendence(
     updatedAt
   }
 }
-mutation BatchAddBoatMemberType($boatMemberType: [CreateBoatMemberTypeInput]) {
-  batchAddBoatMemberType(boatMemberType: $boatMemberType) {
+mutation BatchAddBoatMembershipType(
+  $BoatMembershipType: [CreateBoatMemberShipTypeInput]
+) {
+  batchAddBoatMembershipType(BoatMembershipType: $BoatMembershipType) {
     id
     boatId
-    memberId
+    membershipId
     boat {
       id
       name
@@ -71,12 +141,64 @@ mutation BatchAddBoatMemberType($boatMemberType: [CreateBoatMemberTypeInput]) {
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -86,7 +208,35 @@ mutation BatchAddBoatMemberType($boatMemberType: [CreateBoatMemberTypeInput]) {
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -98,11 +248,40 @@ mutation BatchAddBoatMemberType($boatMemberType: [CreateBoatMemberTypeInput]) {
     membership {
       id
       type
+      deleted_at
       boat {
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -132,6 +311,7 @@ mutation CreateUser(
     side
     sex
     status
+    deleted_at
     training {
       items {
         id
@@ -143,6 +323,18 @@ mutation CreateUser(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -159,6 +351,18 @@ mutation CreateUser(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -189,6 +393,7 @@ mutation UpdateUser(
     side
     sex
     status
+    deleted_at
     training {
       items {
         id
@@ -200,6 +405,18 @@ mutation UpdateUser(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -216,6 +433,18 @@ mutation UpdateUser(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -246,6 +475,7 @@ mutation DeleteUser(
     side
     sex
     status
+    deleted_at
     training {
       items {
         id
@@ -257,6 +487,18 @@ mutation DeleteUser(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -273,6 +515,18 @@ mutation DeleteUser(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -301,12 +555,64 @@ mutation CreateBoatCategoryType(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -316,7 +622,35 @@ mutation CreateBoatCategoryType(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -325,6 +659,7 @@ mutation CreateBoatCategoryType(
       createdAt
       updatedAt
     }
+    deleted_at
     createdAt
     updatedAt
   }
@@ -344,12 +679,64 @@ mutation UpdateBoatCategoryType(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -359,7 +746,35 @@ mutation UpdateBoatCategoryType(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -368,6 +783,7 @@ mutation UpdateBoatCategoryType(
       createdAt
       updatedAt
     }
+    deleted_at
     createdAt
     updatedAt
   }
@@ -387,12 +803,64 @@ mutation DeleteBoatCategoryType(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -402,7 +870,35 @@ mutation DeleteBoatCategoryType(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -411,6 +907,7 @@ mutation DeleteBoatCategoryType(
       createdAt
       updatedAt
     }
+    deleted_at
     createdAt
     updatedAt
   }
@@ -425,6 +922,7 @@ mutation CreateTraining(
     statut
     athleteCategory
     trainingTime
+    deleted_at
     athleteAttending {
       items {
         id
@@ -436,6 +934,18 @@ mutation CreateTraining(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -452,6 +962,18 @@ mutation CreateTraining(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -475,6 +997,7 @@ mutation UpdateTraining(
     statut
     athleteCategory
     trainingTime
+    deleted_at
     athleteAttending {
       items {
         id
@@ -486,6 +1009,18 @@ mutation UpdateTraining(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -502,6 +1037,18 @@ mutation UpdateTraining(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -525,6 +1072,7 @@ mutation DeleteTraining(
     statut
     athleteCategory
     trainingTime
+    deleted_at
     athleteAttending {
       items {
         id
@@ -536,6 +1084,18 @@ mutation DeleteTraining(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -552,6 +1112,18 @@ mutation DeleteTraining(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -578,6 +1150,7 @@ mutation CreateClub(
     country
     phone
     email
+    deleted_at
     createdAt
     updatedAt
   }
@@ -595,6 +1168,7 @@ mutation UpdateClub(
     country
     phone
     email
+    deleted_at
     createdAt
     updatedAt
   }
@@ -612,6 +1186,7 @@ mutation DeleteClub(
     country
     phone
     email
+    deleted_at
     createdAt
     updatedAt
   }
@@ -623,11 +1198,12 @@ mutation CreateMembershipType(
   createMembershipType(input: $input, condition: $condition) {
     id
     type
+    deleted_at
     boat {
       items {
         id
         boatId
-        memberId
+        membershipId
         boat {
           id
           name
@@ -636,12 +1212,45 @@ mutation CreateMembershipType(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         membership {
           id
           type
+          deleted_at
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -661,11 +1270,12 @@ mutation UpdateMembershipType(
   updateMembershipType(input: $input, condition: $condition) {
     id
     type
+    deleted_at
     boat {
       items {
         id
         boatId
-        memberId
+        membershipId
         boat {
           id
           name
@@ -674,12 +1284,45 @@ mutation UpdateMembershipType(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         membership {
           id
           type
+          deleted_at
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -699,11 +1342,12 @@ mutation DeleteMembershipType(
   deleteMembershipType(input: $input, condition: $condition) {
     id
     type
+    deleted_at
     boat {
       items {
         id
         boatId
-        memberId
+        membershipId
         boat {
           id
           name
@@ -712,12 +1356,45 @@ mutation DeleteMembershipType(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         membership {
           id
           type
+          deleted_at
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -742,6 +1419,7 @@ mutation CreateBoat(
     sortOfBoat
     note
     active
+    deleted_at
     training {
       items {
         id
@@ -754,6 +1432,18 @@ mutation CreateBoat(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -765,6 +1455,28 @@ mutation CreateBoat(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -781,6 +1493,18 @@ mutation CreateBoat(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -793,7 +1517,7 @@ mutation CreateBoat(
       items {
         id
         boatId
-        memberId
+        membershipId
         boat {
           id
           name
@@ -802,12 +1526,45 @@ mutation CreateBoat(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         membership {
           id
           type
+          deleted_at
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -832,6 +1589,7 @@ mutation UpdateBoat(
     sortOfBoat
     note
     active
+    deleted_at
     training {
       items {
         id
@@ -844,6 +1602,18 @@ mutation UpdateBoat(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -855,6 +1625,28 @@ mutation UpdateBoat(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -871,6 +1663,18 @@ mutation UpdateBoat(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -883,7 +1687,7 @@ mutation UpdateBoat(
       items {
         id
         boatId
-        memberId
+        membershipId
         boat {
           id
           name
@@ -892,12 +1696,45 @@ mutation UpdateBoat(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         membership {
           id
           type
+          deleted_at
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -922,6 +1759,7 @@ mutation DeleteBoat(
     sortOfBoat
     note
     active
+    deleted_at
     training {
       items {
         id
@@ -934,6 +1772,18 @@ mutation DeleteBoat(
           statut
           athleteCategory
           trainingTime
+          deleted_at
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -945,6 +1795,28 @@ mutation DeleteBoat(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -961,6 +1833,18 @@ mutation DeleteBoat(
           side
           sex
           status
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -973,7 +1857,7 @@ mutation DeleteBoat(
       items {
         id
         boatId
-        memberId
+        membershipId
         boat {
           id
           name
@@ -982,12 +1866,45 @@ mutation DeleteBoat(
           sortOfBoat
           note
           active
+          deleted_at
+          training {
+            items {
+              id
+              trainingID
+              athleteID
+              boatID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
         membership {
           id
           type
+          deleted_at
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
@@ -1000,14 +1917,14 @@ mutation DeleteBoat(
     updatedAt
   }
 }
-mutation CreateBoatMemberType(
-  $input: CreateBoatMemberTypeInput!
-  $condition: ModelBoatMemberTypeConditionInput
+mutation CreateBoatMembershipType(
+  $input: CreateBoatMembershipTypeInput!
+  $condition: ModelBoatMembershipTypeConditionInput
 ) {
-  createBoatMemberType(input: $input, condition: $condition) {
+  createBoatMembershipType(input: $input, condition: $condition) {
     id
     boatId
-    memberId
+    membershipId
     boat {
       id
       name
@@ -1016,12 +1933,64 @@ mutation CreateBoatMemberType(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1031,7 +2000,35 @@ mutation CreateBoatMemberType(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1043,11 +2040,40 @@ mutation CreateBoatMemberType(
     membership {
       id
       type
+      deleted_at
       boat {
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1060,14 +2086,14 @@ mutation CreateBoatMemberType(
     updatedAt
   }
 }
-mutation UpdateBoatMemberType(
-  $input: UpdateBoatMemberTypeInput!
-  $condition: ModelBoatMemberTypeConditionInput
+mutation UpdateBoatMembershipType(
+  $input: UpdateBoatMembershipTypeInput!
+  $condition: ModelBoatMembershipTypeConditionInput
 ) {
-  updateBoatMemberType(input: $input, condition: $condition) {
+  updateBoatMembershipType(input: $input, condition: $condition) {
     id
     boatId
-    memberId
+    membershipId
     boat {
       id
       name
@@ -1076,12 +2102,64 @@ mutation UpdateBoatMemberType(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1091,7 +2169,35 @@ mutation UpdateBoatMemberType(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1103,11 +2209,40 @@ mutation UpdateBoatMemberType(
     membership {
       id
       type
+      deleted_at
       boat {
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1120,14 +2255,14 @@ mutation UpdateBoatMemberType(
     updatedAt
   }
 }
-mutation DeleteBoatMemberType(
-  $input: DeleteBoatMemberTypeInput!
-  $condition: ModelBoatMemberTypeConditionInput
+mutation DeleteBoatMembershipType(
+  $input: DeleteBoatMembershipTypeInput!
+  $condition: ModelBoatMembershipTypeConditionInput
 ) {
-  deleteBoatMemberType(input: $input, condition: $condition) {
+  deleteBoatMembershipType(input: $input, condition: $condition) {
     id
     boatId
-    memberId
+    membershipId
     boat {
       id
       name
@@ -1136,12 +2271,64 @@ mutation DeleteBoatMemberType(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1151,7 +2338,35 @@ mutation DeleteBoatMemberType(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1163,11 +2378,40 @@ mutation DeleteBoatMemberType(
     membership {
       id
       type
+      deleted_at
       boat {
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1194,11 +2438,45 @@ mutation CreateAthleteAttendence(
       statut
       athleteCategory
       trainingTime
+      deleted_at
       athleteAttending {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1221,11 +2499,45 @@ mutation CreateAthleteAttendence(
       side
       sex
       status
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1254,11 +2566,45 @@ mutation UpdateAthleteAttendence(
       statut
       athleteCategory
       trainingTime
+      deleted_at
       athleteAttending {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1281,11 +2627,45 @@ mutation UpdateAthleteAttendence(
       side
       sex
       status
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1314,11 +2694,45 @@ mutation DeleteAthleteAttendence(
       statut
       athleteCategory
       trainingTime
+      deleted_at
       athleteAttending {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1341,11 +2755,45 @@ mutation DeleteAthleteAttendence(
       side
       sex
       status
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1375,11 +2823,45 @@ mutation CreateBoatList(
       statut
       athleteCategory
       trainingTime
+      deleted_at
       athleteAttending {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1397,12 +2879,64 @@ mutation CreateBoatList(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1412,7 +2946,35 @@ mutation CreateBoatList(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1434,11 +2996,45 @@ mutation CreateBoatList(
       side
       sex
       status
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1467,11 +3063,45 @@ mutation UpdateBoatList(
       statut
       athleteCategory
       trainingTime
+      deleted_at
       athleteAttending {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1489,12 +3119,64 @@ mutation UpdateBoatList(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1504,7 +3186,35 @@ mutation UpdateBoatList(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1526,11 +3236,45 @@ mutation UpdateBoatList(
       side
       sex
       status
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1559,11 +3303,45 @@ mutation DeleteBoatList(
       statut
       athleteCategory
       trainingTime
+      deleted_at
       athleteAttending {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt
@@ -1581,12 +3359,64 @@ mutation DeleteBoatList(
       sortOfBoat
       note
       active
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
           boatID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1596,7 +3426,35 @@ mutation DeleteBoatList(
         items {
           id
           boatId
-          memberId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            deleted_at
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            deleted_at
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           createdAt
           updatedAt
         }
@@ -1618,11 +3476,45 @@ mutation DeleteBoatList(
       side
       sex
       status
+      deleted_at
       training {
         items {
           id
           trainingID
           athleteID
+          training {
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            deleted_at
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            deleted_at
+            training {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           attending
           createdAt
           updatedAt

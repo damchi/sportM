@@ -53,7 +53,7 @@ type MembershipType @model
   id: ID!
   type: String!
   deleted_at:AWSDate
-  boat: [BoatMemberType] @connection(keyName: "byMember", fields: ["id"])
+  boat: [BoatMembershipType] @connection(keyName: "byMembership", fields: ["id"])
 }
 
 type Boat @model {
@@ -66,18 +66,18 @@ type Boat @model {
   active: Boolean!
   deleted_at:AWSDate
   training: [BoatList] @connection(keyName: "byBoat", fields: ["id"])
-  membershipType: [BoatMemberType] @connection(keyName: "byBoat", fields: ["id"])
+  membershipType: [BoatMembershipType] @connection(keyName: "byBoat", fields: ["id"])
 }
 
-type BoatMemberType
+type BoatMembershipType
 @model(queries: null)
-@key(name: "byBoat", fields: ["boatId", "memberId"])
-@key(name: "byMember", fields: ["memberId", "boatId"]) {
+@key(name: "byBoat", fields: ["boatId", "membershipId"])
+@key(name: "byMembership", fields: ["membershipId", "boatId"]) {
   id: ID!
   boatId: ID!
-  memberId: ID!
+  membershipId: ID!
   boat: Boat! @connection(fields: ["boatId"])
-  membership: MembershipType! @connection(fields: ["memberId"])
+  membership: MembershipType! @connection(fields: ["membershipId"])
 }
 
 type AthleteAttendence
@@ -114,15 +114,15 @@ input CreateAthleteAttendenceInput {
   attending: String
 }
 
-input CreateBoatMemberTypeInput {
+input CreateBoatMemberShipTypeInput {
   id: ID
   boatId: ID!
-  memberId: ID!
+  membershipId: ID!
 }
 
 type Mutation {
   batchAddAthleteAttendence(athleteAttendence: [CreateAthleteAttendenceInput]): [AthleteAttendence]
-  batchAddBoatMemberType(boatMemberType: [CreateBoatMemberTypeInput]): [BoatMemberType]
+  batchAddBoatMembershipType(BoatMembershipType: [CreateBoatMemberShipTypeInput]): [BoatMembershipType]
 
 }
 
