@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {CoachMembershipTypeComponent} from "./coach-membership-type.component";
 
-import { CoachAtheleTypeComponent } from './coach-athle-type.component';
 
 describe('CoachAthleTypeComponent', () => {
-  let component: CoachAtheleTypeComponent;
-  let fixture: ComponentFixture<CoachAtheleTypeComponent>;
+  let component: CoachMembershipTypeComponent;
+  let fixture: ComponentFixture<CoachMembershipTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoachAtheleTypeComponent ]
+      declarations: [ CoachMembershipTypeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CoachAtheleTypeComponent);
+    fixture = TestBed.createComponent(CoachMembershipTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
