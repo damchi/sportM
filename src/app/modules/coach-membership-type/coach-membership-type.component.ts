@@ -52,7 +52,6 @@ export class CoachMembershipTypeComponent implements OnInit {
         this.userTypes[i] = {
           id: userType.items[i].id,
           type: userType.items[i].type,
-          deleted_at: userType.items[i].deleted_at
         };
       }
       this.isLoadedUserType = true
@@ -60,7 +59,6 @@ export class CoachMembershipTypeComponent implements OnInit {
   }
 
   save(userType: UserType) {
-    userType.deleted_at=null
     if (userType.id != null) {
       this.serviceUserType.updateUserType(userType).then(() => {
           this.isLoadedUserType = false;
