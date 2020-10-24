@@ -12,7 +12,6 @@ mutation BatchAddAthleteAttendence(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -24,7 +23,6 @@ mutation BatchAddAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -44,7 +42,6 @@ mutation BatchAddAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -73,7 +70,6 @@ mutation BatchAddAthleteAttendence(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -85,7 +81,6 @@ mutation BatchAddAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -105,7 +100,6 @@ mutation BatchAddAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -141,7 +135,6 @@ mutation BatchAddBoatMembershipType(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -154,7 +147,6 @@ mutation BatchAddBoatMembershipType(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -169,7 +161,6 @@ mutation BatchAddBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -192,7 +183,6 @@ mutation BatchAddBoatMembershipType(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -217,7 +207,6 @@ mutation BatchAddBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -230,7 +219,6 @@ mutation BatchAddBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -248,7 +236,6 @@ mutation BatchAddBoatMembershipType(
     membership {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -262,7 +249,6 @@ mutation BatchAddBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -275,7 +261,6 @@ mutation BatchAddBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -311,7 +296,6 @@ mutation CreateUser(
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -323,7 +307,6 @@ mutation CreateUser(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -351,7 +334,6 @@ mutation CreateUser(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -393,7 +375,6 @@ mutation UpdateUser(
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -405,7 +386,6 @@ mutation UpdateUser(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -433,7 +413,6 @@ mutation UpdateUser(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -475,7 +454,6 @@ mutation DeleteUser(
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -487,7 +465,6 @@ mutation DeleteUser(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -515,7 +492,6 @@ mutation DeleteUser(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -555,7 +531,6 @@ mutation CreateBoatCategoryType(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -568,7 +543,6 @@ mutation CreateBoatCategoryType(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -583,7 +557,6 @@ mutation CreateBoatCategoryType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -606,7 +579,6 @@ mutation CreateBoatCategoryType(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -631,7 +603,6 @@ mutation CreateBoatCategoryType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -644,7 +615,6 @@ mutation CreateBoatCategoryType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -659,7 +629,6 @@ mutation CreateBoatCategoryType(
       createdAt
       updatedAt
     }
-    deleted_at
     createdAt
     updatedAt
   }
@@ -679,7 +648,6 @@ mutation UpdateBoatCategoryType(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -692,7 +660,6 @@ mutation UpdateBoatCategoryType(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -707,7 +674,6 @@ mutation UpdateBoatCategoryType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -730,7 +696,6 @@ mutation UpdateBoatCategoryType(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -755,7 +720,6 @@ mutation UpdateBoatCategoryType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -768,7 +732,6 @@ mutation UpdateBoatCategoryType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -783,7 +746,6 @@ mutation UpdateBoatCategoryType(
       createdAt
       updatedAt
     }
-    deleted_at
     createdAt
     updatedAt
   }
@@ -803,7 +765,6 @@ mutation DeleteBoatCategoryType(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -816,7 +777,6 @@ mutation DeleteBoatCategoryType(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -831,7 +791,6 @@ mutation DeleteBoatCategoryType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -854,7 +813,6 @@ mutation DeleteBoatCategoryType(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -879,7 +837,6 @@ mutation DeleteBoatCategoryType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -892,7 +849,6 @@ mutation DeleteBoatCategoryType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -907,7 +863,6 @@ mutation DeleteBoatCategoryType(
       createdAt
       updatedAt
     }
-    deleted_at
     createdAt
     updatedAt
   }
@@ -922,7 +877,6 @@ mutation CreateTraining(
     statut
     athleteCategory
     trainingTime
-    deleted_at
     athleteAttending {
       items {
         id
@@ -934,7 +888,6 @@ mutation CreateTraining(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -962,7 +915,6 @@ mutation CreateTraining(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -997,7 +949,6 @@ mutation UpdateTraining(
     statut
     athleteCategory
     trainingTime
-    deleted_at
     athleteAttending {
       items {
         id
@@ -1009,7 +960,6 @@ mutation UpdateTraining(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1037,7 +987,6 @@ mutation UpdateTraining(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1072,7 +1021,6 @@ mutation DeleteTraining(
     statut
     athleteCategory
     trainingTime
-    deleted_at
     athleteAttending {
       items {
         id
@@ -1084,7 +1032,6 @@ mutation DeleteTraining(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1112,7 +1059,6 @@ mutation DeleteTraining(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1150,7 +1096,6 @@ mutation CreateClub(
     country
     phone
     email
-    deleted_at
     createdAt
     updatedAt
   }
@@ -1168,7 +1113,6 @@ mutation UpdateClub(
     country
     phone
     email
-    deleted_at
     createdAt
     updatedAt
   }
@@ -1186,7 +1130,6 @@ mutation DeleteClub(
     country
     phone
     email
-    deleted_at
     createdAt
     updatedAt
   }
@@ -1198,7 +1141,6 @@ mutation CreateMembershipType(
   createMembershipType(input: $input, condition: $condition) {
     id
     type
-    deleted_at
     boat {
       items {
         id
@@ -1212,7 +1154,6 @@ mutation CreateMembershipType(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1240,7 +1181,6 @@ mutation CreateMembershipType(
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1270,7 +1210,6 @@ mutation UpdateMembershipType(
   updateMembershipType(input: $input, condition: $condition) {
     id
     type
-    deleted_at
     boat {
       items {
         id
@@ -1284,7 +1223,6 @@ mutation UpdateMembershipType(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1312,7 +1250,6 @@ mutation UpdateMembershipType(
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1342,7 +1279,6 @@ mutation DeleteMembershipType(
   deleteMembershipType(input: $input, condition: $condition) {
     id
     type
-    deleted_at
     boat {
       items {
         id
@@ -1356,7 +1292,6 @@ mutation DeleteMembershipType(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1384,7 +1319,6 @@ mutation DeleteMembershipType(
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1419,7 +1353,6 @@ mutation CreateBoat(
     sortOfBoat
     note
     active
-    deleted_at
     training {
       items {
         id
@@ -1432,7 +1365,6 @@ mutation CreateBoat(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1455,7 +1387,6 @@ mutation CreateBoat(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1493,7 +1424,6 @@ mutation CreateBoat(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1526,7 +1456,6 @@ mutation CreateBoat(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1554,7 +1483,6 @@ mutation CreateBoat(
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1589,7 +1517,6 @@ mutation UpdateBoat(
     sortOfBoat
     note
     active
-    deleted_at
     training {
       items {
         id
@@ -1602,7 +1529,6 @@ mutation UpdateBoat(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1625,7 +1551,6 @@ mutation UpdateBoat(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1663,7 +1588,6 @@ mutation UpdateBoat(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1696,7 +1620,6 @@ mutation UpdateBoat(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1724,7 +1647,6 @@ mutation UpdateBoat(
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1759,7 +1681,6 @@ mutation DeleteBoat(
     sortOfBoat
     note
     active
-    deleted_at
     training {
       items {
         id
@@ -1772,7 +1693,6 @@ mutation DeleteBoat(
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1795,7 +1715,6 @@ mutation DeleteBoat(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1833,7 +1752,6 @@ mutation DeleteBoat(
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1866,7 +1784,6 @@ mutation DeleteBoat(
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1894,7 +1811,6 @@ mutation DeleteBoat(
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1933,7 +1849,6 @@ mutation CreateBoatMembershipType(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -1946,7 +1861,6 @@ mutation CreateBoatMembershipType(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -1961,7 +1875,6 @@ mutation CreateBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1984,7 +1897,6 @@ mutation CreateBoatMembershipType(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2009,7 +1921,6 @@ mutation CreateBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2022,7 +1933,6 @@ mutation CreateBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2040,7 +1950,6 @@ mutation CreateBoatMembershipType(
     membership {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -2054,7 +1963,6 @@ mutation CreateBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2067,7 +1975,6 @@ mutation CreateBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2102,7 +2009,6 @@ mutation UpdateBoatMembershipType(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -2115,7 +2021,6 @@ mutation UpdateBoatMembershipType(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2130,7 +2035,6 @@ mutation UpdateBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2153,7 +2057,6 @@ mutation UpdateBoatMembershipType(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2178,7 +2081,6 @@ mutation UpdateBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2191,7 +2093,6 @@ mutation UpdateBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2209,7 +2110,6 @@ mutation UpdateBoatMembershipType(
     membership {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -2223,7 +2123,6 @@ mutation UpdateBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2236,7 +2135,6 @@ mutation UpdateBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2271,7 +2169,6 @@ mutation DeleteBoatMembershipType(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -2284,7 +2181,6 @@ mutation DeleteBoatMembershipType(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2299,7 +2195,6 @@ mutation DeleteBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2322,7 +2217,6 @@ mutation DeleteBoatMembershipType(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2347,7 +2241,6 @@ mutation DeleteBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2360,7 +2253,6 @@ mutation DeleteBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2378,7 +2270,6 @@ mutation DeleteBoatMembershipType(
     membership {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -2392,7 +2283,6 @@ mutation DeleteBoatMembershipType(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2405,7 +2295,6 @@ mutation DeleteBoatMembershipType(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2438,7 +2327,6 @@ mutation CreateAthleteAttendence(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2450,7 +2338,6 @@ mutation CreateAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2470,7 +2357,6 @@ mutation CreateAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2499,7 +2385,6 @@ mutation CreateAthleteAttendence(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2511,7 +2396,6 @@ mutation CreateAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2531,7 +2415,6 @@ mutation CreateAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2566,7 +2449,6 @@ mutation UpdateAthleteAttendence(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2578,7 +2460,6 @@ mutation UpdateAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2598,7 +2479,6 @@ mutation UpdateAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2627,7 +2507,6 @@ mutation UpdateAthleteAttendence(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2639,7 +2518,6 @@ mutation UpdateAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2659,7 +2537,6 @@ mutation UpdateAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2694,7 +2571,6 @@ mutation DeleteAthleteAttendence(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2706,7 +2582,6 @@ mutation DeleteAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2726,7 +2601,6 @@ mutation DeleteAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2755,7 +2629,6 @@ mutation DeleteAthleteAttendence(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2767,7 +2640,6 @@ mutation DeleteAthleteAttendence(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2787,7 +2659,6 @@ mutation DeleteAthleteAttendence(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2823,7 +2694,6 @@ mutation CreateBoatList(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2835,7 +2705,6 @@ mutation CreateBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2855,7 +2724,6 @@ mutation CreateBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2879,7 +2747,6 @@ mutation CreateBoatList(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -2892,7 +2759,6 @@ mutation CreateBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2907,7 +2773,6 @@ mutation CreateBoatList(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2930,7 +2795,6 @@ mutation CreateBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2955,7 +2819,6 @@ mutation CreateBoatList(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2968,7 +2831,6 @@ mutation CreateBoatList(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2996,7 +2858,6 @@ mutation CreateBoatList(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -3008,7 +2869,6 @@ mutation CreateBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3028,7 +2888,6 @@ mutation CreateBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -3063,7 +2922,6 @@ mutation UpdateBoatList(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -3075,7 +2933,6 @@ mutation UpdateBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3095,7 +2952,6 @@ mutation UpdateBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -3119,7 +2975,6 @@ mutation UpdateBoatList(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -3132,7 +2987,6 @@ mutation UpdateBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3147,7 +3001,6 @@ mutation UpdateBoatList(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -3170,7 +3023,6 @@ mutation UpdateBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -3195,7 +3047,6 @@ mutation UpdateBoatList(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -3208,7 +3059,6 @@ mutation UpdateBoatList(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -3236,7 +3086,6 @@ mutation UpdateBoatList(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -3248,7 +3097,6 @@ mutation UpdateBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3268,7 +3116,6 @@ mutation UpdateBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -3303,7 +3150,6 @@ mutation DeleteBoatList(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -3315,7 +3161,6 @@ mutation DeleteBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3335,7 +3180,6 @@ mutation DeleteBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -3359,7 +3203,6 @@ mutation DeleteBoatList(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -3372,7 +3215,6 @@ mutation DeleteBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3387,7 +3229,6 @@ mutation DeleteBoatList(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -3410,7 +3251,6 @@ mutation DeleteBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -3435,7 +3275,6 @@ mutation DeleteBoatList(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -3448,7 +3287,6 @@ mutation DeleteBoatList(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -3476,7 +3314,6 @@ mutation DeleteBoatList(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -3488,7 +3325,6 @@ mutation DeleteBoatList(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3508,7 +3344,6 @@ mutation DeleteBoatList(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }

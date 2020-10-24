@@ -18,7 +18,6 @@
         #end
     #end
     #if( $util.isNull($allowedOwners0) && (! $item.containsKey("owner")) )
-        $util.qr($item.put("owner", $identityValue))
         #set( $isOwnerAuthorized = true )
     #end
     ## [End] Owner Authorization Checks **

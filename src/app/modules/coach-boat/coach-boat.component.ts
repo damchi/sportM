@@ -6,7 +6,13 @@ import {Auth} from 'aws-amplify';
 import {PopupNewBoatComponent} from "../../components/popup-new-boat/popup-new-boat.component";
 import {BoatService} from "../../services/boat.service";
 import {BoatMemberType} from "../../domain/boat-member-type";
-import {APIService, CreateBoatMemberShipTypeInput, CreateBoatMutation, ListBoatsQuery} from "../../API.service";
+import {
+  APIService,
+  CreateBoatMemberShipTypeInput,
+  CreateBoatMutation,
+  ListBoatsQuery, UpdateBoatMembershipTypeInput,
+  UpdateBoatMutation
+} from "../../API.service";
 import moment from "moment";
 
 @Component({
@@ -19,7 +25,8 @@ export class CoachBoatComponent implements OnInit {
   public displayedColumns: string[] = ['name', 'ownership', 'weightCategory', 'athleteCategory', 'sortOfBoat', 'note', 'active', 'option'];
   public boats: any [];
   public boat: Boat;
-  public createBoatMemberTypeInputs: CreateBoatMemberShipTypeInput[] = [];
+  public createBoatMemberShipTypeInputs: CreateBoatMemberShipTypeInput[] = [];
+  public updateBoatMembershipTypeInputs: UpdateBoatMembershipTypeInput[] = [];
 
   constructor(public dialog: MatDialog, private serviceBoat: BoatService, private api: APIService) {
   }
@@ -28,7 +35,7 @@ export class CoachBoatComponent implements OnInit {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     }).then(async () => {
-    this.getBoat();
+      this.getBoat();
 
     })
       .catch(err => console.error(err));
@@ -52,39 +59,54 @@ export class CoachBoatComponent implements OnInit {
 
 
   getBoat() {
-    let filter = {
-      deleted_at: {
-        eq: null,
-      }
-    }
-    this.serviceBoat.getBoats(filter).then((boats: ListBoatsQuery) =>{
+    this.serviceBoat.getBoats().then((boats: ListBoatsQuery) => {
         this.boats = boats.items
-      console.log(this.boats);
-
-    }
-      )
+      }
+    )
   }
 
   save(boat: Boat) {
-    let memberId = boat.membershipType;
+    let membershipType = boat.membershipType;
     delete boat.membershipType;
     if (boat.id != null) {
-      this.serviceBoat.updateBoat(boat).then(() => {
-          this.getBoat();
+      this.serviceBoat.updateBoat(boat).then((boatUpdate: UpdateBoatMutation) => {
+
+          const idMembership = membershipType.map(e => e.id);
+          const idOldMembership = boatUpdate.membershipType.items.map(e => e.membershipId);
+
+          membershipType.some((r) => {
+            if (!idOldMembership.includes(r.id)) {
+              let input = {
+                boatId: boatUpdate.id,
+                membershipId: r.id,
+              }
+              this.serviceBoat.saveBoatMembershipType(input).then((r) => {
+                this.getBoat();
+              })
+            }
+          })
+
+          boatUpdate.membershipType.items.some((old) => {
+            if (!idMembership.includes(old.membershipId)) {
+              let inputDelete = {
+                id: old.id,
+              }
+              this.serviceBoat.deleteBoatMembershipType(inputDelete).then((r) => {
+                this.getBoat();
+              })
+            }
+          })
         }
       )
     } else {
-      boat.deleted_at = null;
-      this.serviceBoat.saveBoat(boat).then((result:CreateBoatMutation) => {
-          for (let i = 0; i < memberId.length; i++) {
+      this.serviceBoat.saveBoat(boat).then((result: CreateBoatMutation) => {
+          for (let i = 0; i < membershipType.length; i++) {
             const boatMembershipType = new BoatMemberType();
             boatMembershipType.boatId = result.id;
-            boatMembershipType.membershipId = memberId[i];
-            this.createBoatMemberTypeInputs.push(boatMembershipType)
+            boatMembershipType.membershipId = membershipType[i].id;
+            this.createBoatMemberShipTypeInputs.push(boatMembershipType)
           }
-          this.serviceBoat.saveBoatMemberType(this.createBoatMemberTypeInputs).then((r)=> {
-            console.log(r);
-            console.log('ee');
+          this.serviceBoat.saveBatchBoatMemberType(this.createBoatMemberShipTypeInputs).then((r) => {
             this.getBoat();
           })
         }
@@ -110,21 +132,18 @@ export class CoachBoatComponent implements OnInit {
   }
 
   doDeleteBoat() {
-    let input = {
-      id: this.boat.id,
-      deleted_at: moment().format('YYYY-MM-DD')
+    let inputBoat = {
+      id: this.boat.id
     }
-    this.serviceBoat.delete(input).then(() => {
-       this.getBoat();
-    })
-  }
-
-  membershipToString(membersihp) {
-    const text = JSON.parse(membersihp).role;
-    let output = "";
-    for (let i = 0; i < text.length; i++) {
-      output += text[i].type + ' '
+    for (let i = 0; i < this.boat.membershipType.items.length; i++) {
+      let inputMembership = {
+        id: this.boat.membershipType.items[i].id
+      }
+      this.serviceBoat.deleteBoatMembershipType(inputMembership).then(r => {
+        this.serviceBoat.delete(inputBoat).then(() => {
+          this.getBoat();
+        })
+      });
     }
-    return output;
   }
 }

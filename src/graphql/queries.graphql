@@ -13,7 +13,6 @@ query BatchGetAthleteAttendence($ids: [ID]) {
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -25,7 +24,6 @@ query BatchGetAthleteAttendence($ids: [ID]) {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -53,7 +51,6 @@ query BatchGetAthleteAttendence($ids: [ID]) {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -92,7 +89,6 @@ query GetUser($id: ID!) {
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -104,7 +100,6 @@ query GetUser($id: ID!) {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -132,7 +127,6 @@ query GetUser($id: ID!) {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -176,7 +170,6 @@ query ListUsers(
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -188,7 +181,6 @@ query ListUsers(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -208,7 +200,6 @@ query ListUsers(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -239,7 +230,6 @@ query GetBoatCategoryType($id: ID!) {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -252,7 +242,6 @@ query GetBoatCategoryType($id: ID!) {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -267,7 +256,6 @@ query GetBoatCategoryType($id: ID!) {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -290,7 +278,6 @@ query GetBoatCategoryType($id: ID!) {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -315,7 +302,6 @@ query GetBoatCategoryType($id: ID!) {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -328,7 +314,6 @@ query GetBoatCategoryType($id: ID!) {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -343,7 +328,6 @@ query GetBoatCategoryType($id: ID!) {
       createdAt
       updatedAt
     }
-    deleted_at
     createdAt
     updatedAt
   }
@@ -365,7 +349,6 @@ query ListBoatCategoryTypes(
         sortOfBoat
         note
         active
-        deleted_at
         training {
           items {
             id
@@ -378,7 +361,6 @@ query ListBoatCategoryTypes(
               statut
               athleteCategory
               trainingTime
-              deleted_at
               createdAt
               updatedAt
             }
@@ -390,7 +372,6 @@ query ListBoatCategoryTypes(
               sortOfBoat
               note
               active
-              deleted_at
               createdAt
               updatedAt
             }
@@ -407,7 +388,6 @@ query ListBoatCategoryTypes(
               side
               sex
               status
-              deleted_at
               createdAt
               updatedAt
             }
@@ -429,14 +409,12 @@ query ListBoatCategoryTypes(
               sortOfBoat
               note
               active
-              deleted_at
               createdAt
               updatedAt
             }
             membership {
               id
               type
-              deleted_at
               createdAt
               updatedAt
             }
@@ -448,7 +426,6 @@ query ListBoatCategoryTypes(
         createdAt
         updatedAt
       }
-      deleted_at
       createdAt
       updatedAt
     }
@@ -462,7 +439,6 @@ query GetTraining($id: ID!) {
     statut
     athleteCategory
     trainingTime
-    deleted_at
     athleteAttending {
       items {
         id
@@ -474,7 +450,6 @@ query GetTraining($id: ID!) {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -502,7 +477,6 @@ query GetTraining($id: ID!) {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -539,7 +513,6 @@ query ListTrainings(
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -551,7 +524,6 @@ query ListTrainings(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -571,7 +543,6 @@ query ListTrainings(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -600,7 +571,6 @@ query GetClub($id: ID!) {
     country
     phone
     email
-    deleted_at
     createdAt
     updatedAt
   }
@@ -620,7 +590,6 @@ query ListClubs(
       country
       phone
       email
-      deleted_at
       createdAt
       updatedAt
     }
@@ -631,7 +600,6 @@ query GetMembershipType($id: ID!) {
   getMembershipType(id: $id) {
     id
     type
-    deleted_at
     boat {
       items {
         id
@@ -645,7 +613,6 @@ query GetMembershipType($id: ID!) {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -673,7 +640,6 @@ query GetMembershipType($id: ID!) {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -705,7 +671,6 @@ query ListMembershipTypes(
     items {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -719,7 +684,6 @@ query ListMembershipTypes(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -732,7 +696,6 @@ query ListMembershipTypes(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -759,7 +722,6 @@ query GetBoat($id: ID!) {
     sortOfBoat
     note
     active
-    deleted_at
     training {
       items {
         id
@@ -772,7 +734,6 @@ query GetBoat($id: ID!) {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -795,7 +756,6 @@ query GetBoat($id: ID!) {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -833,7 +793,6 @@ query GetBoat($id: ID!) {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -866,7 +825,6 @@ query GetBoat($id: ID!) {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -894,7 +852,6 @@ query GetBoat($id: ID!) {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -931,7 +888,6 @@ query ListBoats(
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -944,7 +900,6 @@ query ListBoats(
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -959,7 +914,6 @@ query ListBoats(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -982,7 +936,6 @@ query ListBoats(
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -1007,7 +960,6 @@ query ListBoats(
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1020,7 +972,6 @@ query ListBoats(
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }

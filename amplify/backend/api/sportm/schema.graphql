@@ -11,7 +11,6 @@ type User @model {
   side: AWSJSON
   sex: String
   status:Boolean
-  deleted_at:AWSDate
   training: [AthleteAttendence] @connection(keyName: "byAthlete", fields: ["id"])
 }
 
@@ -20,7 +19,6 @@ type BoatCategoryType @model
   id: ID!
   type: String!
   boat: [Boat]
-  deleted_at:AWSDate
 
 }
 
@@ -31,7 +29,6 @@ type Training @model
   statut: Boolean
   athleteCategory:String
   trainingTime:String
-  deleted_at:AWSDate
   athleteAttending: [AthleteAttendence] @connection(keyName: "byTraining", fields: ["id"])
 }
 
@@ -45,18 +42,17 @@ type Club @model
   country:String!
   phone:String!
   email:String!
-  deleted_at:AWSDate
 }
 
 type MembershipType @model
 {
   id: ID!
   type: String!
-  deleted_at:AWSDate
   boat: [BoatMembershipType] @connection(keyName: "byMembership", fields: ["id"])
 }
 
-type Boat @model {
+type Boat @model
+{
   id: ID!
   name: String!
   ownership: String!
@@ -64,7 +60,6 @@ type Boat @model {
   sortOfBoat: String!
   note: String
   active: Boolean!
-  deleted_at:AWSDate
   training: [BoatList] @connection(keyName: "byBoat", fields: ["id"])
   membershipType: [BoatMembershipType] @connection(keyName: "byBoat", fields: ["id"])
 }
@@ -123,7 +118,6 @@ input CreateBoatMemberShipTypeInput {
 type Mutation {
   batchAddAthleteAttendence(athleteAttendence: [CreateAthleteAttendenceInput]): [AthleteAttendence]
   batchAddBoatMembershipType(BoatMembershipType: [CreateBoatMemberShipTypeInput]): [BoatMembershipType]
-
 }
 
 type Query {

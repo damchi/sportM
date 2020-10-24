@@ -12,6 +12,7 @@ import * as ownerJson from "../../config/ownership.json";
 import * as typeJson from "../../config/typeBoat.json";
 import * as weightJson from "../../config/weightCategory.json";
 import {MembershipTypeService} from "../../services/membership-type.service";
+import {ListMembershipTypesQuery} from "../../API.service";
 
 export class PopupBoat {
   boat: Boat;
@@ -33,7 +34,7 @@ export class ErrorMessages {
 })
 export class PopupNewBoatComponent extends MarkAsTouch implements OnInit {
   public boatForm: FormGroup;
-  public userTypes: UserType[] = [];
+  public userTypes: any[] = [];
   public weightCategory: WeightCategory[];
   public ownership: Ownership[];
   public typeBoat: TypeBoat[];
@@ -45,12 +46,11 @@ export class PopupNewBoatComponent extends MarkAsTouch implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data.boat)
     this.boatForm = this.fb.group({
       name: new FormControl(this.data.boat.name, [Validators.required]),
       ownership: new FormControl(this.data.boat.ownership, [Validators.required]),
       weightCategory: new FormControl(this.data.boat.weightCategory, [Validators.required]),
-      membershipType: new FormControl(this.data.boat.membershipType.items, [Validators.required]),
+      membershipType: new FormControl('', [Validators.required]),
       sortOfBoat: new FormControl(this.data.boat.sortOfBoat, [Validators.required]),
       note: new FormControl(this.data.boat.note),
       active: new FormControl(this.data.boat.active, [Validators.required]),
@@ -87,12 +87,12 @@ export class PopupNewBoatComponent extends MarkAsTouch implements OnInit {
   }
 
   getRole() {
-    this.serviceUserType.getUserType().then((type) => {
-      for (let i = 0; i < type.items.length; i++) {
-        this.userTypes[i] = {
-          id: type.items[i].id,
-          type: type.items[i].type,
-        };
+    this.serviceUserType.getUserType().then((type: ListMembershipTypesQuery) => {
+      this.userTypes = type.items;
+
+      if (this.userTypes && this.data.boat.membershipType) {
+        const idUserRole = this.data.boat.membershipType.items.map(e => e.membershipId);
+        this.boatForm.get('membershipType').patchValue(this.userTypes.filter(e => idUserRole.indexOf(e.id) !== -1));
       }
     });
   }
@@ -116,7 +116,6 @@ export class PopupNewBoatComponent extends MarkAsTouch implements OnInit {
       e.id = this.data.boat.id
       e.name = t.name;
       e.membershipType = t.membershipType;
-      // e.membershipType = JSON.stringify({"role": t.membershipType});
       e.weightCategory = t.weightCategory;
       e.sortOfBoat = t.sortOfBoat;
       e.ownership = t.ownership;

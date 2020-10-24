@@ -1,4 +1,4 @@
-<h1 mat-dialog-title> {{data.boat.id ? 'Update training' : 'New training'}}</h1>
+<h1 mat-dialog-title> {{data.boat.id ? 'Update boat' : 'New boat'}}</h1>
 <div mat-dialog-content>
   <form [formGroup]="boatForm">
 
@@ -18,7 +18,7 @@
       <mat-label>Membership type</mat-label>
       <mat-select formControlName="membershipType" multiple>
         <mat-option *ngFor="let membershipType of userTypes"
-                    [value]="membershipType.id">{{membershipType.type}}</mat-option>
+                    [value]="membershipType">{{membershipType.type}}</mat-option>
       </mat-select>
       <mat-error *ngFor="let validation of errorMessages.membershipType">
         <mat-error class="error-message" *ngIf="boatForm.get('membershipType').hasError(validation.type) &&

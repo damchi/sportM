@@ -28,9 +28,8 @@
     <ng-container matColumnDef="athleteCategory">
       <th mat-header-cell *matHeaderCellDef>Athlete Category</th>
       <td mat-cell *matCellDef="let element">
-<!--        {{membershipToString(element.membershipType)}}-->
         <div *ngFor=" let   membership of element.membershipType.items">
-                  {{membership.membership.type}}
+                {{membership.membership.type}}
         </div>
       </td>
     </ng-container>

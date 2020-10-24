@@ -13,7 +13,6 @@ subscription OnCreateUser {
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -25,7 +24,6 @@ subscription OnCreateUser {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -53,7 +51,6 @@ subscription OnCreateUser {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -92,7 +89,6 @@ subscription OnUpdateUser {
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -104,7 +100,6 @@ subscription OnUpdateUser {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -132,7 +127,6 @@ subscription OnUpdateUser {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -171,7 +165,6 @@ subscription OnDeleteUser {
     side
     sex
     status
-    deleted_at
     training {
       items {
         id
@@ -183,7 +176,6 @@ subscription OnDeleteUser {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -211,7 +203,6 @@ subscription OnDeleteUser {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -248,7 +239,6 @@ subscription OnCreateBoatCategoryType {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -261,7 +251,6 @@ subscription OnCreateBoatCategoryType {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -276,7 +265,6 @@ subscription OnCreateBoatCategoryType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -299,7 +287,6 @@ subscription OnCreateBoatCategoryType {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -324,7 +311,6 @@ subscription OnCreateBoatCategoryType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -337,7 +323,6 @@ subscription OnCreateBoatCategoryType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -352,7 +337,6 @@ subscription OnCreateBoatCategoryType {
       createdAt
       updatedAt
     }
-    deleted_at
     createdAt
     updatedAt
   }
@@ -369,7 +353,6 @@ subscription OnUpdateBoatCategoryType {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -382,7 +365,6 @@ subscription OnUpdateBoatCategoryType {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -397,7 +379,6 @@ subscription OnUpdateBoatCategoryType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -420,7 +401,6 @@ subscription OnUpdateBoatCategoryType {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -445,7 +425,6 @@ subscription OnUpdateBoatCategoryType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -458,7 +437,6 @@ subscription OnUpdateBoatCategoryType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -473,7 +451,6 @@ subscription OnUpdateBoatCategoryType {
       createdAt
       updatedAt
     }
-    deleted_at
     createdAt
     updatedAt
   }
@@ -490,7 +467,6 @@ subscription OnDeleteBoatCategoryType {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -503,7 +479,6 @@ subscription OnDeleteBoatCategoryType {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -518,7 +493,6 @@ subscription OnDeleteBoatCategoryType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -541,7 +515,6 @@ subscription OnDeleteBoatCategoryType {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -566,7 +539,6 @@ subscription OnDeleteBoatCategoryType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -579,7 +551,6 @@ subscription OnDeleteBoatCategoryType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -594,7 +565,6 @@ subscription OnDeleteBoatCategoryType {
       createdAt
       updatedAt
     }
-    deleted_at
     createdAt
     updatedAt
   }
@@ -606,7 +576,6 @@ subscription OnCreateTraining {
     statut
     athleteCategory
     trainingTime
-    deleted_at
     athleteAttending {
       items {
         id
@@ -618,7 +587,6 @@ subscription OnCreateTraining {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -646,7 +614,6 @@ subscription OnCreateTraining {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -678,7 +645,6 @@ subscription OnUpdateTraining {
     statut
     athleteCategory
     trainingTime
-    deleted_at
     athleteAttending {
       items {
         id
@@ -690,7 +656,6 @@ subscription OnUpdateTraining {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -718,7 +683,6 @@ subscription OnUpdateTraining {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -750,7 +714,6 @@ subscription OnDeleteTraining {
     statut
     athleteCategory
     trainingTime
-    deleted_at
     athleteAttending {
       items {
         id
@@ -762,7 +725,6 @@ subscription OnDeleteTraining {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -790,7 +752,6 @@ subscription OnDeleteTraining {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -825,7 +786,6 @@ subscription OnCreateClub {
     country
     phone
     email
-    deleted_at
     createdAt
     updatedAt
   }
@@ -840,7 +800,6 @@ subscription OnUpdateClub {
     country
     phone
     email
-    deleted_at
     createdAt
     updatedAt
   }
@@ -855,7 +814,6 @@ subscription OnDeleteClub {
     country
     phone
     email
-    deleted_at
     createdAt
     updatedAt
   }
@@ -864,7 +822,6 @@ subscription OnCreateMembershipType {
   onCreateMembershipType {
     id
     type
-    deleted_at
     boat {
       items {
         id
@@ -878,7 +835,6 @@ subscription OnCreateMembershipType {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -906,7 +862,6 @@ subscription OnCreateMembershipType {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -933,7 +888,6 @@ subscription OnUpdateMembershipType {
   onUpdateMembershipType {
     id
     type
-    deleted_at
     boat {
       items {
         id
@@ -947,7 +901,6 @@ subscription OnUpdateMembershipType {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -975,7 +928,6 @@ subscription OnUpdateMembershipType {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1002,7 +954,6 @@ subscription OnDeleteMembershipType {
   onDeleteMembershipType {
     id
     type
-    deleted_at
     boat {
       items {
         id
@@ -1016,7 +967,6 @@ subscription OnDeleteMembershipType {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1044,7 +994,6 @@ subscription OnDeleteMembershipType {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1076,7 +1025,6 @@ subscription OnCreateBoat {
     sortOfBoat
     note
     active
-    deleted_at
     training {
       items {
         id
@@ -1089,7 +1037,6 @@ subscription OnCreateBoat {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1112,7 +1059,6 @@ subscription OnCreateBoat {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1150,7 +1096,6 @@ subscription OnCreateBoat {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1183,7 +1128,6 @@ subscription OnCreateBoat {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1211,7 +1155,6 @@ subscription OnCreateBoat {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1243,7 +1186,6 @@ subscription OnUpdateBoat {
     sortOfBoat
     note
     active
-    deleted_at
     training {
       items {
         id
@@ -1256,7 +1198,6 @@ subscription OnUpdateBoat {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1279,7 +1220,6 @@ subscription OnUpdateBoat {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1317,7 +1257,6 @@ subscription OnUpdateBoat {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1350,7 +1289,6 @@ subscription OnUpdateBoat {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1378,7 +1316,6 @@ subscription OnUpdateBoat {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1410,7 +1347,6 @@ subscription OnDeleteBoat {
     sortOfBoat
     note
     active
-    deleted_at
     training {
       items {
         id
@@ -1423,7 +1359,6 @@ subscription OnDeleteBoat {
           statut
           athleteCategory
           trainingTime
-          deleted_at
           athleteAttending {
             items {
               id
@@ -1446,7 +1381,6 @@ subscription OnDeleteBoat {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1484,7 +1418,6 @@ subscription OnDeleteBoat {
           side
           sex
           status
-          deleted_at
           training {
             items {
               id
@@ -1517,7 +1450,6 @@ subscription OnDeleteBoat {
           sortOfBoat
           note
           active
-          deleted_at
           training {
             items {
               id
@@ -1545,7 +1477,6 @@ subscription OnDeleteBoat {
         membership {
           id
           type
-          deleted_at
           boat {
             items {
               id
@@ -1581,7 +1512,6 @@ subscription OnCreateBoatMembershipType {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -1594,7 +1524,6 @@ subscription OnCreateBoatMembershipType {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -1609,7 +1538,6 @@ subscription OnCreateBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1632,7 +1560,6 @@ subscription OnCreateBoatMembershipType {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -1657,7 +1584,6 @@ subscription OnCreateBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1670,7 +1596,6 @@ subscription OnCreateBoatMembershipType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -1688,7 +1613,6 @@ subscription OnCreateBoatMembershipType {
     membership {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -1702,7 +1626,6 @@ subscription OnCreateBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1715,7 +1638,6 @@ subscription OnCreateBoatMembershipType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -1747,7 +1669,6 @@ subscription OnUpdateBoatMembershipType {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -1760,7 +1681,6 @@ subscription OnUpdateBoatMembershipType {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -1775,7 +1695,6 @@ subscription OnUpdateBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1798,7 +1717,6 @@ subscription OnUpdateBoatMembershipType {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -1823,7 +1741,6 @@ subscription OnUpdateBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1836,7 +1753,6 @@ subscription OnUpdateBoatMembershipType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -1854,7 +1770,6 @@ subscription OnUpdateBoatMembershipType {
     membership {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -1868,7 +1783,6 @@ subscription OnUpdateBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1881,7 +1795,6 @@ subscription OnUpdateBoatMembershipType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -1913,7 +1826,6 @@ subscription OnDeleteBoatMembershipType {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -1926,7 +1838,6 @@ subscription OnDeleteBoatMembershipType {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -1941,7 +1852,6 @@ subscription OnDeleteBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -1964,7 +1874,6 @@ subscription OnDeleteBoatMembershipType {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -1989,7 +1898,6 @@ subscription OnDeleteBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2002,7 +1910,6 @@ subscription OnDeleteBoatMembershipType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2020,7 +1927,6 @@ subscription OnDeleteBoatMembershipType {
     membership {
       id
       type
-      deleted_at
       boat {
         items {
           id
@@ -2034,7 +1940,6 @@ subscription OnDeleteBoatMembershipType {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2047,7 +1952,6 @@ subscription OnDeleteBoatMembershipType {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2077,7 +1981,6 @@ subscription OnCreateAthleteAttendence {
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2089,7 +1992,6 @@ subscription OnCreateAthleteAttendence {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2109,7 +2011,6 @@ subscription OnCreateAthleteAttendence {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2138,7 +2039,6 @@ subscription OnCreateAthleteAttendence {
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2150,7 +2050,6 @@ subscription OnCreateAthleteAttendence {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2170,7 +2069,6 @@ subscription OnCreateAthleteAttendence {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2202,7 +2100,6 @@ subscription OnUpdateAthleteAttendence {
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2214,7 +2111,6 @@ subscription OnUpdateAthleteAttendence {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2234,7 +2130,6 @@ subscription OnUpdateAthleteAttendence {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2263,7 +2158,6 @@ subscription OnUpdateAthleteAttendence {
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2275,7 +2169,6 @@ subscription OnUpdateAthleteAttendence {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2295,7 +2188,6 @@ subscription OnUpdateAthleteAttendence {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2327,7 +2219,6 @@ subscription OnDeleteAthleteAttendence {
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2339,7 +2230,6 @@ subscription OnDeleteAthleteAttendence {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2359,7 +2249,6 @@ subscription OnDeleteAthleteAttendence {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2388,7 +2277,6 @@ subscription OnDeleteAthleteAttendence {
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2400,7 +2288,6 @@ subscription OnDeleteAthleteAttendence {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2420,7 +2307,6 @@ subscription OnDeleteAthleteAttendence {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2453,7 +2339,6 @@ subscription OnCreateBoatList {
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2465,7 +2350,6 @@ subscription OnCreateBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2485,7 +2369,6 @@ subscription OnCreateBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2509,7 +2392,6 @@ subscription OnCreateBoatList {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -2522,7 +2404,6 @@ subscription OnCreateBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2537,7 +2418,6 @@ subscription OnCreateBoatList {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2560,7 +2440,6 @@ subscription OnCreateBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2585,7 +2464,6 @@ subscription OnCreateBoatList {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2598,7 +2476,6 @@ subscription OnCreateBoatList {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2626,7 +2503,6 @@ subscription OnCreateBoatList {
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2638,7 +2514,6 @@ subscription OnCreateBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2658,7 +2533,6 @@ subscription OnCreateBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2690,7 +2564,6 @@ subscription OnUpdateBoatList {
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2702,7 +2575,6 @@ subscription OnUpdateBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2722,7 +2594,6 @@ subscription OnUpdateBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2746,7 +2617,6 @@ subscription OnUpdateBoatList {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -2759,7 +2629,6 @@ subscription OnUpdateBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2774,7 +2643,6 @@ subscription OnUpdateBoatList {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2797,7 +2665,6 @@ subscription OnUpdateBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2822,7 +2689,6 @@ subscription OnUpdateBoatList {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -2835,7 +2701,6 @@ subscription OnUpdateBoatList {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -2863,7 +2728,6 @@ subscription OnUpdateBoatList {
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -2875,7 +2739,6 @@ subscription OnUpdateBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2895,7 +2758,6 @@ subscription OnUpdateBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2927,7 +2789,6 @@ subscription OnDeleteBoatList {
       statut
       athleteCategory
       trainingTime
-      deleted_at
       athleteAttending {
         items {
           id
@@ -2939,7 +2800,6 @@ subscription OnDeleteBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -2959,7 +2819,6 @@ subscription OnDeleteBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -2983,7 +2842,6 @@ subscription OnDeleteBoatList {
       sortOfBoat
       note
       active
-      deleted_at
       training {
         items {
           id
@@ -2996,7 +2854,6 @@ subscription OnDeleteBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3011,7 +2868,6 @@ subscription OnDeleteBoatList {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -3034,7 +2890,6 @@ subscription OnDeleteBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
@@ -3059,7 +2914,6 @@ subscription OnDeleteBoatList {
             sortOfBoat
             note
             active
-            deleted_at
             training {
               nextToken
             }
@@ -3072,7 +2926,6 @@ subscription OnDeleteBoatList {
           membership {
             id
             type
-            deleted_at
             boat {
               nextToken
             }
@@ -3100,7 +2953,6 @@ subscription OnDeleteBoatList {
       side
       sex
       status
-      deleted_at
       training {
         items {
           id
@@ -3112,7 +2964,6 @@ subscription OnDeleteBoatList {
             statut
             athleteCategory
             trainingTime
-            deleted_at
             athleteAttending {
               nextToken
             }
@@ -3132,7 +2983,6 @@ subscription OnDeleteBoatList {
             side
             sex
             status
-            deleted_at
             training {
               nextToken
             }
