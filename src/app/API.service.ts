@@ -2,15 +2,20 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 import { Injectable } from "@angular/core";
-import API, { graphqlOperation } from "@aws-amplify/api";
-import { GraphQLResult } from "@aws-amplify/api/lib/types";
-import * as Observable from "zen-observable";
+import API, { graphqlOperation, GraphQLResult } from "@aws-amplify/api-graphql";
+import { Observable } from "zen-observable-ts";
 
 export type CreateAthleteAttendenceInput = {
   id?: string | null;
   trainingID: string;
   athleteID: string;
   attending?: string | null;
+};
+
+export type CreateBoatMemberShipTypeInput = {
+  id?: string | null;
+  boatId: string;
+  membershipId: string;
 };
 
 export type CreateUserInput = {
@@ -110,6 +115,27 @@ export type DeleteUserInput = {
   id?: string | null;
 };
 
+export type CreateBoatCategoryTypeInput = {
+  id?: string | null;
+  type: string;
+};
+
+export type ModelBoatCategoryTypeConditionInput = {
+  type?: ModelStringInput | null;
+  and?: Array<ModelBoatCategoryTypeConditionInput | null> | null;
+  or?: Array<ModelBoatCategoryTypeConditionInput | null> | null;
+  not?: ModelBoatCategoryTypeConditionInput | null;
+};
+
+export type UpdateBoatCategoryTypeInput = {
+  id: string;
+  type?: string | null;
+};
+
+export type DeleteBoatCategoryTypeInput = {
+  id?: string | null;
+};
+
 export type CreateTrainingInput = {
   id?: string | null;
   trainingDate: string;
@@ -140,13 +166,114 @@ export type DeleteTrainingInput = {
   id?: string | null;
 };
 
-export type ModelAthleteAttendenceConditionInput = {
-  trainingID?: ModelIDInput | null;
-  athleteID?: ModelIDInput | null;
-  attending?: ModelStringInput | null;
-  and?: Array<ModelAthleteAttendenceConditionInput | null> | null;
-  or?: Array<ModelAthleteAttendenceConditionInput | null> | null;
-  not?: ModelAthleteAttendenceConditionInput | null;
+export type CreateClubInput = {
+  id?: string | null;
+  name: string;
+  address: string;
+  postCode?: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+};
+
+export type ModelClubConditionInput = {
+  name?: ModelStringInput | null;
+  address?: ModelStringInput | null;
+  postCode?: ModelStringInput | null;
+  city?: ModelStringInput | null;
+  country?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  and?: Array<ModelClubConditionInput | null> | null;
+  or?: Array<ModelClubConditionInput | null> | null;
+  not?: ModelClubConditionInput | null;
+};
+
+export type UpdateClubInput = {
+  id: string;
+  name?: string | null;
+  address?: string | null;
+  postCode?: string | null;
+  city?: string | null;
+  country?: string | null;
+  phone?: string | null;
+  email?: string | null;
+};
+
+export type DeleteClubInput = {
+  id?: string | null;
+};
+
+export type CreateMembershipTypeInput = {
+  id?: string | null;
+  type: string;
+};
+
+export type ModelMembershipTypeConditionInput = {
+  type?: ModelStringInput | null;
+  and?: Array<ModelMembershipTypeConditionInput | null> | null;
+  or?: Array<ModelMembershipTypeConditionInput | null> | null;
+  not?: ModelMembershipTypeConditionInput | null;
+};
+
+export type UpdateMembershipTypeInput = {
+  id: string;
+  type?: string | null;
+};
+
+export type DeleteMembershipTypeInput = {
+  id?: string | null;
+};
+
+export type CreateBoatInput = {
+  id?: string | null;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note?: string | null;
+  active: boolean;
+};
+
+export type ModelBoatConditionInput = {
+  name?: ModelStringInput | null;
+  ownership?: ModelStringInput | null;
+  weightCategory?: ModelStringInput | null;
+  sortOfBoat?: ModelStringInput | null;
+  note?: ModelStringInput | null;
+  active?: ModelBooleanInput | null;
+  and?: Array<ModelBoatConditionInput | null> | null;
+  or?: Array<ModelBoatConditionInput | null> | null;
+  not?: ModelBoatConditionInput | null;
+};
+
+export type UpdateBoatInput = {
+  id: string;
+  name?: string | null;
+  ownership?: string | null;
+  weightCategory?: string | null;
+  sortOfBoat?: string | null;
+  note?: string | null;
+  active?: boolean | null;
+};
+
+export type DeleteBoatInput = {
+  id?: string | null;
+};
+
+export type CreateBoatMembershipTypeInput = {
+  id?: string | null;
+  boatId: string;
+  membershipId: string;
+};
+
+export type ModelBoatMembershipTypeConditionInput = {
+  boatId?: ModelIDInput | null;
+  membershipId?: ModelIDInput | null;
+  and?: Array<ModelBoatMembershipTypeConditionInput | null> | null;
+  or?: Array<ModelBoatMembershipTypeConditionInput | null> | null;
+  not?: ModelBoatMembershipTypeConditionInput | null;
 };
 
 export type ModelIDInput = {
@@ -165,6 +292,25 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
+export type UpdateBoatMembershipTypeInput = {
+  id: string;
+  boatId?: string | null;
+  membershipId?: string | null;
+};
+
+export type DeleteBoatMembershipTypeInput = {
+  id?: string | null;
+};
+
+export type ModelAthleteAttendenceConditionInput = {
+  trainingID?: ModelIDInput | null;
+  athleteID?: ModelIDInput | null;
+  attending?: ModelStringInput | null;
+  and?: Array<ModelAthleteAttendenceConditionInput | null> | null;
+  or?: Array<ModelAthleteAttendenceConditionInput | null> | null;
+  not?: ModelAthleteAttendenceConditionInput | null;
+};
+
 export type UpdateAthleteAttendenceInput = {
   id: string;
   trainingID?: string | null;
@@ -173,6 +319,33 @@ export type UpdateAthleteAttendenceInput = {
 };
 
 export type DeleteAthleteAttendenceInput = {
+  id?: string | null;
+};
+
+export type CreateBoatListInput = {
+  id?: string | null;
+  trainingID: string;
+  athleteID: string;
+  boatID: string;
+};
+
+export type ModelBoatListConditionInput = {
+  trainingID?: ModelIDInput | null;
+  athleteID?: ModelIDInput | null;
+  boatID?: ModelIDInput | null;
+  and?: Array<ModelBoatListConditionInput | null> | null;
+  or?: Array<ModelBoatListConditionInput | null> | null;
+  not?: ModelBoatListConditionInput | null;
+};
+
+export type UpdateBoatListInput = {
+  id: string;
+  trainingID?: string | null;
+  athleteID?: string | null;
+  boatID?: string | null;
+};
+
+export type DeleteBoatListInput = {
   id?: string | null;
 };
 
@@ -194,6 +367,14 @@ export type ModelUserFilterInput = {
   not?: ModelUserFilterInput | null;
 };
 
+export type ModelBoatCategoryTypeFilterInput = {
+  id?: ModelIDInput | null;
+  type?: ModelStringInput | null;
+  and?: Array<ModelBoatCategoryTypeFilterInput | null> | null;
+  or?: Array<ModelBoatCategoryTypeFilterInput | null> | null;
+  not?: ModelBoatCategoryTypeFilterInput | null;
+};
+
 export type ModelTrainingFilterInput = {
   id?: ModelIDInput | null;
   trainingDate?: ModelStringInput | null;
@@ -203,6 +384,41 @@ export type ModelTrainingFilterInput = {
   and?: Array<ModelTrainingFilterInput | null> | null;
   or?: Array<ModelTrainingFilterInput | null> | null;
   not?: ModelTrainingFilterInput | null;
+};
+
+export type ModelClubFilterInput = {
+  id?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  address?: ModelStringInput | null;
+  postCode?: ModelStringInput | null;
+  city?: ModelStringInput | null;
+  country?: ModelStringInput | null;
+  phone?: ModelStringInput | null;
+  email?: ModelStringInput | null;
+  and?: Array<ModelClubFilterInput | null> | null;
+  or?: Array<ModelClubFilterInput | null> | null;
+  not?: ModelClubFilterInput | null;
+};
+
+export type ModelMembershipTypeFilterInput = {
+  id?: ModelIDInput | null;
+  type?: ModelStringInput | null;
+  and?: Array<ModelMembershipTypeFilterInput | null> | null;
+  or?: Array<ModelMembershipTypeFilterInput | null> | null;
+  not?: ModelMembershipTypeFilterInput | null;
+};
+
+export type ModelBoatFilterInput = {
+  id?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  ownership?: ModelStringInput | null;
+  weightCategory?: ModelStringInput | null;
+  sortOfBoat?: ModelStringInput | null;
+  note?: ModelStringInput | null;
+  active?: ModelBooleanInput | null;
+  and?: Array<ModelBoatFilterInput | null> | null;
+  or?: Array<ModelBoatFilterInput | null> | null;
+  not?: ModelBoatFilterInput | null;
 };
 
 export type BatchAddAthleteAttendenceMutation = {
@@ -224,6 +440,41 @@ export type BatchAddAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -254,6 +505,41 @@ export type BatchAddAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -264,6 +550,188 @@ export type BatchAddAthleteAttendenceMutation = {
     updatedAt: string;
   };
   attending: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BatchAddBoatMembershipTypeMutation = {
+  __typename: "BoatMembershipType";
+  id: string;
+  boatId: string;
+  membershipId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -296,6 +764,19 @@ export type CreateUserMutation = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -313,6 +794,19 @@ export type CreateUserMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -354,6 +848,19 @@ export type UpdateUserMutation = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -371,6 +878,19 @@ export type UpdateUserMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -412,6 +932,19 @@ export type DeleteUserMutation = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -429,6 +962,19 @@ export type DeleteUserMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -438,6 +984,399 @@ export type DeleteUserMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateBoatCategoryTypeMutation = {
+  __typename: "BoatCategoryType";
+  id: string;
+  type: string;
+  boat: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateBoatCategoryTypeMutation = {
+  __typename: "BoatCategoryType";
+  id: string;
+  type: string;
+  boat: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteBoatCategoryTypeMutation = {
+  __typename: "BoatCategoryType";
+  id: string;
+  type: string;
+  boat: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -463,6 +1402,19 @@ export type CreateTrainingMutation = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -480,6 +1432,19 @@ export type CreateTrainingMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -514,6 +1479,19 @@ export type UpdateTrainingMutation = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -531,6 +1509,19 @@ export type UpdateTrainingMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -565,6 +1556,19 @@ export type DeleteTrainingMutation = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -582,6 +1586,19 @@ export type DeleteTrainingMutation = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -591,6 +1608,1374 @@ export type DeleteTrainingMutation = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateClubMutation = {
+  __typename: "Club";
+  id: string;
+  name: string;
+  address: string;
+  postCode: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateClubMutation = {
+  __typename: "Club";
+  id: string;
+  name: string;
+  address: string;
+  postCode: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteClubMutation = {
+  __typename: "Club";
+  id: string;
+  name: string;
+  address: string;
+  postCode: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateMembershipTypeMutation = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateMembershipTypeMutation = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteMembershipTypeMutation = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateBoatMutation = {
+  __typename: "Boat";
+  id: string;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note: string | null;
+  active: boolean;
+  training: {
+    __typename: "ModelBoatListConnection";
+    items: Array<{
+      __typename: "BoatList";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      boatID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateBoatMutation = {
+  __typename: "Boat";
+  id: string;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note: string | null;
+  active: boolean;
+  training: {
+    __typename: "ModelBoatListConnection";
+    items: Array<{
+      __typename: "BoatList";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      boatID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteBoatMutation = {
+  __typename: "Boat";
+  id: string;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note: string | null;
+  active: boolean;
+  training: {
+    __typename: "ModelBoatListConnection";
+    items: Array<{
+      __typename: "BoatList";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      boatID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateBoatMembershipTypeMutation = {
+  __typename: "BoatMembershipType";
+  id: string;
+  boatId: string;
+  membershipId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateBoatMembershipTypeMutation = {
+  __typename: "BoatMembershipType";
+  id: string;
+  boatId: string;
+  membershipId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteBoatMembershipTypeMutation = {
+  __typename: "BoatMembershipType";
+  id: string;
+  boatId: string;
+  membershipId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -614,6 +2999,41 @@ export type CreateAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -644,6 +3064,41 @@ export type CreateAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -677,6 +3132,41 @@ export type UpdateAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -707,6 +3197,41 @@ export type UpdateAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -740,6 +3265,41 @@ export type DeleteAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -770,6 +3330,41 @@ export type DeleteAthleteAttendenceMutation = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -780,6 +3375,858 @@ export type DeleteAthleteAttendenceMutation = {
     updatedAt: string;
   };
   attending: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateBoatListMutation = {
+  __typename: "BoatList";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  boatID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateBoatListMutation = {
+  __typename: "BoatList";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  boatID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteBoatListMutation = {
+  __typename: "BoatList";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  boatID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BatchGetAthleteAttendenceQuery = {
+  __typename: "User";
+  id: string;
+  firstName: string;
+  lastName: string;
+  membershipType: string;
+  email: string;
+  dob: string | null;
+  height: string | null;
+  weightCategory: string | null;
+  boatPreference: string | null;
+  side: string | null;
+  sex: string | null;
+  status: boolean | null;
+  training: {
+    __typename: "ModelAthleteAttendenceConnection";
+    items: Array<{
+      __typename: "AthleteAttendence";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      attending: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -812,6 +4259,19 @@ export type GetUserQuery = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -829,6 +4289,19 @@ export type GetUserQuery = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -865,12 +4338,285 @@ export type ListUsersQuery = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
       } | null> | null;
       nextToken: string | null;
     } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetBoatCategoryTypeQuery = {
+  __typename: "BoatCategoryType";
+  id: string;
+  type: string;
+  boat: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListBoatCategoryTypesQuery = {
+  __typename: "ModelBoatCategoryTypeConnection";
+  items: Array<{
+    __typename: "BoatCategoryType";
+    id: string;
+    type: string;
+    boat: Array<{
+      __typename: "Boat";
+      id: string;
+      name: string;
+      ownership: string;
+      weightCategory: string;
+      sortOfBoat: string;
+      note: string | null;
+      active: boolean;
+      training: {
+        __typename: "ModelBoatListConnection";
+        items: Array<{
+          __typename: "BoatList";
+          id: string;
+          trainingID: string;
+          athleteID: string;
+          boatID: string;
+          training: {
+            __typename: "Training";
+            id: string;
+            trainingDate: string;
+            statut: boolean | null;
+            athleteCategory: string | null;
+            trainingTime: string | null;
+            createdAt: string;
+            updatedAt: string;
+          };
+          boat: {
+            __typename: "Boat";
+            id: string;
+            name: string;
+            ownership: string;
+            weightCategory: string;
+            sortOfBoat: string;
+            note: string | null;
+            active: boolean;
+            createdAt: string;
+            updatedAt: string;
+          };
+          athlete: {
+            __typename: "User";
+            id: string;
+            firstName: string;
+            lastName: string;
+            membershipType: string;
+            email: string;
+            dob: string | null;
+            height: string | null;
+            weightCategory: string | null;
+            boatPreference: string | null;
+            side: string | null;
+            sex: string | null;
+            status: boolean | null;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        } | null> | null;
+        nextToken: string | null;
+      } | null;
+      membershipType: {
+        __typename: "ModelBoatMembershipTypeConnection";
+        items: Array<{
+          __typename: "BoatMembershipType";
+          id: string;
+          boatId: string;
+          membershipId: string;
+          boat: {
+            __typename: "Boat";
+            id: string;
+            name: string;
+            ownership: string;
+            weightCategory: string;
+            sortOfBoat: string;
+            note: string | null;
+            active: boolean;
+            createdAt: string;
+            updatedAt: string;
+          };
+          membership: {
+            __typename: "MembershipType";
+            id: string;
+            type: string;
+            createdAt: string;
+            updatedAt: string;
+          };
+          createdAt: string;
+          updatedAt: string;
+        } | null> | null;
+        nextToken: string | null;
+      } | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -898,6 +4644,19 @@ export type GetTrainingQuery = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -915,6 +4674,19 @@ export type GetTrainingQuery = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -944,7 +4716,517 @@ export type ListTrainingsQuery = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetClubQuery = {
+  __typename: "Club";
+  id: string;
+  name: string;
+  address: string;
+  postCode: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListClubsQuery = {
+  __typename: "ModelClubConnection";
+  items: Array<{
+    __typename: "Club";
+    id: string;
+    name: string;
+    address: string;
+    postCode: string | null;
+    city: string;
+    country: string;
+    phone: string;
+    email: string;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetMembershipTypeQuery = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListMembershipTypesQuery = {
+  __typename: "ModelMembershipTypeConnection";
+  items: Array<{
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetBoatQuery = {
+  __typename: "Boat";
+  id: string;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note: string | null;
+  active: boolean;
+  training: {
+    __typename: "ModelBoatListConnection";
+    items: Array<{
+      __typename: "BoatList";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      boatID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListBoatsQuery = {
+  __typename: "ModelBoatConnection";
+  items: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         createdAt: string;
         updatedAt: string;
       } | null> | null;
@@ -984,6 +5266,19 @@ export type OnCreateUserSubscription = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1001,6 +5296,19 @@ export type OnCreateUserSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1042,6 +5350,19 @@ export type OnUpdateUserSubscription = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1059,6 +5380,19 @@ export type OnUpdateUserSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1100,6 +5434,19 @@ export type OnDeleteUserSubscription = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1117,6 +5464,19 @@ export type OnDeleteUserSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1126,6 +5486,399 @@ export type OnDeleteUserSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateBoatCategoryTypeSubscription = {
+  __typename: "BoatCategoryType";
+  id: string;
+  type: string;
+  boat: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateBoatCategoryTypeSubscription = {
+  __typename: "BoatCategoryType";
+  id: string;
+  type: string;
+  boat: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteBoatCategoryTypeSubscription = {
+  __typename: "BoatCategoryType";
+  id: string;
+  type: string;
+  boat: Array<{
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1151,6 +5904,19 @@ export type OnCreateTrainingSubscription = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1168,6 +5934,19 @@ export type OnCreateTrainingSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1202,6 +5981,19 @@ export type OnUpdateTrainingSubscription = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1219,6 +6011,19 @@ export type OnUpdateTrainingSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1253,6 +6058,19 @@ export type OnDeleteTrainingSubscription = {
         statut: boolean | null;
         athleteCategory: string | null;
         trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1270,6 +6088,19 @@ export type OnDeleteTrainingSubscription = {
         side: string | null;
         sex: string | null;
         status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
         createdAt: string;
         updatedAt: string;
       };
@@ -1279,6 +6110,1374 @@ export type OnDeleteTrainingSubscription = {
     } | null> | null;
     nextToken: string | null;
   } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateClubSubscription = {
+  __typename: "Club";
+  id: string;
+  name: string;
+  address: string;
+  postCode: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateClubSubscription = {
+  __typename: "Club";
+  id: string;
+  name: string;
+  address: string;
+  postCode: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteClubSubscription = {
+  __typename: "Club";
+  id: string;
+  name: string;
+  address: string;
+  postCode: string | null;
+  city: string;
+  country: string;
+  phone: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateMembershipTypeSubscription = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateMembershipTypeSubscription = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteMembershipTypeSubscription = {
+  __typename: "MembershipType";
+  id: string;
+  type: string;
+  boat: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateBoatSubscription = {
+  __typename: "Boat";
+  id: string;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note: string | null;
+  active: boolean;
+  training: {
+    __typename: "ModelBoatListConnection";
+    items: Array<{
+      __typename: "BoatList";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      boatID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateBoatSubscription = {
+  __typename: "Boat";
+  id: string;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note: string | null;
+  active: boolean;
+  training: {
+    __typename: "ModelBoatListConnection";
+    items: Array<{
+      __typename: "BoatList";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      boatID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteBoatSubscription = {
+  __typename: "Boat";
+  id: string;
+  name: string;
+  ownership: string;
+  weightCategory: string;
+  sortOfBoat: string;
+  note: string | null;
+  active: boolean;
+  training: {
+    __typename: "ModelBoatListConnection";
+    items: Array<{
+      __typename: "BoatList";
+      id: string;
+      trainingID: string;
+      athleteID: string;
+      boatID: string;
+      training: {
+        __typename: "Training";
+        id: string;
+        trainingDate: string;
+        statut: boolean | null;
+        athleteCategory: string | null;
+        trainingTime: string | null;
+        athleteAttending: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      athlete: {
+        __typename: "User";
+        id: string;
+        firstName: string;
+        lastName: string;
+        membershipType: string;
+        email: string;
+        dob: string | null;
+        height: string | null;
+        weightCategory: string | null;
+        boatPreference: string | null;
+        side: string | null;
+        sex: string | null;
+        status: boolean | null;
+        training: {
+          __typename: "ModelAthleteAttendenceConnection";
+          items: Array<{
+            __typename: "AthleteAttendence";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            attending: string | null;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  membershipType: {
+    __typename: "ModelBoatMembershipTypeConnection";
+    items: Array<{
+      __typename: "BoatMembershipType";
+      id: string;
+      boatId: string;
+      membershipId: string;
+      boat: {
+        __typename: "Boat";
+        id: string;
+        name: string;
+        ownership: string;
+        weightCategory: string;
+        sortOfBoat: string;
+        note: string | null;
+        active: boolean;
+        training: {
+          __typename: "ModelBoatListConnection";
+          items: Array<{
+            __typename: "BoatList";
+            id: string;
+            trainingID: string;
+            athleteID: string;
+            boatID: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        membershipType: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      membership: {
+        __typename: "MembershipType";
+        id: string;
+        type: string;
+        boat: {
+          __typename: "ModelBoatMembershipTypeConnection";
+          items: Array<{
+            __typename: "BoatMembershipType";
+            id: string;
+            boatId: string;
+            membershipId: string;
+            createdAt: string;
+            updatedAt: string;
+          } | null> | null;
+          nextToken: string | null;
+        } | null;
+        createdAt: string;
+        updatedAt: string;
+      };
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateBoatMembershipTypeSubscription = {
+  __typename: "BoatMembershipType";
+  id: string;
+  boatId: string;
+  membershipId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateBoatMembershipTypeSubscription = {
+  __typename: "BoatMembershipType";
+  id: string;
+  boatId: string;
+  membershipId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteBoatMembershipTypeSubscription = {
+  __typename: "BoatMembershipType";
+  id: string;
+  boatId: string;
+  membershipId: string;
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  membership: {
+    __typename: "MembershipType";
+    id: string;
+    type: string;
+    boat: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1302,6 +7501,41 @@ export type OnCreateAthleteAttendenceSubscription = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -1332,6 +7566,41 @@ export type OnCreateAthleteAttendenceSubscription = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -1365,6 +7634,41 @@ export type OnUpdateAthleteAttendenceSubscription = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -1395,6 +7699,41 @@ export type OnUpdateAthleteAttendenceSubscription = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -1428,6 +7767,41 @@ export type OnDeleteAthleteAttendenceSubscription = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -1458,6 +7832,41 @@ export type OnDeleteAthleteAttendenceSubscription = {
         id: string;
         trainingID: string;
         athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
         attending: string | null;
         createdAt: string;
         updatedAt: string;
@@ -1468,6 +7877,774 @@ export type OnDeleteAthleteAttendenceSubscription = {
     updatedAt: string;
   };
   attending: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateBoatListSubscription = {
+  __typename: "BoatList";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  boatID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateBoatListSubscription = {
+  __typename: "BoatList";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  boatID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteBoatListSubscription = {
+  __typename: "BoatList";
+  id: string;
+  trainingID: string;
+  athleteID: string;
+  boatID: string;
+  training: {
+    __typename: "Training";
+    id: string;
+    trainingDate: string;
+    statut: boolean | null;
+    athleteCategory: string | null;
+    trainingTime: string | null;
+    athleteAttending: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  boat: {
+    __typename: "Boat";
+    id: string;
+    name: string;
+    ownership: string;
+    weightCategory: string;
+    sortOfBoat: string;
+    note: string | null;
+    active: boolean;
+    training: {
+      __typename: "ModelBoatListConnection";
+      items: Array<{
+        __typename: "BoatList";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        boatID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    membershipType: {
+      __typename: "ModelBoatMembershipTypeConnection";
+      items: Array<{
+        __typename: "BoatMembershipType";
+        id: string;
+        boatId: string;
+        membershipId: string;
+        boat: {
+          __typename: "Boat";
+          id: string;
+          name: string;
+          ownership: string;
+          weightCategory: string;
+          sortOfBoat: string;
+          note: string | null;
+          active: boolean;
+          training: {
+            __typename: "ModelBoatListConnection";
+            nextToken: string | null;
+          } | null;
+          membershipType: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        membership: {
+          __typename: "MembershipType";
+          id: string;
+          type: string;
+          boat: {
+            __typename: "ModelBoatMembershipTypeConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  athlete: {
+    __typename: "User";
+    id: string;
+    firstName: string;
+    lastName: string;
+    membershipType: string;
+    email: string;
+    dob: string | null;
+    height: string | null;
+    weightCategory: string | null;
+    boatPreference: string | null;
+    side: string | null;
+    sex: string | null;
+    status: boolean | null;
+    training: {
+      __typename: "ModelAthleteAttendenceConnection";
+      items: Array<{
+        __typename: "AthleteAttendence";
+        id: string;
+        trainingID: string;
+        athleteID: string;
+        training: {
+          __typename: "Training";
+          id: string;
+          trainingDate: string;
+          statut: boolean | null;
+          athleteCategory: string | null;
+          trainingTime: string | null;
+          athleteAttending: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        athlete: {
+          __typename: "User";
+          id: string;
+          firstName: string;
+          lastName: string;
+          membershipType: string;
+          email: string;
+          dob: string | null;
+          height: string | null;
+          weightCategory: string | null;
+          boatPreference: string | null;
+          side: string | null;
+          sex: string | null;
+          status: boolean | null;
+          training: {
+            __typename: "ModelAthleteAttendenceConnection";
+            nextToken: string | null;
+          } | null;
+          createdAt: string;
+          updatedAt: string;
+        };
+        attending: string | null;
+        createdAt: string;
+        updatedAt: string;
+      } | null> | null;
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
   createdAt: string;
   updatedAt: string;
 };
@@ -1499,6 +8676,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -1529,6 +8741,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -1552,6 +8799,203 @@ export class APIService {
     )) as any;
     return <Array<BatchAddAthleteAttendenceMutation>>(
       response.data.batchAddAthleteAttendence
+    );
+  }
+  async BatchAddBoatMembershipType(
+    BoatMembershipType?: Array<CreateBoatMemberShipTypeInput | null>
+  ): Promise<Array<BatchAddBoatMembershipTypeMutation>> {
+    const statement = `mutation BatchAddBoatMembershipType($BoatMembershipType: [CreateBoatMemberShipTypeInput]) {
+        batchAddBoatMembershipType(BoatMembershipType: $BoatMembershipType) {
+          __typename
+          id
+          boatId
+          membershipId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (BoatMembershipType) {
+      gqlAPIServiceArguments.BoatMembershipType = BoatMembershipType;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <Array<BatchAddBoatMembershipTypeMutation>>(
+      response.data.batchAddBoatMembershipType
     );
   }
   async CreateUser(
@@ -1587,6 +9031,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1604,6 +9061,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1661,6 +9131,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1678,6 +9161,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1735,6 +9231,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1752,6 +9261,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1775,6 +9297,447 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteUserMutation>response.data.deleteUser;
+  }
+  async CreateBoatCategoryType(
+    input: CreateBoatCategoryTypeInput,
+    condition?: ModelBoatCategoryTypeConditionInput
+  ): Promise<CreateBoatCategoryTypeMutation> {
+    const statement = `mutation CreateBoatCategoryType($input: CreateBoatCategoryTypeInput!, $condition: ModelBoatCategoryTypeConditionInput) {
+        createBoatCategoryType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateBoatCategoryTypeMutation>response.data.createBoatCategoryType;
+  }
+  async UpdateBoatCategoryType(
+    input: UpdateBoatCategoryTypeInput,
+    condition?: ModelBoatCategoryTypeConditionInput
+  ): Promise<UpdateBoatCategoryTypeMutation> {
+    const statement = `mutation UpdateBoatCategoryType($input: UpdateBoatCategoryTypeInput!, $condition: ModelBoatCategoryTypeConditionInput) {
+        updateBoatCategoryType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateBoatCategoryTypeMutation>response.data.updateBoatCategoryType;
+  }
+  async DeleteBoatCategoryType(
+    input: DeleteBoatCategoryTypeInput,
+    condition?: ModelBoatCategoryTypeConditionInput
+  ): Promise<DeleteBoatCategoryTypeMutation> {
+    const statement = `mutation DeleteBoatCategoryType($input: DeleteBoatCategoryTypeInput!, $condition: ModelBoatCategoryTypeConditionInput) {
+        deleteBoatCategoryType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteBoatCategoryTypeMutation>response.data.deleteBoatCategoryType;
   }
   async CreateTraining(
     input: CreateTrainingInput,
@@ -1802,6 +9765,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1819,6 +9795,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1869,6 +9858,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1886,6 +9888,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1936,6 +9951,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1953,6 +9981,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -1976,6 +10017,1572 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteTrainingMutation>response.data.deleteTraining;
+  }
+  async CreateClub(
+    input: CreateClubInput,
+    condition?: ModelClubConditionInput
+  ): Promise<CreateClubMutation> {
+    const statement = `mutation CreateClub($input: CreateClubInput!, $condition: ModelClubConditionInput) {
+        createClub(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          address
+          postCode
+          city
+          country
+          phone
+          email
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateClubMutation>response.data.createClub;
+  }
+  async UpdateClub(
+    input: UpdateClubInput,
+    condition?: ModelClubConditionInput
+  ): Promise<UpdateClubMutation> {
+    const statement = `mutation UpdateClub($input: UpdateClubInput!, $condition: ModelClubConditionInput) {
+        updateClub(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          address
+          postCode
+          city
+          country
+          phone
+          email
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateClubMutation>response.data.updateClub;
+  }
+  async DeleteClub(
+    input: DeleteClubInput,
+    condition?: ModelClubConditionInput
+  ): Promise<DeleteClubMutation> {
+    const statement = `mutation DeleteClub($input: DeleteClubInput!, $condition: ModelClubConditionInput) {
+        deleteClub(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          address
+          postCode
+          city
+          country
+          phone
+          email
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteClubMutation>response.data.deleteClub;
+  }
+  async CreateMembershipType(
+    input: CreateMembershipTypeInput,
+    condition?: ModelMembershipTypeConditionInput
+  ): Promise<CreateMembershipTypeMutation> {
+    const statement = `mutation CreateMembershipType($input: CreateMembershipTypeInput!, $condition: ModelMembershipTypeConditionInput) {
+        createMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateMembershipTypeMutation>response.data.createMembershipType;
+  }
+  async UpdateMembershipType(
+    input: UpdateMembershipTypeInput,
+    condition?: ModelMembershipTypeConditionInput
+  ): Promise<UpdateMembershipTypeMutation> {
+    const statement = `mutation UpdateMembershipType($input: UpdateMembershipTypeInput!, $condition: ModelMembershipTypeConditionInput) {
+        updateMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateMembershipTypeMutation>response.data.updateMembershipType;
+  }
+  async DeleteMembershipType(
+    input: DeleteMembershipTypeInput,
+    condition?: ModelMembershipTypeConditionInput
+  ): Promise<DeleteMembershipTypeMutation> {
+    const statement = `mutation DeleteMembershipType($input: DeleteMembershipTypeInput!, $condition: ModelMembershipTypeConditionInput) {
+        deleteMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteMembershipTypeMutation>response.data.deleteMembershipType;
+  }
+  async CreateBoat(
+    input: CreateBoatInput,
+    condition?: ModelBoatConditionInput
+  ): Promise<CreateBoatMutation> {
+    const statement = `mutation CreateBoat($input: CreateBoatInput!, $condition: ModelBoatConditionInput) {
+        createBoat(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              boatID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateBoatMutation>response.data.createBoat;
+  }
+  async UpdateBoat(
+    input: UpdateBoatInput,
+    condition?: ModelBoatConditionInput
+  ): Promise<UpdateBoatMutation> {
+    const statement = `mutation UpdateBoat($input: UpdateBoatInput!, $condition: ModelBoatConditionInput) {
+        updateBoat(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              boatID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateBoatMutation>response.data.updateBoat;
+  }
+  async DeleteBoat(
+    input: DeleteBoatInput,
+    condition?: ModelBoatConditionInput
+  ): Promise<DeleteBoatMutation> {
+    const statement = `mutation DeleteBoat($input: DeleteBoatInput!, $condition: ModelBoatConditionInput) {
+        deleteBoat(input: $input, condition: $condition) {
+          __typename
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              boatID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteBoatMutation>response.data.deleteBoat;
+  }
+  async CreateBoatMembershipType(
+    input: CreateBoatMembershipTypeInput,
+    condition?: ModelBoatMembershipTypeConditionInput
+  ): Promise<CreateBoatMembershipTypeMutation> {
+    const statement = `mutation CreateBoatMembershipType($input: CreateBoatMembershipTypeInput!, $condition: ModelBoatMembershipTypeConditionInput) {
+        createBoatMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          boatId
+          membershipId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateBoatMembershipTypeMutation>(
+      response.data.createBoatMembershipType
+    );
+  }
+  async UpdateBoatMembershipType(
+    input: UpdateBoatMembershipTypeInput,
+    condition?: ModelBoatMembershipTypeConditionInput
+  ): Promise<UpdateBoatMembershipTypeMutation> {
+    const statement = `mutation UpdateBoatMembershipType($input: UpdateBoatMembershipTypeInput!, $condition: ModelBoatMembershipTypeConditionInput) {
+        updateBoatMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          boatId
+          membershipId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateBoatMembershipTypeMutation>(
+      response.data.updateBoatMembershipType
+    );
+  }
+  async DeleteBoatMembershipType(
+    input: DeleteBoatMembershipTypeInput,
+    condition?: ModelBoatMembershipTypeConditionInput
+  ): Promise<DeleteBoatMembershipTypeMutation> {
+    const statement = `mutation DeleteBoatMembershipType($input: DeleteBoatMembershipTypeInput!, $condition: ModelBoatMembershipTypeConditionInput) {
+        deleteBoatMembershipType(input: $input, condition: $condition) {
+          __typename
+          id
+          boatId
+          membershipId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteBoatMembershipTypeMutation>(
+      response.data.deleteBoatMembershipType
+    );
   }
   async CreateAthleteAttendence(
     input: CreateAthleteAttendenceInput,
@@ -2001,6 +11608,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2031,6 +11673,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2082,6 +11759,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2112,6 +11824,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2163,6 +11910,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2193,6 +11975,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2218,6 +12035,921 @@ export class APIService {
     )) as any;
     return <DeleteAthleteAttendenceMutation>(
       response.data.deleteAthleteAttendence
+    );
+  }
+  async CreateBoatList(
+    input: CreateBoatListInput,
+    condition?: ModelBoatListConditionInput
+  ): Promise<CreateBoatListMutation> {
+    const statement = `mutation CreateBoatList($input: CreateBoatListInput!, $condition: ModelBoatListConditionInput) {
+        createBoatList(input: $input, condition: $condition) {
+          __typename
+          id
+          trainingID
+          athleteID
+          boatID
+          training {
+            __typename
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            athleteAttending {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateBoatListMutation>response.data.createBoatList;
+  }
+  async UpdateBoatList(
+    input: UpdateBoatListInput,
+    condition?: ModelBoatListConditionInput
+  ): Promise<UpdateBoatListMutation> {
+    const statement = `mutation UpdateBoatList($input: UpdateBoatListInput!, $condition: ModelBoatListConditionInput) {
+        updateBoatList(input: $input, condition: $condition) {
+          __typename
+          id
+          trainingID
+          athleteID
+          boatID
+          training {
+            __typename
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            athleteAttending {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateBoatListMutation>response.data.updateBoatList;
+  }
+  async DeleteBoatList(
+    input: DeleteBoatListInput,
+    condition?: ModelBoatListConditionInput
+  ): Promise<DeleteBoatListMutation> {
+    const statement = `mutation DeleteBoatList($input: DeleteBoatListInput!, $condition: ModelBoatListConditionInput) {
+        deleteBoatList(input: $input, condition: $condition) {
+          __typename
+          id
+          trainingID
+          athleteID
+          boatID
+          training {
+            __typename
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            athleteAttending {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteBoatListMutation>response.data.deleteBoatList;
+  }
+  async BatchGetAthleteAttendence(
+    ids?: Array<string | null>
+  ): Promise<Array<BatchGetAthleteAttendenceQuery>> {
+    const statement = `query BatchGetAthleteAttendence($ids: [ID]) {
+        batchGetAthleteAttendence(ids: $ids) {
+          __typename
+          id
+          firstName
+          lastName
+          membershipType
+          email
+          dob
+          height
+          weightCategory
+          boatPreference
+          side
+          sex
+          status
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (ids) {
+      gqlAPIServiceArguments.ids = ids;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <Array<BatchGetAthleteAttendenceQuery>>(
+      response.data.batchGetAthleteAttendence
     );
   }
   async GetUser(id: string): Promise<GetUserQuery> {
@@ -2250,6 +12982,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2267,6 +13012,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2317,6 +13075,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2344,6 +13137,275 @@ export class APIService {
     )) as any;
     return <ListUsersQuery>response.data.listUsers;
   }
+  async GetBoatCategoryType(id: string): Promise<GetBoatCategoryTypeQuery> {
+    const statement = `query GetBoatCategoryType($id: ID!) {
+        getBoatCategoryType(id: $id) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetBoatCategoryTypeQuery>response.data.getBoatCategoryType;
+  }
+  async ListBoatCategoryTypes(
+    filter?: ModelBoatCategoryTypeFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListBoatCategoryTypesQuery> {
+    const statement = `query ListBoatCategoryTypes($filter: ModelBoatCategoryTypeFilterInput, $limit: Int, $nextToken: String) {
+        listBoatCategoryTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              training {
+                __typename
+                items {
+                  __typename
+                  id
+                  trainingID
+                  athleteID
+                  boatID
+                  training {
+                    __typename
+                    id
+                    trainingDate
+                    statut
+                    athleteCategory
+                    trainingTime
+                    createdAt
+                    updatedAt
+                  }
+                  boat {
+                    __typename
+                    id
+                    name
+                    ownership
+                    weightCategory
+                    sortOfBoat
+                    note
+                    active
+                    createdAt
+                    updatedAt
+                  }
+                  athlete {
+                    __typename
+                    id
+                    firstName
+                    lastName
+                    membershipType
+                    email
+                    dob
+                    height
+                    weightCategory
+                    boatPreference
+                    side
+                    sex
+                    status
+                    createdAt
+                    updatedAt
+                  }
+                  createdAt
+                  updatedAt
+                }
+                nextToken
+              }
+              membershipType {
+                __typename
+                items {
+                  __typename
+                  id
+                  boatId
+                  membershipId
+                  boat {
+                    __typename
+                    id
+                    name
+                    ownership
+                    weightCategory
+                    sortOfBoat
+                    note
+                    active
+                    createdAt
+                    updatedAt
+                  }
+                  membership {
+                    __typename
+                    id
+                    type
+                    createdAt
+                    updatedAt
+                  }
+                  createdAt
+                  updatedAt
+                }
+                nextToken
+              }
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListBoatCategoryTypesQuery>response.data.listBoatCategoryTypes;
+  }
   async GetTraining(id: string): Promise<GetTrainingQuery> {
     const statement = `query GetTraining($id: ID!) {
         getTraining(id: $id) {
@@ -2367,6 +13429,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2384,6 +13459,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2427,6 +13515,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2453,6 +13576,574 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListTrainingsQuery>response.data.listTrainings;
+  }
+  async GetClub(id: string): Promise<GetClubQuery> {
+    const statement = `query GetClub($id: ID!) {
+        getClub(id: $id) {
+          __typename
+          id
+          name
+          address
+          postCode
+          city
+          country
+          phone
+          email
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetClubQuery>response.data.getClub;
+  }
+  async ListClubs(
+    filter?: ModelClubFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListClubsQuery> {
+    const statement = `query ListClubs($filter: ModelClubFilterInput, $limit: Int, $nextToken: String) {
+        listClubs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            address
+            postCode
+            city
+            country
+            phone
+            email
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListClubsQuery>response.data.listClubs;
+  }
+  async GetMembershipType(id: string): Promise<GetMembershipTypeQuery> {
+    const statement = `query GetMembershipType($id: ID!) {
+        getMembershipType(id: $id) {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetMembershipTypeQuery>response.data.getMembershipType;
+  }
+  async ListMembershipTypes(
+    filter?: ModelMembershipTypeFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListMembershipTypesQuery> {
+    const statement = `query ListMembershipTypes($filter: ModelMembershipTypeFilterInput, $limit: Int, $nextToken: String) {
+        listMembershipTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListMembershipTypesQuery>response.data.listMembershipTypes;
+  }
+  async GetBoat(id: string): Promise<GetBoatQuery> {
+    const statement = `query GetBoat($id: ID!) {
+        getBoat(id: $id) {
+          __typename
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              boatID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetBoatQuery>response.data.getBoat;
+  }
+  async ListBoats(
+    filter?: ModelBoatFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListBoatsQuery> {
+    const statement = `query ListBoats($filter: ModelBoatFilterInput, $limit: Int, $nextToken: String) {
+        listBoats(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListBoatsQuery>response.data.listBoats;
   }
   OnCreateUserListener: Observable<OnCreateUserSubscription> = API.graphql(
     graphqlOperation(
@@ -2485,6 +14176,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2502,6 +14206,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2549,6 +14266,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2566,6 +14296,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2613,6 +14356,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2630,6 +14386,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2645,6 +14414,423 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteUserSubscription>;
+
+  OnCreateBoatCategoryTypeListener: Observable<
+    OnCreateBoatCategoryTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBoatCategoryType {
+        onCreateBoatCategoryType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateBoatCategoryTypeSubscription>;
+
+  OnUpdateBoatCategoryTypeListener: Observable<
+    OnUpdateBoatCategoryTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateBoatCategoryType {
+        onUpdateBoatCategoryType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateBoatCategoryTypeSubscription>;
+
+  OnDeleteBoatCategoryTypeListener: Observable<
+    OnDeleteBoatCategoryTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteBoatCategoryType {
+        onDeleteBoatCategoryType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteBoatCategoryTypeSubscription>;
 
   OnCreateTrainingListener: Observable<
     OnCreateTrainingSubscription
@@ -2672,6 +14858,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2689,6 +14888,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2731,6 +14943,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2748,6 +14973,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2790,6 +15028,19 @@ export class APIService {
                 statut
                 athleteCategory
                 trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2807,6 +15058,19 @@ export class APIService {
                 side
                 sex
                 status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
                 createdAt
                 updatedAt
               }
@@ -2822,6 +15086,1458 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteTrainingSubscription>;
+
+  OnCreateClubListener: Observable<OnCreateClubSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateClub {
+        onCreateClub {
+          __typename
+          id
+          name
+          address
+          postCode
+          city
+          country
+          phone
+          email
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateClubSubscription>;
+
+  OnUpdateClubListener: Observable<OnUpdateClubSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateClub {
+        onUpdateClub {
+          __typename
+          id
+          name
+          address
+          postCode
+          city
+          country
+          phone
+          email
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateClubSubscription>;
+
+  OnDeleteClubListener: Observable<OnDeleteClubSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteClub {
+        onDeleteClub {
+          __typename
+          id
+          name
+          address
+          postCode
+          city
+          country
+          phone
+          email
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteClubSubscription>;
+
+  OnCreateMembershipTypeListener: Observable<
+    OnCreateMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateMembershipType {
+        onCreateMembershipType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateMembershipTypeSubscription>;
+
+  OnUpdateMembershipTypeListener: Observable<
+    OnUpdateMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateMembershipType {
+        onUpdateMembershipType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateMembershipTypeSubscription>;
+
+  OnDeleteMembershipTypeListener: Observable<
+    OnDeleteMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteMembershipType {
+        onDeleteMembershipType {
+          __typename
+          id
+          type
+          boat {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteMembershipTypeSubscription>;
+
+  OnCreateBoatListener: Observable<OnCreateBoatSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBoat {
+        onCreateBoat {
+          __typename
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              boatID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateBoatSubscription>;
+
+  OnUpdateBoatListener: Observable<OnUpdateBoatSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateBoat {
+        onUpdateBoat {
+          __typename
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              boatID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateBoatSubscription>;
+
+  OnDeleteBoatListener: Observable<OnDeleteBoatSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteBoat {
+        onDeleteBoat {
+          __typename
+          id
+          name
+          ownership
+          weightCategory
+          sortOfBoat
+          note
+          active
+          training {
+            __typename
+            items {
+              __typename
+              id
+              trainingID
+              athleteID
+              boatID
+              training {
+                __typename
+                id
+                trainingDate
+                statut
+                athleteCategory
+                trainingTime
+                athleteAttending {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              athlete {
+                __typename
+                id
+                firstName
+                lastName
+                membershipType
+                email
+                dob
+                height
+                weightCategory
+                boatPreference
+                side
+                sex
+                status
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    attending
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          membershipType {
+            __typename
+            items {
+              __typename
+              id
+              boatId
+              membershipId
+              boat {
+                __typename
+                id
+                name
+                ownership
+                weightCategory
+                sortOfBoat
+                note
+                active
+                training {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    trainingID
+                    athleteID
+                    boatID
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                membershipType {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              membership {
+                __typename
+                id
+                type
+                boat {
+                  __typename
+                  items {
+                    __typename
+                    id
+                    boatId
+                    membershipId
+                    createdAt
+                    updatedAt
+                  }
+                  nextToken
+                }
+                createdAt
+                updatedAt
+              }
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteBoatSubscription>;
+
+  OnCreateBoatMembershipTypeListener: Observable<
+    OnCreateBoatMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBoatMembershipType {
+        onCreateBoatMembershipType {
+          __typename
+          id
+          boatId
+          membershipId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateBoatMembershipTypeSubscription>;
+
+  OnUpdateBoatMembershipTypeListener: Observable<
+    OnUpdateBoatMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateBoatMembershipType {
+        onUpdateBoatMembershipType {
+          __typename
+          id
+          boatId
+          membershipId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateBoatMembershipTypeSubscription>;
+
+  OnDeleteBoatMembershipTypeListener: Observable<
+    OnDeleteBoatMembershipTypeSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteBoatMembershipType {
+        onDeleteBoatMembershipType {
+          __typename
+          id
+          boatId
+          membershipId
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            __typename
+            id
+            type
+            boat {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteBoatMembershipTypeSubscription>;
 
   OnCreateAthleteAttendenceListener: Observable<
     OnCreateAthleteAttendenceSubscription
@@ -2847,6 +16563,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2877,6 +16628,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2918,6 +16704,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2948,6 +16769,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -2989,6 +16845,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -3019,6 +16910,41 @@ export class APIService {
                 id
                 trainingID
                 athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
                 attending
                 createdAt
                 updatedAt
@@ -3035,4 +16961,796 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteAthleteAttendenceSubscription>;
+
+  OnCreateBoatListListener: Observable<
+    OnCreateBoatListSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateBoatList {
+        onCreateBoatList {
+          __typename
+          id
+          trainingID
+          athleteID
+          boatID
+          training {
+            __typename
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            athleteAttending {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateBoatListSubscription>;
+
+  OnUpdateBoatListListener: Observable<
+    OnUpdateBoatListSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateBoatList {
+        onUpdateBoatList {
+          __typename
+          id
+          trainingID
+          athleteID
+          boatID
+          training {
+            __typename
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            athleteAttending {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateBoatListSubscription>;
+
+  OnDeleteBoatListListener: Observable<
+    OnDeleteBoatListSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteBoatList {
+        onDeleteBoatList {
+          __typename
+          id
+          trainingID
+          athleteID
+          boatID
+          training {
+            __typename
+            id
+            trainingDate
+            statut
+            athleteCategory
+            trainingTime
+            athleteAttending {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          boat {
+            __typename
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                boatID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            membershipType {
+              __typename
+              items {
+                __typename
+                id
+                boatId
+                membershipId
+                boat {
+                  __typename
+                  id
+                  name
+                  ownership
+                  weightCategory
+                  sortOfBoat
+                  note
+                  active
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  membershipType {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                membership {
+                  __typename
+                  id
+                  type
+                  boat {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          athlete {
+            __typename
+            id
+            firstName
+            lastName
+            membershipType
+            email
+            dob
+            height
+            weightCategory
+            boatPreference
+            side
+            sex
+            status
+            training {
+              __typename
+              items {
+                __typename
+                id
+                trainingID
+                athleteID
+                training {
+                  __typename
+                  id
+                  trainingDate
+                  statut
+                  athleteCategory
+                  trainingTime
+                  athleteAttending {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                athlete {
+                  __typename
+                  id
+                  firstName
+                  lastName
+                  membershipType
+                  email
+                  dob
+                  height
+                  weightCategory
+                  boatPreference
+                  side
+                  sex
+                  status
+                  training {
+                    __typename
+                    nextToken
+                  }
+                  createdAt
+                  updatedAt
+                }
+                attending
+                createdAt
+                updatedAt
+              }
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteBoatListSubscription>;
 }

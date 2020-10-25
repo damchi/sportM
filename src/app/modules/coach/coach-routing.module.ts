@@ -9,13 +9,23 @@ const routes: Routes = [
     children: [
       {
         path: 'athlete',
-        loadChildren: () => import('../coach-list-athelete/coach-list-athelete.module').then(m => m.CoachListAtheleteModule)
+        loadChildren: () => import('../coach-list-athlete/coach-list-athlete.module').then(m => m.CoachListAthleteModule)
       },
       {
         path: 'training',
         loadChildren: () => import('../coach-training/coach-training.module').then(m => m.CoachTrainingModule)
       },
-      // {
+      {
+        path: 'membership',
+        loadChildren: () => import('../coach-membership-type/coach-membership-type.module').then(m => m.CoachMembershipTypeModule)
+      },
+
+      { path: 'boat',
+        loadChildren: () => import('../coach-boat/coach-boat.module').then(m => m.CoachBoatModule)
+      },
+
+
+  // {
       //   path: 'planning',
       //   loadChildren: () => import('../coach-planning/coach-planning.module').then(m => m.CoachPlanningModule)
       // },
@@ -26,7 +36,8 @@ const routes: Routes = [
       {path: '**', redirectTo: '/coach/training'},
     ]
 
-  }];
+  },
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
