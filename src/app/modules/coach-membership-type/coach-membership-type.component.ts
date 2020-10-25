@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {Auth} from "aws-amplify";
 import {ConfirmDialogComponent} from "../../components/confirm-dialog/confirm-dialog.component";
 import {UserType} from "../../domain/user-type";
 import {PopupNewUserTypeComponent} from "../../components/popup-new-user-type/popup-new-user-type.component";
 import {MembershipTypeService} from "../../services/membership-type.service";
+import {ListMembershipTypesQuery} from "../../API.service";
+import {BoatService} from "../../services/boat.service";
 
 @Component({
   selector: 'app-coach-membership-type',
@@ -12,19 +14,18 @@ import {MembershipTypeService} from "../../services/membership-type.service";
   styleUrls: ['./coach-membership-type.component.css']
 })
 export class CoachMembershipTypeComponent implements OnInit {
-  public displayedColumns: string[] = ['name','option'];
-  public isLoadedUserType: boolean = false;
-  public userTypes: UserType[];
+  public displayedColumns: string[] = ['name', 'option'];
+  public userTypes: any [];
   public userType: UserType
 
-  constructor(public dialog: MatDialog, private serviceUserType: MembershipTypeService) {
+  constructor(public dialog: MatDialog, private serviceUserType: MembershipTypeService, private serviceBoat: BoatService,) {
   }
 
   ngOnInit(): void {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     }).then(async () => {
-      await this.getUserType();
+      this.getUserType();
     })
       .catch(err => console.error(err));
   }
@@ -45,29 +46,20 @@ export class CoachMembershipTypeComponent implements OnInit {
 
   }
 
-  async getUserType() {
-    this.userTypes = [];
-    await this.serviceUserType.getUserType().then((userType) => {
-      for (let i = 0; i < userType.items.length; i++) {
-        this.userTypes[i] = {
-          id: userType.items[i].id,
-          type: userType.items[i].type,
-        };
-      }
-      this.isLoadedUserType = true
+  getUserType() {
+    this.serviceUserType.getUserType().then((userType: ListMembershipTypesQuery) => {
+      this.userTypes = userType.items
     });
   }
 
   save(userType: UserType) {
     if (userType.id != null) {
       this.serviceUserType.updateUserType(userType).then(() => {
-          this.isLoadedUserType = false;
           this.getUserType();
         }
       )
     } else {
       this.serviceUserType.saveUserType(userType).then(() => {
-          this.isLoadedUserType = false;
           this.getUserType();
         }
       )
@@ -95,10 +87,16 @@ export class CoachMembershipTypeComponent implements OnInit {
     let input = {
       id: this.userType.id
     }
-    this.serviceUserType.deleteUserType(input).then(() => {
-      this.isLoadedUserType = false;
-      return this.getUserType();
-    })
+    for (let i = 0; i < this.userType.boat.items.length; i++) {
+      let inputMembership = {
+        id: this.userType.boat.items[i].id
+      }
+      this.serviceBoat.deleteBoatMembershipType(inputMembership).then(r => {
+        this.serviceUserType.deleteUserType(input).then(() => {
+          return this.getUserType();
+        })
+      });
+    }
   }
 
 }

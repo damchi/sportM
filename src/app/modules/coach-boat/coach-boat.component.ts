@@ -13,7 +13,6 @@ import {
   ListBoatsQuery, UpdateBoatMembershipTypeInput,
   UpdateBoatMutation
 } from "../../API.service";
-import moment from "moment";
 
 @Component({
   selector: 'app-coach-boat',

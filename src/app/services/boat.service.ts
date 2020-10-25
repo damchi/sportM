@@ -45,7 +45,6 @@ export class BoatService {
   }
 
   delete(boatId){
-    console.log(boatId)
      return this.api.DeleteBoat(boatId);
   }
 }

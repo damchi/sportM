@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {APIService} from "../API.service";
+import {APIService, ListMembershipTypesQuery} from "../API.service";
 import {UserType} from "../domain/user-type";
 
 @Injectable({
@@ -13,13 +13,15 @@ export class MembershipTypeService {
     await this.api.CreateMembershipType(type);
   }
 
-  async getUserType() {
-    return await this.api.ListMembershipTypes();
+  getUserType() {
+    return  this.api.ListMembershipTypes().then((user:ListMembershipTypesQuery) =>{
+      return user;
+    });
   }
 
-  async updateUserType(type: UserType) {
-    await this.api.UpdateMembershipType(type);
+   updateUserType(type: UserType) {
+    return  this.api.UpdateMembershipType(type);
   }
-  async deleteUserType(UserTypeId) {
-    await this.api.DeleteMembershipType(UserTypeId);
+  deleteUserType(UserTypeId) {
+    return this.api.DeleteMembershipType(UserTypeId);
   }}

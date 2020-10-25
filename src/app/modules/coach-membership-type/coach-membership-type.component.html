@@ -2,7 +2,7 @@
   <button mat-raised-button (click)="newUserType()">New user type</button>
 </div>
 
-<div class="desktop" *ngIf="isLoadedUserType">
+<div class="desktop">
 
   <table mat-table [dataSource]="userTypes">
     <ng-container matColumnDef="name">
