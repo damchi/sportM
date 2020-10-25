@@ -14,14 +14,6 @@ type User @model {
   training: [AthleteAttendence] @connection(keyName: "byAthlete", fields: ["id"])
 }
 
-type BoatCategoryType @model
-{
-  id: ID!
-  type: String!
-  boat: [Boat]
-
-}
-
 type Training @model
 {
   id: ID!

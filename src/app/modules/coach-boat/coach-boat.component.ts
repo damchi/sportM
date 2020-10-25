@@ -7,7 +7,6 @@ import {PopupNewBoatComponent} from "../../components/popup-new-boat/popup-new-b
 import {BoatService} from "../../services/boat.service";
 import {BoatMemberType} from "../../domain/boat-member-type";
 import {
-  APIService,
   CreateBoatMemberShipTypeInput,
   CreateBoatMutation,
   ListBoatsQuery, UpdateBoatMembershipTypeInput,
@@ -27,7 +26,7 @@ export class CoachBoatComponent implements OnInit {
   public createBoatMemberShipTypeInputs: CreateBoatMemberShipTypeInput[] = [];
   public updateBoatMembershipTypeInputs: UpdateBoatMembershipTypeInput[] = [];
 
-  constructor(public dialog: MatDialog, private serviceBoat: BoatService, private api: APIService) {
+  constructor(public dialog: MatDialog, private serviceBoat: BoatService) {
   }
 
   async ngOnInit() {
