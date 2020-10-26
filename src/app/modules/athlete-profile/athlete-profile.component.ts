@@ -55,6 +55,7 @@ export class AthleteProfileComponent extends MarkAsTouch implements OnInit {
     }).then(async user => {
       this.athlete.id = user.attributes.sub;
       this.athlete.email = user.attributes.email;
+      console.log(user)
       await this.getAthlete(user.attributes.sub);
     })
       .catch(err => console.error(err));
