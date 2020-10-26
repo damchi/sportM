@@ -10,11 +10,16 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from 'ngx-toastr';
 import {CommonModule} from "@angular/common";
 import {AuthComponent} from './components/auth/auth.component';
-import {AmplifyAngularModule, AmplifyService} from "aws-amplify-angular";
+import { AmplifyService} from "aws-amplify-angular";
 import {ConfirmDialogComponent} from './components/confirm-dialog/confirm-dialog.component';
 import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import awsconfig from '../aws-exports';
+import {Amplify} from "aws-amplify";
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+
+Amplify.configure(awsconfig);
 
 @NgModule({
   declarations: [
@@ -23,7 +28,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     ConfirmDialogComponent,
   ],
   imports: [
-    AmplifyAngularModule,
+    AmplifyUIAngularModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
