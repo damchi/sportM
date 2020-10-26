@@ -114,7 +114,7 @@
         "Runtime": "nodejs12.x",
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-sportm-devm-222642-deployment",
+          "S3Bucket": "amplify-sportm-devluis-230755-deployment",
           "S3Key": "amplify-builds/createtraining-7049697032486477794c-build.zip"
         }
       }
