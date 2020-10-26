@@ -34,7 +34,7 @@
     <mat-form-field>
       <mat-label>Membership type</mat-label>
       <mat-select formControlName="athleteCategory">
-        <mat-option *ngFor="let membershipType of membershipType"
+        <mat-option *ngFor="let membershipType of userTypes"
                     [value]="membershipType.id">{{membershipType.type}}</mat-option>
       </mat-select>
       <mat-error *ngFor="let validation of errorMessages.athleteCategory">

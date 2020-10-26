@@ -22,7 +22,18 @@ query BatchGetAthleteAttendence($ids: [ID]) {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -98,7 +109,18 @@ query GetUser($id: ID!) {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -179,7 +201,12 @@ query ListUsers(
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -218,78 +245,49 @@ query ListUsers(
     nextToken
   }
 }
-query GetBoatCategoryType($id: ID!) {
-  getBoatCategoryType(id: $id) {
+query GetTraining($id: ID!) {
+  getTraining(id: $id) {
     id
-    type
-    boat {
+    trainingDate
+    statut
+    membershipType {
       id
-      name
-      ownership
-      weightCategory
-      sortOfBoat
-      note
-      active
+      type
       training {
         items {
           id
-          trainingID
-          athleteID
-          boatID
-          training {
+          trainingDate
+          statut
+          membershipType {
             id
-            trainingDate
-            statut
-            athleteCategory
-            trainingTime
-            athleteAttending {
+            type
+            training {
+              nextToken
+            }
+            boat {
               nextToken
             }
             createdAt
             updatedAt
           }
-          boat {
-            id
-            name
-            ownership
-            weightCategory
-            sortOfBoat
-            note
-            active
-            training {
-              nextToken
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
             }
-            membershipType {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          athlete {
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              nextToken
-            }
-            createdAt
-            updatedAt
+            nextToken
           }
           createdAt
           updatedAt
         }
         nextToken
       }
-      membershipType {
+      boat {
         items {
           id
           boatId
@@ -314,6 +312,9 @@ query GetBoatCategoryType($id: ID!) {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -328,116 +329,6 @@ query GetBoatCategoryType($id: ID!) {
       createdAt
       updatedAt
     }
-    createdAt
-    updatedAt
-  }
-}
-query ListBoatCategoryTypes(
-  $filter: ModelBoatCategoryTypeFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listBoatCategoryTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      type
-      boat {
-        id
-        name
-        ownership
-        weightCategory
-        sortOfBoat
-        note
-        active
-        training {
-          items {
-            id
-            trainingID
-            athleteID
-            boatID
-            training {
-              id
-              trainingDate
-              statut
-              athleteCategory
-              trainingTime
-              createdAt
-              updatedAt
-            }
-            boat {
-              id
-              name
-              ownership
-              weightCategory
-              sortOfBoat
-              note
-              active
-              createdAt
-              updatedAt
-            }
-            athlete {
-              id
-              firstName
-              lastName
-              membershipType
-              email
-              dob
-              height
-              weightCategory
-              boatPreference
-              side
-              sex
-              status
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        membershipType {
-          items {
-            id
-            boatId
-            membershipId
-            boat {
-              id
-              name
-              ownership
-              weightCategory
-              sortOfBoat
-              note
-              active
-              createdAt
-              updatedAt
-            }
-            membership {
-              id
-              type
-              createdAt
-              updatedAt
-            }
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-    }
-    nextToken
-  }
-}
-query GetTraining($id: ID!) {
-  getTraining(id: $id) {
-    id
-    trainingDate
-    statut
-    athleteCategory
     trainingTime
     athleteAttending {
       items {
@@ -448,7 +339,18 @@ query GetTraining($id: ID!) {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -511,7 +413,59 @@ query ListTrainings(
       id
       trainingDate
       statut
-      athleteCategory
+      membershipType {
+        id
+        type
+        training {
+          items {
+            id
+            trainingDate
+            statut
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            trainingTime
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        boat {
+          items {
+            id
+            boatId
+            membershipId
+            boat {
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              createdAt
+              updatedAt
+            }
+            membership {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       trainingTime
       athleteAttending {
         items {
@@ -522,7 +476,12 @@ query ListTrainings(
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -600,6 +559,79 @@ query GetMembershipType($id: ID!) {
   getMembershipType(id: $id) {
     id
     type
+    training {
+      items {
+        id
+        trainingDate
+        statut
+        membershipType {
+          id
+          type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        trainingTime
+        athleteAttending {
+          items {
+            id
+            trainingID
+            athleteID
+            training {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            athlete {
+              id
+              firstName
+              lastName
+              membershipType
+              email
+              dob
+              height
+              weightCategory
+              boatPreference
+              side
+              sex
+              status
+              createdAt
+              updatedAt
+            }
+            attending
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     boat {
       items {
         id
@@ -640,6 +672,17 @@ query GetMembershipType($id: ID!) {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -671,6 +714,40 @@ query ListMembershipTypes(
     items {
       id
       type
+      training {
+        items {
+          id
+          trainingDate
+          statut
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       boat {
         items {
           id
@@ -696,6 +773,9 @@ query ListMembershipTypes(
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -732,7 +812,18 @@ query GetBoat($id: ID!) {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -852,6 +943,17 @@ query GetBoat($id: ID!) {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -898,7 +1000,12 @@ query ListBoats(
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -972,6 +1079,9 @@ query ListBoats(
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }

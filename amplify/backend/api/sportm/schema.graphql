@@ -14,20 +14,12 @@ type User @model {
   training: [AthleteAttendence] @connection(keyName: "byAthlete", fields: ["id"])
 }
 
-type BoatCategoryType @model
-{
-  id: ID!
-  type: String!
-  boat: [Boat]
-
-}
-
 type Training @model
 {
   id: ID!
   trainingDate: AWSDate!
   statut: Boolean
-  athleteCategory:String
+  membershipType: MembershipType @connection(name:"MembershipTypeTraining")
   trainingTime:String
   athleteAttending: [AthleteAttendence] @connection(keyName: "byTraining", fields: ["id"])
 }
@@ -48,6 +40,7 @@ type MembershipType @model
 {
   id: ID!
   type: String!
+  training: [Training] @connection(name:"MembershipTypeTraining")
   boat: [BoatMembershipType] @connection(keyName: "byMembership", fields: ["id"])
 }
 

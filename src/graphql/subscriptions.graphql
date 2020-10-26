@@ -22,7 +22,18 @@ subscription OnCreateUser {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -98,7 +109,18 @@ subscription OnUpdateUser {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -174,7 +196,18 @@ subscription OnDeleteUser {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -227,354 +260,90 @@ subscription OnDeleteUser {
     updatedAt
   }
 }
-subscription OnCreateBoatCategoryType {
-  onCreateBoatCategoryType {
-    id
-    type
-    boat {
-      id
-      name
-      ownership
-      weightCategory
-      sortOfBoat
-      note
-      active
-      training {
-        items {
-          id
-          trainingID
-          athleteID
-          boatID
-          training {
-            id
-            trainingDate
-            statut
-            athleteCategory
-            trainingTime
-            athleteAttending {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          boat {
-            id
-            name
-            ownership
-            weightCategory
-            sortOfBoat
-            note
-            active
-            training {
-              nextToken
-            }
-            membershipType {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          athlete {
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      membershipType {
-        items {
-          id
-          boatId
-          membershipId
-          boat {
-            id
-            name
-            ownership
-            weightCategory
-            sortOfBoat
-            note
-            active
-            training {
-              nextToken
-            }
-            membershipType {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          membership {
-            id
-            type
-            boat {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateBoatCategoryType {
-  onUpdateBoatCategoryType {
-    id
-    type
-    boat {
-      id
-      name
-      ownership
-      weightCategory
-      sortOfBoat
-      note
-      active
-      training {
-        items {
-          id
-          trainingID
-          athleteID
-          boatID
-          training {
-            id
-            trainingDate
-            statut
-            athleteCategory
-            trainingTime
-            athleteAttending {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          boat {
-            id
-            name
-            ownership
-            weightCategory
-            sortOfBoat
-            note
-            active
-            training {
-              nextToken
-            }
-            membershipType {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          athlete {
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      membershipType {
-        items {
-          id
-          boatId
-          membershipId
-          boat {
-            id
-            name
-            ownership
-            weightCategory
-            sortOfBoat
-            note
-            active
-            training {
-              nextToken
-            }
-            membershipType {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          membership {
-            id
-            type
-            boat {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteBoatCategoryType {
-  onDeleteBoatCategoryType {
-    id
-    type
-    boat {
-      id
-      name
-      ownership
-      weightCategory
-      sortOfBoat
-      note
-      active
-      training {
-        items {
-          id
-          trainingID
-          athleteID
-          boatID
-          training {
-            id
-            trainingDate
-            statut
-            athleteCategory
-            trainingTime
-            athleteAttending {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          boat {
-            id
-            name
-            ownership
-            weightCategory
-            sortOfBoat
-            note
-            active
-            training {
-              nextToken
-            }
-            membershipType {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          athlete {
-            id
-            firstName
-            lastName
-            membershipType
-            email
-            dob
-            height
-            weightCategory
-            boatPreference
-            side
-            sex
-            status
-            training {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      membershipType {
-        items {
-          id
-          boatId
-          membershipId
-          boat {
-            id
-            name
-            ownership
-            weightCategory
-            sortOfBoat
-            note
-            active
-            training {
-              nextToken
-            }
-            membershipType {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          membership {
-            id
-            type
-            boat {
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    createdAt
-    updatedAt
-  }
-}
 subscription OnCreateTraining {
   onCreateTraining {
     id
     trainingDate
     statut
-    athleteCategory
+    membershipType {
+      id
+      type
+      training {
+        items {
+          id
+          trainingDate
+          statut
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      boat {
+        items {
+          id
+          boatId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     trainingTime
     athleteAttending {
       items {
@@ -585,7 +354,18 @@ subscription OnCreateTraining {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -643,7 +423,85 @@ subscription OnUpdateTraining {
     id
     trainingDate
     statut
-    athleteCategory
+    membershipType {
+      id
+      type
+      training {
+        items {
+          id
+          trainingDate
+          statut
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      boat {
+        items {
+          id
+          boatId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     trainingTime
     athleteAttending {
       items {
@@ -654,7 +512,18 @@ subscription OnUpdateTraining {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -712,7 +581,85 @@ subscription OnDeleteTraining {
     id
     trainingDate
     statut
-    athleteCategory
+    membershipType {
+      id
+      type
+      training {
+        items {
+          id
+          trainingDate
+          statut
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      boat {
+        items {
+          id
+          boatId
+          membershipId
+          boat {
+            id
+            name
+            ownership
+            weightCategory
+            sortOfBoat
+            note
+            active
+            training {
+              nextToken
+            }
+            membershipType {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          membership {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
     trainingTime
     athleteAttending {
       items {
@@ -723,7 +670,18 @@ subscription OnDeleteTraining {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -822,6 +780,79 @@ subscription OnCreateMembershipType {
   onCreateMembershipType {
     id
     type
+    training {
+      items {
+        id
+        trainingDate
+        statut
+        membershipType {
+          id
+          type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        trainingTime
+        athleteAttending {
+          items {
+            id
+            trainingID
+            athleteID
+            training {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            athlete {
+              id
+              firstName
+              lastName
+              membershipType
+              email
+              dob
+              height
+              weightCategory
+              boatPreference
+              side
+              sex
+              status
+              createdAt
+              updatedAt
+            }
+            attending
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     boat {
       items {
         id
@@ -862,6 +893,17 @@ subscription OnCreateMembershipType {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -888,6 +930,79 @@ subscription OnUpdateMembershipType {
   onUpdateMembershipType {
     id
     type
+    training {
+      items {
+        id
+        trainingDate
+        statut
+        membershipType {
+          id
+          type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        trainingTime
+        athleteAttending {
+          items {
+            id
+            trainingID
+            athleteID
+            training {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            athlete {
+              id
+              firstName
+              lastName
+              membershipType
+              email
+              dob
+              height
+              weightCategory
+              boatPreference
+              side
+              sex
+              status
+              createdAt
+              updatedAt
+            }
+            attending
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     boat {
       items {
         id
@@ -928,6 +1043,17 @@ subscription OnUpdateMembershipType {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -954,6 +1080,79 @@ subscription OnDeleteMembershipType {
   onDeleteMembershipType {
     id
     type
+    training {
+      items {
+        id
+        trainingDate
+        statut
+        membershipType {
+          id
+          type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          boat {
+            items {
+              id
+              boatId
+              membershipId
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        trainingTime
+        athleteAttending {
+          items {
+            id
+            trainingID
+            athleteID
+            training {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            athlete {
+              id
+              firstName
+              lastName
+              membershipType
+              email
+              dob
+              height
+              weightCategory
+              boatPreference
+              side
+              sex
+              status
+              createdAt
+              updatedAt
+            }
+            attending
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     boat {
       items {
         id
@@ -994,6 +1193,17 @@ subscription OnDeleteMembershipType {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -1035,7 +1245,18 @@ subscription OnCreateBoat {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -1155,6 +1376,17 @@ subscription OnCreateBoat {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -1196,7 +1428,18 @@ subscription OnUpdateBoat {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -1316,6 +1559,17 @@ subscription OnUpdateBoat {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -1357,7 +1611,18 @@ subscription OnDeleteBoat {
           id
           trainingDate
           statut
-          athleteCategory
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
           trainingTime
           athleteAttending {
             items {
@@ -1477,6 +1742,17 @@ subscription OnDeleteBoat {
         membership {
           id
           type
+          training {
+            items {
+              id
+              trainingDate
+              statut
+              trainingTime
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           boat {
             items {
               id
@@ -1522,7 +1798,12 @@ subscription OnCreateBoatMembershipType {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -1596,6 +1877,9 @@ subscription OnCreateBoatMembershipType {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -1613,6 +1897,40 @@ subscription OnCreateBoatMembershipType {
     membership {
       id
       type
+      training {
+        items {
+          id
+          trainingDate
+          statut
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       boat {
         items {
           id
@@ -1638,6 +1956,9 @@ subscription OnCreateBoatMembershipType {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -1679,7 +2000,12 @@ subscription OnUpdateBoatMembershipType {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -1753,6 +2079,9 @@ subscription OnUpdateBoatMembershipType {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -1770,6 +2099,40 @@ subscription OnUpdateBoatMembershipType {
     membership {
       id
       type
+      training {
+        items {
+          id
+          trainingDate
+          statut
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       boat {
         items {
           id
@@ -1795,6 +2158,9 @@ subscription OnUpdateBoatMembershipType {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -1836,7 +2202,12 @@ subscription OnDeleteBoatMembershipType {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -1910,6 +2281,9 @@ subscription OnDeleteBoatMembershipType {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -1927,6 +2301,40 @@ subscription OnDeleteBoatMembershipType {
     membership {
       id
       type
+      training {
+        items {
+          id
+          trainingDate
+          statut
+          membershipType {
+            id
+            type
+            training {
+              nextToken
+            }
+            boat {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          trainingTime
+          athleteAttending {
+            items {
+              id
+              trainingID
+              athleteID
+              attending
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       boat {
         items {
           id
@@ -1952,6 +2360,9 @@ subscription OnDeleteBoatMembershipType {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -1979,7 +2390,59 @@ subscription OnCreateAthleteAttendence {
       id
       trainingDate
       statut
-      athleteCategory
+      membershipType {
+        id
+        type
+        training {
+          items {
+            id
+            trainingDate
+            statut
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            trainingTime
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        boat {
+          items {
+            id
+            boatId
+            membershipId
+            boat {
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              createdAt
+              updatedAt
+            }
+            membership {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       trainingTime
       athleteAttending {
         items {
@@ -1990,7 +2453,12 @@ subscription OnCreateAthleteAttendence {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2048,7 +2516,12 @@ subscription OnCreateAthleteAttendence {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2098,7 +2571,59 @@ subscription OnUpdateAthleteAttendence {
       id
       trainingDate
       statut
-      athleteCategory
+      membershipType {
+        id
+        type
+        training {
+          items {
+            id
+            trainingDate
+            statut
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            trainingTime
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        boat {
+          items {
+            id
+            boatId
+            membershipId
+            boat {
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              createdAt
+              updatedAt
+            }
+            membership {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       trainingTime
       athleteAttending {
         items {
@@ -2109,7 +2634,12 @@ subscription OnUpdateAthleteAttendence {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2167,7 +2697,12 @@ subscription OnUpdateAthleteAttendence {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2217,7 +2752,59 @@ subscription OnDeleteAthleteAttendence {
       id
       trainingDate
       statut
-      athleteCategory
+      membershipType {
+        id
+        type
+        training {
+          items {
+            id
+            trainingDate
+            statut
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            trainingTime
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        boat {
+          items {
+            id
+            boatId
+            membershipId
+            boat {
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              createdAt
+              updatedAt
+            }
+            membership {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       trainingTime
       athleteAttending {
         items {
@@ -2228,7 +2815,12 @@ subscription OnDeleteAthleteAttendence {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2286,7 +2878,12 @@ subscription OnDeleteAthleteAttendence {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2337,7 +2934,59 @@ subscription OnCreateBoatList {
       id
       trainingDate
       statut
-      athleteCategory
+      membershipType {
+        id
+        type
+        training {
+          items {
+            id
+            trainingDate
+            statut
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            trainingTime
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        boat {
+          items {
+            id
+            boatId
+            membershipId
+            boat {
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              createdAt
+              updatedAt
+            }
+            membership {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       trainingTime
       athleteAttending {
         items {
@@ -2348,7 +2997,12 @@ subscription OnCreateBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2402,7 +3056,12 @@ subscription OnCreateBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2476,6 +3135,9 @@ subscription OnCreateBoatList {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -2512,7 +3174,12 @@ subscription OnCreateBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2562,7 +3229,59 @@ subscription OnUpdateBoatList {
       id
       trainingDate
       statut
-      athleteCategory
+      membershipType {
+        id
+        type
+        training {
+          items {
+            id
+            trainingDate
+            statut
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            trainingTime
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        boat {
+          items {
+            id
+            boatId
+            membershipId
+            boat {
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              createdAt
+              updatedAt
+            }
+            membership {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       trainingTime
       athleteAttending {
         items {
@@ -2573,7 +3292,12 @@ subscription OnUpdateBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2627,7 +3351,12 @@ subscription OnUpdateBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2701,6 +3430,9 @@ subscription OnUpdateBoatList {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -2737,7 +3469,12 @@ subscription OnUpdateBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2787,7 +3524,59 @@ subscription OnDeleteBoatList {
       id
       trainingDate
       statut
-      athleteCategory
+      membershipType {
+        id
+        type
+        training {
+          items {
+            id
+            trainingDate
+            statut
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            trainingTime
+            athleteAttending {
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        boat {
+          items {
+            id
+            boatId
+            membershipId
+            boat {
+              id
+              name
+              ownership
+              weightCategory
+              sortOfBoat
+              note
+              active
+              createdAt
+              updatedAt
+            }
+            membership {
+              id
+              type
+              createdAt
+              updatedAt
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       trainingTime
       athleteAttending {
         items {
@@ -2798,7 +3587,12 @@ subscription OnDeleteBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2852,7 +3646,12 @@ subscription OnDeleteBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken
@@ -2926,6 +3725,9 @@ subscription OnDeleteBoatList {
           membership {
             id
             type
+            training {
+              nextToken
+            }
             boat {
               nextToken
             }
@@ -2962,7 +3764,12 @@ subscription OnDeleteBoatList {
             id
             trainingDate
             statut
-            athleteCategory
+            membershipType {
+              id
+              type
+              createdAt
+              updatedAt
+            }
             trainingTime
             athleteAttending {
               nextToken

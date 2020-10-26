@@ -19,16 +19,13 @@ import {PopupNewTrainingDBComponent} from "../../components/popup-new-training-d
 export class CoachTrainingComponent implements OnInit {
   public displayedColumnsS3: string[] = ['member', 'name', 'start', 'end', 'daysOfTheWeek', 'option'];
   public displayedColumns: string[] = ['member', 'day', 'time', 'attendee', 'statut', 'option'];
-  public trainingsS3: TrainingS3[] = [];
-  public trainingJson: TrainingS3[] = [];
+  public trainingsS3: any[];
+  public trainingJson: any [];
   public trainingS3: TrainingS3;
-  public trainings: Training[];
+  public trainings: any[];
   public training: Training;
-  public test = new Training();
   public days = [];
   public list = [];
-  public isLoadedS3: boolean = false;
-  public isLoadedTraining: boolean = false;
 
 
   constructor(public dialog: MatDialog, private serviceS3: S3Service, private service: CoachTrainingService) {
@@ -39,7 +36,7 @@ export class CoachTrainingComponent implements OnInit {
     Auth.currentAuthenticatedUser({
       bypassCache: false
     }).then(async () => {
-      await this.getTrainingDB();
+      this.getTrainingDB();
     })
       .catch(err => console.error(err));
 
@@ -85,13 +82,11 @@ export class CoachTrainingComponent implements OnInit {
   saveToDB(training: Training) {
     if (training.id != null) {
       this.service.updateTrainingDb(training).then(() => {
-          this.isLoadedTraining = false
           return this.getTrainingDB();
         }
       )
     } else {
       this.service.saveTrainingDb(training).then(() => {
-          this.isLoadedTraining = false;
           return this.getTrainingDB();
         }
       )
@@ -113,7 +108,9 @@ export class CoachTrainingComponent implements OnInit {
         }
       })
       .then(() => {
-        this.refresh();
+        // this.refresh();
+        this.getTrainingS3();
+        this.getTrainingDB();
       })
       .catch(err => console.log(err));
   }
@@ -131,7 +128,7 @@ export class CoachTrainingComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
-  async getTrainingDB() {
+  getTrainingDB() {
     this.trainings = [];
     let now = moment().startOf('week');
     let end = moment().endOf('week');
@@ -143,18 +140,9 @@ export class CoachTrainingComponent implements OnInit {
       }
     }
     let limit= 10000;
-    await this.service.getTrainings(range,limit).then((training) => {
-      for (let i = 0; i < training.items.length; i++) {
-        this.trainings[i] = {
-          id: training.items[i].id,
-          trainingDate: training.items[i].trainingDate,
-          trainingTime: training.items[i].trainingTime,
-          athleteCategory: training.items[i].athleteCategory,
-          statut: training.items[i].statut,
-          athleteAttending: null
-        };
-      }
-      this.isLoadedTraining = true
+    this.service.getTrainings(range,limit).then((training) => {
+      this.trainings = training.items
+
     });
   }
 
@@ -166,12 +154,6 @@ export class CoachTrainingComponent implements OnInit {
     Storage.get(key, {level: 'public', download: true})
       .then(result => {
         this.trainingsS3.push(JSON.parse(this.serviceS3.Utf8ArrayToStr(result['Body'])));
-      })
-
-      .then(() => {
-        if (this.trainingsS3.length == this.list.length) {
-          this.isLoadedS3 = true;
-        }
       })
       .catch(err => console.log(err));
   }
@@ -223,8 +205,6 @@ export class CoachTrainingComponent implements OnInit {
   }
 
   refresh() {
-    this.isLoadedS3 = false;
-    this.isLoadedTraining = false;
     this.trainingsS3 = [];
     this.trainings = [];
     this.list = [];
@@ -235,7 +215,7 @@ export class CoachTrainingComponent implements OnInit {
   doDeleteTrainingS3() {
     Storage.remove('new/' + this.trainingS3.name.split(" ").join('_') + '.json', {level: 'public'})
       .then(() => {
-        this.refresh();
+        // this.refresh();
       })
       .catch(err => console.log(err));
   }
@@ -245,7 +225,6 @@ export class CoachTrainingComponent implements OnInit {
       id: this.training.id
     }
     this.service.deleteTrainingDB(input).then(() => {
-      this.isLoadedTraining = false;
       return this.getTrainingDB();
     })
   }

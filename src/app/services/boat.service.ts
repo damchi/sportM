@@ -19,12 +19,10 @@ export class BoatService {
   }
 
   saveBatchBoatMemberType(boatMembershipTypeInput: CreateBoatMemberShipTypeInput[]):Promise<Array<BatchAddBoatMembershipTypeMutation>>{
-    console.log(boatMembershipTypeInput)
     return this.api.BatchAddBoatMembershipType(boatMembershipTypeInput);
   }
 
   saveBoatMembershipType(membershipType: CreateBoatMemberShipTypeInput):Promise<CreateBoatMembershipTypeMutation>{
-    console.log(membershipType);
     return this.api.CreateBoatMembershipType(membershipType)
   }
 

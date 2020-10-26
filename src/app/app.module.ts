@@ -20,7 +20,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
   declarations: [
     AppComponent,
     AuthComponent,
-    ConfirmDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     AmplifyAngularModule,

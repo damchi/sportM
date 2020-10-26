@@ -7,6 +7,8 @@ import {MarkAsTouch} from "../../../utils/mark-as-touch";
 import * as roleJson from "../../config/role.json";
 import {Membership} from "../../domain/membership";
 import moment from 'moment';
+import {ListMembershipTypesQuery} from "../../API.service";
+import {MembershipTypeService} from "../../services/membership-type.service";
 
 export class PopupTraining {
   training: Training;
@@ -28,10 +30,12 @@ export class ErrorMessages {
 export class PopupNewTrainingDBComponent extends MarkAsTouch implements OnInit {
   public trainFormDb: FormGroup;
   public errorMessages: ErrorMessages;
-  public membershipType: Membership[];
+  public userTypes: any[];
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: PopupTraining,
-              public dialogPop: MatDialogRef<PopupNewTrainingDBComponent>) {
+              public dialogPop: MatDialogRef<PopupNewTrainingDBComponent>,
+              private serviceUserType: MembershipTypeService
+  ) {
     super();
   }
 
@@ -39,7 +43,7 @@ export class PopupNewTrainingDBComponent extends MarkAsTouch implements OnInit {
     this.trainFormDb = this.fb.group({
       trainingDate: new FormControl(this.data.training.trainingDate, [Validators.required]),
       trainingTime: new FormControl(this.data.training.trainingTime, [Validators.required]),
-      athleteCategory: new FormControl(this.data.training.athleteCategory, [Validators.required]),
+      athleteCategory: new FormControl(this.data.training.membershipType, [Validators.required]),
       statut: new FormControl(this.data.training.statut, [Validators.required]),
       athleteAttending: new FormControl(this.data.training.athleteAttending),
     });
@@ -65,9 +69,10 @@ export class PopupNewTrainingDBComponent extends MarkAsTouch implements OnInit {
   }
 
   getRole() {
-    this.membershipType = roleJson.membershipType;
-  };
-
+    this.serviceUserType.getUserType().then((type: ListMembershipTypesQuery) => {
+      this.userTypes = type.items;
+    });
+  }
   close() {
     this.dialogPop.close();
   }
@@ -79,7 +84,7 @@ export class PopupNewTrainingDBComponent extends MarkAsTouch implements OnInit {
       e.id = this.data.training.id
       e.trainingDate = moment(t.trainingDate).format("YYYY-MM-DD");
       e.trainingTime = t.trainingTime;
-      e.athleteCategory = t.athleteCategory;
+      e.trainingMembershipTypeId = t.athleteCategory;
       e.statut = t.statut;
 
       this.dialogPop.close(e);

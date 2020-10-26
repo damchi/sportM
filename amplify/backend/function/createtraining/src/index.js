@@ -30,7 +30,8 @@ exports.handler = async (event) => {
               "id": uuid.v1(),
               "trainingDate": moment(m).format('YYYY-MM-DD'),
               "statut": true,
-              "athleteCategory": objectHead.Metadata.trainingmembercategory,
+              "name": objectHead.Metadata.trainingname,
+              "membershipType": objectHead.Metadata.trainingmembercategory,
               "trainingTime": objectHead.Metadata.trainingtime,
               "createdAt":moment().format(),
               "updatedAt":moment().format()

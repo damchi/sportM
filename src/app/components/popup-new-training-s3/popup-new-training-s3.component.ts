@@ -9,6 +9,8 @@ import {MatDialogRef} from "@angular/material/dialog";
 import {Days} from "../../domain/days";
 import {TrainingS3} from "../../domain/training-s3";
 import {MarkAsTouch} from 'src/utils/mark-as-touch';
+import {ListMembershipTypesQuery} from "../../API.service";
+import {MembershipTypeService} from "../../services/membership-type.service";
 
 export class PopupEntrainement {
   id: string;
@@ -38,8 +40,8 @@ export class ErrorMessages {
 
 export class PopupNewTrainingS3Component extends MarkAsTouch implements OnInit {
   public trainForm: FormGroup;
+  public userTypes: any[] = [];
   public errorMessages: ErrorMessages;
-  public membershipType: Membership[];
   public days: Days[];
 
 
@@ -47,6 +49,7 @@ export class PopupNewTrainingS3Component extends MarkAsTouch implements OnInit {
               @Inject(MAT_DIALOG_DATA)
               public data: PopupEntrainement,
               public dialogPop: MatDialogRef<PopupNewTrainingS3Component>,
+              private serviceUserType: MembershipTypeService
   ) {
     super();
   }
@@ -88,8 +91,10 @@ export class PopupNewTrainingS3Component extends MarkAsTouch implements OnInit {
   }
 
   getRole() {
-    this.membershipType = roleJson.membershipType;
-  };
+    this.serviceUserType.getUserType().then((type: ListMembershipTypesQuery) => {
+      this.userTypes = type.items;
+    });
+  }
 
   getDays() {
     this.days = daysJson.days;
